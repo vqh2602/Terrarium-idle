@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.vqh2602.terrariumidle" "\0"
+            VALUE "CompanyName", "com.vqh2602.terrarium" "\0"
             VALUE "FileDescription", "terrarium_idle" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "terrarium_idle" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 com.vqh2602.terrariumidle. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 com.vqh2602.terrarium. All rights reserved." "\0"
             VALUE "OriginalFilename", "terrarium_idle.exe" "\0"
             VALUE "ProductName", "terrarium_idle" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

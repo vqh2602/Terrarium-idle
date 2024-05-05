@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "38854833849",
+    "project_id": "terrarium-i",
+    "storage_bucket": "terrarium-i.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38854833849:android:511ef15bbb975085e44d68",
+        "android_client_info": {
+          "package_name": "com.vqh2602.terrarium"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38854833849-99eg41939rq4f3bu23tgreg0ls29kcsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp2MRoAXH2QJNgTB2sgMUT0tkj6kgnPBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38854833849-99eg41939rq4f3bu23tgreg0ls29kcsf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "38854833849-4vm9aijusihuk0849v3v2dii6upjf0u7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vqh2602.terrariumidle.terrariumIdle"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

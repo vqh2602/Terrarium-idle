@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>38854833849-hlvtj3e8t96iqpi5b0vm4f21i0mn2eqs.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.38854833849-hlvtj3e8t96iqpi5b0vm4f21i0mn2eqs</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBfVDp2jeaujhz3Cn3pRnQc9L5a17lwHQg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>38854833849</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.vqh2602.terrarium</string>
+	<key>PROJECT_ID</key>
+	<string>terrarium-i</string>
+	<key>STORAGE_BUCKET</key>
+	<string>terrarium-i.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:38854833849:ios:710ef0ed284ecc3ee44d68</string>
+</dict>
+</plist>

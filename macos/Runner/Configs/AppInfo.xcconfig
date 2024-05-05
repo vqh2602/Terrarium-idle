@@ -8,7 +8,7 @@
 PRODUCT_NAME = terrarium_idle
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.vqh2602.terrariumidle.terrariumIdle
+PRODUCT_BUNDLE_IDENTIFIER = com.vqh2602.terrarium
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2024 com.vqh2602.terrariumidle. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 com.vqh2602.terrarium. All rights reserved.
