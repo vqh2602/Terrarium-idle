@@ -1,4 +1,5 @@
-import 'package:terrarium_idle/data/local/user.dart';
+
+import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/storage/storage.dart';
 import 'package:terrarium_idle/modules/init.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
@@ -8,6 +9,8 @@ import 'package:get_storage/get_storage.dart';
 mixin UserMixin {
   GetStorage box = GetStorage();
   UserData? getUserInBox() {
+    return null;
+  
     // return box.read(Storages.dataUser) != null
     //     ? User.fromJson(box.read(Storages.dataUser))
     //     : User();

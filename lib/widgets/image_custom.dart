@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
-import 'package:terrarium_idle/widgets/library/shimmer/shimmer.dart';
 import 'package:photo_view_v3/photo_view.dart';
 
 Widget imageNetwork({
@@ -55,11 +54,7 @@ Widget imageNetwork({
     key: key,
     // semanticLabel: semanticLabel,
     progressIndicatorBuilder: (context, url, downloadProgress) {
-      return Center(
-          child: ShimmerPro.sized(
-              scaffoldBackgroundColor: Colors.grey.shade200,
-              height: double.infinity,
-              width: double.infinity));
+      return const Center(child: CircularProgressIndicator());
     },
   );
 }

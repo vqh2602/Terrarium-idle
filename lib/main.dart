@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
       ],
       fallbackLocale: const Locale('vi', 'VN'),
       theme: SThemeTask.lightTheme,
-      darkTheme: SThemeTask.darkTheme,
+      // darkTheme: SThemeTask.darkTheme,
       // themeMode: ThemeService().theme,
       // themeMode:  ThemeMode.dark ,
       // builder: (context, child) {

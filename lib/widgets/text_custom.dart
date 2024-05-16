@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-Widget textDisplayLarge(
-    String text,{
-    double fontSize = 45,
+Widget textDisplayLarge(String text,
+    {double fontSize = 45,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.w500,
@@ -58,9 +55,8 @@ Widget textDisplayLarge(
   );
 }
 
-Widget textDisplayMedium(
-    String text,{
-    double fontSize = 35,
+Widget textDisplayMedium(String text,
+    {double fontSize = 35,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.w500,
@@ -112,9 +108,8 @@ Widget textDisplayMedium(
   );
 }
 
-Widget textDisplaySmall(
-    String text,{
-    double fontSize = 25,
+Widget textDisplaySmall(String text,
+    {double fontSize = 25,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.w500,
@@ -166,9 +161,8 @@ Widget textDisplaySmall(
   );
 }
 
-Widget textHeadlineLarge(
-    String text,{
-    double fontSize = 28.5,
+Widget textHeadlineLarge(String text,
+    {double fontSize = 28.5,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.normal,
@@ -220,9 +214,8 @@ Widget textHeadlineLarge(
   );
 }
 
-Widget textHeadlineMedium(
-    String text,{
-    double fontSize = 25.5,
+Widget textHeadlineMedium(String text,
+    {double fontSize = 25.5,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.normal,
@@ -274,9 +267,8 @@ Widget textHeadlineMedium(
   );
 }
 
-Widget textHeadlineSmall(
-    String text,{
-    double fontSize = 20,
+Widget textHeadlineSmall(String text,
+    {double fontSize = 20,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.normal,
@@ -328,9 +320,8 @@ Widget textHeadlineSmall(
   );
 }
 
-Widget textTitleLarge(
-    String text,{
-    double fontSize = 18.5,
+Widget textTitleLarge(String text,
+    {double fontSize = 18.5,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.w700,
@@ -382,9 +373,61 @@ Widget textTitleLarge(
   );
 }
 
-Widget textTitleMedium(
-    String text,{
-    double fontSize = 16.5,
+Widget textTitleMedium(String text,
+    {double fontSize = 16.5,
+    Color? color,
+    FontStyle? fontStyle,
+    FontWeight fontWeight = FontWeight.w700,
+    Color? backGroundColor,
+    TextDirection? textDirection,
+    int? maxLines,
+    TextAlign? textAlign,
+    TextDecoration? decoration,
+    Color? decorationColor,
+    TextStyle? textStyle,
+    Paint? background,
+    TextDecorationStyle? textDecorationStyle,
+    double? wordSpacing,
+    TextBaseline? textBaseline,
+    List<Shadow>? shadow,
+    Locale? locale,
+    double? height,
+    double? decorationThickness,
+    List<FontFeature>? fontFeatures,
+    Paint? foreground,
+    double? letterSpacing,
+    TextOverflow? overflow}) {
+  return Text(
+    text,
+    textDirection: textDirection,
+    maxLines: maxLines,
+    textAlign: textAlign,
+    style: textStyleCustom(
+      fontSize: fontSize,
+      color: color ?? Colors.black,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      textStyle: textStyle,
+      background: background,
+      textDecorationStyle: textDecorationStyle,
+      wordSpacing: wordSpacing,
+      textBaseline: textBaseline,
+      shadow: shadow,
+      locale: locale,
+      height: height,
+      decorationThickness: decorationThickness,
+      fontFeatures: fontFeatures,
+      foreground: foreground,
+      letterSpacing: letterSpacing,
+      fontWeight: fontWeight,
+      backGroundColor: backGroundColor,
+      fontStyle: fontStyle,
+    ),
+  );
+}
+
+Widget textTitleSmall(String text,
+    {double fontSize = 13.5,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.w700,
@@ -436,63 +479,8 @@ Widget textTitleMedium(
   );
 }
 
-Widget textTitleSmall(
-    String text,{
-    double fontSize = 13.5,
-    Color? color,
-    FontStyle? fontStyle,
-    FontWeight fontWeight = FontWeight.w700,
-    Color? backGroundColor,
-    TextDirection? textDirection,
-    int? maxLines,
-    TextAlign? textAlign,
-    TextDecoration? decoration,
-    Color? decorationColor,
-    TextStyle? textStyle,
-    Paint? background,
-    TextDecorationStyle? textDecorationStyle,
-    double? wordSpacing,
-    TextBaseline? textBaseline,
-    List<Shadow>? shadow,
-    Locale? locale,
-    double? height,
-    double? decorationThickness,
-    List<FontFeature>? fontFeatures,
-    Paint? foreground,
-    double? letterSpacing,
-    TextOverflow? overflow}) {
-  return Text(
-    text,
-    textDirection: textDirection,
-    maxLines: maxLines,
-    textAlign: textAlign,
-    style: textStyleCustom(
-      fontSize: fontSize,
-      color: color,
-      decoration: decoration,
-      decorationColor: decorationColor,
-      textStyle: textStyle,
-      background: background,
-      textDecorationStyle: textDecorationStyle,
-      wordSpacing: wordSpacing,
-      textBaseline: textBaseline,
-      shadow: shadow,
-      locale: locale,
-      height: height,
-      decorationThickness: decorationThickness,
-      fontFeatures: fontFeatures,
-      foreground: foreground,
-      letterSpacing: letterSpacing,
-      fontWeight: fontWeight,
-      backGroundColor: backGroundColor,
-      fontStyle: fontStyle,
-    ),
-  );
-}
-
-Widget textLableLarge(
-    String text,{
-    double fontSize = 18,
+Widget textLableLarge(String text,
+    {double fontSize = 18,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.w600,
@@ -544,9 +532,8 @@ Widget textLableLarge(
   );
 }
 
-Widget textLableMedium(
-    String text,{
-    double fontSize = 15.5,
+Widget textLableMedium(String text,
+    {double fontSize = 15.5,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.w600,
@@ -598,9 +585,8 @@ Widget textLableMedium(
   );
 }
 
-Widget textLableSmall(
-    String text,{
-    double fontSize = 13,
+Widget textLableSmall(String text,
+    {double fontSize = 13,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.w600,
@@ -652,9 +638,8 @@ Widget textLableSmall(
   );
 }
 
-Widget textBodyLarge(
-    String text,{
-    double fontSize = 18,
+Widget textBodyLarge(String text,
+    {double fontSize = 18,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.normal,
@@ -706,9 +691,8 @@ Widget textBodyLarge(
   );
 }
 
-Widget textBodyMedium(
-    String text,{
-    double fontSize = 15.5,
+Widget textBodyMedium(String text,
+    {double fontSize = 15.5,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.normal,
@@ -760,9 +744,8 @@ Widget textBodyMedium(
   );
 }
 
-Widget textBodySmall(
-    String text,{
-    double fontSize = 12.5,
+Widget textBodySmall(String text,
+    {double fontSize = 12.5,
     Color? color,
     FontStyle? fontStyle,
     FontWeight fontWeight = FontWeight.normal,
@@ -837,7 +820,7 @@ TextStyle textStyleCustom(
     double? letterSpacing}) {
   return GoogleFonts.mali(
     fontSize: fontSize,
-    color: color ?? Get.theme.colorScheme.onBackground,
+    color: color ?? Colors.black,
     decoration: decoration,
     decorationColor: decorationColor,
     textStyle: textStyle,

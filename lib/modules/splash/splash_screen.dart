@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  SplashController splashController = Get.put(SplashController());
+  SplashController splashController = Get.find();
 
   @override
   void initState() {

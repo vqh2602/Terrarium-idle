@@ -33,7 +33,7 @@ Color a50 = const Color(0xffF0F6EF);
 
 Color b500 = const Color(0xffEFF2ED);
 Color c500 = const Color(0xffFFB1B9);
-Color bg500 = const Color(0xffEEF2ED);
+Color bg500 = const Color.fromARGB(255, 255, 251, 241);
 Color bg700 = const Color(0xffF1F7FF);
 
 Color text500 = const Color(0xff565656);

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import 'package:get_storage/get_storage.dart';
@@ -57,7 +56,7 @@ class SThemeTask {
     /// AppBar Theme
     appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xffffffff),
-        iconTheme: IconThemeData(color: Color(0xff495057)),
+        iconTheme: IconThemeData(color: Colors.black),
         actionsIconTheme: IconThemeData(color: Color(0xff495057))),
 
     /// Card Theme
@@ -176,7 +175,12 @@ class SThemeTask {
     canvasColor: Colors.transparent,
 
     /// AppBar Theme
-    appBarTheme: const AppBarTheme(backgroundColor: Color(0xff161616)),
+    // appBarTheme: const AppBarTheme(backgroundColor: Color(0xff161616)),
+    /// AppBar Theme
+    appBarTheme: const AppBarTheme(
+        backgroundColor: Color(0xffffffff),
+        iconTheme: IconThemeData(color: Colors.black),
+        actionsIconTheme: IconThemeData(color: Color(0xff495057))),
 
     /// Card Theme
     cardTheme: const CardTheme(color: Color(0xff222327)),
@@ -255,6 +259,7 @@ class SThemeTask {
         return null;
       }),
     ),
+    iconTheme: const IconThemeData(color: Colors.black),
 
     /// Slider Theme
     sliderTheme: SliderThemeData(

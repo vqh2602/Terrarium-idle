@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:terrarium_idle/c_theme/colors.dart';
 import 'package:terrarium_idle/widgets/text_custom.dart';
 
 Widget buildBody(
@@ -18,7 +19,7 @@ Widget buildBody(
           extendBodyBehindAppBar: true,
           extendBody: true,
           appBar: appBar,
-          backgroundColor: backgroundColor,
+          backgroundColor: backgroundColor ?? bg500,
           bottomNavigationBar: bottomNavigationBar,
           floatingActionButton: createFloatingActionButton,
           floatingActionButtonLocation: floatingActionButtonLocation,

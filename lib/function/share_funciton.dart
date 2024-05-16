@@ -7,12 +7,16 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:terrarium_idle/data/local/user.dart';
+import 'package:terrarium_idle/data/models/user.dart';
+
 import 'package:terrarium_idle/widgets/text_custom.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // ignore: constant_identifier_names
 enum TypeDate { ddMMyyyy, yyyyMMdd, ddMMyyyyhhmm, hhmm, dd, yyyy, mM, mMyyyy }
+
+// ignore: constant_identifier_names
+enum TypeSound { rain, tap }
 
 class ShareFuntion {
   static final player = AudioPlayer();
@@ -123,6 +127,7 @@ class ShareFuntion {
       required Function onCancel,
       required Function onSubmit}) async {
     await showDialog(
+      
       context: context,
       builder: (context) => CupertinoAlertDialog(
         title: textBodyMedium('Thông báo'.tr, fontWeight: FontWeight.bold),
@@ -246,16 +251,26 @@ class ShareFuntion {
     }
   }
 
-  static tapPlayAudio() async {
-    if (player.playing) {
-      player.pause();
+  static tapPlayAudio(
+      {TypeSound type = TypeSound.tap, bool isNewAudioPlay = false}) async {
+    var playerAudio = player;
+    if (isNewAudioPlay) {
+      playerAudio = AudioPlayer();
+    }
+
+    if (playerAudio.playing) {
+      playerAudio.pause();
     } else {
       // Create a player
-      await player.setAsset(
-          'assets/audios/tap.mp3'); // Schemes: (https: | file: | asset: )
-      await player.play(); // Play while waiting for completion
+      switch (type) {
+        case TypeSound.rain:
+          await playerAudio.setAsset('assets/audios/rain.mp3');
+        case TypeSound.tap:
+          await playerAudio.setAsset('assets/audios/tap.mp3');
+      }
+      await playerAudio.play(); // Play while waiting for completion
       // await player.pause(); // Pause but remain ready to play
-      await player.stop();
+      await playerAudio.stop();
     }
   }
 }

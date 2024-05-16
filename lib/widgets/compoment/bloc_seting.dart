@@ -37,7 +37,7 @@ Widget blockSetting(
                   if (icon != null) ...[
                     Icon(
                       icon,
-                      color: Get.isDarkMode ? null : text500,
+                      color: Colors.black,
                       size: 16,
                     ),
                     cWidth(8),

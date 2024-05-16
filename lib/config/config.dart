@@ -15,4 +15,8 @@ class ModuleConfig {
       'MTE5MjY1OTU2NTA3MDc4NjYxMQ.G94xyR.vWuQ82qEFONP0bcw2DW4pP2vzGPD6cnqZb0XpQ';
   String channelId = '1195688717596237884';
   String imgurApi = 'https://api.imgur.com';
+
+  String productId1000Gemstone = 'com.vqh2602.terrarium.1000gem';
+  String productId500Gemstone = 'com.vqh2602.terrarium.500gem';
+  String productId100Gemstone = 'com.vqh2602.terrarium.100gem';
 }
