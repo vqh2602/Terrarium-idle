@@ -49,53 +49,53 @@ class _EventScreenState extends State<EventScreen> {
   }
 
   Widget _buildBody() {
-    return eventController.obx((state) => SafeArea(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    padding: EdgeInsets.zero,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {},
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
+    return eventController.obx((state) => Container(
+          color: Colors.transparent,
+          child: SafeArea(
+            child: ListView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {},
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                imageNetwork(
-                                    url: 'https://i.imgur.com/f5PNK5c.jpeg'),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 20, top: 12, bottom: 12),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      textTitleMedium(
-                                        'Sự kiện đổi oxygen',
-                                      ),
-                                      textBodySmall(
-                                          'Tham gia đổi oxygen để nhận các vật phẩm: Vé sự kiện, đá quí, chậu hồng chấm bi'),
-                                      textBodySmall(
-                                          'Hạn sự kiện: 23/5/2024 - 30/12/2024'),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                            SizedBox(
+                              width: Get.width,
+                              child: imageNetwork(
+                                  url: 'https://i.imgur.com/f5PNK5c.jpeg',
+                                  fit: BoxFit.cover),
                             ),
-                            const Divider(
-                              color: Colors.black12,
-                            )
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 20, top: 12, bottom: 12),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  textTitleMedium(
+                                    'Sự kiện đổi oxygen',
+                                  ),
+                                  textBodySmall(
+                                      'Tham gia đổi oxygen để nhận các vật phẩm: Vé sự kiện, đá quí, chậu hồng chấm bi'),
+                                  textBodySmall(
+                                      'Hạn sự kiện: 23/5/2024 - 30/12/2024'),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
-                      );
-                    }),
-              )
-            ],
+                        const Divider(
+                          color: Colors.black12,
+                        )
+                      ],
+                    ),
+                  );
+                }),
           ),
         ));
   }

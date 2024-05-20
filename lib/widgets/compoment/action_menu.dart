@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pie_menu/pie_menu.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
+import 'package:terrarium_idle/widgets/build_toast.dart';
 import 'package:terrarium_idle/widgets/compoment/picket_move.dart';
 import 'package:terrarium_idle/widgets/text_custom.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -23,8 +24,18 @@ List<PieAction> listActionsMenu(BuildContext context,
               Get.back();
             },
             onSubmit: () {
+              Plants? plant = userData.plants?.firstWhere(
+                  (element) => element.position!.contains('$floor,$position'));
               userData.plants?.removeWhere(
                   (element) => element.position!.contains('$floor,$position'));
+              userData = userData.copyWith(
+                  money: userData.money!.copyWith(
+                      oxygen: (userData.money?.oxygen ?? 0) +
+                          (plant?.plantLevel == 1
+                              ? 5
+                              : plant?.plantLevel == 2
+                                  ? 20
+                                  : 50)));
               // setState(() {});
               Get.back();
               // print(userData.plants?.length);
@@ -52,6 +63,25 @@ List<PieAction> listActionsMenu(BuildContext context,
               Get.back();
             },
             onSubmit: () {
+              if ((userData.item?.fertilizer ?? 0) < 10) {
+                buildToast(
+                    message: 'Không đủ phân bón',
+                    status: TypeToast.toastDefault);
+                return;
+              }
+              Plants? plant = userData.plants?.firstWhere(
+                  (element) => element.position!.contains('$floor,$position'));
+              List<Plants> plants = userData.plants ?? [];
+              plants.removeWhere(
+                  (element) => element.position!.contains('$floor,$position'));
+              plants.add(plant!.copyWith(
+                plantLevel: plant.plantLevel! + 1,
+              ));
+              userData = userData.copyWith(
+                  item: userData.item!.copyWith(
+                      fertilizer: (userData.item?.fertilizer ?? 0) - 10),
+                  plants: plants);
+              update.call(userData);
               Get.back();
             });
       },
@@ -69,7 +99,6 @@ List<PieAction> listActionsMenu(BuildContext context,
     PieAction(
       tooltip: _itemMenuPlant('shovel'),
       onSelect: () {
-        
         showMovePickShovel(
             floor: floor,
             position: position,

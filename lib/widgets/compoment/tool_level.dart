@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terrarium_idle/data/models/user.dart';
+import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/user/user_screen.dart';
 import 'package:terrarium_idle/widgets/text_custom.dart';
 import 'package:terrarium_idle/widgets/widgets.dart';
@@ -46,7 +47,9 @@ class _ToolLevelState extends State<ToolLevel> {
                                 fontWeight: FontWeight.w700,
                                 color: Colors.black),
                             LinearProgressIndicator(
-                              value: 0.5,
+                              value: (widget.user.user?.userLevelEXP ?? 0) /
+                                  ((1000 * (widget.user.user?.userLevel ?? 1)) *
+                                      0.75),
                               minHeight: 6,
                               borderRadius: BorderRadius.circular(100),
                               backgroundColor: Colors.grey,
@@ -78,8 +81,12 @@ class _ToolLevelState extends State<ToolLevel> {
                             children: [
                               Image.asset(
                                 'assets/images/oxygen.png',
-                                width: constraints.maxWidth * 0.10,
-                                height: constraints.maxWidth * 0.10,
+                                width: ShareFuntion.isIpad()
+                                    ? constraints.maxWidth * 0.03
+                                    : constraints.maxWidth * 0.10,
+                                height: ShareFuntion.isIpad()
+                                    ? constraints.maxWidth * 0.03
+                                    : constraints.maxWidth * 0.10,
                               ),
                               textBodySmall('${widget.user.money?.oxygen ?? 0}',
                                   fontWeight: FontWeight.w700,
@@ -94,8 +101,12 @@ class _ToolLevelState extends State<ToolLevel> {
                             children: [
                               Image.asset(
                                 'assets/images/gemstone.png',
-                                width: constraints.maxWidth * 0.10,
-                                height: constraints.maxWidth * 0.10,
+                                width: ShareFuntion.isIpad()
+                                    ? constraints.maxWidth * 0.03
+                                    : constraints.maxWidth * 0.10,
+                                height: ShareFuntion.isIpad()
+                                    ? constraints.maxWidth * 0.03
+                                    : constraints.maxWidth * 0.10,
                               ),
                               textBodySmall(
                                   '${widget.user.money?.gemstone ?? 0}',
@@ -111,8 +122,12 @@ class _ToolLevelState extends State<ToolLevel> {
                             children: [
                               Image.asset(
                                 'assets/images/fertilizer.png',
-                                width: constraints.maxWidth * 0.10,
-                                height: constraints.maxWidth * 0.10,
+                                width: ShareFuntion.isIpad()
+                                    ? constraints.maxWidth * 0.03
+                                    : constraints.maxWidth * 0.10,
+                                height: ShareFuntion.isIpad()
+                                    ? constraints.maxWidth * 0.03
+                                    : constraints.maxWidth * 0.10,
                               ),
                               textBodySmall(
                                   '${widget.user.item?.fertilizer ?? 0}',
@@ -128,8 +143,12 @@ class _ToolLevelState extends State<ToolLevel> {
                             children: [
                               Image.asset(
                                 'assets/images/shovel.png',
-                                width: constraints.maxWidth * 0.10,
-                                height: constraints.maxWidth * 0.10,
+                                width: ShareFuntion.isIpad()
+                                    ? constraints.maxWidth * 0.03
+                                    : constraints.maxWidth * 0.10,
+                                height: ShareFuntion.isIpad()
+                                    ? constraints.maxWidth * 0.03
+                                    : constraints.maxWidth * 0.10,
                               ),
                               textBodySmall('${widget.user.item?.shovel ?? 0}',
                                   fontWeight: FontWeight.w700,
@@ -144,8 +163,12 @@ class _ToolLevelState extends State<ToolLevel> {
                             children: [
                               Image.asset(
                                 'assets/images/ticket.png',
-                                width: constraints.maxWidth * 0.10,
-                                height: constraints.maxWidth * 0.10,
+                                width: ShareFuntion.isIpad()
+                                    ? constraints.maxWidth * 0.03
+                                    : constraints.maxWidth * 0.10,
+                                height: ShareFuntion.isIpad()
+                                    ? constraints.maxWidth * 0.03
+                                    : constraints.maxWidth * 0.10,
                               ),
                               textBodySmall('${widget.user.money?.ticket ?? 0}',
                                   fontWeight: FontWeight.w700,

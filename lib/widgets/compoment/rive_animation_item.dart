@@ -2,31 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 Widget riveAnimation(BoxConstraints constraints,
-    {required String plantId, required String potId, required num level}) {
+    {required String plantId,
+    required String potId,
+    required num level,
+    required Function changeUI}) {
+  SMIInput<double>? input;
+  dynamic state;
+  Artboard? artboard;
+
+  // print('/n plantId: $plantId levelchange: $level');
   return StatefulBuilder(builder: (context, setState) {
-    SMIInput<double>? input;
     return Column(
       children: [
         SizedBox(
           width: constraints.maxWidth,
-          height: constraints.maxHeight * 0.75,
+          height: constraints.maxHeight * 0.73,
           child: RiveAnimation.asset(
             'assets/rive/plants/$plantId.riv',
-            onInit: (artboard) {
-              var state =
-                  StateMachineController.fromArtboard(artboard, 'plant');
+            key: Key('$plantId $level'),
+            onInit: (artboardRive) {
+              artboard = artboardRive;
+              // print('/n animation plant: $plantId $level');
+              state = StateMachineController.fromArtboard(artboard!, 'plant');
               input = state!.findInput<double>('level') as SMINumber;
               input!.change(level.toDouble());
-              setState(() {});
               // print(_input!.value);
-              artboard.addController(state);
+              artboard!.addController(state);
+              setState(() {
+                changeUI.call();
+              });
             },
             fit: BoxFit.fill,
           ),
         ),
         SizedBox(
           width: constraints.maxWidth,
-          height: constraints.maxHeight * 0.25,
+          height: constraints.maxHeight * 0.27,
           child: RiveAnimation.asset(
             'assets/rive/pots/$potId.riv',
           ),

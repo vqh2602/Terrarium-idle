@@ -89,6 +89,7 @@ showMovePickShovel(
                         // });
                         // print(userData);
                         update.call(userData);
+                        Get.back();
                       },
                     );
                     // print(userData.plants);

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 // import 'package:appwrite/models.dart';
 import 'package:flutter/cupertino.dart';
@@ -127,7 +128,6 @@ class ShareFuntion {
       required Function onCancel,
       required Function onSubmit}) async {
     await showDialog(
-      
       context: context,
       builder: (context) => CupertinoAlertDialog(
         title: textBodyMedium('Thông báo'.tr, fontWeight: FontWeight.bold),
@@ -272,6 +272,46 @@ class ShareFuntion {
       // await player.pause(); // Pause but remain ready to play
       await playerAudio.stop();
     }
+  }
+
+// Hàm gacha
+  static bool gacha({int winRate = 30}) {
+    // Sinh số ngẫu nhiên từ 0 đến 99
+    int randomNumber = Random().nextInt(100);
+
+    // Nếu số ngẫu nhiên <= winRate, trúng giải
+    if (randomNumber <= winRate) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static UserData updateLevel(UserData userData) {
+    //LEVEL USER
+    int expUser = userData.user?.userLevelEXP ?? 0;
+    int level = userData.user?.userLevel ?? 1;
+
+    if (expUser >= (1000 * level) * 0.75) {
+      userData = userData.copyWith(
+          user: userData.user?.copyWith(userLevel: level + 1, userLevelEXP: 0));
+    }
+    //LEVEL PLANT
+    List<Plants> plants = userData.plants!;
+    for (int i = 0; i < plants.length; i++) {
+      if (plants[i].platLevelExp != null && plants[i].plantLevel != null) {
+        if (plants[i].platLevelExp! >= (3000 * plants[i].plantLevel!) * 0.95) {
+          plants[i] = plants[i]
+              .copyWith(plantLevel: plants[i].plantLevel! + 1, platLevelExp: 0);
+        }
+      }
+    }
+    userData = userData.copyWith(plants: plants);
+    return userData;
+  }
+
+  static bool isIpad() {
+    return Get.width >= 600;
   }
 }
 

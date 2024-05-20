@@ -85,4 +85,16 @@ List<ItemData> listPlantsData = [
     effect: 'N.A',
     levelUnlock: 5,
   ),
+  ItemData(
+    id: 'plant8',
+    name: 'Xương rồng đá cuội',
+    description: 'Loài cây có sức sống mãnh liệt, nhánh lớn',
+    image: 'https://i.imgur.com/FZk0gxp.png',
+    priceStore: 50,
+    priceOxygen: 11500,
+    currencyUnit: 'ticket',
+    type: 'plant',
+    effect: 'Nhạc thư thái - m1',
+    levelUnlock: 10,
+  ),
 ];

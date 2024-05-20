@@ -78,7 +78,7 @@ class StoreController extends GetxController
     Set<String> kIds = <String>{
       Env.config.productId1000Gemstone,
       Env.config.productId500Gemstone,
-      Env.config.productId100Gemstone,
+      Env.config.productId200Gemstone,
     };
     final ProductDetailsResponse response =
         await InAppPurchase.instance.queryProductDetails(kIds);
@@ -210,12 +210,12 @@ class StoreController extends GetxController
   }
 
   buyItems(UserData? user) async {
-    var result = await updateDataUser(userData: user);
-    if (result != null) {
-      userController.user = result;
-      userController.update();
-      initDataList();
-    }
+    await userController.updateUser(userData: user);
+    // if (result != null) {
+    // userController.user = result;
+    // userController.update();
+    initDataList();
+    // }
   }
 
   String? getStringLockLevel(num level) {

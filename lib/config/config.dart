@@ -18,5 +18,5 @@ class ModuleConfig {
 
   String productId1000Gemstone = 'com.vqh2602.terrarium.1000gem';
   String productId500Gemstone = 'com.vqh2602.terrarium.500gem';
-  String productId100Gemstone = 'com.vqh2602.terrarium.100gem';
+  String productId200Gemstone = 'com.vqh2602.terrarium.200gem';
 }

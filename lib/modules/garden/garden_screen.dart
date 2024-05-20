@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers
 
-import 'dart:math';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
@@ -16,6 +16,7 @@ import 'package:terrarium_idle/modules/store/store_screen.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
 import 'package:terrarium_idle/widgets/compoment/graden_widget.dart';
+import 'package:terrarium_idle/widgets/compoment/picker_effects.dart';
 import 'package:terrarium_idle/widgets/compoment/tool_level.dart';
 
 class GardenScreen extends StatefulWidget {
@@ -32,16 +33,28 @@ class _GardenScreenState extends State<GardenScreen>
   UserController userController = Get.find();
 
   final _key = GlobalKey<ExpandableFabState>();
+  late Timer _timer;
   @override
   void initState() {
     super.initState();
     gardenController.checkLogin();
+    _startTimer();
   }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
+      setState(() {
+        gardenController.isRain = ShareFuntion.gacha(winRate: 5);
+        gardenController.update();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,6 +160,42 @@ class _GardenScreenState extends State<GardenScreen>
               gardenController.update();
             },
           ),
+          FloatingActionButton(
+            heroTag: null,
+            shape: const CircleBorder(),
+            backgroundColor: Colors.white,
+            child: Icon(
+              LucideIcons.sparkles,
+              color: Get.theme.primaryColor,
+            ),
+            onPressed: () {
+              _key.currentState?.toggle();
+              // ShareFuntion.tapPlayAudio();
+              // Future.delayed(const Duration(seconds: 500), () {
+              // ShareFuntion.tapPlayAudio(type: TypeSound.tap);
+              showPickEffects(
+                listEffect: gardenController.listSelectOptionEffect,
+                listMusic: gardenController.listSelectOptionMusic,
+                selectEffect: gardenController.selectEffect,
+                selectMusic: gardenController.selectMusic,
+                onChangedEffect: (p0) => {
+                  gardenController.selectEffect = p0,
+                  // print('selectEffect: ${gardenController.selectEffect}'),
+                  gardenController.update()
+                },
+                onChangedMusic: (p0) => {
+                  gardenController.selectMusic = p0,
+                  gardenController.initAudio(
+                      asset: gardenController.selectMusic?.value ??
+                          'assets/audios/peacefulgarden.mp3'),
+                  // print('selectEffect: ${gardenController.selectEffect}'),
+                  gardenController.update()
+                },
+              );
+              // });
+              // Get.back();
+            },
+          ),
         ],
       ),
     );
@@ -160,8 +209,8 @@ class _GardenScreenState extends State<GardenScreen>
               height: Get.height,
               padding: EdgeInsets.zero,
               child: RiveAnimation.asset(
-                Random().nextInt(10) < 2
-                    ? DateTime.now().hour > 18
+                !gardenController.isRain
+                    ? DateTime.now().hour >= 18
                         ? 'assets/backgrounds/sky_moon_night.riv'
                         : 'assets/backgrounds/sky_sun_day.riv'
                     : 'assets/backgrounds/sky_rain.riv',
@@ -169,18 +218,29 @@ class _GardenScreenState extends State<GardenScreen>
               ),
             ),
             userController.obx(
-              (state) => Positioned.fill(
-                child: Graden(
-                  isEdit: gardenController.isEdit,
-                  userData: userController.user ?? UserData(),
-                  update: (UserData userData) {
-                    userController.user = userData;
-                    gardenController.updateDataUser(
-                        userData: userController.user);
-                    gardenController.update();
-                  },
-                ),
-              ),
+              (state) {
+                if (userController.user?.user == null ||
+                    userController.user?.plants == null ||
+                    userController.user?.money == null) {
+                  userController.logOut();
+                }
+                return Positioned.fill(
+                  child: Graden(
+                    isEdit: gardenController.isEdit,
+                    userData: userController.user ?? UserData(),
+                    changeUI: () {
+                      gardenController.changeUI();
+                    },
+                    update: (UserData userData) {
+                      userController.user = userData;
+                      gardenController.userData = userData;
+                      userController.updateUser(userData: userController.user);
+                      gardenController.initDataEffect();
+                      gardenController.update();
+                    },
+                  ),
+                );
+              },
             ),
             userController.obx(
               (state) => ToolLevel(
@@ -188,23 +248,26 @@ class _GardenScreenState extends State<GardenScreen>
                 user: userController.user ?? UserData(),
               ),
             ),
-            IgnorePointer(
-              ignoring: true,
-              child: Container(
-                // color:
-                //     Colors.black.withOpacity(0.5), // Màu nền đen với độ mờ 50%
-                width: Get.width,
-                height: Get.height,
-                padding: EdgeInsets.zero,
-                child: const RiveAnimation.asset(
-                  // 'assets/backgrounds/sky_sun_day.riv',
-                  // 'assets/backgrounds/sky_rain.riv',
-                  'assets/rive/overlay/overlay1.riv',
-                  fit: BoxFit.cover,
+            if (gardenController.listSelectOptionEffect.firstOrNull?.value !=
+                null)
+              IgnorePointer(
+                ignoring: true,
+                child: Container(
+                  // color:
+                  //     Colors.black.withOpacity(0.5), // Màu nền đen với độ mờ 50%
+                  width: Get.width,
+                  height: Get.height,
+                  padding: EdgeInsets.zero,
+                  child: RiveAnimation.asset(
+                    gardenController
+                            .listSelectOptionEffect.firstOrNull?.value ??
+                        '',
+                    // 'assets/rive/overlay/overlay1.riv',
+                    fit: BoxFit.cover,
+                  ),
+                  // Căn container để nó phủ lên toàn bộ màn hình
                 ),
-                // Căn container để nó phủ lên toàn bộ màn hình
-              ),
-            )
+              )
           ],
         ));
   }

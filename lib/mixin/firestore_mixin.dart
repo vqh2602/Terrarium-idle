@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:terrarium_idle/data/models/user.dart';
+import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/login/login_screen.dart';
 import 'package:terrarium_idle/widgets/build_toast.dart';
 
@@ -34,7 +35,7 @@ mixin FireStoreMixin {
             userLevel: 1,
             userLevelEXP: 0),
         cart: Cart(cartPlants: [], cartPots: []),
-        item: Item(fertilizer: 5, shovel: 5),
+        item: Item(fertilizer: 20, shovel: 5),
         money: Money(oxygen: 5000, gemstone: 0, ticket: 0),
         plants: [],
       );
@@ -50,7 +51,39 @@ mixin FireStoreMixin {
   }
 
 // lấy dũ liệu tài khoản
-  Future<UserData?> getDataUser(String id) async {
+  Future<UserData?> getDataUser(String id, {bool isCloud = false}) async {
+    // DateTime? dateTimeOut =
+    //     DateTime.tryParse(box.read(Storages.dataUserCloudTimeOut) ?? '');
+    // // local
+    // if (!isCloud &&
+    //     dateTimeOut != null &&
+    //     (DateTime.now().difference(dateTimeOut).inMinutes <= 5)) {
+    //   try {
+    //     // await box.write(
+    //     //     Storages.dataUserCloudTimeOut, DateTime.now().toString());
+    //     return UserData.fromJson(box.read(Storages.dataUserCloud) ?? '');
+    //   } on Exception catch (_) {
+    //     // if (box.read(Storages.dataUserCloud) != null &&
+    //     //     box.read(Storages.dataUserCloud) != '') {
+    //     //   UserData userData =
+    //     //       UserData.fromJson(box.read(Storages.dataUserCloud));
+    //     //   await updateDataUser(userData: userData);
+    //     // }
+    //     await box.write(
+    //         Storages.dataUserCloudTimeOut, DateTime.now().toString());
+    //   }
+    // } else {
+    //   try {
+    //     if (box.read(Storages.dataUserCloud) != null &&
+    //         box.read(Storages.dataUserCloud) != '') {
+    //       UserData userData =
+    //           UserData.fromJson(box.read(Storages.dataUserCloud));
+    //       await updateDataUser(userData: userData);
+    //     }
+    //   } on Exception catch (_) {}
+    //   await box.write(Storages.dataUserCloudTimeOut, DateTime.now().toString());
+    // }
+//cloud
     try {
       await db.collection("users").where("id", isEqualTo: id).get();
       final docRef = db.collection("users").doc(id);
@@ -80,11 +113,40 @@ mixin FireStoreMixin {
   }
 
   //update data user
-  Future<UserData?> updateDataUser({required UserData? userData}) async {
-    DocumentSnapshot<Map<String, dynamic>> querySnapshot =
-        await db.collection("users").doc(userData?.user?.userID).get();
+  Future<UserData?> updateDataUser(
+      {required UserData? userData, bool isCloud = false}) async {
+    if (userData == null) {
+      buildToast(
+          message: 'Lôi không tìm thấy thông tin tà khoản',
+          status: TypeToast.toastError);
+      return null;
+    } else {
+      userData = ShareFuntion.updateLevel(userData);
+    }
 
-    if (querySnapshot.data() != null && userData != null) {
+    // DateTime? dateTimeOut =
+    //     DateTime.tryParse(box.read(Storages.dataUserCloudTimeOut) ?? '');
+    // // local
+    // if (!isCloud &&
+    //     dateTimeOut != null &&
+    //     (DateTime.now().difference(dateTimeOut).inMinutes <= 5)) {
+    //   try {
+    //     // await box.write(
+    //     //     Storages.dataUserCloudTimeOut, DateTime.now().toString());
+    //     await box.write(Storages.dataUserCloud, userData.toJson());
+    //     return userData;
+    //   } on Exception catch (_) {
+    //     await box.write(
+    //         Storages.dataUserCloudTimeOut, DateTime.now().toString());
+    //   }
+    // } else {
+    //   await box.write(Storages.dataUserCloudTimeOut, DateTime.now().toString());
+    // }
+
+    DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+        await db.collection("users").doc(userData.user?.userID).get();
+
+    if (querySnapshot.data() != null) {
       final washingtonRef = db.collection("users").doc(userData.user?.userID);
       washingtonRef.update(userData.toMap());
       buildToast(message: 'Hoàn tất', status: TypeToast.toastSuccess);

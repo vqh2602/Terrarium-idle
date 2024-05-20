@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
+import 'package:terrarium_idle/widgets/build_toast.dart';
 import 'package:terrarium_idle/widgets/compoment/bloc_seting.dart';
 import 'package:terrarium_idle/widgets/compoment/icon_title.dart';
 import 'package:terrarium_idle/widgets/text_custom.dart';
@@ -69,10 +69,15 @@ class _UserScreenState extends State<UserScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
-                          radius: Get.width * 0.1,
-                          backgroundImage: CachedNetworkImageProvider(
-                              userController.user?.user?.userAvatar ?? ''),
+                        GestureDetector(
+                          onTap: () {
+                            userController.changeImage();
+                          },
+                          child: CircleAvatar(
+                            radius: Get.width * 0.1,
+                            backgroundImage: CachedNetworkImageProvider(
+                                userController.user?.user?.userAvatar ?? ''),
+                          ),
                         ),
                         cWidth(20),
                         Expanded(
@@ -90,6 +95,17 @@ class _UserScreenState extends State<UserScreen> {
                             ),
                             iconTitle(
                               icon: LucideIcons.circleUserRound,
+                              onTap: () {
+                                Clipboard.setData(ClipboardData(
+                                        text:
+                                            userController.user?.user?.userID ??
+                                                ''))
+                                    .then((_) {
+                                  buildToast(
+                                      message: 'Đã sao chép',
+                                      status: TypeToast.toastDefault);
+                                });
+                              },
                               size: 16,
                               title: userController.user?.user?.userID,
                             ),
@@ -137,6 +153,12 @@ class _UserScreenState extends State<UserScreen> {
                   children: [
                     textTitleMedium('Dịch vụ'.tr, color: Colors.black),
                     cHeight(16),
+                    blockSetting(
+                        title: 'Đồng bộ dữ liệu',
+                        onTap: () {
+                          userController.updateUser(
+                              userData: userController.user);
+                        }),
                     blockSetting(
                         title: 'Liên hệ hỗ trợ'.tr,
                         onTap: () {

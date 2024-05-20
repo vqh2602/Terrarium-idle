@@ -6,6 +6,7 @@ import 'package:terrarium_idle/data/local/list_pots.dart';
 import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
+import 'package:terrarium_idle/widgets/build_toast.dart';
 import 'package:terrarium_idle/widgets/image_custom.dart';
 import 'package:terrarium_idle/widgets/text_custom.dart';
 import 'package:terrarium_idle/widgets/widgets.dart';
@@ -16,8 +17,8 @@ showPickPotsAndPlants(
     required UserData userData,
     required Function(UserData) update}) async {
   PageController pageController = PageController();
-  String idPot = '';
-  String idPlant = '';
+  ItemData? idPot;
+  ItemData? idPlant;
   bool isPot = true;
   List<ItemData> listPlants = listPlantsData
       .where((plant) => userData.cart?.cartPlants?.contains(plant.id) ?? false)
@@ -33,6 +34,7 @@ showPickPotsAndPlants(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20))),
           height: Get.height * 0.8,
+          width: Get.width,
           child: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
             return Column(
@@ -90,7 +92,7 @@ showPickPotsAndPlants(
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          if (idPot != '') ...[
+                          if (idPot != null) ...[
                             Column(
                               children: [
                                 Row(
@@ -98,7 +100,7 @@ showPickPotsAndPlants(
                                     IconButton(
                                         onPressed: () {
                                           setState(() {
-                                            idPot = '';
+                                            idPot = null;
                                           });
                                         },
                                         icon: const Icon(Icons.close)),
@@ -115,7 +117,7 @@ showPickPotsAndPlants(
                                     child: imageNetwork(
                                         url: listPots
                                             .where((element) =>
-                                                element.id == idPot)
+                                                element.id == idPot?.id)
                                             .firstOrNull!
                                             .image!,
                                         fit: BoxFit.contain),
@@ -133,7 +135,7 @@ showPickPotsAndPlants(
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          if (idPlant != '') ...[
+                          if (idPlant != null) ...[
                             Column(
                               children: [
                                 Row(
@@ -142,7 +144,7 @@ showPickPotsAndPlants(
                                     IconButton(
                                         onPressed: () {
                                           setState(() {
-                                            idPlant = '';
+                                            idPlant = null;
                                           });
                                         },
                                         icon: const Icon(Icons.close)),
@@ -159,7 +161,7 @@ showPickPotsAndPlants(
                                     child: imageNetwork(
                                         url: listPlants
                                             .where((element) =>
-                                                element.id == idPlant)
+                                                element.id == idPlant?.id)
                                             .firstOrNull!
                                             .image!,
                                         fit: BoxFit.contain),
@@ -181,19 +183,19 @@ showPickPotsAndPlants(
                           ? _pickPots(
                               listPots: listPots,
                               setIdPot: (id) {
-                                idPot = id.toString();
+                                idPot = id;
                                 setState(() {});
                               },
-                              idPot: idPot)
+                            )
                           : _showEmpty(),
                       listPlants.isNotEmpty
                           ? _pickPlants(
                               listPlants: listPlants,
                               setIdPlant: (id) {
-                                idPlant = id.toString();
+                                idPlant = id;
                                 setState(() {});
                               },
-                              idPlant: idPlant)
+                            )
                           : _showEmpty(),
                     ],
                   ),
@@ -203,26 +205,34 @@ showPickPotsAndPlants(
           })),
       isScrollControlled: true);
 
-  if (idPlant != '' && idPot != '') {
+  if (idPlant != null && idPot != null && userData.money != null) {
     // Get.back();
-    var result = userData.plants;
-    result!.add(Plants(
-        position: '$floor,$position',
-        idPlant: idPlant,
-        idPot: idPot,
-        harvestTime: DateTime.now(),
-        platLevelExp: 0,
-        plantLevel: 1));
-    // setState(() {
-    userData = userData.copyWith(plants: result);
-    update.call(userData);
+    if (userData.money!.oxygen! <
+        (idPlant!.priceOxygen! + idPot!.priceOxygen!)) {
+      buildToast(message: 'Không đủ oxygen', status: TypeToast.toastDefault);
+    } else {
+      var result = userData.plants;
+      result!.add(Plants(
+          position: '$floor,$position',
+          idPlant: idPlant?.id,
+          idPot: idPot?.id,
+          harvestTime: DateTime.now(),
+          platLevelExp: 0,
+          plantLevel: 1));
+      // setState(() {
+      userData = userData.copyWith(
+          plants: result,
+          money: userData.money!.copyWith(
+              oxygen: userData.money!.oxygen! -
+                  (idPlant!.priceOxygen! + idPot!.priceOxygen!)));
+      update.call(userData);
+    }
     // });
     // print(userData.plants);
   }
 }
 
-_pickPots(
-    {Function? setIdPot, String idPot = '', required List<ItemData> listPots}) {
+_pickPots({Function? setIdPot, required List<ItemData> listPots}) {
   return Column(
     children: [
       // if (idPot != '')
@@ -240,7 +250,7 @@ _pickPots(
               child: InkWell(
                 onTap: () {
                   ShareFuntion.tapPlayAudio();
-                  setIdPot!(listPots[index].id!);
+                  setIdPot!(listPots[index]);
                   // Get.back();
                   // var result = userData.plants;
                   // result!.add(Plants(
@@ -319,10 +329,7 @@ _pickPots(
   );
 }
 
-_pickPlants(
-    {Function? setIdPlant,
-    String idPlant = '',
-    required List<ItemData> listPlants}) {
+_pickPlants({Function? setIdPlant, required List<ItemData> listPlants}) {
   return Column(
     children: [
       // if (idPlant != '')
@@ -339,7 +346,7 @@ _pickPlants(
               child: InkWell(
                 onTap: () {
                   ShareFuntion.tapPlayAudio();
-                  setIdPlant!(listPlants[index].id!);
+                  setIdPlant!(listPlants[index]);
                   // Get.back();
                   // var result = userData.plants;
                   // result!.add(Plants(
