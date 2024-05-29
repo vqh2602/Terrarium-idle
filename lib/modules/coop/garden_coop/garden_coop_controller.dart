@@ -11,18 +11,16 @@ import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
-import 'package:terrarium_idle/widgets/library/version_check.dart';
-
 // import 'package:terrarium_idle/data/storage/storage.dart';
 // import 'package:terrarium_idle/modules/auth/login/login_screen.dart';
 // import 'package:dart_appwrite/dart_appwrite.dart' as server_appwrite;
 
-class GardenController extends GetxController
+class GardenCoopController extends GetxController
     with GetTickerProviderStateMixin, StateMixin, FireStoreMixin {
   AudioPlayer audioPlayerBackground = AudioPlayer();
   UserController userController = Get.find();
   bool isEdit = false;
-  UserData? userData;
+  UserData? userData = Get.arguments;
   bool isRain = false;
   List<SelectOptionItem> listSelectOptionEffect = [];
   List<SelectOptionItem> listSelectOptionMusic = [];
@@ -31,18 +29,15 @@ class GardenController extends GetxController
 
   bool isWater = false;
   bool isLike = false;
-  final versionCheck = VersionCheck();
 
   @override
   Future<void> onInit() async {
     super.onInit();
     isRain = ShareFuntion.gacha(winRate: 10);
-    userData = await getDataUser(
-        firebaseAuth.currentUser?.uid ?? 'null_graden_controller');
+
     initDataEffect();
     initDataMusic();
     initAudio(asset: selectMusic?.value ?? 'assets/audios/peacefulgarden.mp3');
-    versionCheck.checkVersion(Get.context!);
     changeUI();
   }
 
@@ -87,9 +82,7 @@ class GardenController extends GetxController
     // List<ItemData> listPlant = [];
     listSelectOptionMusic.clear();
     listSelectOptionMusic.add(SelectOptionItem(
-        key: 'Mặc định'.tr,
-        value: 'assets/audios/peacefulgarden.mp3',
-        data: {}));
+        key: 'Mặc định'.tr, value: 'assets/audios/peacefulgarden.mp3', data: {}));
     listSelectOptionMusic.addAll(listPlantsData
         .where((element1) => userData!.plants!
             .where((element2) => element2.idPlant == element1.id)

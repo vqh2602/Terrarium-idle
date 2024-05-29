@@ -3,7 +3,6 @@ import 'package:flutx_ui/widgets/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:terrarium_idle/c_theme/colors.dart';
-import 'package:terrarium_idle/data/local/list_plants.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/store/store_controller.dart';
@@ -162,10 +161,10 @@ class _StoreScreenState extends State<StoreScreen> {
                                       '',
                                   color: Colors.black),
                               textBodySmall(
-                                  'Hiệu ứng: ${storeController.listStorePots[index].effect ?? 'N.A'}',
+                                  '${'Hiệu ứng'.tr}: ${storeController.listStorePots[index].effect ?? 'N.A'}',
                                   color: Colors.black),
                               textBodySmall(
-                                  'Cấp độ mở khóa: ${storeController.listStorePots[index].levelUnlock ?? 'N.A'}',
+                                  '${'Cấp độ mở khóa'.tr}: ${storeController.listStorePots[index].levelUnlock ?? 'N.A'}',
                                   color: Colors.black)
                             ],
                           ),
@@ -272,16 +271,20 @@ class _StoreScreenState extends State<StoreScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            textBodyMedium(listPlantsData[index].name ?? '',
+                            textBodyMedium(
+                                storeController.listStorePlants[index].name ??
+                                    '',
                                 color: Colors.black),
                             textBodySmall(
-                                listPlantsData[index].description ?? '',
+                                storeController
+                                        .listStorePlants[index].description ??
+                                    '',
                                 color: Colors.black),
                             textBodySmall(
-                                'Hiệu ứng: ${listPlantsData[index].effect ?? 'N.A'}',
+                                '${'Hiệu ứng'.tr}: ${storeController.listStorePlants[index].effect ?? 'N.A'}',
                                 color: Colors.black),
                             textBodySmall(
-                                'Cấp độ mở khóa: ${storeController.listStorePlants[index].levelUnlock ?? 'N.A'}',
+                                '${'Cấp độ mở khóa'.tr}: ${storeController.listStorePlants[index].levelUnlock ?? 'N.A'}',
                                 color: Colors.black)
                           ],
                         ),
@@ -295,7 +298,7 @@ class _StoreScreenState extends State<StoreScreen> {
                               null) return;
                           ShareFuntion.onPopDialog(
                               context: context,
-                              title: 'Xác nhận mua',
+                              title: 'Xác nhận mua'.tr,
                               onCancel: () => Get.back(),
                               onSubmit: () async {
                                 Get.back();
@@ -408,7 +411,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         onPressed: () async {
                           ShareFuntion.onPopDialog(
                               context: context,
-                              title: 'Xác nhận mua',
+                              title: 'Xác nhận mua'.tr,
                               onCancel: () => Get.back(),
                               onSubmit: () async {
                                 Get.back();
@@ -492,10 +495,10 @@ class _StoreScreenState extends State<StoreScreen> {
                               textBodyMedium(
                                   storeController.products[index].title,
                                   color: Colors.black),
-                              textBodySmall('Loại đá màu xanh tự bầu trời',
+                              textBodySmall('Loại đá màu xanh tự bầu trời'.tr,
                                   color: Colors.black),
                               textBodySmall(
-                                  'Tiết kiệm: ${storeController.products[index].description}',
+                                  '${'Tiết kiệm'.tr}: ${storeController.products[index].description}',
                                   color: Colors.black)
                             ],
                           ),
@@ -539,7 +542,7 @@ class _StoreScreenState extends State<StoreScreen> {
       padding: const EdgeInsets.all(8.0),
       child: Center(
         child: textBodyMedium(
-            'Đã sở hữu hết sản phẩm, sản phẩm mới sẽ sớm được bày bán',
+            'Đã sở hữu hết sản phẩm, sản phẩm mới sẽ sớm được bày bán'.tr,
             textAlign: TextAlign.center),
       ),
     );

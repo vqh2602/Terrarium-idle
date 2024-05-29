@@ -3,18 +3,22 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:terrarium_idle/data/local/list_bag.dart';
+import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/repositories/image_repo.dart';
 import 'package:terrarium_idle/data/storage/storage.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/mixin/user_mixin.dart';
 import 'package:terrarium_idle/modules/login/login_screen.dart';
+import 'package:terrarium_idle/widgets/build_toast.dart';
 
 class UserController extends GetxController
     with GetTickerProviderStateMixin, StateMixin, UserMixin, FireStoreMixin {
   // GetStorage box = GetStorage();
   RepoImage repoImage = RepoImage();
   UserData? user;
+  List<ItemData> listMyBags = [];
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -30,11 +34,28 @@ class UserController extends GetxController
       await firebaseAuth.signOut();
       Get.offAndToNamed(LoginScreen.routeName);
     }
+    listMyBags = listBagsData
+        .where((element) =>
+            (user?.user?.bag
+                    ?.where((element1) => element1.idBag == element.id)
+                    .length ??
+                0) >
+            0)
+        .toList();
+    // print(user.toString());
+    // buildToast(
+    //   message: 'Thành công'.tr,
+    //   status: TypeToast.toastSuccess,
+    // );
     updateUI();
   }
 
   updateUser({required UserData? userData}) async {
+    // print(userData.toString());
     user = await updateDataUser(userData: userData);
+    if (user == null) {
+      Get.offAndToNamed(LoginScreen.routeName);
+    }
     update();
     // loadingUI();
     // try {

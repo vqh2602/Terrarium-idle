@@ -58,7 +58,7 @@ showPickPotsAndPlants(
                                   duration: const Duration(milliseconds: 500),
                                   curve: Curves.easeInOut);
                             },
-                            child: textTitleLarge('Chọn chậu',
+                            child: textTitleLarge('Chọn chậu'.tr,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),
                           ),
@@ -77,7 +77,7 @@ showPickPotsAndPlants(
                                   duration: const Duration(milliseconds: 500),
                                   curve: Curves.easeInOut);
                             },
-                            child: textTitleLarge('Chọn cây',
+                            child: textTitleLarge('Chọn cây'.tr,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),
                           ),
@@ -104,7 +104,7 @@ showPickPotsAndPlants(
                                           });
                                         },
                                         icon: const Icon(Icons.close)),
-                                    textBodySmall('Chậu đang chọn',
+                                    textBodySmall('Chậu đang chọn'.tr,
                                         color: Colors.black),
                                   ],
                                 ),
@@ -148,7 +148,7 @@ showPickPotsAndPlants(
                                           });
                                         },
                                         icon: const Icon(Icons.close)),
-                                    textBodySmall('Cây đang chọn',
+                                    textBodySmall('Cây đang chọn'.tr,
                                         color: Colors.black),
                                   ],
                                 ),
@@ -209,7 +209,7 @@ showPickPotsAndPlants(
     // Get.back();
     if (userData.money!.oxygen! <
         (idPlant!.priceOxygen! + idPot!.priceOxygen!)) {
-      buildToast(message: 'Không đủ oxygen', status: TypeToast.toastDefault);
+      buildToast(message: 'Không đủ oxygen'.tr, status: TypeToast.toastDefault);
     } else {
       var result = userData.plants;
       result!.add(Plants(
@@ -289,7 +289,7 @@ _pickPots({Function? setIdPot, required List<ItemData> listPots}) {
                                 color: Colors.black),
                             textBodySmall(listPots[index].description!,
                                 color: Colors.black),
-                            textBodySmall('Hiệu ứng: ${listPots[index].effect}',
+                            textBodySmall('${'Hiệu ứng'.tr}: ${listPots[index].effect}',
                                 color: Colors.black)
                           ],
                         ),

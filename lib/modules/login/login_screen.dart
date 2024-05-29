@@ -8,7 +8,6 @@ import 'package:terrarium_idle/widgets/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -72,42 +71,37 @@ class _LoginScreenState extends State<LoginScreen> {
                         textAlign: TextAlign.center,
                       ),
                       cHeight(12),
-                      GFButton(
+                      TextButton.icon(
                         onPressed: () {
                           loginController.login();
                         },
-                        color: Colors.white,
-                        text: "Tiếp tục với Google".tr,
-                        textStyle: textStyleCustom(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: text500),
-                        textColor: Colors.black,
-                        shape: GFButtonShape.pills,
-                        blockButton: true,
-                        size: GFSize.LARGE,
-                        padding: EdgeInsets.zero,
+                        label: textBodyMedium("Tiếp tục với Google".tr),
+                        // backgroundColor: Colors.white,
+
+                        // shape: CircleBorder(),
+
+                        // padding: EdgeInsets.zero,
                         icon: FaIcon(
                           FontAwesomeIcons.googlePlusG,
                           color: text500,
                         ),
                       ),
                       if (Platform.isIOS)
-                        GFButton(
+                        TextButton.icon(
                           onPressed: () {
                             loginController.loginApple();
                           },
-                          color: Colors.white,
-                          text: "Tiếp tục với Apple".tr,
-                          textStyle: textStyleCustom(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: text500),
-                          textColor: Colors.black,
-                          shape: GFButtonShape.pills,
-                          blockButton: true,
-                          size: GFSize.LARGE,
-                          padding: EdgeInsets.zero,
+                          // color: Colors.white,
+                          label: textBodyMedium("Tiếp tục với Apple".tr),
+                          // textStyle: textStyleCustom(
+                          //     fontSize: 16,
+                          //     fontWeight: FontWeight.bold,
+                          //     color: text500),
+                          // textColor: Colors.black,
+                          // shape: GFButtonShape.pills,
+                          // blockButton: true,
+                          // size: GFSize.LARGE,
+                          // padding: EdgeInsets.zero,
                           icon: Icon(
                             FontAwesomeIcons.apple,
                             color: text500,

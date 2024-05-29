@@ -20,7 +20,7 @@ showMovePickShovel(
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: textTitleLarge('Chọn vị trí di chuyển',
+          child: textTitleLarge('Chọn vị trí di chuyển'.tr,
               fontWeight: FontWeight.w700, color: Colors.black),
         ),
         Expanded(
@@ -37,7 +37,7 @@ showMovePickShovel(
                     ShareFuntion.tapPlayAudio();
                     ShareFuntion.onPopDialog(
                       context: ctx,
-                      title: 'Bạn muốn di chuyển cây này ?',
+                      title: 'Bạn muốn di chuyển cây này?'.tr,
                       onCancel: () {
                         Get.back();
                       },
@@ -45,7 +45,7 @@ showMovePickShovel(
                         Get.back();
                         if ((userData.item?.shovel ?? 0) <= 0) {
                           buildToast(
-                              message: 'Không đủ xẻng',
+                              message: 'Không đủ xẻng'.tr,
                               status: TypeToast.toastError);
                           return;
                         }
@@ -101,7 +101,7 @@ showMovePickShovel(
                             ? Colors.white.withOpacity(0.2)
                             : Get.theme.primaryColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(10)),
-                    child: textBodyMedium('Tầng $floor1, vị trí $position1',
+                    child: textBodyMedium('${'Tầng'.tr} $floor1, ${'vị trí'.tr} $position1',
                         color: Colors.black),
                   ),
                 ),

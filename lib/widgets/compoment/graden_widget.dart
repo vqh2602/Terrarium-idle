@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutx_ui/widgets/dotted_border/dotted_border.dart';
@@ -17,6 +16,7 @@ import 'package:terrarium_idle/widgets/text_custom.dart';
 
 class Graden extends StatelessWidget {
   final bool isEdit;
+  final bool isCoop;
   final UserData userData;
   final Function(UserData) update;
   final Function changeUI;
@@ -25,7 +25,8 @@ class Graden extends StatelessWidget {
       required this.isEdit,
       required this.userData,
       required this.update,
-      required this.changeUI});
+      required this.changeUI,
+      required this.isCoop});
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +54,9 @@ class Graden extends StatelessWidget {
                             (2500 * (userData.user?.userFloor ?? 1) +
                                     ((userData.user?.userLevel ?? 1) / 100))
                                 .toInt();
-                        return (userData.user?.userLevel ?? 1) ~/ 5 >
-                                (userData.user?.userFloor ?? 1)
+                        return ((userData.user?.userLevel ?? 1) ~/ 5 >
+                                    (userData.user?.userFloor ?? 1) &&
+                                !isCoop)
                             ? Container(
                                 key: Key('$floor'),
                                 height: Get.height * 0.2,
@@ -65,13 +67,13 @@ class Graden extends StatelessWidget {
                                     if ((userData.money?.oxygen ?? 0) <
                                         oxygenUnlock) {
                                       buildToast(
-                                          message: 'Không đủ oxygen',
+                                          message: 'Không đủ oxygen'.tr,
                                           status: TypeToast.toastError);
                                       return;
                                     }
                                     ShareFuntion.onPopDialog(
                                         context: context,
-                                        title: 'Xác nhận mở khóa',
+                                        title: 'Xác nhận mở khóa'.tr,
                                         onCancel: () {
                                           Get.back();
                                         },
@@ -102,7 +104,7 @@ class Graden extends StatelessWidget {
                                       blurSigma: 3,
                                       child: Center(
                                         child: textBodyMedium(
-                                            'Mở khóa với $oxygenUnlock oxygen',
+                                            '${'Mở khóa với'.tr} $oxygenUnlock oxygen',
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white),
                                       )),
@@ -113,15 +115,15 @@ class Graden extends StatelessWidget {
 
                       return Container(
                         key: Key('$floor'),
-                        height:
-                            (ShareFuntion.isIpad() ? 300 : 100) + Get.height * 0.15,
+                        height: (ShareFuntion.isIpad() ? 300 : 100) +
+                            Get.height * 0.15,
                         margin: const EdgeInsets.only(bottom: 0, top: 20),
                         // color: Colors.green,
                         child: Column(
                           children: [
                             Align(
                                 alignment: Alignment.topLeft,
-                                child: textBodySmall('Tầng ${floor + 1}',
+                                child: textBodySmall('${'Tầng'.tr} ${floor + 1}',
                                     color: Colors.white24)),
                             Expanded(
                               child: ListView.builder(
@@ -152,11 +154,12 @@ class Graden extends StatelessWidget {
                                                   customAngleAnchor:
                                                       PieAnchor.center),
                                               actions: [
-                                                ...listActionsMenu(context,
-                                                    floor: floor + 1,
-                                                    position: position + 1,
-                                                    userData: userData,
-                                                    update: update)
+                                                if (!isCoop)
+                                                  ...listActionsMenu(context,
+                                                      floor: floor + 1,
+                                                      position: position + 1,
+                                                      userData: userData,
+                                                      update: update)
                                               ],
                                               child: Container(
                                                 padding: EdgeInsets.zero,
@@ -202,7 +205,7 @@ class Graden extends StatelessWidget {
                                                             level: plant
                                                                     .plantLevel ??
                                                                 1),
-                                                        if (showClamOxygen)
+                                                        if (showClamOxygen && !isCoop)
                                                           IconButton(
                                                             focusColor: Colors
                                                                 .transparent,

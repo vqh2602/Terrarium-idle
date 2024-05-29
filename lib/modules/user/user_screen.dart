@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
+import 'package:terrarium_idle/modules/user/delete_acc.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
 import 'package:terrarium_idle/widgets/build_toast.dart';
@@ -59,85 +62,141 @@ class _UserScreenState extends State<UserScreen> {
     return userController.obx((state) => SafeArea(
           child: Column(
             children: <Widget>[
-              Container(
-                padding: const EdgeInsets.only(
-                    left: 20, right: 20, top: 12, bottom: 12),
-                // height: 120,
-                decoration: const BoxDecoration(color: Colors.white54),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+              GestureDetector(
+                onTap: () {
+                  Get.bottomSheet(Container(
+                    height: Get.height * 0.6,
+                    color: Colors.white,
+                    child: ListView.builder(
+                        itemCount: userController.listMyBags.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Get.back();
+                              // var bags =
+                              //     userController.listMyBags.map((e) => Bag(
+                              //           colorBag: Color(int.parse(e.effect!)),
+                              //           idBag: e.id,
+                              //           nameBag: e.name,
+                              //         )).toList();
+                              userController.updateUser(
+                                  userData: userController.user?.copyWith(
+                                      user: userController.user?.user?.copyWith(
+                                userImageBackground:
+                                    userController.listMyBags[index].image,
+                                // bag: bags,
+                              )));
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.only(top: 12),
+                              height: 100,
+                              width: Get.width,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: CachedNetworkImageProvider(
+                                          userController
+                                                  .listMyBags[index].image ??
+                                              ''),
+                                      fit: BoxFit.cover)),
+                            ),
+                          );
+                        }),
+                  ));
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 12, bottom: 12),
+                  // height: 120,
+                  decoration: BoxDecoration(
+                      color: Colors.white54,
+                      image: userController.user?.user?.userImageBackground !=
+                              null
+                          ? DecorationImage(
+                              image: CachedNetworkImageProvider(
+                                userController.user!.user!.userImageBackground!,
+                              ),
+                              fit: BoxFit.cover)
+                          : null),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                    child: Column(
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            userController.changeImage();
-                          },
-                          child: CircleAvatar(
-                            radius: Get.width * 0.1,
-                            backgroundImage: CachedNetworkImageProvider(
-                                userController.user?.user?.userAvatar ?? ''),
-                          ),
-                        ),
-                        cWidth(20),
-                        Expanded(
-                            child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            textTitleLarge(
-                                userController.user?.user?.userName ?? 'N.A'),
-                            iconTitle(
-                              icon: LucideIcons.mail,
-                              size: 16,
-                              title:
-                                  userController.user?.user?.userEmail ?? 'N.A',
-                            ),
-                            iconTitle(
-                              icon: LucideIcons.circleUserRound,
+                            GestureDetector(
                               onTap: () {
-                                Clipboard.setData(ClipboardData(
-                                        text:
-                                            userController.user?.user?.userID ??
-                                                ''))
-                                    .then((_) {
-                                  buildToast(
-                                      message: 'Đã sao chép',
-                                      status: TypeToast.toastDefault);
-                                });
+                                userController.changeImage();
                               },
-                              size: 16,
-                              title: userController.user?.user?.userID,
+                              child: CircleAvatar(
+                                radius: Get.width * 0.1,
+                                backgroundImage: CachedNetworkImageProvider(
+                                    userController.user?.user?.userAvatar ??
+                                        ''),
+                              ),
                             ),
-                            cHeight(8),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            cWidth(20),
+                            Expanded(
+                                child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  child: iconTitle(
-                                    icon: LucideIcons.arrowBigUp,
-                                    color: Colors.green,
-                                    size: 16,
-                                    title:
-                                        'Level: ${userController.user?.user?.userLevel ?? '0'}',
-                                  ),
+                                textTitleLarge(
+                                    userController.user?.user?.userName ??
+                                        'N.A'),
+                                iconTitle(
+                                  icon: LucideIcons.mail,
+                                  size: 16,
+                                  title: userController.user?.user?.userEmail ??
+                                      'N.A',
                                 ),
-                                Expanded(
-                                  child: iconTitle(
-                                    icon: LucideIcons.heart,
-                                    size: 16,
-                                    color: Colors.red,
-                                    title:
-                                        'Like: ${userController.user?.user?.userTotalLike ?? '0'}',
-                                  ),
+                                iconTitle(
+                                  icon: LucideIcons.circleUserRound,
+                                  onTap: () {
+                                    Clipboard.setData(ClipboardData(
+                                            text: userController
+                                                    .user?.user?.userID ??
+                                                ''))
+                                        .then((_) {
+                                      buildToast(
+                                          message: 'Đã sao chép'.tr,
+                                          status: TypeToast.toastDefault);
+                                    });
+                                  },
+                                  size: 16,
+                                  title: userController.user?.user?.userID,
+                                ),
+                                cHeight(8),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: iconTitle(
+                                        icon: LucideIcons.arrowBigUp,
+                                        color: Colors.green,
+                                        size: 16,
+                                        title:
+                                            'Level: ${userController.user?.user?.userLevel ?? '0'}',
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: iconTitle(
+                                        icon: LucideIcons.heart,
+                                        size: 16,
+                                        color: Colors.red,
+                                        title:
+                                            'Like: ${userController.user?.user?.userTotalLike ?? '0'}',
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
-                            ),
+                            )),
                           ],
-                        )),
+                        ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
               cHeight(16),
@@ -154,10 +213,9 @@ class _UserScreenState extends State<UserScreen> {
                     textTitleMedium('Dịch vụ'.tr, color: Colors.black),
                     cHeight(16),
                     blockSetting(
-                        title: 'Đồng bộ dữ liệu',
+                        title: 'Đồng bộ dữ liệu'.tr,
                         onTap: () {
-                          userController.updateUser(
-                              userData: userController.user);
+                          userController.getUserData();
                         }),
                     blockSetting(
                         title: 'Liên hệ hỗ trợ'.tr,
@@ -170,22 +228,23 @@ class _UserScreenState extends State<UserScreen> {
                         title: 'Chính sách bảo mật'.tr,
                         onTap: () {
                           ShareFuntion.showWebInApp(
-                            'https://www.vqhapp.name.vn/p/chinh-sach-bao-mat-daily-brocoli.html',
+                            'https://www.vqhapp.name.vn/p/chinh-sach-bao-mat-terrarium-idle.html',
                           );
                         }),
                     blockSetting(
                         title: 'Điều khoản sử dụng'.tr,
                         onTap: () {
                           ShareFuntion.showWebInApp(
-                            'https://www.vqhapp.name.vn/p/ieu-khoan-va-ieu-kien-daily-brocoli.html',
+                            'https://www.vqhapp.name.vn/p/ieu-khoan-va-ieu-kien-terrarium-idle.html',
                           );
                         }),
                     blockSetting(
                         title: 'Xóa tài khoản'.tr,
                         onTap: () {
-                          ShareFuntion.showWebInApp(
-                            'https://www.vqhapp.name.vn/p/xoa-du-lieu-cua-ban-tren-daily-brocoli.html',
-                          );
+                          Get.to(const DeleteAccount());
+                          // ShareFuntion.showWebInApp(
+                          //   'https://www.vqhapp.name.vn/p/xoa-du-lieu-cua-ban-terrarium-idle.html',
+                          // );
                         }),
                     blockSetting(
                         title: 'Đăng xuất'.tr,
@@ -221,7 +280,7 @@ class _UserScreenState extends State<UserScreen> {
                   IconButton(
                     onPressed: () {
                       ShareFuntion.showWebInApp(
-                        'https://www.instagram.com/vqh.2602',
+                        'https://www.instagram.com/vqh_26',
                       );
                     },
                     icon: const Icon(FontAwesomeIcons.instagram),

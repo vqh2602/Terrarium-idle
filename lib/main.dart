@@ -78,7 +78,8 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         DefaultWidgetsLocalizations.delegate,
       ],
-      supportedLocales: const [Locale('vi'), Locale('en')],
+      supportedLocales: const [Locale('vi'), Locale('en'), Locale('zh'), Locale('ko')
+      ],
       transitionDuration: const Duration(milliseconds: 300),
       defaultTransition: Transition.fadeIn,
       initialRoute: SplashScreen.routeName,

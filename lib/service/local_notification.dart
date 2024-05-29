@@ -33,7 +33,7 @@ void _scheduleDailyNotification(
   var androidPlatformChannelSpecifics = AndroidNotificationDetails(
     'daily_notification',
     'Daily Notification',
-    channelDescription: 'Hôm nay bạn đã ghi lại cảm xúc chưa?'.tr,
+    channelDescription: 'Hôm nay bạn đã vào chăm sóc ban công của bạn chưa?'.tr,
     importance: Importance.max,
     priority: Priority.max,
   );
@@ -62,7 +62,7 @@ void _scheduleDailyNotification(
   await flutterLocalNotificationsPlugin.zonedSchedule(
     0,
     'Daily Notification',
-    'Hôm nay bạn đã ghi lại cảm xúc chưa?'.tr,
+    'Hôm nay bạn đã vào chăm sóc ban công của bạn chưa?'.tr,
     // TZDateTime.from(scheduledTime, tz.getLocation(DateTime.now().timeZoneName)),
     scheduledTime,
     // tz.TZDateTime.now(tz.local).add(const Duration(seconds: 30)),

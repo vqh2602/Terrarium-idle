@@ -30,6 +30,8 @@ class _ToolLevelState extends State<ToolLevel> {
                 flex: 3,
                 child: GestureDetector(
                   onTap: () {
+                    ShareFuntion.tapPlayAudio(
+                        type: TypeSound.tap, isNewAudioPlay: true);
                     Get.toNamed(UserScreen.routeName);
                   },
                   child: ClipRRect(

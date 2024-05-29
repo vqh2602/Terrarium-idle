@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:terrarium_idle/data/models/event.dart';
 import 'package:terrarium_idle/modules/event/event_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
 import 'package:terrarium_idle/widgets/image_custom.dart';
@@ -34,7 +35,7 @@ class _EventScreenState extends State<EventScreen> {
         context: context,
         body: _buildBody(),
         appBar: AppBar(
-          title: textTitleLarge('Sự kiện'),
+          title: textTitleLarge('Sự kiện'.tr),
           elevation: 0,
           leading: IconButton(
             icon: const Icon(LucideIcons.chevronLeft),
@@ -49,54 +50,67 @@ class _EventScreenState extends State<EventScreen> {
   }
 
   Widget _buildBody() {
-    return eventController.obx((state) => Container(
-          color: Colors.transparent,
-          child: SafeArea(
-            child: ListView.builder(
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {},
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: Get.width,
-                              child: imageNetwork(
-                                  url: 'https://i.imgur.com/f5PNK5c.jpeg',
-                                  fit: BoxFit.cover),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, top: 12, bottom: 12),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  textTitleMedium(
-                                    'Sự kiện đổi oxygen',
-                                  ),
-                                  textBodySmall(
-                                      'Tham gia đổi oxygen để nhận các vật phẩm: Vé sự kiện, đá quí, chậu hồng chấm bi'),
-                                  textBodySmall(
-                                      'Hạn sự kiện: 23/5/2024 - 30/12/2024'),
-                                ],
+    return eventController.obx((state) => eventController.listEvent.isEmpty
+        ? Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Center(
+              child: textBodyMedium('Chưa có sự kiện mới'.tr),
+            ),
+          )
+        : Container(
+            color: Colors.transparent,
+            child: SafeArea(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  itemCount: eventController.listEvent.length,
+                  itemBuilder: (context, index) {
+                    Eventdata? eventdata = (eventController
+                        .listEvent[index].eventdata
+                        ?.where((element) =>
+                            element.local == Get.locale?.countryCode)
+                        .firstOrNull);
+                    eventdata ??=
+                        eventController.listEvent[index].eventdata?.firstOrNull;
+                    return GestureDetector(
+                      onTap: () {},
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: Get.width,
+                                child: imageNetwork(
+                                    url: eventdata?.image ?? '',
+                                    fit: BoxFit.cover),
                               ),
-                            ),
-                          ],
-                        ),
-                        const Divider(
-                          color: Colors.black12,
-                        )
-                      ],
-                    ),
-                  );
-                }),
-          ),
-        ));
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 20, right: 20, top: 12, bottom: 12),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    textTitleMedium(
+                                      eventdata?.title ?? '',
+                                    ),
+                                    textBodySmall(eventdata?.description ?? ''),
+                                    textBodySmall(
+                                        '${'Hạn sự kiện'.tr}: ${eventController.listEvent[index].start} - ${eventController.listEvent[index].end}'),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Divider(
+                            color: Colors.black12,
+                          )
+                        ],
+                      ),
+                    );
+                  }),
+            ),
+          ));
   }
 }

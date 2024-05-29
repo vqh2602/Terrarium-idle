@@ -19,7 +19,7 @@ List<PieAction> listActionsMenu(BuildContext context,
       onSelect: () {
         ShareFuntion.onPopDialog(
             context: context,
-            title: 'Bạn muốn bán cây này ?',
+            title: 'Bạn muốn bán cây này?'.tr,
             onCancel: () {
               Get.back();
             },
@@ -58,14 +58,14 @@ List<PieAction> listActionsMenu(BuildContext context,
       onSelect: () {
         ShareFuntion.onPopDialog(
             context: context,
-            title: 'Tiêu hao 10 phân bón để tăng 1 cấp cho cây',
+            title: 'Tiêu hao 10 phân bón để tăng 1 cấp cho cây'.tr,
             onCancel: () {
               Get.back();
             },
             onSubmit: () {
               if ((userData.item?.fertilizer ?? 0) < 10) {
                 buildToast(
-                    message: 'Không đủ phân bón',
+                    message: 'Không đủ phân bón'.tr,
                     status: TypeToast.toastDefault);
                 return;
               }

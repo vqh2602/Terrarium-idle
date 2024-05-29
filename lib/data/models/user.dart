@@ -5,6 +5,8 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 
 class UserData {
+  bool? isBan;
+  bool? isServerUpdate;
   User? user;
   Money? money;
   Item? item;
@@ -16,22 +18,26 @@ class UserData {
     this.item,
     this.cart,
     this.plants,
+    this.isBan,
+    this.isServerUpdate,
   });
 
-  UserData copyWith({
-    User? user,
-    Money? money,
-    Item? item,
-    Cart? cart,
-    List<Plants>? plants,
-  }) {
+  UserData copyWith(
+      {User? user,
+      Money? money,
+      Item? item,
+      Cart? cart,
+      List<Plants>? plants,
+      bool? isBan,
+      bool? isServerUpdate}) {
     return UserData(
-      user: user ?? this.user,
-      money: money ?? this.money,
-      item: item ?? this.item,
-      cart: cart ?? this.cart,
-      plants: plants ?? this.plants,
-    );
+        user: user ?? this.user,
+        money: money ?? this.money,
+        item: item ?? this.item,
+        cart: cart ?? this.cart,
+        plants: plants ?? this.plants,
+        isBan: isBan ?? this.isBan,
+        isServerUpdate: isServerUpdate ?? this.isServerUpdate);
   }
 
   Map<String, dynamic> toMap() {
@@ -41,6 +47,8 @@ class UserData {
       'item': item?.toMap(),
       'cart': cart?.toMap(),
       'plants': plants?.map((x) => x.toMap()).toList(),
+      'isBan': isBan,
+      'isServerUpdate': isServerUpdate
     };
   }
 
@@ -65,6 +73,8 @@ class UserData {
               ),
             )
           : null,
+      isBan: map['isBan'] as bool?,
+      isServerUpdate: map['isServerUpdate'] as bool?,
     );
   }
 
@@ -75,7 +85,7 @@ class UserData {
 
   @override
   String toString() {
-    return 'UserData(user: $user, money: $money, item: $item, cart: $cart, plants: $plants)';
+    return 'UserData(user: $user, money: $money, item: $item, cart: $cart, plants: $plants, isBan: $isBan, isServerUpdate: $isServerUpdate)';
   }
 
   @override
@@ -86,7 +96,9 @@ class UserData {
         other.money == money &&
         other.item == item &&
         other.cart == cart &&
-        listEquals(other.plants, plants);
+        listEquals(other.plants, plants) &&
+        other.isBan == isBan &&
+        other.isServerUpdate == isServerUpdate;
   }
 
   @override
@@ -95,7 +107,9 @@ class UserData {
         money.hashCode ^
         item.hashCode ^
         cart.hashCode ^
-        plants.hashCode;
+        plants.hashCode ^
+        isBan.hashCode ^
+        isServerUpdate.hashCode;
   }
 }
 
@@ -104,6 +118,7 @@ class User {
   String? userEmail;
   String? userName;
   String? userAvatar;
+  String? userImageBackground;
   int? userLevelEXP;
   int? userLevel;
   int? userTotalLike;
@@ -116,6 +131,7 @@ class User {
     this.userEmail,
     this.userName,
     this.userAvatar,
+    this.userImageBackground,
     this.userLevelEXP,
     this.userLevel,
     this.userTotalLike,
@@ -130,6 +146,7 @@ class User {
     String? userEmail,
     String? userName,
     String? userAvatar,
+    String? userImageBackground,
     int? userLevelEXP,
     int? userLevel,
     int? userTotalLike,
@@ -143,6 +160,7 @@ class User {
       userEmail: userEmail ?? this.userEmail,
       userName: userName ?? this.userName,
       userAvatar: userAvatar ?? this.userAvatar,
+      userImageBackground: userImageBackground ?? this.userImageBackground,
       userLevelEXP: userLevelEXP ?? this.userLevelEXP,
       userLevel: userLevel ?? this.userLevel,
       userTotalLike: userTotalLike ?? this.userTotalLike,
@@ -159,6 +177,7 @@ class User {
       'userEmail': userEmail,
       'userName': userName,
       'userAvatar': userAvatar,
+      'userImageBackground': userImageBackground,
       'userLevelEXP': userLevelEXP,
       'userLevel': userLevel,
       'userTotalLike': userTotalLike,
@@ -176,6 +195,9 @@ class User {
       userName: map['userName'] != null ? map['userName'] as String : null,
       userAvatar:
           map['userAvatar'] != null ? map['userAvatar'] as String : null,
+      userImageBackground: map['userImageBackground'] != null
+          ? map['userImageBackground'] as String
+          : null,
       userLevelEXP:
           map['userLevelEXP'] != null ? map['userLevelEXP'] as int : null,
       userLevel: map['userLevel'] != null ? map['userLevel'] as int : null,
@@ -190,7 +212,7 @@ class User {
           : null,
       bag: map['bag'] != null
           ? List<Bag>.from(
-              (map['bag']).map<Bag?>(
+              (map['bag'] as List).map<Bag?>(
                 (x) => Bag.fromMap(x as Map<String, dynamic>),
               ),
             )
@@ -205,7 +227,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(userID: $userID, userEmail: $userEmail, userName: $userName, userAvatar: $userAvatar, userLevelEXP: $userLevelEXP, userLevel: $userLevel, userTotalLike: $userTotalLike, userFloor: $userFloor, identifier: $identifier, latestPurchaseDate: $latestPurchaseDate, bag: $bag)';
+    return 'User(userID: $userID, userEmail: $userEmail, userName: $userName, userAvatar: $userAvatar, userImageBackground: $userImageBackground, userLevelEXP: $userLevelEXP, userLevel: $userLevel, userTotalLike: $userTotalLike, userFloor: $userFloor, identifier: $identifier, latestPurchaseDate: $latestPurchaseDate, bag: $bag)';
   }
 
   @override
@@ -216,6 +238,7 @@ class User {
         other.userEmail == userEmail &&
         other.userName == userName &&
         other.userAvatar == userAvatar &&
+        other.userImageBackground == userImageBackground &&
         other.userLevelEXP == userLevelEXP &&
         other.userLevel == userLevel &&
         other.userTotalLike == userTotalLike &&
@@ -231,6 +254,7 @@ class User {
         userEmail.hashCode ^
         userName.hashCode ^
         userAvatar.hashCode ^
+        userImageBackground.hashCode ^
         userLevelEXP.hashCode ^
         userLevel.hashCode ^
         userTotalLike.hashCode ^

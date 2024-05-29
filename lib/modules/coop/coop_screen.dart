@@ -1,11 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:terrarium_idle/modules/coop/coop_controller.dart';
+import 'package:terrarium_idle/modules/coop/garden_coop/garden_coop_screen.dart';
+import 'package:terrarium_idle/modules/garden/garden_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
+import 'package:terrarium_idle/widgets/compoment/coop_widget.dart';
 import 'package:terrarium_idle/widgets/text_custom.dart';
-import 'package:terrarium_idle/widgets/widgets.dart';
 
 class CoopScreen extends StatefulWidget {
   const CoopScreen({super.key});
@@ -17,6 +18,7 @@ class CoopScreen extends StatefulWidget {
 
 class _CoopScreenState extends State<CoopScreen> {
   CoopController coopController = Get.find();
+  GardenController gardenController = Get.find();
 
   @override
   void initState() {
@@ -35,7 +37,7 @@ class _CoopScreenState extends State<CoopScreen> {
         context: context,
         body: _buildBody(),
         appBar: AppBar(
-          title: textTitleLarge('Giao lưu'),
+          title: textTitleLarge('Thế giới'.tr),
           elevation: 0,
           leading: IconButton(
             icon: const Icon(LucideIcons.chevronLeft),
@@ -59,6 +61,8 @@ class _CoopScreenState extends State<CoopScreen> {
                 // height: 50,
                 child: TextFormField(
                   textInputAction: TextInputAction.done,
+                  controller: coopController.textSearchTE,
+                  onChanged: (value) => coopController.filterUser(value),
                   decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.search,
@@ -77,7 +81,7 @@ class _CoopScreenState extends State<CoopScreen> {
                           borderSide: const BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(100)),
                       // labelText: 'Nhập id',
-                      hintText: 'Nhập id',
+                      hintText: 'Nhập id'.tr,
                       hintStyle: textStyleCustom(fontSize: 14)),
                 ),
               ),
@@ -85,48 +89,21 @@ class _CoopScreenState extends State<CoopScreen> {
                 child: ListView.builder(
                     shrinkWrap: true,
                     padding: EdgeInsets.zero,
-                    itemCount: 10,
+                    itemCount: coopController.userdataFilter?.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () async {
+                          await gardenController.audioPlayerBackground.pause();
+                          await Get.toNamed(GardenCoopScreen.routeName,
+                              arguments: coopController.userdataFilter?[index]);
+                          await gardenController.audioPlayerBackground.play();
+                        },
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                image: index % 2 == 0
-                                    ? const DecorationImage(
-                                        image: CachedNetworkImageProvider(
-                                            'https://i.imgur.com/f5PNK5c.jpeg)'),
-                                        fit: BoxFit.cover)
-                                    : null,
-                              ),
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, top: 12, bottom: 12),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const CircleAvatar(
-                                    radius: 4 * 9,
-                                    backgroundImage: CachedNetworkImageProvider(
-                                        'https://dulich3mien.vn/wp-content/uploads/2023/04/Anh-Avatar-doi-1.jpg'),
-                                  ),
-                                  cWidth(8),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      textTitleMedium(
-                                        'WuangHuy - Level 120',
-                                      ),
-                                      textBodySmall('Like: 12000'),
-                                      textBodySmall(
-                                          'Huy hiệu: Top 100, Ngôi sao mới nổi'),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
+                            coopWidget(
+                                userData:
+                                    coopController.userdataFilter?[index]),
                             const Divider(
                               thickness: 2,
                               height: 4,

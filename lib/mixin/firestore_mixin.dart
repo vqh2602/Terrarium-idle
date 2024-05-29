@@ -21,9 +21,10 @@ mixin FireStoreMixin {
     try {
       //FirebaseFirestore db = FirebaseFirestore.instance;
       final user = UserData(
+        isBan: false,
+        isServerUpdate: false,
         user: User(
-            userAvatar:
-                'https://dulich3mien.vn/wp-content/uploads/2023/04/Anh-Avatar-doi-1.jpg',
+            userAvatar: 'https://i.imgur.com/pWzNAg8.jpeg',
             userName: name ?? 'user${Random().nextInt(999999999)}',
             bag: [],
             identifier: null,
@@ -85,7 +86,7 @@ mixin FireStoreMixin {
     // }
 //cloud
     try {
-      await db.collection("users").where("id", isEqualTo: id).get();
+      // await db.collection("users").where("id", isEqualTo: id).get();
       final docRef = db.collection("users").doc(id);
       DocumentSnapshot doc = await docRef.get();
 
@@ -117,7 +118,7 @@ mixin FireStoreMixin {
       {required UserData? userData, bool isCloud = false}) async {
     if (userData == null) {
       buildToast(
-          message: 'Lôi không tìm thấy thông tin tà khoản',
+          message: 'Lỗi không tìm thấy thông tin tà khoản'.tr,
           status: TypeToast.toastError);
       return null;
     } else {
@@ -146,14 +147,45 @@ mixin FireStoreMixin {
     DocumentSnapshot<Map<String, dynamic>> querySnapshot =
         await db.collection("users").doc(userData.user?.userID).get();
 
-    if (querySnapshot.data() != null) {
-      final washingtonRef = db.collection("users").doc(userData.user?.userID);
-      washingtonRef.update(userData.toMap());
-      buildToast(message: 'Hoàn tất', status: TypeToast.toastSuccess);
-      return userData;
+    try {
+      if (querySnapshot.data() != null) {
+        final washingtonRef = db.collection("users").doc(userData.user?.userID);
+        await washingtonRef.update(userData.toMap());
+        // buildToast(message: 'Hoàn tất'.tr, status: TypeToast.toastSuccess);
+        return userData;
+      }
+    } on Exception catch (e) {
+      buildToast(
+          message: 'Lỗi khi mua hàng $e'.tr, status: TypeToast.toastError);
     }
-    buildToast(message: 'Lỗi khi mua hàng', status: TypeToast.toastError);
     return null;
     // }
+  }
+
+  Future<List<UserData>?> getListDataUser({bool isCloud = false}) async {
+    // try {
+    final docRef = await db.collection("users").limit(20).get();
+    QuerySnapshot<Map<String, dynamic>> doc = docRef;
+
+    final data = doc.docs;
+    var userCustom = data.isNotEmpty
+        ? List<UserData>.from(data.map((e) => UserData.fromMap(e.data())))
+        // UserCustom(
+        //     id: data["id"],
+        //     email: data["email"],
+        //     coins: data["coins"],
+        //     themes: List<String>.from(data["themes"]))
+        : null;
+    return userCustom;
+    // } on Exception catch (e) {
+    //   buildToast(
+    //       message: '${'Lỗi lấy danh sách'.tr} \n code: ${e.toString()}',
+    //       status: TypeToast.getError,
+    //       title: 'Lỗi'.tr);
+    //   // await firebaseAuth.signOut();
+    //   // Get.offAndToNamed(LoginScreen.routeName);
+    //   return null;
+    // }
+    //update();
   }
 }

@@ -110,6 +110,15 @@ class StoreController extends GetxController
           if (kDebugMode) {
             print('mua/ khôi phục thành công');
           }
+          userController.updateUser(
+              userData: userController.user?.copyWith(
+                  money: userController.user?.money?.copyWith(
+                      gemstone: (userController.user?.money?.gemstone ?? 0) +
+                          (purchaseDetails.productID.contains('1000')
+                              ? 1000
+                              : purchaseDetails.productID.contains('500')
+                                  ? 500
+                                  : 200))));
           // final bool valid = await _verifyPurchase(purchaseDetails);
           // if (valid) {
           //   unawaited(deliverProduct(purchaseDetails));
@@ -132,6 +141,7 @@ class StoreController extends GetxController
         }
         // await _inAppPurchase.completePurchase(purchaseDetails);
         await _inAppPurchase.completePurchase(purchaseDetails);
+        changeUI();
       }
     }
   }
@@ -247,7 +257,7 @@ class StoreController extends GetxController
         case 'item':
           Item? itemNew = userController.user?.item;
           if (item.id == 'item1') {
-            itemNew?.fertilizer = (itemNew.fertilizer ?? 0) + 1;
+            itemNew?.fertilizer = (itemNew.fertilizer ?? 0) + 10;
             buyItems(userController.user?.copyWith(
                 item: userController.user?.item!
                     .copyWith(fertilizer: itemNew?.fertilizer)));

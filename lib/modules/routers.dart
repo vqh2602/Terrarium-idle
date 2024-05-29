@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:terrarium_idle/modules/coop/coop_binding.dart';
 import 'package:terrarium_idle/modules/coop/coop_screen.dart';
+import 'package:terrarium_idle/modules/coop/garden_coop/garden_coop_binding.dart';
+import 'package:terrarium_idle/modules/coop/garden_coop/garden_coop_screen.dart';
 import 'package:terrarium_idle/modules/event/event_binding.dart';
 import 'package:terrarium_idle/modules/event/event_screen.dart';
 import 'package:terrarium_idle/modules/garden/garden_binding.dart';
@@ -49,5 +51,10 @@ List<GetPage> routes = [
     name: LoginScreen.routeName,
     page: () => const LoginScreen(),
     binding: LoginBinding(),
+  ),
+  GetPage(
+    name: GardenCoopScreen.routeName,
+    page: () => const GardenCoopScreen(),
+    binding: GardenCoopBinding(),
   ),
 ];

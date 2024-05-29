@@ -9,28 +9,27 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:rive/rive.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
-import 'package:terrarium_idle/modules/coop/coop_screen.dart';
-import 'package:terrarium_idle/modules/event/event_screen.dart';
-import 'package:terrarium_idle/modules/garden/garden_controller.dart';
-import 'package:terrarium_idle/modules/store/store_screen.dart';
+import 'package:terrarium_idle/modules/coop/garden_coop/garden_coop_controller.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
+import 'package:terrarium_idle/widgets/blur_box.dart';
+import 'package:terrarium_idle/widgets/compoment/coop_widget.dart';
 import 'package:terrarium_idle/widgets/compoment/graden_widget.dart';
+import 'package:terrarium_idle/widgets/compoment/like_widget.dart';
 import 'package:terrarium_idle/widgets/compoment/picker_effects.dart';
-import 'package:terrarium_idle/widgets/compoment/tool_level.dart';
 import 'package:terrarium_idle/widgets/compoment/water_rain.dart';
 
-class GardenScreen extends StatefulWidget {
-  const GardenScreen({super.key});
-  static const String routeName = '/garden';
+class GardenCoopScreen extends StatefulWidget {
+  const GardenCoopScreen({super.key});
+  static const String routeName = '/gardenCoop';
 
   @override
-  State<GardenScreen> createState() => _GardenScreenState();
+  State<GardenCoopScreen> createState() => _GardenCoopScreenState();
 }
 
-class _GardenScreenState extends State<GardenScreen>
+class _GardenCoopScreenState extends State<GardenCoopScreen>
     with SingleTickerProviderStateMixin {
-  GardenController gardenController = Get.find();
+  GardenCoopController gardenCoopController = Get.find();
   UserController userController = Get.find();
 
   final _key = GlobalKey<ExpandableFabState>();
@@ -38,7 +37,7 @@ class _GardenScreenState extends State<GardenScreen>
   @override
   void initState() {
     super.initState();
-    gardenController.checkLogin();
+    gardenCoopController.checkLogin();
     _startTimer();
   }
 
@@ -51,8 +50,8 @@ class _GardenScreenState extends State<GardenScreen>
   void _startTimer() {
     _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
       setState(() {
-        gardenController.isRain = ShareFuntion.gacha(winRate: 5);
-        gardenController.update();
+        gardenCoopController.isRain = ShareFuntion.gacha(winRate: 5);
+        gardenCoopController.update();
       });
     });
   }
@@ -65,7 +64,7 @@ class _GardenScreenState extends State<GardenScreen>
         body: _buildBody(),
         appBar: null,
         floatingActionButtonLocation: ExpandableFab.location,
-        createFloatingActionButton: gardenController.obx(
+        createFloatingActionButton: gardenCoopController.obx(
           (state) => ExpandableFab(
             key: _key,
             type: ExpandableFabType.up,
@@ -87,7 +86,32 @@ class _GardenScreenState extends State<GardenScreen>
               shape: const CircleBorder(),
             ),
             children: [
-              if (!gardenController.isWater) ...[
+              if (!gardenCoopController.isWater &&
+                  !gardenCoopController.isLike) ...[
+                FloatingActionButton(
+                  heroTag: null,
+                  shape: const CircleBorder(),
+                  backgroundColor: Colors.white,
+                  child: const Icon(
+                    LucideIcons.heart,
+                    color: Colors.red,
+                  ),
+                  onPressed: () async {
+                    _key.currentState?.toggle();
+                    // ShareFuntion.tapPlayAudio();
+                    // Future.delayed(const Duration(seconds: 500), () {
+                    ShareFuntion.tapPlayAudio(
+                        type: TypeSound.like, isNewAudioPlay: true);
+                    gardenCoopController.isLike = true;
+                    gardenCoopController.update();
+                    await Future.delayed(const Duration(seconds: 3), () {
+                      gardenCoopController.isLike = false;
+                      gardenCoopController.update();
+                    });
+                    // });
+                    // Get.back();
+                  },
+                ),
                 FloatingActionButton(
                   heroTag: null,
                   shape: const CircleBorder(),
@@ -102,71 +126,13 @@ class _GardenScreenState extends State<GardenScreen>
                     // Future.delayed(const Duration(seconds: 500), () {
                     ShareFuntion.tapPlayAudio(
                         type: TypeSound.rain, isNewAudioPlay: true);
-                    gardenController.isWater = true;
-                    gardenController.update();
+                    gardenCoopController.isWater = true;
+                    gardenCoopController.update();
                     await Future.delayed(const Duration(seconds: 12), () {
-                      gardenController.isWater = false;
-                      gardenController.update();
+                      gardenCoopController.isWater = false;
+                      gardenCoopController.update();
                     });
-                    // });
                     // Get.back();
-                  },
-                ),
-                FloatingActionButton(
-                  shape: const CircleBorder(),
-                  backgroundColor: Colors.white,
-                  heroTag: null,
-                  child: const Icon(
-                    LucideIcons.calendarRange,
-                    color: Colors.orange,
-                  ),
-                  onPressed: () {
-                    // ShareFuntion.tapPlayAudio();
-                    Get.toNamed(EventScreen.routeName);
-                    _key.currentState?.toggle();
-                  },
-                ),
-                FloatingActionButton(
-                  heroTag: null,
-                  shape: const CircleBorder(),
-                  backgroundColor: Colors.white,
-                  child: const Icon(
-                    LucideIcons.shoppingBag,
-                    color: Colors.purple,
-                  ),
-                  onPressed: () {
-                    Get.toNamed(StoreScreen.routeName);
-                    // ShareFuntion.tapPlayAudio();
-                    _key.currentState?.toggle();
-                  },
-                ),
-                FloatingActionButton(
-                  heroTag: null,
-                  shape: const CircleBorder(),
-                  backgroundColor: Colors.white,
-                  child: const Icon(
-                    LucideIcons.handshake,
-                    color: Colors.indigo,
-                  ),
-                  onPressed: () {
-                    // ShareFuntion.tapPlayAudio();
-                    Get.toNamed(CoopScreen.routeName);
-                    _key.currentState?.toggle();
-                  },
-                ),
-                FloatingActionButton(
-                  heroTag: null,
-                  shape: const CircleBorder(),
-                  backgroundColor: Colors.white,
-                  child: const Icon(
-                    LucideIcons.penLine,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {
-                    _key.currentState?.toggle();
-                    // ShareFuntion.tapPlayAudio();
-                    gardenController.isEdit = !gardenController.isEdit;
-                    gardenController.update();
                   },
                 ),
                 FloatingActionButton(
@@ -183,22 +149,23 @@ class _GardenScreenState extends State<GardenScreen>
                     // Future.delayed(const Duration(seconds: 500), () {
                     // ShareFuntion.tapPlayAudio(type: TypeSound.tap);
                     showPickEffects(
-                      listEffect: gardenController.listSelectOptionEffect,
-                      listMusic: gardenController.listSelectOptionMusic,
-                      selectEffect: gardenController.selectEffect,
-                      selectMusic: gardenController.selectMusic,
+                      isCoop: true,
+                      listEffect: gardenCoopController.listSelectOptionEffect,
+                      listMusic: gardenCoopController.listSelectOptionMusic,
+                      selectEffect: gardenCoopController.selectEffect,
+                      selectMusic: gardenCoopController.selectMusic,
                       onChangedEffect: (p0) => {
-                        gardenController.selectEffect = p0,
-                        // print('selectEffect: ${gardenController.selectEffect}'),
-                        gardenController.update()
+                        gardenCoopController.selectEffect = p0,
+                        // print('selectEffect: ${gardenCoopController.selectEffect}'),
+                        gardenCoopController.update()
                       },
                       onChangedMusic: (p0) => {
-                        gardenController.selectMusic = p0,
-                        gardenController.initAudio(
-                            asset: gardenController.selectMusic?.value ??
-                                'assets/audios/peacefulgarden.mp3'),
-                        // print('selectEffect: ${gardenController.selectEffect}'),
-                        gardenController.update()
+                        gardenCoopController.selectMusic = p0,
+                        gardenCoopController.initAudio(
+                            asset: gardenCoopController.selectMusic?.value ??
+                                'assets/audios/peacefulgardenCoop.mp3'),
+                        // print('selectEffect: ${gardenCoopController.selectEffect}'),
+                        gardenCoopController.update()
                       },
                     );
                     // });
@@ -212,14 +179,14 @@ class _GardenScreenState extends State<GardenScreen>
   }
 
   Widget _buildBody() {
-    return gardenController.obx((state) => Stack(
+    return gardenCoopController.obx((state) => Stack(
           children: <Widget>[
             Container(
               width: Get.width,
               height: Get.height,
               padding: EdgeInsets.zero,
               child: RiveAnimation.asset(
-                !gardenController.isRain
+                !gardenCoopController.isRain
                     ? DateTime.now().hour >= 18
                         ? 'assets/backgrounds/sky_moon_night.riv'
                         : 'assets/backgrounds/sky_sun_day.riv'
@@ -236,30 +203,51 @@ class _GardenScreenState extends State<GardenScreen>
                 }
                 return Positioned.fill(
                   child: Graden(
-                    isEdit: gardenController.isEdit,
-                    isCoop: false,
-                    userData: userController.user ?? UserData(),
+                    isEdit: gardenCoopController.isEdit,
+                    isCoop: true,
+                    userData: gardenCoopController.userData ?? UserData(),
                     changeUI: () {
-                      gardenController.changeUI();
+                      gardenCoopController.changeUI();
                     },
                     update: (UserData userData) {
-                      userController.user = userData;
-                      gardenController.userData = userData;
-                      userController.updateUser(userData: userController.user);
-                      gardenController.initDataEffect();
-                      gardenController.update();
+                      // userController.user = userData;
+                      // gardenCoopController.userData = userData;
+                      // userController.updateUser(userData: userController.user);
+                      // gardenCoopController.initDataEffect();
+                      gardenCoopController.update();
                     },
                   ),
                 );
               },
             ),
-            userController.obx(
-              (state) => ToolLevel(
-                showLevel: true,
-                user: userController.user ?? UserData(),
+            Container(
+              // height: 200,
+              padding: const EdgeInsets.only(top: 20),
+              margin: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
+              child: BlurBox(
+                blurColor: Colors.white.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(20),
+                child: Stack(
+                  children: [
+                    coopWidget(userData: gardenCoopController.userData!),
+                    IconButton(
+                      icon: const Icon(LucideIcons.chevronLeft),
+                      onPressed: () {
+                        Get.back();
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
-            if (gardenController.listSelectOptionEffect.firstOrNull?.value !=
+            // userController.obx(
+            //   (state) => ToolLevel(
+            //     showLevel: true,
+            //     user: userController.user ?? UserData(),
+            //   ),
+            // ),
+            if (gardenCoopController
+                    .listSelectOptionEffect.firstOrNull?.value !=
                 null)
               IgnorePointer(
                 ignoring: true,
@@ -270,7 +258,7 @@ class _GardenScreenState extends State<GardenScreen>
                   height: Get.height,
                   padding: EdgeInsets.zero,
                   child: RiveAnimation.asset(
-                    gardenController
+                    gardenCoopController
                             .listSelectOptionEffect.firstOrNull?.value ??
                         '',
                     // 'assets/rive/overlay/overlay1.riv',
@@ -279,7 +267,10 @@ class _GardenScreenState extends State<GardenScreen>
                   // Căn container để nó phủ lên toàn bộ màn hình
                 ),
               ),
-            if (gardenController.isWater) waterRain(gardenController.isWater),
+            if (gardenCoopController.isWater)
+              waterRain(gardenCoopController.isWater),
+            if (gardenCoopController.isLike)
+              likeWidget(gardenCoopController.isLike),
           ],
         ));
   }

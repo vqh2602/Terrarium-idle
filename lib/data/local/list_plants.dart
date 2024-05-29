@@ -1,10 +1,11 @@
+import 'package:get/get.dart';
 import 'package:terrarium_idle/data/models/item.dart';
 
 List<ItemData> listPlantsData = [
   ItemData(
     id: 'plant1',
-    name: 'Cỏ loe',
-    description: 'Cây cỏ mềm mại, lá to đung đưa theo gió',
+    name: 'Cỏ loe'.tr,
+    description: 'Cây cỏ mềm mại, lá to đung đưa theo gió'.tr,
     image: 'https://i.imgur.com/6j80exi.png',
     priceStore: 200,
     priceOxygen: 200,
@@ -15,8 +16,8 @@ List<ItemData> listPlantsData = [
   ),
   ItemData(
     id: 'plant2',
-    name: 'Bụi lá dẹt mềm',
-    description: 'Cây cỏ xanh mướt, mọc thành bụi',
+    name: 'Bụi lá dẹt mềm'.tr,
+    description: 'Cây cỏ xanh mướt, mọc thành bụi'.tr,
     image: 'https://i.imgur.com/bPAiNFt.png',
     priceStore: 200,
     priceOxygen: 200,
@@ -27,8 +28,8 @@ List<ItemData> listPlantsData = [
   ),
   ItemData(
     id: 'plant3',
-    name: 'Trầu bà lá lớn nguyên bản',
-    description: 'Cây cao lớn, có những lá xẻ độc đáo',
+    name: 'Trầu bà lá lớn nguyên bản'.tr,
+    description: 'Cây cao lớn, có những lá xẻ độc đáo'.tr,
     image: 'https://i.imgur.com/mHWqeAk.png',
     priceStore: 5500,
     priceOxygen: 1000,
@@ -39,8 +40,8 @@ List<ItemData> listPlantsData = [
   ),
   ItemData(
     id: 'plant4',
-    name: 'Cỏ lá dẹt cứng',
-    description: 'Lá mỏng nhưng cứng cáp, màu xanh đậm',
+    name: 'Cỏ lá dẹt cứng'.tr,
+    description: 'Lá mỏng nhưng cứng cáp, màu xanh đậm'.tr,
     image: 'https://i.imgur.com/T4biogw.png',
     priceStore: 1000,
     priceOxygen: 500,
@@ -51,8 +52,8 @@ List<ItemData> listPlantsData = [
   ),
   ItemData(
     id: 'plant5',
-    name: 'Xương rồng cô đơn',
-    description: 'Loài cây lớn, nở hoa to rực rỡ',
+    name: 'Xương rồng cô đơn'.tr,
+    description: 'Loài cây lớn, nở hoa to rực rỡ'.tr,
     image: 'https://i.imgur.com/cv95wOM.png',
     priceStore: 5500,
     priceOxygen: 2000,
@@ -63,8 +64,8 @@ List<ItemData> listPlantsData = [
   ),
   ItemData(
     id: 'plant6',
-    name: 'Cỏ kim thất',
-    description: 'Loài cây thẳng đứng và mọng nước',
+    name: 'Cỏ kim thất'.tr,
+    description: 'Loài cây thẳng đứng và mọng nước'.tr,
     image: 'https://i.imgur.com/g3MDlIV.png',
     priceStore: 1500,
     priceOxygen: 1000,
@@ -75,8 +76,8 @@ List<ItemData> listPlantsData = [
   ),
   ItemData(
     id: 'plant7',
-    name: 'Chuối tiêu cảnh',
-    description: 'Loài chuối có kích thước nhỏ, thanh lọc không khí hiệu quả',
+    name: 'Chuối tiêu cảnh'.tr,
+    description: 'Loài chuối có kích thước nhỏ, thanh lọc không khí hiệu quả'.tr,
     image: 'https://i.imgur.com/cqQUJoy.png',
     priceStore: 100,
     priceOxygen: 5500,
@@ -87,14 +88,14 @@ List<ItemData> listPlantsData = [
   ),
   ItemData(
     id: 'plant8',
-    name: 'Xương rồng đá cuội',
-    description: 'Loài cây có sức sống mãnh liệt, nhánh lớn',
+    name: 'Xương rồng đá cuội'.tr,
+    description: 'Loài cây có sức sống mãnh liệt, nhánh lớn'.tr,
     image: 'https://i.imgur.com/FZk0gxp.png',
     priceStore: 50,
     priceOxygen: 11500,
     currencyUnit: 'ticket',
     type: 'plant',
-    effect: 'Nhạc thư thái - m1',
+    effect: 'Nhạc thư thái - m1'.tr,
     levelUnlock: 10,
   ),
 ];

@@ -17,7 +17,7 @@ import 'package:url_launcher/url_launcher.dart';
 enum TypeDate { ddMMyyyy, yyyyMMdd, ddMMyyyyhhmm, hhmm, dd, yyyy, mM, mMyyyy }
 
 // ignore: constant_identifier_names
-enum TypeSound { rain, tap }
+enum TypeSound { rain, tap, like, levelup }
 
 class ShareFuntion {
   static final player = AudioPlayer();
@@ -267,6 +267,10 @@ class ShareFuntion {
           await playerAudio.setAsset('assets/audios/rain.mp3');
         case TypeSound.tap:
           await playerAudio.setAsset('assets/audios/tap.mp3');
+        case TypeSound.like:
+          await playerAudio.setAsset('assets/audios/like.mp3');
+        case TypeSound.levelup:
+          await playerAudio.setAsset('assets/audios/level_up.mp3');
       }
       await playerAudio.play(); // Play while waiting for completion
       // await player.pause(); // Pause but remain ready to play
@@ -293,6 +297,7 @@ class ShareFuntion {
     int level = userData.user?.userLevel ?? 1;
 
     if (expUser >= (1000 * level) * 0.75) {
+      ShareFuntion.tapPlayAudio(type: TypeSound.levelup, isNewAudioPlay: true);
       userData = userData.copyWith(
           user: userData.user?.copyWith(userLevel: level + 1, userLevelEXP: 0));
     }
