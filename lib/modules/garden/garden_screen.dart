@@ -7,6 +7,7 @@ import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:rive/rive.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/coop/coop_screen.dart';
@@ -108,6 +109,19 @@ class _GardenScreenState extends State<GardenScreen>
                       gardenController.isWater = false;
                       gardenController.update();
                     });
+                    UserData? userData = userController.user;
+                    // mỗi lần trời mưa có 10% nhận 5 oxygen và 50exp người dùng
+                    if (ShareFuntion.gacha(winRate: 10)) {
+                      userData = userData?.copyWith(
+                        money: userData.money?.copyWith(
+                          oxygen: (userData.money?.oxygen ?? 0) + 5,
+                        ),
+                        user: userData.user!.copyWith(
+                            userLevelEXP: userData.user!.userLevelEXP! + 50),
+                      );
+                      await userController.updateUser(userData: userData!);
+                      userController.getUserData();
+                    }
                     // });
                     // Get.back();
                   },
@@ -196,7 +210,7 @@ class _GardenScreenState extends State<GardenScreen>
                         gardenController.selectMusic = p0,
                         gardenController.initAudio(
                             asset: gardenController.selectMusic?.value ??
-                                'assets/audios/peacefulgarden.mp3'),
+                                Assets.audios.peacefulgarden),
                         // print('selectEffect: ${gardenController.selectEffect}'),
                         gardenController.update()
                       },
@@ -221,9 +235,9 @@ class _GardenScreenState extends State<GardenScreen>
               child: RiveAnimation.asset(
                 !gardenController.isRain
                     ? DateTime.now().hour >= 18
-                        ? 'assets/backgrounds/sky_moon_night.riv'
-                        : 'assets/backgrounds/sky_sun_day.riv'
-                    : 'assets/backgrounds/sky_rain.riv',
+                        ? Assets.backgrounds.skyMoonNight
+                        : Assets.backgrounds.skySunDay
+                    : Assets.backgrounds.skyRain,
                 fit: BoxFit.cover,
               ),
             ),
@@ -246,7 +260,10 @@ class _GardenScreenState extends State<GardenScreen>
                       userController.user = userData;
                       gardenController.userData = userData;
                       userController.updateUser(userData: userController.user);
+
                       gardenController.initDataEffect();
+                      gardenController.initDataMusic();
+
                       gardenController.update();
                     },
                   ),
@@ -259,8 +276,7 @@ class _GardenScreenState extends State<GardenScreen>
                 user: userController.user ?? UserData(),
               ),
             ),
-            if (gardenController.listSelectOptionEffect.firstOrNull?.value !=
-                null)
+            if (gardenController.selectEffect != null)
               IgnorePointer(
                 ignoring: true,
                 child: Container(
@@ -270,9 +286,7 @@ class _GardenScreenState extends State<GardenScreen>
                   height: Get.height,
                   padding: EdgeInsets.zero,
                   child: RiveAnimation.asset(
-                    gardenController
-                            .listSelectOptionEffect.firstOrNull?.value ??
-                        '',
+                    gardenController.selectEffect?.value ?? '',
                     // 'assets/rive/overlay/overlay1.riv',
                     fit: BoxFit.cover,
                   ),

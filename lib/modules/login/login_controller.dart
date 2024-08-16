@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/repositories/user_repo.dart';
+import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/modules/splash/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,7 +27,8 @@ class LoginController extends GetxController
     UserCredential? user;
     user = await userRepo.loginWithGoogle();
     if (user != null) {
-      UserData? userCustom = await getDataUser(user.user?.uid ?? 'null_login_controller');
+      UserData? userCustom =
+          await getDataUser(user.user?.uid ?? 'null_login_controller');
       if (userCustom == null) {
         createDataUser(
             email: user.user?.email,
@@ -43,7 +45,8 @@ class LoginController extends GetxController
     UserCredential? user;
     user = await userRepo.loginWithApple();
     if (user != null) {
-      UserData? userCustom = await getDataUser(user.user?.uid ?? 'null_login_controller');
+      UserData? userCustom =
+          await getDataUser(user.user?.uid ?? 'null_login_controller');
       if (userCustom == null) {
         createDataUser(
             email: user.user?.email,
@@ -52,6 +55,34 @@ class LoginController extends GetxController
       }
       Get.offAllNamed(SplashScreen.routeName);
     }
+
+    changeUI();
+  }
+
+  Future<void> loginAnonymous() async {
+    ShareFuntion.onPopDialog(
+        context: Get.context!,
+        title:
+            'Lưu ý rằng việc đăng nhập với tư cách người dùng khách, dữ liệu sẽ không được sao lưu dựa trên tài khoản'
+                .tr,
+        onCancel: () {
+          Get.back();
+        },
+        onSubmit: () async {
+          UserCredential? user;
+          user = await userRepo.loginWithAnonymous();
+          if (user != null) {
+            UserData? userCustom =
+                await getDataUser(user.user?.uid ?? 'null_login_controller');
+            if (userCustom == null) {
+              createDataUser(
+                  email: user.user?.email,
+                  name: user.user?.displayName,
+                  id: user.user?.uid);
+            }
+            Get.offAllNamed(SplashScreen.routeName);
+          }
+        });
 
     changeUI();
   }

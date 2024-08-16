@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutx_ui/widgets/button/button.dart';
 import 'package:get/get.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/local/list_plants.dart';
 import 'package:terrarium_idle/data/local/list_pots.dart';
 import 'package:terrarium_idle/data/models/item.dart';
@@ -178,6 +179,17 @@ showPickPotsAndPlants(
                 Expanded(
                   child: PageView(
                     controller: pageController,
+                    onPageChanged: (value) {
+                      if (value == 0) {
+                        setState(() {
+                          isPot = true;
+                        });
+                      } else {
+                        setState(() {
+                          isPot = false;
+                        });
+                      }
+                    },
                     children: [
                       listPots.isNotEmpty
                           ? _pickPots(
@@ -289,7 +301,8 @@ _pickPots({Function? setIdPot, required List<ItemData> listPots}) {
                                 color: Colors.black),
                             textBodySmall(listPots[index].description!,
                                 color: Colors.black),
-                            textBodySmall('${'Hiệu ứng'.tr}: ${listPots[index].effect}',
+                            textBodySmall(
+                                '${'Hiệu ứng'.tr}: ${listPots[index].effect}',
                                 color: Colors.black)
                           ],
                         ),
@@ -302,14 +315,15 @@ _pickPots({Function? setIdPot, required List<ItemData> listPots}) {
                             SizedBox(
                               width: Get.width * 0.05,
                               // margin: const EdgeInsets.all(8),
-                              child: Image.asset('assets/images/oxygen.png'
-                                  // listPots[index].currencyUnit == 'oxygen'
-                                  //     ? 'assets/images/oxygen.png'
-                                  //     : listPots[index].currencyUnit ==
-                                  //             'ticket'
-                                  //         ? 'assets/images/ticket.png'
-                                  //         : 'assets/images/gemstone.png',
-                                  ),
+                              child: Image.asset(
+                                Assets.images.oxygen.path,
+                                // listPots[index].currencyUnit == 'oxygen'
+                                //     ? 'assets/images/oxygen.png'
+                                //     : listPots[index].currencyUnit ==
+                                //             'ticket'
+                                //         ? 'assets/images/ticket.png'
+                                //         : 'assets/images/gemstone.png',
+                              ),
                             ),
                             textBodySmall(
                               listPots[index].priceOxygen!.toString(),
@@ -403,7 +417,7 @@ _pickPlants({Function? setIdPlant, required List<ItemData> listPlants}) {
                               width: Get.width * 0.05,
                               // margin: const EdgeInsets.all(8),
                               child: Image.asset(
-                                'assets/images/oxygen.png',
+                                Assets.images.oxygen.path,
                               ),
                             ),
                             textBodySmall(
@@ -426,6 +440,6 @@ _pickPlants({Function? setIdPlant, required List<ItemData> listPlants}) {
 
 _showEmpty() {
   return Center(
-    child: textBodyMedium('Vào cửa hàng để mở khóa', color: Colors.black),
+    child: textBodyMedium('Vào cửa hàng để mở khóa'.tr, color: Colors.black),
   );
 }

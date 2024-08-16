@@ -3,16 +3,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:rive/rive.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/coop/garden_coop/garden_coop_controller.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
 import 'package:terrarium_idle/widgets/blur_box.dart';
+import 'package:terrarium_idle/widgets/build_toast.dart';
 import 'package:terrarium_idle/widgets/compoment/coop_widget.dart';
 import 'package:terrarium_idle/widgets/compoment/graden_widget.dart';
 import 'package:terrarium_idle/widgets/compoment/like_widget.dart';
@@ -163,7 +166,7 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
                         gardenCoopController.selectMusic = p0,
                         gardenCoopController.initAudio(
                             asset: gardenCoopController.selectMusic?.value ??
-                                'assets/audios/peacefulgardenCoop.mp3'),
+                                Assets.audios.peacefulgarden),
                         // print('selectEffect: ${gardenCoopController.selectEffect}'),
                         gardenCoopController.update()
                       },
@@ -188,9 +191,9 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
               child: RiveAnimation.asset(
                 !gardenCoopController.isRain
                     ? DateTime.now().hour >= 18
-                        ? 'assets/backgrounds/sky_moon_night.riv'
-                        : 'assets/backgrounds/sky_sun_day.riv'
-                    : 'assets/backgrounds/sky_rain.riv',
+                        ? Assets.backgrounds.skyMoonNight
+                        : Assets.backgrounds.skySunDay
+                    : Assets.backgrounds.skyRain,
                 fit: BoxFit.cover,
               ),
             ),
@@ -223,13 +226,26 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
             Container(
               // height: 200,
               padding: const EdgeInsets.only(top: 20),
-              margin: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
+              margin: EdgeInsets.symmetric(
+                  horizontal: Get.width * 0.05, vertical: 20),
               child: BlurBox(
                 blurColor: Colors.white.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(20),
                 child: Stack(
                   children: [
-                    coopWidget(userData: gardenCoopController.userData!),
+                    coopWidget(
+                        userData: gardenCoopController.userData!,
+                        onTap: () {
+                          Clipboard.setData(ClipboardData(
+                                  text: gardenCoopController
+                                          .userData?.user?.userID ??
+                                      ''))
+                              .then((_) {
+                            buildToast(
+                                message: 'Đã sao chép'.tr,
+                                status: TypeToast.toastDefault);
+                          });
+                        }),
                     IconButton(
                       icon: const Icon(LucideIcons.chevronLeft),
                       onPressed: () {
@@ -246,9 +262,7 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
             //     user: userController.user ?? UserData(),
             //   ),
             // ),
-            if (gardenCoopController
-                    .listSelectOptionEffect.firstOrNull?.value !=
-                null)
+            if (gardenCoopController.selectEffect?.value != null)
               IgnorePointer(
                 ignoring: true,
                 child: Container(
@@ -258,9 +272,7 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
                   height: Get.height,
                   padding: EdgeInsets.zero,
                   child: RiveAnimation.asset(
-                    gardenCoopController
-                            .listSelectOptionEffect.firstOrNull?.value ??
-                        '',
+                    gardenCoopController.selectEffect?.value ?? '',
                     // 'assets/rive/overlay/overlay1.riv',
                     fit: BoxFit.cover,
                   ),

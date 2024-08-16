@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 
 import 'package:terrarium_idle/widgets/text_custom.dart';
@@ -264,13 +265,13 @@ class ShareFuntion {
       // Create a player
       switch (type) {
         case TypeSound.rain:
-          await playerAudio.setAsset('assets/audios/rain.mp3');
+          await playerAudio.setAsset(Assets.audios.rain);
         case TypeSound.tap:
-          await playerAudio.setAsset('assets/audios/tap.mp3');
+          await playerAudio.setAsset(Assets.audios.tap);
         case TypeSound.like:
-          await playerAudio.setAsset('assets/audios/like.mp3');
+          await playerAudio.setAsset(Assets.audios.like);
         case TypeSound.levelup:
-          await playerAudio.setAsset('assets/audios/level_up.mp3');
+          await playerAudio.setAsset(Assets.audios.levelUp);
       }
       await playerAudio.play(); // Play while waiting for completion
       // await player.pause(); // Pause but remain ready to play
@@ -305,7 +306,10 @@ class ShareFuntion {
     List<Plants> plants = userData.plants!;
     for (int i = 0; i < plants.length; i++) {
       if (plants[i].platLevelExp != null && plants[i].plantLevel != null) {
-        if (plants[i].platLevelExp! >= (3000 * plants[i].plantLevel!) * 0.95) {
+        if (plants[i].platLevelExp! >=
+            (500 * (plants[i].plantLevel ?? 1) +
+                    ((plants[i].plantLevel ?? 1) > 1 ? 3500 : 0)) *
+                0.95) {
           plants[i] = plants[i]
               .copyWith(plantLevel: plants[i].plantLevel! + 1, platLevelExp: 0);
         }

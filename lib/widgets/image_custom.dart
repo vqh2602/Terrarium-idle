@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:photo_view_v3/photo_view.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 
 Widget imageNetwork({
   required String url,
@@ -43,7 +44,7 @@ Widget imageNetwork({
       return SizedBox(
         height: double.infinity,
         child: Image.asset(
-          'assets/images/image_notfound.jpg',
+          Assets.logo.logoPng.path,
           fit: fit ?? BoxFit.fill,
         ),
       );

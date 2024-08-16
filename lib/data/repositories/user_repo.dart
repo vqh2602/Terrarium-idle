@@ -138,6 +138,39 @@ class UserRepo extends Repo {
     return null;
   }
 
+  Future<UserCredential?> loginWithAnonymous() async {
+    // User? user;
+    String error = '';
+
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInAnonymously();
+    if (userCredential.user != null) {
+      await box.write(Storages.dataUser, {
+        'email': userCredential.user?.email,
+        'id': userCredential.user?.uid,
+        'name': userCredential.user?.displayName
+      });
+      buildToast(
+          status: TypeToast.getSuccess,
+          title: 'Đăng nhập thành công'.tr,
+          message:
+              '${'Chào mừng'.tr} ${userCredential.user?.displayName ?? ''}');
+      return userCredential;
+    } else {
+      buildToast(
+          status: TypeToast.getError,
+          title: 'Có lỗi xảy ra'.tr,
+          message: error);
+    }
+    // // }
+    // buildToast(
+    //     status: TypeToast.getSuccess,
+    //     title: 'Đăng nhập thành công'.tr,
+    //     message: '${'Chào mừng'.tr} ${user.name ?? ''}');
+
+    return null;
+  }
+
   // ignore: body_might_complete_normally_nullable
   Future<User?> loginWithTiktok() async {
     // ignore: unused_local_variable

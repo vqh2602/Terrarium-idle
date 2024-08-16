@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/modules/splash/splash_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
 
@@ -44,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   width: Get.width * 0.5,
                   margin: const EdgeInsets.only(bottom: 20),
                   child: Image.asset(
-                    'assets/logo/logo.jpg',
+                    Assets.logo.logoJpg.path,
                     width: 70,
                     fit: BoxFit.cover,
                   ),

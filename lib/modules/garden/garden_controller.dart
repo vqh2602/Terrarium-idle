@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/local/list_effect.dart';
 import 'package:terrarium_idle/data/local/list_plants.dart';
 import 'package:terrarium_idle/data/local/list_pots.dart';
@@ -9,9 +11,9 @@ import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/select_option_item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
+import 'package:terrarium_idle/function/version_check.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
-import 'package:terrarium_idle/widgets/library/version_check.dart';
 
 // import 'package:terrarium_idle/data/storage/storage.dart';
 // import 'package:terrarium_idle/modules/auth/login/login_screen.dart';
@@ -22,7 +24,7 @@ class GardenController extends GetxController
   AudioPlayer audioPlayerBackground = AudioPlayer();
   UserController userController = Get.find();
   bool isEdit = false;
-  UserData? userData;
+  UserData? userData = UserData();
   bool isRain = false;
   List<SelectOptionItem> listSelectOptionEffect = [];
   List<SelectOptionItem> listSelectOptionMusic = [];
@@ -37,11 +39,10 @@ class GardenController extends GetxController
   Future<void> onInit() async {
     super.onInit();
     isRain = ShareFuntion.gacha(winRate: 10);
-    userData = await getDataUser(
-        firebaseAuth.currentUser?.uid ?? 'null_graden_controller');
+    userData = await userController.getUserData();
     initDataEffect();
     initDataMusic();
-    initAudio(asset: selectMusic?.value ?? 'assets/audios/peacefulgarden.mp3');
+    initAudio(asset: selectMusic?.value ?? Assets.audios.peacefulgarden);
     versionCheck.checkVersion(Get.context!);
     changeUI();
   }
@@ -78,7 +79,14 @@ class GardenController extends GetxController
     }).toList());
 
     listSelectOptionEffect.removeWhere((element) => element.value == null);
-    selectEffect = listSelectOptionEffect.firstOrNull;
+    if (selectEffect == null) {
+      if (listSelectOptionEffect.isEmpty) {
+        selectEffect = listSelectOptionEffect.firstOrNull;
+      } else {
+        selectEffect = listSelectOptionEffect[
+            Random().nextInt(listSelectOptionEffect.length)];
+      }
+    }
     update();
   }
 
@@ -87,9 +95,7 @@ class GardenController extends GetxController
     // List<ItemData> listPlant = [];
     listSelectOptionMusic.clear();
     listSelectOptionMusic.add(SelectOptionItem(
-        key: 'Mặc định'.tr,
-        value: 'assets/audios/peacefulgarden.mp3',
-        data: {}));
+        key: 'Mặc định'.tr, value: Assets.audios.peacefulgarden, data: {}));
     listSelectOptionMusic.addAll(listPlantsData
         .where((element1) => userData!.plants!
             .where((element2) => element2.idPlant == element1.id)
@@ -118,7 +124,14 @@ class GardenController extends GetxController
     }).toList());
 
     listSelectOptionMusic.removeWhere((element) => element.value == null);
-    selectMusic = listSelectOptionMusic.firstOrNull;
+    if (selectMusic == null) {
+      try {
+        selectMusic = listSelectOptionMusic[
+            Random().nextInt(listSelectOptionMusic.length)];
+      } on Exception catch (_) {
+        selectMusic = listSelectOptionMusic.firstOrNull;
+      }
+    }
     update();
   }
 
@@ -155,6 +168,7 @@ class GardenController extends GetxController
     //   });
     // }
   }
+  void showTutorial() {}
 
   changeUI() {
     change(null, status: RxStatus.success());

@@ -108,5 +108,52 @@ Map<String, String> vi = {
   "Chọn vị trí di chuyển": "Chọn vị trí di chuyển",
   "Bạn muốn di chuyển cây này?": "Bạn muốn di chuyển cây này?",
   "Không đủ xẻng": "Không đủ xẻng",
-  "vị trí": "vị trí"
+  "vị trí": "vị trí",
+  "Xóa tài khoản của bạn": "Xóa tài khoản của bạn",
+  "Lưu ý rằng việc xóa tài khoản sẽ không thể đảo ngược và có nghĩa bạn sẽ không thể truy cập vào ứng dụng và dữ liệu":
+      "Lưu ý rằng việc xóa tài khoản sẽ không thể đảo ngược và có nghĩa bạn sẽ không thể truy cập vào ứng dụng và dữ liệu",
+  "Tài khoản sẽ bị xóa hoàn toàn sau khi xóa trong vòng 30 ngày, để kích hoạt lại tài khoản hãy đăng nhập lại trước khi hết hạn 30 ngày kể từ ngày xóa":
+      "Tài khoản sẽ bị xóa hoàn toàn sau khi xóa trong vòng 30 ngày, để kích hoạt lại tài khoản hãy đăng nhập lại trước khi hết hạn 30 ngày kể từ ngày xóa",
+  "Xác nhận xóa": "Xác nhận xóa",
+  "Đã xóa tài khoản thành công": "Đã xóa tài khoản thành công",
+  "Xác nhận xóa tài khoản": "Xác nhận xóa tài khoản",
+  "Toàn bộ thông tin cá nhân của bạn, dữ liệu đã tạo":
+      "Toàn bộ thông tin cá nhân của bạn, dữ liệu đã tạo",
+  "Dữ liệu nào sẽ bị xóa?": "Dữ liệu nào sẽ bị xóa?",
+  "Vào cửa hàng để mở khóa": "Vào cửa hàng để mở khóa",
+  "Lưu ý rằng việc đăng nhập với tư cách người dùng khách, dữ liệu sẽ không được sao lưu dựa trên tài khoản":
+      "Lưu ý rằng việc đăng nhập với tư cách người dùng khách, dữ liệu sẽ không được sao lưu dựa trên tài khoản",
+  "Tiếp tục với người dùng khách": "Tiếp tục với người dùng khách",
+  "Mong một ngày mưa": "Mong một ngày mưa",
+  "Kết thúc mùa xuân": "Kết thúc mùa xuân",
+  "Cỏ nước thân cao": "Cỏ nước thân cao",
+  "Loài cây thân nhỏ cao, thân cây cứng nhưng lại dễ gẫy":
+      "Loài cây thân nhỏ cao, thân cây cứng nhưng lại dễ gẫy",
+  "Cây bàng lá sẫm": "Cây bàng lá sẫm",
+  "Thoáng nhìn tưởng thiếu sức sống, nhưng thực chất vẫn sinh trưởng tốt":
+      "Thoáng nhìn tưởng thiếu sức sống, nhưng thực chất vẫn sinh trưởng tốt",
+  "Chậu nhựa vàng": "Chậu nhựa vàng",
+  "Vừa rẻ lại bền, nhưng lại ô nhiễm môi trường":
+      "Vừa rẻ lại bền, nhưng lại ô nhiễm môi trường",
+  "Chậu đất tím": "Chậu đất tím",
+  "Chậu khá nặng, nhưng khá tốt": "Chậu khá nặng, nhưng khá tốt",
+  "Chậu gỗ sơn hồng": "Chậu gỗ sơn hồng",
+  "Chậu gỗ, nhưng được sơn lớp màu hồng bền mà lại đẹp":
+      "Chậu gỗ, nhưng được sơn lớp màu hồng bền mà lại đẹp",
+  "Chưa có thẻ nào, hãy tham gia sự kiện để nhận thẻ":
+      "Chưa có thẻ nào, hãy tham gia sự kiện để nhận thẻ",
+  "chuyển 100 đá quý sang oxygen với tỷ lệ 1.75":
+      "chuyển 100 đá quý sang oxygen với tỷ lệ 1.75",
+  "Chi Oải hương": "Chi Oải hương",
+  "Loại cây bụi thường niên có mùi thơm nồng, xuất xứ từ vùng Địa Trung Hải":
+      "Loại cây bụi thường niên có mùi thơm nồng, xuất xứ từ vùng Địa Trung Hải",
+  "Cánh hoa oải hương": "Cánh hoa oải hương",
+  "Chậu đất nung": "Chậu đất nung",
+  "Chậu khá nặng, dễ vỡ": "Chậu khá nặng, dễ vỡ",
+  "Chậu đất nung chấm bi": "Chậu đất nung chấm bi",
+  "Chậu khá nặng, khá xinh xắn": "Chậu khá nặng, khá xinh xắn",
+  "Chậu đá cẩm thạch": "Chậu đá cẩm thạch",
+  "Chậu đá dùng cho quý tộc thời xưa. Vân đá có thể thay đổi theo thời gian":
+      "Chậu đá dùng cho quý tộc thời xưa. Vân đá có thể thay đổi theo thời gian",
+  "Vân đá, Lá thu rơi": "Vân đá, Lá thu rơi"
 };

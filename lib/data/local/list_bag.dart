@@ -6,7 +6,7 @@ List<ItemData> listBagsData = [
   ItemData(
     id: 'bag1',
     name: 'Kinh nghiệm nhà vườn'.tr,
-    description: 'đạt khi tới level 20',
+    description: 'đạt khi tới level 50',
     image: 'https://i.imgur.com/lNNpfPS.png',
     priceStore: 0,
     priceOxygen: 0,

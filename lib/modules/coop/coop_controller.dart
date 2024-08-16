@@ -4,18 +4,34 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
+import 'package:terrarium_idle/service/throttle.dart';
 
 class CoopController extends GetxController
     with GetTickerProviderStateMixin, StateMixin, FireStoreMixin {
   List<UserData>? userdatas = [];
   TextEditingController textSearchTE = TextEditingController();
   List<UserData>? userdataFilter = [];
+  final Throttle throttle = Throttle(const Duration(milliseconds: 1000));
   @override
   Future<void> onInit() async {
     super.onInit();
     userdatas = await getListDataUser();
+    getDataUserAdmin(null);
     userdataFilter?.addAll(userdatas ?? []);
     changeUI();
+  }
+
+  @override
+  onClose() {
+    throttle.cancel();
+  }
+
+  Future getDataUserAdmin(String? id) async {
+    var user = await getDataUser(id ?? 'pb03Q3R93naRsjiAuyTGz0BPHI92');
+    if (user != null) {
+      userdataFilter?.insert(0, user);
+    }
+    update();
   }
 
   Future<void> filterUser(String id) async {
@@ -23,14 +39,13 @@ class CoopController extends GetxController
     if (id.isEmpty) {
       userdataFilter?.addAll(userdatas ?? []);
     } else {
-      userdataFilter?.addAll(userdatas
-              ?.where((element) =>
-                  element.user?.userID
-                      ?.toLowerCase()
-                      .contains(id.toLowerCase()) ??
-                  false)
-              .toList() ??
-          []);
+      throttle.run(() async {
+        var user = await getDataUser(id);
+        if (user != null) {
+          userdataFilter?.add(user);
+        }
+        update();
+      });
     }
     update();
   }

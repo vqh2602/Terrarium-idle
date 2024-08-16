@@ -5,6 +5,7 @@ import 'package:flutx_ui/widgets/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:pie_menu/pie_menu.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/widgets/blur_box.dart';
@@ -37,7 +38,7 @@ class Graden extends StatelessWidget {
           children: [
             SizedBox(
                 height: Get.height,
-                child: Image.asset('assets/images/r1.png', fit: BoxFit.fill)),
+                child: Image.asset(Assets.images.r1.path, fit: BoxFit.fill)),
             Expanded(
               child: Container(
                 alignment: Alignment.bottomCenter,
@@ -123,7 +124,8 @@ class Graden extends StatelessWidget {
                           children: [
                             Align(
                                 alignment: Alignment.topLeft,
-                                child: textBodySmall('${'Tầng'.tr} ${floor + 1}',
+                                child: textBodySmall(
+                                    '${'Tầng'.tr} ${floor + 1}',
                                     color: Colors.white24)),
                             Expanded(
                               child: ListView.builder(
@@ -146,7 +148,8 @@ class Graden extends StatelessWidget {
                                                 ShareFuntion.tapPlayAudio();
                                               },
                                               onPressed: () {
-                                                ShareFuntion.tapPlayAudio();
+                                                ShareFuntion.tapPlayAudio(
+                                                    isNewAudioPlay: true);
                                               },
                                               theme: const PieTheme(
                                                   overlayColor: Colors.black45,
@@ -196,16 +199,34 @@ class Graden extends StatelessWidget {
                                                     return Stack(
                                                       key: Key(plant.position!),
                                                       children: [
-                                                        riveAnimation(
-                                                            constraints,
-                                                            plantId:
-                                                                plant.idPlant!,
-                                                            potId: plant.idPot!,
-                                                            changeUI: changeUI,
-                                                            level: plant
-                                                                    .plantLevel ??
-                                                                1),
-                                                        if (showClamOxygen && !isCoop)
+                                                        GestureDetector(
+                                                          onDoubleTap: () {
+                                                            /// khi ấn tap vào cây, có tỷ lệ 5% tăng êxp và oxygen
+                                                            if (ShareFuntion
+                                                                    .gacha(
+                                                                        winRate:
+                                                                            5) &&
+                                                                !isCoop) {
+                                                              _clamOxygen(plant,
+                                                                  floor: floor,
+                                                                  position:
+                                                                      position);
+                                                            }
+                                                          },
+                                                          child: riveAnimation(
+                                                              constraints,
+                                                              plantId: plant
+                                                                  .idPlant!,
+                                                              potId:
+                                                                  plant.idPot!,
+                                                              changeUI:
+                                                                  changeUI,
+                                                              level: plant
+                                                                      .plantLevel ??
+                                                                  1),
+                                                        ),
+                                                        if (showClamOxygen &&
+                                                            !isCoop)
                                                           IconButton(
                                                             focusColor: Colors
                                                                 .transparent,
@@ -217,54 +238,21 @@ class Graden extends StatelessWidget {
                                                               //     .tapPlayAudio(
                                                               //         isNewAudioPlay:
                                                               //             false);
-                                                              if (kDebugMode) {
-                                                                print(
-                                                                    'clam oxygen');
-                                                              }
-                                                              UserData
-                                                                  userDataCustom =
-                                                                  userData;
-                                                              Money? money = userData.money?.copyWith(
-                                                                  oxygen: (userData.money?.oxygen ?? 0) +
-                                                                      (plant.plantLevel == 3
-                                                                          ? 20
-                                                                          : plant.plantLevel == 2
-                                                                              ? 10
-                                                                              : 5));
-                                                              List<Plants>
-                                                                  plants =
-                                                                  userData
-                                                                      .plants!;
-                                                              plants.removeWhere(
-                                                                  (element) => element
-                                                                      .position!
-                                                                      .contains(
-                                                                          '${floor + 1},${position + 1}'));
-                                                              plants.add(plant.copyWith(
-                                                                  platLevelExp:
-                                                                      plant.platLevelExp! +
-                                                                          100,
-                                                                  harvestTime:
-                                                                      DateTime
-                                                                          .now()));
-                                                              userDataCustom = userData.copyWith(
-                                                                  money: money,
-                                                                  user: userData
-                                                                      .user!
-                                                                      .copyWith(
-                                                                          userLevelEXP: userData.user!.userLevelEXP! +
-                                                                              100),
-                                                                  plants:
-                                                                      plants);
-                                                              update(
-                                                                  userDataCustom);
+                                                              /// lấy oxy gen và tăng cấp cây khi hiện oxygen
+                                                              _clamOxygen(plant,
+                                                                  floor: floor,
+                                                                  position:
+                                                                      position);
                                                             },
                                                             icon: Align(
                                                               alignment: Alignment
                                                                   .bottomRight,
                                                               child:
                                                                   Image.asset(
-                                                                'assets/images/oxygen.png',
+                                                                Assets
+                                                                    .images
+                                                                    .oxygen
+                                                                    .path,
                                                                 width: 30,
                                                                 height: 30,
                                                               ),
@@ -340,5 +328,30 @@ class Graden extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _clamOxygen(Plants plant, {required int floor, required int position}) {
+    if (kDebugMode) {
+      print('clam oxygen');
+    }
+    UserData userDataCustom = userData;
+    Money? money = userData.money?.copyWith(
+        oxygen: (userData.money?.oxygen ?? 0) +
+            (plant.plantLevel == 3
+                ? 20
+                : plant.plantLevel == 2
+                    ? 10
+                    : 5));
+    List<Plants> plants = userData.plants!;
+    plants.removeWhere((element) =>
+        element.position!.contains('${floor + 1},${position + 1}'));
+    plants.add(plant.copyWith(
+        platLevelExp: plant.platLevelExp! + 100, harvestTime: DateTime.now()));
+    userDataCustom = userData.copyWith(
+        money: money,
+        user: userData.user!
+            .copyWith(userLevelEXP: userData.user!.userLevelEXP! + 100),
+        plants: plants);
+    update(userDataCustom);
   }
 }

@@ -77,7 +77,8 @@ List<ItemData> listPlantsData = [
   ItemData(
     id: 'plant7',
     name: 'Chuối tiêu cảnh'.tr,
-    description: 'Loài chuối có kích thước nhỏ, thanh lọc không khí hiệu quả'.tr,
+    description:
+        'Loài chuối có kích thước nhỏ, thanh lọc không khí hiệu quả'.tr,
     image: 'https://i.imgur.com/cqQUJoy.png',
     priceStore: 100,
     priceOxygen: 5500,
@@ -97,5 +98,45 @@ List<ItemData> listPlantsData = [
     type: 'plant',
     effect: 'Nhạc thư thái - m1'.tr,
     levelUnlock: 10,
+  ),
+  ItemData(
+    id: 'plant9',
+    name: 'Cỏ nước thân cao'.tr,
+    description: 'Loài cây thân nhỏ cao, thân cây cứng nhưng lại dễ gẫy'.tr,
+    image: 'https://i.imgur.com/iQnZzlw.png',
+    priceStore: 5000,
+    priceOxygen: 7500,
+    currencyUnit: 'oxygen',
+    type: 'plant',
+    effect: 'N.A'.tr,
+    levelUnlock: 13,
+  ),
+  ItemData(
+    id: 'plant10',
+    name: 'Cây bàng lá sẫm'.tr,
+    description:
+        'Thoáng nhìn tưởng thiếu sức sống, nhưng thực chất vẫn sinh trưởng tốt'
+            .tr,
+    image: 'https://i.imgur.com/4JgycKC.png',
+    priceStore: 25000,
+    priceOxygen: 20000,
+    currencyUnit: 'oxygen',
+    type: 'plant',
+    effect: 'Kết thúc mùa xuân'.tr + ' - m2'.tr,
+    levelUnlock: 15,
+  ),
+   ItemData(
+    id: 'plant11',
+    name: 'Chi Oải hương'.tr,
+    description:
+        'Loại cây bụi thường niên có mùi thơm nồng, xuất xứ từ vùng Địa Trung Hải'
+            .tr,
+    image: 'https://i.imgur.com/SweLuPI.png',
+    priceStore: 20000,
+    priceOxygen: 20000,
+    currencyUnit: 'ticket',
+    type: 'plant',
+    effect: 'Cánh hoa oải hương'.tr + ' - overlay3'.tr,
+    levelUnlock: 15,
   ),
 ];

@@ -11,7 +11,7 @@ import 'package:terrarium_idle/data/storage/storage.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/mixin/user_mixin.dart';
 import 'package:terrarium_idle/modules/login/login_screen.dart';
-import 'package:terrarium_idle/widgets/build_toast.dart';
+// import 'package:terrarium_idle/widgets/build_toast.dart';
 
 class UserController extends GetxController
     with GetTickerProviderStateMixin, StateMixin, UserMixin, FireStoreMixin {
@@ -23,10 +23,12 @@ class UserController extends GetxController
   Future<void> onInit() async {
     super.onInit();
     await getUserData();
+    getDataUserRealtime(
+        firebaseAuth.currentUser?.uid ?? '', (p0) => {user = p0, update()});
     changeUI();
   }
 
-  getUserData() async {
+   Future<UserData?> getUserData() async {
     user = await getDataUser(
       firebaseAuth.currentUser?.uid ?? '',
     );
@@ -48,6 +50,7 @@ class UserController extends GetxController
     //   status: TypeToast.toastSuccess,
     // );
     updateUI();
+    return user;
   }
 
   updateUser({required UserData? userData}) async {

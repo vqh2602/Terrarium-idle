@@ -4,6 +4,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:terrarium_idle/data/models/event.dart';
 import 'package:terrarium_idle/modules/event/event_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
+import 'package:terrarium_idle/widgets/build_toast.dart';
 import 'package:terrarium_idle/widgets/image_custom.dart';
 import 'package:terrarium_idle/widgets/text_custom.dart';
 
@@ -68,12 +69,25 @@ class _EventScreenState extends State<EventScreen> {
                     Eventdata? eventdata = (eventController
                         .listEvent[index].eventdata
                         ?.where((element) =>
-                            element.local == Get.locale?.countryCode)
+                            Get.locale?.languageCode
+                                .contains(element.local ?? "en") ??
+                            false)
                         .firstOrNull);
                     eventdata ??=
                         eventController.listEvent[index].eventdata?.firstOrNull;
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        if (eventController.isDateValid(
+                            eventController.listEvent[index].end ?? '')) {
+                          eventController.processLinkEvent(
+                              eventController.listEvent[index].link ?? '');
+                        } else {
+                          buildToast(
+                              title: 'Thông báo'.tr,
+                              message: 'Sự kiện đã kết thúc'.tr,
+                              status: TypeToast.getError);
+                        }
+                      },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [

@@ -99,6 +99,7 @@ mixin FireStoreMixin {
           //     coins: data["coins"],
           //     themes: List<String>.from(data["themes"]))
           : null;
+
       return userCustom;
     } on Exception catch (e) {
       buildToast(
@@ -109,6 +110,42 @@ mixin FireStoreMixin {
       await firebaseAuth.signOut();
       Get.offAndToNamed(LoginScreen.routeName);
       return null;
+    }
+    //update();
+  }
+
+  Future<void> getDataUserRealtime(
+      String id, Function(UserData) updateUserData) async {
+    try {
+      // await db.collection("users").where("id", isEqualTo: id).get();
+
+      final docRef = db.collection("users").doc(id);
+      docRef.snapshots().listen((event) {
+        // DocumentSnapshot doc = await docRef.get();
+        DocumentSnapshot doc = event;
+
+        final data = doc.data() as Map<String, dynamic>?;
+        var userCustom = data != null
+            ? UserData.fromMap(data)
+            // UserCustom(
+            //     id: data["id"],
+            //     email: data["email"],
+            //     coins: data["coins"],
+            //     themes: List<String>.from(data["themes"]))
+            : null;
+        // print('data: ${data.toString()}');
+        if (userCustom != null) {
+          updateUserData(userCustom);
+        }
+      });
+    } on Exception catch (e) {
+      buildToast(
+          message:
+              '${'Kiểm tra lại tài khoản & mật khẩu'.tr} \n code: ${e.toString()}',
+          status: TypeToast.getError,
+          title: 'Lỗi đăng nhập'.tr);
+      await firebaseAuth.signOut();
+      Get.offAndToNamed(LoginScreen.routeName);
     }
     //update();
   }
@@ -163,29 +200,40 @@ mixin FireStoreMixin {
   }
 
   Future<List<UserData>?> getListDataUser({bool isCloud = false}) async {
-    // try {
-    final docRef = await db.collection("users").limit(20).get();
-    QuerySnapshot<Map<String, dynamic>> doc = docRef;
+    // final docRef = await db.collection("users").limit(20).get();
+    // QuerySnapshot<Map<String, dynamic>> doc = docRef;
 
-    final data = doc.docs;
-    var userCustom = data.isNotEmpty
-        ? List<UserData>.from(data.map((e) => UserData.fromMap(e.data())))
-        // UserCustom(
-        //     id: data["id"],
-        //     email: data["email"],
-        //     coins: data["coins"],
-        //     themes: List<String>.from(data["themes"]))
+    // final data = doc.docs;
+    // var userCustom = data.isNotEmpty
+    //     ? List<UserData>.from(data.map((e) => UserData.fromMap(e.data())))
+    //     // UserCustom(
+    //     //     id: data["id"],
+    //     //     email: data["email"],
+    //     //     coins: data["coins"],
+    //     //     themes: List<String>.from(data["themes"]))
+    //     : null;
+    // return userCustom;
+
+    final random = Random();
+    final totalDocs = await db.collection("users").get();
+    final totalUsers = totalDocs.size;
+
+    // Tạo ngẫu nhiên một điểm bắt đầu
+    final start = random.nextInt(totalUsers - 30);
+    final userIdStart = totalDocs.docs[start].data()["user"];
+
+    final docRef = await db
+        .collection("users")
+        .orderBy("user") // Dùng một trường bất kỳ để sắp xếp
+        .startAt([userIdStart])
+        .limit(30)
+        .get();
+
+    final userCustom = docRef.docs.isNotEmpty
+        ? List<UserData>.from(
+            docRef.docs.map((e) => UserData.fromMap(e.data())))
         : null;
+    userCustom?.removeWhere((element) => element.plants?.isEmpty ?? true);
     return userCustom;
-    // } on Exception catch (e) {
-    //   buildToast(
-    //       message: '${'Lỗi lấy danh sách'.tr} \n code: ${e.toString()}',
-    //       status: TypeToast.getError,
-    //       title: 'Lỗi'.tr);
-    //   // await firebaseAuth.signOut();
-    //   // Get.offAndToNamed(LoginScreen.routeName);
-    //   return null;
-    // }
-    //update();
   }
 }

@@ -12,6 +12,7 @@ import 'package:terrarium_idle/c_theme/c_theme.dart';
 import 'package:terrarium_idle/config/config.dart';
 import 'package:terrarium_idle/config/get_config.dart';
 import 'package:terrarium_idle/firebase_options.dart';
+import 'package:terrarium_idle/function/app_links_service.dart';
 import 'package:terrarium_idle/modules/init.dart';
 import 'package:terrarium_idle/modules/routers.dart';
 import 'package:terrarium_idle/modules/splash/splash_screen.dart';
@@ -33,6 +34,7 @@ Future<void> main() async {
   // );
   await initialize();
   initLocalNotification();
+  initDeepLinks();
   runApp(
     Phoenix(
       child: const MyApp(),
@@ -78,7 +80,11 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         DefaultWidgetsLocalizations.delegate,
       ],
-      supportedLocales: const [Locale('vi'), Locale('en'), Locale('zh'), Locale('ko')
+      supportedLocales: const [
+        Locale('vi'),
+        Locale('en'),
+        Locale('zh'),
+        Locale('ko')
       ],
       transitionDuration: const Duration(milliseconds: 300),
       defaultTransition: Transition.fadeIn,

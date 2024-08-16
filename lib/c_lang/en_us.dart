@@ -85,7 +85,7 @@ Map<String, String> en = {
   "Tài khoản": "Account",
   "Dịch vụ": "Service",
   "Đồng bộ dữ liệu": "Data synchronization",
-  "Liên hệ hỗ trợ": "contact help",
+  "Liên hệ hỗ trợ": "Contact help",
   "Chính sách bảo mật": "Privacy Policy",
   "Điều khoản sử dụng": "terms of use",
   "Xóa tài khoản": "Delete the account",
@@ -110,5 +110,53 @@ Map<String, String> en = {
   "Chọn vị trí di chuyển": "Choose a moving location",
   "Bạn muốn di chuyển cây này?": "You want to move this tree?",
   "Không đủ xẻng": "Not enough shovels",
-  "vị trí": "location"
+  "vị trí": "location",
+  "Xóa tài khoản của bạn": "Delete your account",
+  "Lưu ý rằng việc xóa tài khoản sẽ không thể đảo ngược và có nghĩa bạn sẽ không thể truy cập vào ứng dụng và dữ liệu":
+      "Note that account deletion is irreversible and means you won't be able to access apps and data",
+  "Tài khoản sẽ bị xóa hoàn toàn sau khi xóa trong vòng 30 ngày, để kích hoạt lại tài khoản hãy đăng nhập lại trước khi hết hạn 30 ngày kể từ ngày xóa":
+      "The account will be completely deleted within 30 days after deletion. To reactivate the account, log in again before the expiration of 30 days from the date of deletion.",
+  "Xác nhận xóa": "Confirm deletion",
+  "Đã xóa tài khoản thành công": "Account deleted successfully",
+  "Xác nhận xóa tài khoản": "Confirm account deletion",
+  "Toàn bộ thông tin cá nhân của bạn, dữ liệu đã tạo":
+      "All your personal information, created data",
+  "Dữ liệu nào sẽ bị xóa?": "What data will be deleted?",
+  "Vào cửa hàng để mở khóa": "Enter the store to unlock it",
+  "Lưu ý rằng việc đăng nhập với tư cách người dùng khách, dữ liệu sẽ không được sao lưu dựa trên tài khoản":
+      "Note that by logging in as a guest user, data will not be backed up based on the account",
+  "Tiếp tục với người dùng khách": "Continue with guest user",
+  "Mong một ngày mưa": "Hoping for a rainy day",
+  "Kết thúc mùa xuân": "End of spring",
+  "Cỏ nước thân cao": "Tall water grass",
+  "Loài cây thân nhỏ cao, thân cây cứng nhưng lại dễ gẫy":
+      "A tall, small-stemmed tree with a hard trunk that breaks easily",
+  "Cây bàng lá sẫm": "Almond tree with dark leaves",
+  "Thoáng nhìn tưởng thiếu sức sống, nhưng thực chất vẫn sinh trưởng tốt":
+      "At first glance it seems lifeless, but in fact it still grows well",
+  "Chậu nhựa vàng": "Yellow plastic pot",
+  "Vừa rẻ lại bền, nhưng lại ô nhiễm môi trường":
+      "Cheap and durable, but pollutes the environment",
+  "Chậu đất tím": "Purple clay pot",
+  "Chậu khá nặng, nhưng khá tốt": "The pot is quite heavy, but quite good",
+  "Chậu gỗ sơn hồng": "Pink painted wooden pot",
+  "Chậu gỗ, nhưng được sơn lớp màu hồng bền mà lại đẹp":
+      "Wooden pot, but painted in a durable yet beautiful pink color",
+  "Chưa có thẻ nào, hãy tham gia sự kiện để nhận thẻ":
+      "Don't have any cards yet, please join the event to receive cards",
+  "chuyển 100 đá quý sang oxygen với tỷ lệ 1.75":
+      "convert 100 gems to oxygen at a rate of 1.75",
+  "Chi Oải hương": "Genus Lavender",
+  "Loại cây bụi thường niên có mùi thơm nồng, xuất xứ từ vùng Địa Trung Hải":
+      "This annual shrub has a strong scent, originating from the Mediterranean region",
+  "Cánh hoa oải hương": "Lavender petals",
+  "Chậu đất nung": "Terracotta pots",
+  "Chậu khá nặng, dễ vỡ": "The pot is quite heavy and breaks easily",
+  "Chậu đất nung chấm bi": "Terracotta pots with polka dots",
+  "Chậu khá nặng, khá xinh xắn": "The pot is quite heavy and quite pretty",
+  "Chậu đá cẩm thạch": "Marble basin",
+  "Chậu đá dùng cho quý tộc thời xưa. Vân đá có thể thay đổi theo thời gian":
+      "Stone pots were used for nobles in ancient times. ",
+  "Vân đá, Lá thu rơi": "Stone patterns, Falling autumn leaves",
+  "Sự kiện đã kết thúc": "Event ended yet",
 };

@@ -1,5 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages, file_names
-
 library version_check;
 
 import 'dart:convert';
@@ -295,29 +293,29 @@ void _showUpdateDialog(BuildContext context, VersionCheck versionCheck) {
     context: context,
     barrierDismissible: false,
     builder: (context) => AlertDialog(
-      title: const Text('Có bản cập nhật mới'),
+      title: const Text('New version available!'),
       content: SingleChildScrollView(
         child: ListBody(
           children: [
-            Text('Bạn có muốn cập nhật lên ${versionCheck.storeVersion}?'),
-            Text('(phiên bản hiện tại ${versionCheck.packageVersion})'),
+            Text('Update ${versionCheck.storeVersion}?'),
+            Text('(Current ${versionCheck.packageVersion})'),
           ],
         ),
       ),
       actions: [
         TextButton(
-          child: const Text('Cập nhật'),
+          child: const Text('Update'),
           onPressed: () async {
             Navigator.of(context).pop();
             await versionCheck.launchStore();
           },
         ),
-        TextButton(
-          child: const Text('Đóng'),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
+        // TextButton(
+        //   child: const Text('Cancel'),
+        //   onPressed: () {
+        //     Navigator.of(context).pop();
+        //   },
+        // ),
       ],
     ),
   );

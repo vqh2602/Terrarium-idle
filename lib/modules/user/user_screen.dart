@@ -66,41 +66,57 @@ class _UserScreenState extends State<UserScreen> {
                 onTap: () {
                   Get.bottomSheet(Container(
                     height: Get.height * 0.6,
-                    color: Colors.white,
-                    child: ListView.builder(
-                        itemCount: userController.listMyBags.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Get.back();
-                              // var bags =
-                              //     userController.listMyBags.map((e) => Bag(
-                              //           colorBag: Color(int.parse(e.effect!)),
-                              //           idBag: e.id,
-                              //           nameBag: e.name,
-                              //         )).toList();
-                              userController.updateUser(
-                                  userData: userController.user?.copyWith(
-                                      user: userController.user?.user?.copyWith(
-                                userImageBackground:
-                                    userController.listMyBags[index].image,
-                                // bag: bags,
-                              )));
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(top: 12),
-                              height: 100,
-                              width: Get.width,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: CachedNetworkImageProvider(
-                                          userController
-                                                  .listMyBags[index].image ??
-                                              ''),
-                                      fit: BoxFit.cover)),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20)),
+                    ),
+                    child: userController.listMyBags.isEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Center(
+                              child: textBodyMedium(
+                                  'Chưa có thẻ nào, hãy tham gia sự kiện để nhận thẻ'
+                                      .tr,
+                                  textAlign: TextAlign.center),
                             ),
-                          );
-                        }),
+                          )
+                        : ListView.builder(
+                            itemCount: userController.listMyBags.length,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  Get.back();
+                                  // var bags =
+                                  //     userController.listMyBags.map((e) => Bag(
+                                  //           colorBag: Color(int.parse(e.effect!)),
+                                  //           idBag: e.id,
+                                  //           nameBag: e.name,
+                                  //         )).toList();
+                                  userController.updateUser(
+                                      userData: userController.user?.copyWith(
+                                          user: userController.user?.user
+                                              ?.copyWith(
+                                    userImageBackground:
+                                        userController.listMyBags[index].image,
+                                    // bag: bags,
+                                  )));
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.only(top: 20),
+                                  height: 100,
+                                  width: Get.width,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: CachedNetworkImageProvider(
+                                              userController.listMyBags[index]
+                                                      .image ??
+                                                  ''),
+                                          fit: BoxFit.cover)),
+                                ),
+                              );
+                            }),
                   ));
                 },
                 child: Container(
@@ -216,7 +232,11 @@ class _UserScreenState extends State<UserScreen> {
                         title: 'Đồng bộ dữ liệu'.tr,
                         onTap: () {
                           userController.getUserData();
+                          buildToast(
+                              message: '${'Đồng bộ dữ liệu'.tr}...'.tr,
+                              status: TypeToast.toastSuccess);
                         }),
+                    cHeight(8),
                     blockSetting(
                         title: 'Liên hệ hỗ trợ'.tr,
                         onTap: () {
@@ -224,6 +244,7 @@ class _UserScreenState extends State<UserScreen> {
                             'https://www.facebook.com/vqhapps',
                           );
                         }),
+                    cHeight(8),
                     blockSetting(
                         title: 'Chính sách bảo mật'.tr,
                         onTap: () {
@@ -231,6 +252,7 @@ class _UserScreenState extends State<UserScreen> {
                             'https://www.vqhapp.name.vn/p/chinh-sach-bao-mat-terrarium-idle.html',
                           );
                         }),
+                    cHeight(8),
                     blockSetting(
                         title: 'Điều khoản sử dụng'.tr,
                         onTap: () {
@@ -238,6 +260,7 @@ class _UserScreenState extends State<UserScreen> {
                             'https://www.vqhapp.name.vn/p/ieu-khoan-va-ieu-kien-terrarium-idle.html',
                           );
                         }),
+                    cHeight(8),
                     blockSetting(
                         title: 'Xóa tài khoản'.tr,
                         onTap: () {
@@ -246,6 +269,7 @@ class _UserScreenState extends State<UserScreen> {
                           //   'https://www.vqhapp.name.vn/p/xoa-du-lieu-cua-ban-terrarium-idle.html',
                           // );
                         }),
+                    cHeight(8),
                     blockSetting(
                         title: 'Đăng xuất'.tr,
                         onTap: () {

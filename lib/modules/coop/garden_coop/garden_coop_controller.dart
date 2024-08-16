@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/local/list_effect.dart';
 import 'package:terrarium_idle/data/local/list_plants.dart';
 import 'package:terrarium_idle/data/local/list_pots.dart';
@@ -37,7 +39,7 @@ class GardenCoopController extends GetxController
 
     initDataEffect();
     initDataMusic();
-    initAudio(asset: selectMusic?.value ?? 'assets/audios/peacefulgarden.mp3');
+    initAudio(asset: selectMusic?.value ?? Assets.audios.peacefulgarden);
     changeUI();
   }
 
@@ -71,9 +73,15 @@ class GardenCoopController extends GetxController
       return SelectOptionItem(
           key: itemData?.name, value: itemData?.image, data: itemData);
     }).toList());
-
     listSelectOptionEffect.removeWhere((element) => element.value == null);
-    selectEffect = listSelectOptionEffect.firstOrNull;
+    if (selectEffect == null) {
+      if (listSelectOptionEffect.isEmpty) {
+        selectEffect = listSelectOptionEffect.firstOrNull;
+      } else {
+        selectEffect = listSelectOptionEffect[
+            Random().nextInt(listSelectOptionEffect.length)];
+      }
+    }
     update();
   }
 
@@ -82,7 +90,7 @@ class GardenCoopController extends GetxController
     // List<ItemData> listPlant = [];
     listSelectOptionMusic.clear();
     listSelectOptionMusic.add(SelectOptionItem(
-        key: 'Mặc định'.tr, value: 'assets/audios/peacefulgarden.mp3', data: {}));
+        key: 'Mặc định'.tr, value: Assets.audios.peacefulgarden, data: {}));
     listSelectOptionMusic.addAll(listPlantsData
         .where((element1) => userData!.plants!
             .where((element2) => element2.idPlant == element1.id)
@@ -111,7 +119,14 @@ class GardenCoopController extends GetxController
     }).toList());
 
     listSelectOptionMusic.removeWhere((element) => element.value == null);
-    selectMusic = listSelectOptionMusic.firstOrNull;
+    if (selectMusic == null) {
+      try {
+        selectMusic = listSelectOptionMusic[
+            Random().nextInt(listSelectOptionMusic.length)];
+      } on Exception catch (_) {
+        selectMusic = listSelectOptionMusic.firstOrNull;
+      }
+    }
     update();
   }
 

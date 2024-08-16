@@ -27,7 +27,8 @@ showPickEffects({
                     listEffect: listEffect,
                     listMusic: listMusic,
                     onChangedEffect: onChangedEffect,
-                    onChangedMusic: onChangedMusic); })
+                    onChangedMusic: onChangedMusic);
+              })
           : GetBuilder(
               init: GardenCoopController(),
               builder: (controller) {
@@ -191,6 +192,11 @@ _bottomsheetEffects(
             Expanded(
               child: PageView(
                 controller: pageController,
+                onPageChanged: (index) {
+                  setState(() {
+                    isEffect = index == 0;
+                  });
+                },
                 children: [
                   listEffect.isNotEmpty
                       ? _pickEffect(

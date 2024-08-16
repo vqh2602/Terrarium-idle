@@ -41,7 +41,7 @@ Map<String, String> zh = {
   "Chậu màu nâu, thoát nước tốt": "棕色花盆，排水良好",
   "Chậu đan từ tre, nhẹ nhàng và tinh tế": "竹编盆，温柔细腻",
   "Chậu đan giỏ tre": "竹篮编织盆",
-  "Lá rơi - overlay1": "落叶-overlay1",
+  "Lá rơi - overlay1": "落叶 - 覆盖1",
   "Đăng nhập thành công": "登录成功",
   "Chào mừng": "欢迎",
   "Có lỗi xảy ra": "发生错误",
@@ -98,5 +98,47 @@ Map<String, String> zh = {
   "Chọn vị trí di chuyển": "选择搬家地点",
   "Bạn muốn di chuyển cây này?": "你想移动这棵树吗？",
   "Không đủ xẻng": "铲子不够用",
-  "vị trí": "地点"
+  "vị trí": "地点",
+  "Xóa tài khoản của bạn": "删除您的帐户",
+  "Lưu ý rằng việc xóa tài khoản sẽ không thể đảo ngược và có nghĩa bạn sẽ không thể truy cập vào ứng dụng và dữ liệu":
+      "请注意，帐户删除是不可逆的，这意味着您将无法访问应用程序和数据",
+  "Tài khoản sẽ bị xóa hoàn toàn sau khi xóa trong vòng 30 ngày, để kích hoạt lại tài khoản hãy đăng nhập lại trước khi hết hạn 30 ngày kể từ ngày xóa":
+      "帐户将在删除后 30 天内被完全删除，若要重新激活帐户，请在删除之日起 30 天内再次登录。",
+  "Xác nhận xóa": "确认删除",
+  "Đã xóa tài khoản thành công": "帐号删除成功",
+  "Xác nhận xóa tài khoản": "确认帐户删除",
+  "Toàn bộ thông tin cá nhân của bạn, dữ liệu đã tạo": "您的所有个人信息、创建的数据",
+  "Dữ liệu nào sẽ bị xóa?": "哪些数据会被删除？",
+  "Lưu ý rằng việc đăng nhập với tư cách người dùng khách, dữ liệu sẽ không được sao lưu dựa trên tài khoản":
+      "请注意，以访客用户身份登录，不会根据帐户备份数据",
+  "Tiếp tục với người dùng khách": "继续使用访客用户",
+  "Mong một ngày mưa": "期待下雨天",
+  "Kết thúc mùa xuân": "春天结束",
+  "Cỏ nước thân cao": "高高的水草",
+  "Loài cây thân nhỏ cao, thân cây cứng nhưng lại dễ gẫy":
+      "一棵高大、茎细小的树，树干坚硬，很容易折断",
+  "Cây bàng lá sẫm": "有深色叶子的杏仁树",
+  "Thoáng nhìn tưởng thiếu sức sống, nhưng thực chất vẫn sinh trưởng tốt":
+      "乍一看似乎毫无生气，但其实它还长得很好",
+  "Chậu nhựa vàng": "黄色塑料盆",
+  "Vừa rẻ lại bền, nhưng lại ô nhiễm môi trường": "便宜又耐用，但污染环境",
+  "Chậu đất tím": "紫砂壶",
+  "Chậu khá nặng, nhưng khá tốt": "锅比较重，不过还不错",
+  "Chậu gỗ sơn hồng": "粉色彩绘木盆",
+  "Chậu gỗ, nhưng được sơn lớp màu hồng bền mà lại đẹp": "木锅，但涂成耐用而美丽的粉红色",
+  "Chưa có thẻ nào, hãy tham gia sự kiện để nhận thẻ": "还没有卡，请参加活动领取卡",
+  "chuyển 100 đá quý sang oxygen với tỷ lệ 1.75": "将 100 个氧气转换为 1.75 代氧气",
+  "Chi Oải hương": "薰衣草属",
+  "Loại cây bụi thường niên có mùi thơm nồng, xuất xứ từ vùng Địa Trung Hải":
+      "这种一年生灌木具有强烈的气味，源自地中海地区",
+  "Cánh hoa oải hương": "薰衣草花瓣",
+  "Chậu đất nung": "赤土陶罐",
+  "Chậu khá nặng, dễ vỡ": "锅比较重，很容易摔碎",
+  "Chậu đất nung chấm bi": "带圆点的赤土陶罐",
+  "Chậu khá nặng, khá xinh xắn": "锅挺重的，也挺漂亮的",
+  "Chậu đá cẩm thạch": "大理石盆",
+  "Chậu đá dùng cho quý tộc thời xưa. Vân đá có thể thay đổi theo thời gian":
+      "石锅在古代是贵族专用的。",
+  "Vân đá, Lá thu rơi": "石头图案，秋天落叶",
+  "Sự kiện đã kết thúc": "活动结束",
 };

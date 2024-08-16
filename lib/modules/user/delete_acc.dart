@@ -21,36 +21,39 @@ class DeleteAccount extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             textTitleMedium(
-              'Xóa tài khoản của bạn',
+              'Xóa tài khoản của bạn'.tr,
             ),
             textBodyMedium(
-                'Lưu ý rằng việc xóa tài khoản sẽ không thể đảo ngược và có nghĩa bạn sẽ không thể truy cập vào ứng dụng và dữ liệu'),
+                'Lưu ý rằng việc xóa tài khoản sẽ không thể đảo ngược và có nghĩa bạn sẽ không thể truy cập vào ứng dụng và dữ liệu'
+                    .tr),
             // FxText(
             //     'yêu cầu xóa tài khoản và dữ liệu tài khoản NinhBinhTour: \n email: <email của bạn> \n phone: <số điện thoại của bạn nếu có>'
             //         .cl()),
 
             textBodyMedium(
-                'Tài khoản sẽ bị xóa hoàn toàn sau khi xóa trong vòng 30 ngày, để kích hoạt lại tài khoản hãy đăng nhập lại trước khi hết hạn 30 ngày kể từ ngày xóa'),
+                'Tài khoản sẽ bị xóa hoàn toàn sau khi xóa trong vòng 30 ngày, để kích hoạt lại tài khoản hãy đăng nhập lại trước khi hết hạn 30 ngày kể từ ngày xóa'
+                    .tr),
             textTitleMedium(
-              'Dữ liệu nào sẽ bị xóa?',
+              'Dữ liệu nào sẽ bị xóa?'.tr,
             ),
-            textBodyMedium('Toàn bộ thông tin cá nhân của bạn, dữ liệu đã tạo'),
+            textBodyMedium(
+                'Toàn bộ thông tin cá nhân của bạn, dữ liệu đã tạo'.tr),
             ElevatedButton(
               onPressed: () {
                 ShareFuntion.onPopDialog(
                     context: context,
-                    title: 'Xác nhận xóa tài khoản',
+                    title: 'Xác nhận xóa tài khoản'.tr,
                     onCancel: () {
                       Get.back();
                     },
                     onSubmit: () {
                       buildToast(
-                          message: 'Đã xóa tài khoản thành công',
+                          message: 'Đã xóa tài khoản thành công'.tr,
                           status: TypeToast.getSuccess);
                       Get.offAndToNamed(LoginScreen.routeName);
                     });
               },
-              child: const Text('Xác nhận xóa'),
+              child: Text('Xác nhận xóa'.tr),
             ),
           ],
         ),

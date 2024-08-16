@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pie_menu/pie_menu.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/widgets/build_toast.dart';
@@ -49,7 +50,7 @@ List<PieAction> listActionsMenu(BuildContext context,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Image.asset(
-          'assets/images/sell.png',
+          Assets.images.sell.path,
         ),
       ), // Can be any widget
     ),
@@ -92,7 +93,7 @@ List<PieAction> listActionsMenu(BuildContext context,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Image.asset(
-          'assets/images/fertilizer.png',
+          Assets.images.fertilizer.path,
         ),
       ), // Can be any widget
     ),
@@ -112,7 +113,7 @@ List<PieAction> listActionsMenu(BuildContext context,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Image.asset(
-          'assets/images/shovel.png',
+          Assets.images.shovel.path,
         ),
       ), // Can be any widget
     ),
@@ -129,7 +130,7 @@ List<PieAction> listActionsMenu(BuildContext context,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Image.asset(
-          'assets/images/info_plant.png',
+          Assets.images.infoPlant.path,
         ),
       ), // Can be any widget
     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/user/user_screen.dart';
@@ -82,7 +83,7 @@ class _ToolLevelState extends State<ToolLevel> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'assets/images/oxygen.png',
+                                Assets.images.oxygen.path,
                                 width: ShareFuntion.isIpad()
                                     ? constraints.maxWidth * 0.03
                                     : constraints.maxWidth * 0.10,
@@ -102,7 +103,7 @@ class _ToolLevelState extends State<ToolLevel> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'assets/images/gemstone.png',
+                                Assets.images.gemstone.path,
                                 width: ShareFuntion.isIpad()
                                     ? constraints.maxWidth * 0.03
                                     : constraints.maxWidth * 0.10,
@@ -123,7 +124,7 @@ class _ToolLevelState extends State<ToolLevel> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'assets/images/fertilizer.png',
+                                Assets.images.fertilizer.path,
                                 width: ShareFuntion.isIpad()
                                     ? constraints.maxWidth * 0.03
                                     : constraints.maxWidth * 0.10,
@@ -144,7 +145,7 @@ class _ToolLevelState extends State<ToolLevel> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'assets/images/shovel.png',
+                                Assets.images.shovel.path,
                                 width: ShareFuntion.isIpad()
                                     ? constraints.maxWidth * 0.03
                                     : constraints.maxWidth * 0.10,
@@ -164,7 +165,7 @@ class _ToolLevelState extends State<ToolLevel> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'assets/images/ticket.png',
+                                Assets.images.ticket.path,
                                 width: ShareFuntion.isIpad()
                                     ? constraints.maxWidth * 0.03
                                     : constraints.maxWidth * 0.10,

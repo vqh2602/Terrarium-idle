@@ -1,6 +1,7 @@
 import 'dart:io';
-import 'package:rive/rive.dart';
+import 'package:rive/rive.dart' as rive;
 import 'package:terrarium_idle/c_theme/colors.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/modules/login/login_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
 import 'package:terrarium_idle/widgets/text_custom.dart';
@@ -51,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: Get.width * 0.5,
                         margin: const EdgeInsets.only(bottom: 12),
                         child: Image.asset(
-                          'assets/logo/logo.png',
+                          Assets.logo.logoPng.path,
                           width: 70,
                           fit: BoxFit.cover,
                         ),
@@ -108,6 +109,22 @@ class _LoginScreenState extends State<LoginScreen> {
                             size: 30,
                           ),
                         ),
+                      TextButton.icon(
+                        onPressed: () {
+                          loginController.loginAnonymous();
+                        },
+                        label:
+                            textBodyMedium("Tiếp tục với người dùng khách".tr),
+                        // backgroundColor: Colors.white,
+
+                        // shape: CircleBorder(),
+
+                        // padding: EdgeInsets.zero,
+                        icon: FaIcon(
+                          FontAwesomeIcons.userSecret,
+                          color: text500,
+                        ),
+                      ),
                       // cHeight(12),
 
                       // GFButton(
@@ -158,10 +175,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: Get.width,
                 height: Get.height,
                 padding: EdgeInsets.zero,
-                child: const RiveAnimation.asset(
+                child: rive.RiveAnimation.asset(
                   // 'assets/backgrounds/sky_sun_day.riv',
                   // 'assets/backgrounds/sky_rain.riv',
-                  'assets/rive/overlay/overlay1.riv',
+                  Assets.rive.overlay.overlay1,
                   fit: BoxFit.cover,
                 ),
                 // Căn container để nó phủ lên toàn bộ màn hình

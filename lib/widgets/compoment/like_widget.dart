@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 
 Widget likeWidget(bool isShow) {
   return IgnorePointer(
@@ -15,7 +16,7 @@ Widget likeWidget(bool isShow) {
         height: Get.height,
         padding: EdgeInsets.zero,
         child: RiveAnimation.asset(
-          'assets/rive/overlay/light_like.riv',
+          Assets.rive.overlay.lightLike,
           onInit: (artboardRive) async {
             var artboard = artboardRive;
 

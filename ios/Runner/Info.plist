@@ -36,6 +36,14 @@
 				<string>com.googleusercontent.apps.38854833849-hlvtj3e8t96iqpi5b0vm4f21i0mn2eqs</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>appterrarium</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
@@ -57,7 +65,7 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Need microphone access for uploading audio</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Replace with your permission description.</string>
+	<string>The application needs permission to select and change the avatar</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>

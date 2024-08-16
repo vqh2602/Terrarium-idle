@@ -3,6 +3,7 @@ import 'package:flutx_ui/widgets/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:terrarium_idle/c_theme/colors.dart';
+import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/store/store_controller.dart';
@@ -179,7 +180,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                 null) return;
                             ShareFuntion.onPopDialog(
                                 context: context,
-                                title: 'Xác nhận mua',
+                                title: 'Xác nhận mua'.tr,
                                 onCancel: () => Get.back(),
                                 onSubmit: () async {
                                   Get.back();
@@ -207,12 +208,12 @@ class _StoreScreenState extends State<StoreScreen> {
                                     storeController.listStorePots[index]
                                                 .currencyUnit ==
                                             'oxygen'
-                                        ? 'assets/images/oxygen.png'
+                                        ? Assets.images.oxygen.path
                                         : storeController.listStorePots[index]
                                                     .currencyUnit ==
                                                 'ticket'
-                                            ? 'assets/images/ticket.png'
-                                            : 'assets/images/gemstone.png',
+                                            ? Assets.images.ticket.path
+                                            : Assets.images.gemstone.path,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -326,12 +327,12 @@ class _StoreScreenState extends State<StoreScreen> {
                                   storeController.listStorePlants[index]
                                               .currencyUnit ==
                                           'oxygen'
-                                      ? 'assets/images/oxygen.png'
+                                      ? Assets.images.oxygen.path
                                       : storeController.listStorePlants[index]
                                                   .currencyUnit ==
                                               'ticket'
-                                          ? 'assets/images/ticket.png'
-                                          : 'assets/images/gemstone.png',
+                                          ? Assets.images.ticket.path
+                                          : Assets.images.gemstone.path,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -434,12 +435,12 @@ class _StoreScreenState extends State<StoreScreen> {
                                 storeController.listStoreItems[index]
                                             .currencyUnit ==
                                         'oxygen'
-                                    ? 'assets/images/oxygen.png'
+                                    ? Assets.images.oxygen.path
                                     : storeController.listStoreItems[index]
                                                 .currencyUnit ==
                                             'ticket'
-                                        ? 'assets/images/ticket.png'
-                                        : 'assets/images/gemstone.png',
+                                        ? Assets.images.ticket.path
+                                        : Assets.images.gemstone.path,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -485,7 +486,7 @@ class _StoreScreenState extends State<StoreScreen> {
                             // flex: 2,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Image.asset('assets/images/gemstone.png'),
+                              child: Image.asset(Assets.images.gemstone.path),
                             )),
                         Expanded(
                           flex: 6,
