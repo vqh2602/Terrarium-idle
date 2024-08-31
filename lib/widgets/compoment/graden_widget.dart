@@ -127,191 +127,10 @@ class Graden extends StatelessWidget {
                                 child: textBodySmall(
                                     '${'Tầng'.tr} ${floor + 1}',
                                     color: Colors.white24)),
-                            Expanded(
-                              child: ListView.builder(
-                                  itemCount: 3,
-                                  shrinkWrap: true,
-                                  primary: true,
-                                  padding: EdgeInsets.zero,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, position) {
-                                    return (userData.plants!
-                                            .where((element) =>
-                                                element.position!.contains(
-                                                    '${floor + 1},${position + 1}'))
-                                            .isNotEmpty)
-                                        ? Container(
-                                            width: Get.width * 0.32,
-                                            padding: EdgeInsets.zero,
-                                            child: PieMenu(
-                                              onToggle: (val) {
-                                                ShareFuntion.tapPlayAudio();
-                                              },
-                                              onPressed: () {
-                                                ShareFuntion.tapPlayAudio(
-                                                    isNewAudioPlay: true);
-                                              },
-                                              theme: const PieTheme(
-                                                  overlayColor: Colors.black45,
-                                                  rightClickShowsMenu: true,
-                                                  customAngleAnchor:
-                                                      PieAnchor.center),
-                                              actions: [
-                                                if (!isCoop)
-                                                  ...listActionsMenu(context,
-                                                      floor: floor + 1,
-                                                      position: position + 1,
-                                                      userData: userData,
-                                                      update: update)
-                                              ],
-                                              child: Container(
-                                                padding: EdgeInsets.zero,
-                                                // color: Colors.red,
-                                                child: LayoutBuilder(
-                                                  builder:
-                                                      (context, constraints) {
-                                                    Plants plant = userData
-                                                        .plants!
-                                                        .firstWhere((element) =>
-                                                            element.position!
-                                                                .contains(
-                                                                    '${floor + 1},${position + 1}'));
-                                                    // print(
-                                                    //     '/n plant: ${plant.idPlant} ${'${floor + 1},$position'} : level: ${plant.plantLevel}');
-                                                    bool showClamOxygen = (DateTime
-                                                                    .now()
-                                                                .difference(plant
-                                                                        .harvestTime ??
-                                                                    DateTime
-                                                                        .now())
-                                                                .inMinutes >=
-                                                            30 &&
-                                                        ShareFuntion.gacha(
-                                                            winRate: plant
-                                                                        .plantLevel ==
-                                                                    3
-                                                                ? 95
-                                                                : plant.plantLevel ==
-                                                                        2
-                                                                    ? 70
-                                                                    : 60));
-                                                    // changeUI.call();
-                                                    return Stack(
-                                                      key: Key(plant.position!),
-                                                      children: [
-                                                        GestureDetector(
-                                                          onDoubleTap: () {
-                                                            /// khi ấn tap vào cây, có tỷ lệ 5% tăng êxp và oxygen
-                                                            if (ShareFuntion
-                                                                    .gacha(
-                                                                        winRate:
-                                                                            5) &&
-                                                                !isCoop) {
-                                                              _clamOxygen(plant,
-                                                                  floor: floor,
-                                                                  position:
-                                                                      position);
-                                                            }
-                                                          },
-                                                          child: riveAnimation(
-                                                              constraints,
-                                                              plantId: plant
-                                                                  .idPlant!,
-                                                              potId:
-                                                                  plant.idPot!,
-                                                              changeUI:
-                                                                  changeUI,
-                                                              level: plant
-                                                                      .plantLevel ??
-                                                                  1),
-                                                        ),
-                                                        if (showClamOxygen &&
-                                                            !isCoop)
-                                                          IconButton(
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            onPressed:
-                                                                () async {
-                                                              // ShareFuntion
-                                                              //     .tapPlayAudio(
-                                                              //         isNewAudioPlay:
-                                                              //             false);
-                                                              /// lấy oxy gen và tăng cấp cây khi hiện oxygen
-                                                              _clamOxygen(plant,
-                                                                  floor: floor,
-                                                                  position:
-                                                                      position);
-                                                            },
-                                                            icon: Align(
-                                                              alignment: Alignment
-                                                                  .bottomRight,
-                                                              child:
-                                                                  Image.asset(
-                                                                Assets
-                                                                    .images
-                                                                    .oxygen
-                                                                    .path,
-                                                                width: 30,
-                                                                height: 30,
-                                                              ),
-                                                            ),
-                                                          )
-                                                      ],
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ))
-                                        : Container(
-                                            width: Get.width * 0.33,
-                                            padding: EdgeInsets.zero,
-                                            child: isEdit
-                                                ? GestureDetector(
-                                                    onTap: () {
-                                                      ShareFuntion
-                                                          .tapPlayAudio();
-                                                      showPickPotsAndPlants(
-                                                          floor: floor + 1,
-                                                          position:
-                                                              position + 1,
-                                                          userData: userData,
-                                                          update: update);
-                                                    },
-                                                    child: Container(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8),
-                                                      width: double.infinity,
-                                                      height: double.infinity,
-                                                      child: DottedBorder(
-                                                        color: Get
-                                                            .theme.primaryColor,
-                                                        strokeWidth: 2,
-                                                        borderType:
-                                                            BorderType.RRect,
-                                                        radius: const Radius
-                                                            .circular(12),
-                                                        dashPattern: const [
-                                                          6,
-                                                          3,
-                                                          2,
-                                                          3
-                                                        ],
-                                                        child: Center(
-                                                            child: Icon(
-                                                          LucideIcons.sprout,
-                                                          size: 50,
-                                                          color: Get.theme
-                                                              .primaryColor,
-                                                        )),
-                                                      ),
-                                                    ),
-                                                  )
-                                                : const SizedBox());
-                                  }),
-                            ),
+                            Expanded(child: _lowOptions(floor: floor)),
+                            // Expanded(
+                            //     child: _hightOptions(
+                            //         floor: floor, context: context)),
                             SizedBox(
                                 width: Get.width,
                                 child: Image.asset(
@@ -353,5 +172,295 @@ class Graden extends StatelessWidget {
             .copyWith(userLevelEXP: userData.user!.userLevelEXP! + 100),
         plants: plants);
     update(userDataCustom);
+  }
+
+  // _hightOptions({required int floor, required BuildContext context}) {
+  //   item(
+  //       {required int floor,
+  //       required int position,
+  //       required BuildContext context}) {
+  //     Plants? plant = userData.plants?.firstWhereOrNull((element) =>
+  //         element.position?.contains('${floor + 1},${position + 1}') ?? false);
+  //     return (userData.plants!
+  //             .where((element) =>
+  //                 element.position!.contains('${floor + 1},${position + 1}'))
+  //             .isNotEmpty)
+  //         ? (plant != null)
+  //             ? Container(
+  //                 width: Get.width * 0.32,
+  //                 padding: EdgeInsets.zero,
+  //                 child: PieMenu(
+  //                   onToggle: (val) {
+  //                     ShareFuntion.tapPlayAudio();
+  //                   },
+  //                   onPressed: () {
+  //                     ShareFuntion.tapPlayAudio(isNewAudioPlay: true);
+  //                     if (ShareFuntion.gacha(winRate: 2) && !isCoop) {
+  //                       _clamOxygen(plant, floor: floor, position: position);
+  //                     }
+  //                   },
+  //                   theme: const PieTheme(
+  //                       overlayColor: Colors.black45,
+  //                       rightClickShowsMenu: true,
+  //                       customAngleAnchor: PieAnchor.center),
+  //                   actions: [
+  //                     if (!isCoop)
+  //                       ...listActionsMenu(context,
+  //                           floor: floor + 1,
+  //                           position: position + 1,
+  //                           userData: userData,
+  //                           update: update)
+  //                   ],
+  //                   child: Container(
+  //                     padding: EdgeInsets.zero,
+  //                     // color: Colors.red,
+  //                     child: LayoutBuilder(
+  //                       builder: (context, constraints) {
+  //                         // Plants plant = userData
+  //                         //     .plants!
+  //                         //     .firstWhere((element) =>
+  //                         //         element.position!
+  //                         //             .contains(
+  //                         //                 '${floor + 1},${position + 1}'));
+  //                         // print(
+  //                         //     '/n plant: ${plant.idPlant} ${'${floor + 1},$position'} : level: ${plant.plantLevel}');
+  //                         bool showClamOxygen = (DateTime.now()
+  //                                     .difference(
+  //                                         plant.harvestTime ?? DateTime.now())
+  //                                     .inMinutes >=
+  //                                 30 &&
+  //                             ShareFuntion.gacha(
+  //                                 winRate: plant.plantLevel == 3
+  //                                     ? 95
+  //                                     : plant.plantLevel == 2
+  //                                         ? 70
+  //                                         : 60));
+  //                         // changeUI.call();
+  //                         return Stack(
+  //                           key: Key(plant.position ?? ''),
+  //                           children: [
+  //                             RiveAnimationItem(
+  //                                 constraints: constraints,
+  //                                 plantId: plant.idPlant!,
+  //                                 potId: plant.idPot!,
+  //                                 changeUI: changeUI,
+  //                                 level: plant.plantLevel ?? 1),
+  //                             if (showClamOxygen && !isCoop)
+  //                               IconButton(
+  //                                 focusColor: Colors.transparent,
+  //                                 hoverColor: Colors.transparent,
+  //                                 onPressed: () async {
+  //                                   // ShareFuntion
+  //                                   //     .tapPlayAudio(
+  //                                   //         isNewAudioPlay:
+  //                                   //             false);
+  //                                   /// lấy oxy gen và tăng cấp cây khi hiện oxygen
+  //                                   _clamOxygen(plant,
+  //                                       floor: floor, position: position);
+  //                                 },
+  //                                 icon: Align(
+  //                                   alignment: Alignment.bottomRight,
+  //                                   child: Image.asset(
+  //                                     Assets.images.oxygen.path,
+  //                                     width: 30,
+  //                                     height: 30,
+  //                                   ),
+  //                                 ),
+  //                               )
+  //                           ],
+  //                         );
+  //                       },
+  //                     ),
+  //                   ),
+  //                 ))
+  //             : const SizedBox()
+  //         : Container(
+  //             width: Get.width * 0.33,
+  //             padding: EdgeInsets.zero,
+  //             child: isEdit
+  //                 ? GestureDetector(
+  //                     onTap: () {
+  //                       ShareFuntion.tapPlayAudio();
+  //                       showPickPotsAndPlants(
+  //                           floor: floor + 1,
+  //                           position: position + 1,
+  //                           userData: userData,
+  //                           update: update);
+  //                     },
+  //                     child: Container(
+  //                       padding: const EdgeInsets.all(8),
+  //                       width: double.infinity,
+  //                       height: double.infinity,
+  //                       child: DottedBorder(
+  //                         color: Get.theme.primaryColor,
+  //                         strokeWidth: 2,
+  //                         borderType: BorderType.RRect,
+  //                         radius: const Radius.circular(12),
+  //                         dashPattern: const [6, 3, 2, 3],
+  //                         child: Center(
+  //                             child: Icon(
+  //                           LucideIcons.sprout,
+  //                           size: 50,
+  //                           color: Get.theme.primaryColor,
+  //                         )),
+  //                       ),
+  //                     ),
+  //                   )
+  //                 : const SizedBox());
+  //   }
+
+  //   return ListView(
+  //     // itemCount: 3,
+  //     shrinkWrap: true,
+  //     primary: true,
+  //     padding: EdgeInsets.zero,
+  //     scrollDirection: Axis.horizontal,
+  //     children: [
+  //       for (int position = 0; position < 3; position++) ...[
+  //         item(floor: floor, position: position, context: context)
+  //       ]
+  //     ],
+  //   );
+  // }
+
+  _lowOptions({required int floor}) {
+    return ListView.builder(
+        itemCount: 3,
+        shrinkWrap: true,
+        primary: true,
+        padding: EdgeInsets.zero,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, position) {
+          Plants? plant = userData.plants?.firstWhereOrNull((element) =>
+              element.position?.contains('${floor + 1},${position + 1}') ??
+              false);
+          return (userData.plants!
+                  .where((element) => element.position!
+                      .contains('${floor + 1},${position + 1}'))
+                  .isNotEmpty)
+              ? (plant != null)
+                  ? Container(
+                      width: Get.width * 0.32,
+                      padding: EdgeInsets.zero,
+                      child: PieMenu(
+                        onToggle: (val) {
+                          ShareFuntion.tapPlayAudio();
+                        },
+                        onPressed: () {
+                          ShareFuntion.tapPlayAudio(isNewAudioPlay: true);
+                          if (ShareFuntion.gacha(winRate: 2) && !isCoop) {
+                            _clamOxygen(plant,
+                                floor: floor, position: position);
+                          }
+                        },
+                        theme: const PieTheme(
+                            overlayColor: Colors.black45,
+                            rightClickShowsMenu: true,
+                            customAngleAnchor: PieAnchor.center),
+                        actions: [
+                          if (!isCoop)
+                            ...listActionsMenu(context,
+                                floor: floor + 1,
+                                position: position + 1,
+                                userData: userData,
+                                update: update)
+                        ],
+                        child: Container(
+                          padding: EdgeInsets.zero,
+                          // color: Colors.red,
+                          child: LayoutBuilder(
+                            builder: (context, constraints) {
+                              // Plants plant = userData
+                              //     .plants!
+                              //     .firstWhere((element) =>
+                              //         element.position!
+                              //             .contains(
+                              //                 '${floor + 1},${position + 1}'));
+                              // print(
+                              //     '/n plant: ${plant.idPlant} ${'${floor + 1},$position'} : level: ${plant.plantLevel}');
+                              bool showClamOxygen = (DateTime.now()
+                                          .difference(plant.harvestTime ??
+                                              DateTime.now())
+                                          .inMinutes >=
+                                      30 &&
+                                  ShareFuntion.gacha(
+                                      winRate: plant.plantLevel == 3
+                                          ? 95
+                                          : plant.plantLevel == 2
+                                              ? 70
+                                              : 60));
+                              // changeUI.call();
+                              return Stack(
+                                key: Key(plant.position ?? ''),
+                                children: [
+                                  RiveAnimationItem(
+                                      constraints: constraints,
+                                      plantId: plant.idPlant!,
+                                      potId: plant.idPot!,
+                                      changeUI: changeUI,
+                                      level: plant.plantLevel ?? 1),
+                                  if (showClamOxygen && !isCoop)
+                                    IconButton(
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      onPressed: () async {
+                                        // ShareFuntion
+                                        //     .tapPlayAudio(
+                                        //         isNewAudioPlay:
+                                        //             false);
+                                        /// lấy oxy gen và tăng cấp cây khi hiện oxygen
+                                        _clamOxygen(plant,
+                                            floor: floor, position: position);
+                                      },
+                                      icon: Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: Image.asset(
+                                          Assets.images.oxygen.path,
+                                          width: 30,
+                                          height: 30,
+                                        ),
+                                      ),
+                                    )
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                      ))
+                  : const SizedBox()
+              : Container(
+                  width: Get.width * 0.33,
+                  padding: EdgeInsets.zero,
+                  child: isEdit
+                      ? GestureDetector(
+                          onTap: () {
+                            ShareFuntion.tapPlayAudio();
+                            showPickPotsAndPlants(
+                                floor: floor + 1,
+                                position: position + 1,
+                                userData: userData,
+                                update: update);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            width: double.infinity,
+                            height: double.infinity,
+                            child: DottedBorder(
+                              color: Get.theme.primaryColor,
+                              strokeWidth: 2,
+                              borderType: BorderType.RRect,
+                              radius: const Radius.circular(12),
+                              dashPattern: const [6, 3, 2, 3],
+                              child: Center(
+                                  child: Icon(
+                                LucideIcons.sprout,
+                                size: 50,
+                                color: Get.theme.primaryColor,
+                              )),
+                            ),
+                          ),
+                        )
+                      : const SizedBox());
+        });
   }
 }
