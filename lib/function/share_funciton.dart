@@ -5,11 +5,14 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
+import 'package:terrarium_idle/data/storage/storage.dart';
+import 'package:terrarium_idle/function/rating_app.dart';
 
 import 'package:terrarium_idle/widgets/text_custom.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,6 +25,7 @@ enum TypeSound { rain, tap, like, levelup }
 
 class ShareFuntion {
   static final player = AudioPlayer();
+  static GetStorage box = GetStorage();
   static Future<void> dateTimePickerCupertino(
       {required Function(DateTime) onchange,
       DatePickerDateOrder? dateOrder,
@@ -301,6 +305,7 @@ class ShareFuntion {
       ShareFuntion.tapPlayAudio(type: TypeSound.levelup, isNewAudioPlay: true);
       userData = userData.copyWith(
           user: userData.user?.copyWith(userLevel: level + 1, userLevelEXP: 0));
+      ShareFuntion.checkAndShowRatingInApp();
     }
     //LEVEL PLANT
     List<Plants> plants = userData.plants!;
@@ -321,6 +326,51 @@ class ShareFuntion {
 
   static bool isIpad() {
     return Get.width >= 600;
+  }
+
+  static String shortenNumber(int number) {
+    if (number < 1000) {
+      // Nếu số nhỏ hơn 1000, trả về số đó dưới dạng chuỗi
+      return number.toString();
+    } else if (number < 1000000) {
+      // Nếu số trong khoảng từ 1,000 đến dưới 1,000,000
+      return '${(number / 1000).toStringAsFixed(1).replaceAll(RegExp(r'\.0$'), '')}k';
+    } else if (number < 1000000000) {
+      // Nếu số trong khoảng từ 1,000,000 đến dưới 1,000,000,000
+      return '${(number / 1000000).toStringAsFixed(1).replaceAll(RegExp(r'\.0$'), '')}m';
+    } else {
+      // Nếu số từ 1,000,000,000 trở lên
+      return '${(number / 1000000000).toStringAsFixed(1).replaceAll(RegExp(r'\.0$'), '')}b';
+    }
+  }
+
+  /// hiển thị đánh giá trên app
+  static Future<bool> checkAndShowRatingInApp() async {
+    final savedTimeString = await box.read(Storages.dataRateing);
+
+    if (savedTimeString == null) {
+      // Nếu thời gian lưu trữ là null, lưu thời gian hiện tại và trả về true
+      DateTime now = DateTime.now();
+      await box.write(Storages.dataRateing, now.toIso8601String());
+      ratingAppInApp();
+      return true;
+    } else {
+      // Chuyển đổi chuỗi thời gian lưu trữ thành DateTime
+      DateTime savedTime = DateTime.parse(savedTimeString);
+      DateTime now = DateTime.now();
+      Duration difference = now.difference(savedTime);
+
+      // Kiểm tra nếu thời gian lưu trữ nhỏ hơn 30 ngày so với ngày hiện tại
+      if (difference.inDays > 15) {
+        // Nếu đúng, lưu lại thời gian hiện tại và trả về true
+        await box.write(Storages.dataRateing, now.toIso8601String());
+        ratingAppInApp();
+        return true;
+      } else {
+        // Nếu không, trả về false
+        return false;
+      }
+    }
   }
 }
 

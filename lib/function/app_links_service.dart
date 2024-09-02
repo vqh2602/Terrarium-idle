@@ -1,8 +1,8 @@
-
 import 'package:app_links/app_links.dart';
 // import 'package:encrypt/encrypt.dart';
 import 'package:get/get.dart';
 import 'package:terrarium_idle/modules/event/event_screen.dart';
+import 'package:terrarium_idle/modules/splash/splash_screen.dart';
 
 Future<void> initDeepLinks() async {
   var appLinks = AppLinks();
@@ -23,7 +23,10 @@ Future<void> initDeepLinks() async {
           .toString()
           .replaceAll('appterrarium:', '')
           .contains('gettickets')) {
-        Get.toNamed(EventScreen.routeName);
+        Get.offAllNamed(SplashScreen.routeName);
+        Future.delayed(const Duration(seconds: 7), () {
+          Get.toNamed(EventScreen.routeName);
+        });
       }
     }
   });

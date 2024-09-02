@@ -155,5 +155,27 @@ Map<String, String> vi = {
   "Chậu đá cẩm thạch": "Chậu đá cẩm thạch",
   "Chậu đá dùng cho quý tộc thời xưa. Vân đá có thể thay đổi theo thời gian":
       "Chậu đá dùng cho quý tộc thời xưa. Vân đá có thể thay đổi theo thời gian",
-  "Vân đá, Lá thu rơi": "Vân đá, Lá thu rơi"
+  "Vân đá, Lá thu rơi": "Vân đá, Lá thu rơi",
+  "Lan trái tim": "Lan trái tim",
+  "Họ nhà lan, có hình dáng đẹp, màu sắc tinh tế, thích hợp trang trí":
+      "Họ nhà lan, có hình dáng đẹp, màu sắc tinh tế, thích hợp trang trí",
+  "Bụi cỏ rủ": "Bụi cỏ rủ",
+  "Loài cây dại, sức sống tốt, có hiệu quả lọc không khí":
+      "Loài cây dại, sức sống tốt, có hiệu quả lọc không khí",
+  "Rêu sứa": "Rêu sứa",
+  "Loài rêu cứng, sinh sống trên các mỏm đá, hoa học thành chùm và dài như sứa vậy":
+      "Loài rêu cứng, sinh sống trên các mỏm đá, hoa học thành chùm và dài như sứa vậy",
+  "Cỏ đinh ba": "Cỏ đinh ba",
+  "Loài cỏ lá kim, khi trưởng thành có những chùm tua xuống như cây đinh ba của một vị thần":
+      "Loài cỏ lá kim, khi trưởng thành có những chùm tua xuống như cây đinh ba của một vị thần",
+  "Chậu sứ Msuit": "Chậu sứ Msuit",
+  "Chậu sứ trắng, trọng lượng nhẹ dễ dàng treo lên cao":
+      "Chậu sứ trắng, trọng lượng nhẹ dễ dàng treo lên cao",
+  "Chậu sứ mạ vàng": "Chậu sứ mạ vàng",
+  "Chậu sứ mạ lớp vàng, sang trọng lung linh trước ánh nắng ban mai":
+      "Chậu sứ mạ lớp vàng, sang trọng lung linh trước ánh nắng ban mai",
+  "Hãy chọn đúng thuộc tính cây và chậu":
+      "Hãy chọn đúng thuộc tính cây và chậu",
+  "Đánh giá ứng dụng": "Đánh giá ứng dụng",
+  "Lá rơi mùa thu":"Lá rơi mùa thu"
 };

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:terrarium_idle/c_theme/colors.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
+import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/store/store_controller.dart';
@@ -127,6 +128,9 @@ class _StoreScreenState extends State<StoreScreen> {
                 shrinkWrap: true,
                 itemCount: storeController.listStorePots.length,
                 itemBuilder: (BuildContext ctx, index) {
+                  bool isHanging =
+                      storeController.listStorePots[index].itemTypeAttribute ==
+                          ItemTypeAttribute.hanging;
                   return Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
@@ -153,8 +157,7 @@ class _StoreScreenState extends State<StoreScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               textBodyMedium(
-                                  storeController.listStorePots[index].name ??
-                                      '',
+                                  '${storeController.listStorePots[index].name} ${isHanging ? '(☁Treo)' : ''}',
                                   color: Colors.black),
                               textBodySmall(
                                   storeController
@@ -247,6 +250,9 @@ class _StoreScreenState extends State<StoreScreen> {
               shrinkWrap: true,
               itemCount: storeController.listStorePlants.length,
               itemBuilder: (BuildContext ctx, index) {
+                bool isHanging =
+                    storeController.listStorePlants[index].itemTypeAttribute ==
+                        ItemTypeAttribute.hanging;
                 return Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
@@ -273,8 +279,7 @@ class _StoreScreenState extends State<StoreScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             textBodyMedium(
-                                storeController.listStorePlants[index].name ??
-                                    '',
+                                '${storeController.listStorePlants[index].name} ${(isHanging ? '(☁Treo)' : '')}',
                                 color: Colors.black),
                             textBodySmall(
                                 storeController

@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/local/list_effect.dart';
 import 'package:terrarium_idle/data/local/list_plants.dart';
@@ -10,6 +12,7 @@ import 'package:terrarium_idle/data/local/list_pots.dart';
 import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/select_option_item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
+import 'package:terrarium_idle/data/repositories/image_repo.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
@@ -23,12 +26,13 @@ class GardenCoopController extends GetxController
   UserController userController = Get.find();
   bool isEdit = false;
   UserData? userData = Get.arguments;
+  UserData? myUser;
   bool isRain = false;
   List<SelectOptionItem> listSelectOptionEffect = [];
   List<SelectOptionItem> listSelectOptionMusic = [];
   SelectOptionItem? selectEffect;
   SelectOptionItem? selectMusic;
-
+  RepoImage repoImage = RepoImage();
   bool isWater = false;
   bool isLike = false;
 
@@ -36,7 +40,7 @@ class GardenCoopController extends GetxController
   Future<void> onInit() async {
     super.onInit();
     isRain = ShareFuntion.gacha(winRate: 10);
-
+    myUser = await userController.getUserData();
     initDataEffect();
     initDataMusic();
     initAudio(asset: selectMusic?.value ?? Assets.audios.peacefulgarden);
@@ -162,6 +166,16 @@ class GardenCoopController extends GetxController
     //     Get.offAndToNamed(LoginScreen.routeName);
     //   });
     // }
+  }
+  sendLike() async {
+    final directory = await getApplicationDocumentsDirectory();
+//creates text_file in the provided path.
+    File file = File('${directory.path}/text_file_${myUser?.user?.userID}.txt');
+    String content =
+        'Like by user: ${myUser?.user?.userID}\n Like:${userData?.user?.userID} \n Total Like: ${(int.tryParse(userData?.user?.userTotalLike.toString() ?? '') ?? 0) + 1}';
+    await file.writeAsString(content);
+
+    repoImage.uploadFileDiscord(file, 'like', content);
   }
 
   changeUI() {

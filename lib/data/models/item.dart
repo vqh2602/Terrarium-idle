@@ -1,6 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart';
+
+// thuộc tính đặc biệt
+enum ItemTypeAttribute {
+  /// treo, áp dụng cho cây và chậu có phải dạng treo lên hay k
+  hanging,
+  none
+}
+
 class ItemData {
   String? id;
   String? name;
@@ -12,6 +21,7 @@ class ItemData {
   String? type;
   String? effect;
   num? levelUnlock;
+  ItemTypeAttribute? itemTypeAttribute;
   ItemData({
     this.id,
     this.name,
@@ -23,37 +33,41 @@ class ItemData {
     this.type,
     this.effect,
     this.levelUnlock,
+    this.itemTypeAttribute,
   });
-  
 
   ItemData copyWith({
-    String? id,
-    String? name,
-    String? description,
-    String? image,
-    int? priceStore,
-    int? priceOxygen,
-    String? currencyUnit,
-    String? type,
-    String? effect,
-    num? levelUnlock,
+    ValueGetter<String?>? id,
+    ValueGetter<String?>? name,
+    ValueGetter<String?>? description,
+    ValueGetter<String?>? image,
+    ValueGetter<int?>? priceStore,
+    ValueGetter<int?>? priceOxygen,
+    ValueGetter<String?>? currencyUnit,
+    ValueGetter<String?>? type,
+    ValueGetter<String?>? effect,
+    ValueGetter<num?>? levelUnlock,
+    ValueGetter<ItemTypeAttribute?>? itemTypeAttribute,
   }) {
     return ItemData(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      image: image ?? this.image,
-      priceStore: priceStore ?? this.priceStore,
-      priceOxygen: priceOxygen ?? this.priceOxygen,
-      currencyUnit: currencyUnit ?? this.currencyUnit,
-      type: type ?? this.type,
-      effect: effect ?? this.effect,
-      levelUnlock: levelUnlock ?? this.levelUnlock,
+      id: id != null ? id() : this.id,
+      name: name != null ? name() : this.name,
+      description: description != null ? description() : this.description,
+      image: image != null ? image() : this.image,
+      priceStore: priceStore != null ? priceStore() : this.priceStore,
+      priceOxygen: priceOxygen != null ? priceOxygen() : this.priceOxygen,
+      currencyUnit: currencyUnit != null ? currencyUnit() : this.currencyUnit,
+      type: type != null ? type() : this.type,
+      effect: effect != null ? effect() : this.effect,
+      levelUnlock: levelUnlock != null ? levelUnlock() : this.levelUnlock,
+      itemTypeAttribute: itemTypeAttribute != null
+          ? itemTypeAttribute()
+          : this.itemTypeAttribute,
     );
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'id': id,
       'name': name,
       'description': description,
@@ -64,61 +78,68 @@ class ItemData {
       'type': type,
       'effect': effect,
       'levelUnlock': levelUnlock,
+      'itemTypeAttribute': itemTypeAttribute?.toString(),
     };
   }
 
   factory ItemData.fromMap(Map<String, dynamic> map) {
     return ItemData(
-      id: map['id'] != null ? map['id'] as String : null,
-      name: map['name'] != null ? map['name'] as String : null,
-      description: map['description'] != null ? map['description'] as String : null,
-      image: map['image'] != null ? map['image'] as String : null,
-      priceStore: map['priceStore'] != null ? map['priceStore'] as int : null,
-      priceOxygen: map['priceOxygen'] != null ? map['priceOxygen'] as int : null,
-      currencyUnit: map['currencyUnit'] != null ? map['currencyUnit'] as String : null,
-      type: map['type'] != null ? map['type'] as String : null,
-      effect: map['effect'] != null ? map['effect'] as String : null,
-      levelUnlock: map['levelUnlock'] != null ? map['levelUnlock'] as num : null,
+      id: map['id'],
+      name: map['name'],
+      description: map['description'],
+      image: map['image'],
+      priceStore: map['priceStore']?.toInt(),
+      priceOxygen: map['priceOxygen']?.toInt(),
+      currencyUnit: map['currencyUnit'],
+      type: map['type'],
+      effect: map['effect'],
+      levelUnlock: map['levelUnlock'],
+      itemTypeAttribute: map['itemTypeAttribute'] != null
+          ? ItemTypeAttribute.values.byName(map['itemTypeAttribute'])
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory ItemData.fromJson(String source) => ItemData.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ItemData.fromJson(String source) =>
+      ItemData.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'ItemData(id: $id, name: $name, description: $description, image: $image, priceStore: $priceStore, priceOxygen: $priceOxygen, currencyUnit: $currencyUnit, type: $type, effect: $effect, levelUnlock: $levelUnlock)';
+    return 'ItemData(id: $id, name: $name, description: $description, image: $image, priceStore: $priceStore, priceOxygen: $priceOxygen, currencyUnit: $currencyUnit, type: $type, effect: $effect, levelUnlock: $levelUnlock, itemTypeAttribute: $itemTypeAttribute)';
   }
 
   @override
-  bool operator ==(covariant ItemData other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.name == name &&
-      other.description == description &&
-      other.image == image &&
-      other.priceStore == priceStore &&
-      other.priceOxygen == priceOxygen &&
-      other.currencyUnit == currencyUnit &&
-      other.type == type &&
-      other.effect == effect &&
-      other.levelUnlock == levelUnlock;
+
+    return other is ItemData &&
+        other.id == id &&
+        other.name == name &&
+        other.description == description &&
+        other.image == image &&
+        other.priceStore == priceStore &&
+        other.priceOxygen == priceOxygen &&
+        other.currencyUnit == currencyUnit &&
+        other.type == type &&
+        other.effect == effect &&
+        other.levelUnlock == levelUnlock &&
+        other.itemTypeAttribute == itemTypeAttribute;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      name.hashCode ^
-      description.hashCode ^
-      image.hashCode ^
-      priceStore.hashCode ^
-      priceOxygen.hashCode ^
-      currencyUnit.hashCode ^
-      type.hashCode ^
-      effect.hashCode ^
-      levelUnlock.hashCode;
+        name.hashCode ^
+        description.hashCode ^
+        image.hashCode ^
+        priceStore.hashCode ^
+        priceOxygen.hashCode ^
+        currencyUnit.hashCode ^
+        type.hashCode ^
+        effect.hashCode ^
+        levelUnlock.hashCode ^
+        itemTypeAttribute.hashCode;
   }
 }

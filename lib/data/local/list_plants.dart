@@ -125,7 +125,7 @@ List<ItemData> listPlantsData = [
     effect: 'Kết thúc mùa xuân'.tr + ' - m2'.tr,
     levelUnlock: 15,
   ),
-   ItemData(
+  ItemData(
     id: 'plant11',
     name: 'Chi Oải hương'.tr,
     description:
@@ -138,5 +138,62 @@ List<ItemData> listPlantsData = [
     type: 'plant',
     effect: 'Cánh hoa oải hương'.tr + ' - overlay3'.tr,
     levelUnlock: 15,
+  ),
+  ItemData(
+    id: 'plant12',
+    name: 'Lan trái tim'.tr,
+    description:
+        'Họ nhà lan, có hình dáng đẹp, màu sắc tinh tế, thích hợp trang trí'.tr,
+    image: 'https://i.imgur.com/HBKBzO2.png',
+    priceStore: 199,
+    priceOxygen: 5500,
+    currencyUnit: 'gemstone',
+    type: 'plant',
+    effect: 'N.A'.tr,
+    itemTypeAttribute: ItemTypeAttribute.hanging,
+    levelUnlock: 17,
+  ),
+  ItemData(
+    id: 'plant13',
+    name: 'Bụi cỏ rủ'.tr,
+    description: 'Loài cây dại, sức sống tốt, có hiệu quả lọc không khí'.tr,
+    image: 'https://i.imgur.com/8TC2PNr.png',
+    priceStore: 5700,
+    priceOxygen: 7500,
+    currencyUnit: 'oxygen',
+    type: 'plant',
+    effect: 'N.A'.tr,
+    itemTypeAttribute: ItemTypeAttribute.hanging,
+    levelUnlock: 17,
+  ),
+  ItemData(
+    id: 'plant14',
+    name: 'Rêu sứa'.tr,
+    description:
+        'Loài rêu cứng, sinh sống trên các mỏm đá, hoa học thành chùm và dài như sứa vậy'
+            .tr,
+    image: 'https://i.imgur.com/rQyib9F.png',
+    priceStore: 5500,
+    priceOxygen: 7500,
+    currencyUnit: 'oxygen',
+    type: 'plant',
+    effect: 'N.A'.tr,
+    itemTypeAttribute: ItemTypeAttribute.hanging,
+    levelUnlock: 7,
+  ),
+  ItemData(
+    id: 'plant15',
+    name: 'Cỏ đinh ba'.tr,
+    description:
+        'Loài cỏ lá kim, khi trưởng thành có những chùm tua xuống như cây đinh ba của một vị thần'
+            .tr,
+    image: 'https://i.imgur.com/dXWDsdv.png',
+    priceStore: 10500,
+    priceOxygen: 15500,
+    currencyUnit: 'oxygen',
+    type: 'plant',
+    effect: 'N.A'.tr,
+    itemTypeAttribute: ItemTypeAttribute.hanging,
+    levelUnlock: 20,
   ),
 ];

@@ -1,4 +1,4 @@
-Map<String, String> zh = {
+Map<String, String> ko = {
   "Lá rơi xanh ngọc": "翠绿色的落叶",
   "Một ngày thư thái": "轻松的一天",
   "Phân bón x10": "肥料x10",
@@ -158,6 +158,6 @@ Map<String, String> zh = {
   "Chậu sứ mạ lớp vàng, sang trọng lung linh trước ánh nắng ban mai":
       "奢华的镀金瓷锅在早晨的阳光下闪闪发光",
   "Hãy chọn đúng thuộc tính cây và chậu": "请选择正确的树木和盆栽属性",
-  "Đánh giá ứng dụng": "应用程序审查",
-   "Lá rơi mùa thu": "秋天的落叶"
+  "Đánh giá ứng dụng": "단지아옹둥",
+    "Lá rơi mùa thu": "가을에 떨어지는 나뭇잎"
 };

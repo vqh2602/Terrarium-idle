@@ -10,6 +10,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:rive/rive.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
+import 'package:terrarium_idle/data/repositories/image_repo.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/coop/garden_coop/garden_coop_controller.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
@@ -34,7 +35,7 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
     with SingleTickerProviderStateMixin {
   GardenCoopController gardenCoopController = Get.find();
   UserController userController = Get.find();
-
+  RepoImage repoImage = RepoImage();
   final _key = GlobalKey<ExpandableFabState>();
   late Timer _timer;
   @override
@@ -111,6 +112,7 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
                       gardenCoopController.isLike = false;
                       gardenCoopController.update();
                     });
+                    gardenCoopController.sendLike();
                     // });
                     // Get.back();
                   },
@@ -190,7 +192,7 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
               padding: EdgeInsets.zero,
               child: RiveAnimation.asset(
                 !gardenCoopController.isRain
-                    ? DateTime.now().hour >= 18
+                    ? DateTime.now().hour >= 18 || DateTime.now().hour <= 6
                         ? Assets.backgrounds.skyMoonNight
                         : Assets.backgrounds.skySunDay
                     : Assets.backgrounds.skyRain,

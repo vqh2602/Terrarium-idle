@@ -87,6 +87,9 @@ class GardenController extends GetxController
             Random().nextInt(listSelectOptionEffect.length)];
       }
     }
+    // thêm trạng thái là trống
+    listSelectOptionEffect.insert(
+        0, SelectOptionItem(key: 'Mặc định'.tr, value: '', data: {}));
     update();
   }
 

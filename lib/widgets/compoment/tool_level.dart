@@ -77,108 +77,26 @@ class _ToolLevelState extends State<ToolLevel> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                Assets.images.oxygen.path,
-                                width: ShareFuntion.isIpad()
-                                    ? constraints.maxWidth * 0.03
-                                    : constraints.maxWidth * 0.10,
-                                height: ShareFuntion.isIpad()
-                                    ? constraints.maxWidth * 0.03
-                                    : constraints.maxWidth * 0.10,
-                              ),
-                              textBodySmall('${widget.user.money?.oxygen ?? 0}',
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black)
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                Assets.images.gemstone.path,
-                                width: ShareFuntion.isIpad()
-                                    ? constraints.maxWidth * 0.03
-                                    : constraints.maxWidth * 0.10,
-                                height: ShareFuntion.isIpad()
-                                    ? constraints.maxWidth * 0.03
-                                    : constraints.maxWidth * 0.10,
-                              ),
-                              textBodySmall(
-                                  '${widget.user.money?.gemstone ?? 0}',
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black)
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                Assets.images.fertilizer.path,
-                                width: ShareFuntion.isIpad()
-                                    ? constraints.maxWidth * 0.03
-                                    : constraints.maxWidth * 0.10,
-                                height: ShareFuntion.isIpad()
-                                    ? constraints.maxWidth * 0.03
-                                    : constraints.maxWidth * 0.10,
-                              ),
-                              textBodySmall(
-                                  '${widget.user.item?.fertilizer ?? 0}',
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black)
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                Assets.images.shovel.path,
-                                width: ShareFuntion.isIpad()
-                                    ? constraints.maxWidth * 0.03
-                                    : constraints.maxWidth * 0.10,
-                                height: ShareFuntion.isIpad()
-                                    ? constraints.maxWidth * 0.03
-                                    : constraints.maxWidth * 0.10,
-                              ),
-                              textBodySmall('${widget.user.item?.shovel ?? 0}',
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black)
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                Assets.images.ticket.path,
-                                width: ShareFuntion.isIpad()
-                                    ? constraints.maxWidth * 0.03
-                                    : constraints.maxWidth * 0.10,
-                                height: ShareFuntion.isIpad()
-                                    ? constraints.maxWidth * 0.03
-                                    : constraints.maxWidth * 0.10,
-                              ),
-                              textBodySmall('${widget.user.money?.ticket ?? 0}',
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black)
-                            ],
-                          ),
-                        ),
+                        _itemTool(
+                            constraints: constraints,
+                            image: Assets.images.oxygen.path,
+                            data: widget.user.money?.oxygen ?? 0),
+                        _itemTool(
+                            constraints: constraints,
+                            image: Assets.images.gemstone.path,
+                            data: widget.user.money?.gemstone ?? 0),
+                        _itemTool(
+                            constraints: constraints,
+                            image: Assets.images.fertilizer.path,
+                            data: widget.user.item?.fertilizer ?? 0),
+                        _itemTool(
+                            constraints: constraints,
+                            image: Assets.images.shovel.path,
+                            data: widget.user.item?.shovel ?? 0),
+                        _itemTool(
+                            constraints: constraints,
+                            image: Assets.images.ticket.path,
+                            data: widget.user.money?.ticket ?? 0),
                       ],
                     );
                   }),
@@ -191,4 +109,29 @@ class _ToolLevelState extends State<ToolLevel> {
       ),
     );
   }
+}
+
+_itemTool(
+    {required BoxConstraints constraints,
+    required int data,
+    required String image}) {
+  return GestureDetector(
+    onTap: () {},
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(
+          image,
+          width: ShareFuntion.isIpad()
+              ? constraints.maxWidth * 0.03
+              : constraints.maxWidth * 0.10,
+          height: ShareFuntion.isIpad()
+              ? constraints.maxWidth * 0.03
+              : constraints.maxWidth * 0.10,
+        ),
+        textBodySmall(ShareFuntion.shortenNumber(data),
+            fontWeight: FontWeight.w700, color: Colors.black)
+      ],
+    ),
+  );
 }

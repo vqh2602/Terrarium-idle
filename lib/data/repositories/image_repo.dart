@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
+import 'package:terrarium_idle/config/config.dart';
 import 'package:terrarium_idle/widgets/build_toast.dart';
 import 'package:dio/dio.dart';
+import 'package:terrarium_idle/widgets/library/lib/discordcdn.dart';
 
 // // String baseUrl =  'http://localhost:8080'; // ios
 // // String baseUrl =  'http://127.0.0.1:8080'; // ios
@@ -58,4 +60,41 @@ class RepoImage {
     return result?['image']['url'];
   }
 
- }
+  Future<String?> uploadFileDiscord(
+      File file, String name, String? content) async {
+    final discordClient = withBotToken(Env.config.botToken);
+    try {
+      var uploadImageResult = await discordClient.uploadImage(
+        content: content,
+        image: DiscordUploadableImage(
+          bytes: file.readAsBytesSync(),
+          format: file.path.split('.').last,
+          name: name,
+        ),
+        channelId: Env.config.channelId,
+      );
+      Map resutl = uploadImageResult.fold(
+        (error) => {
+          'isError': true,
+          'errorMessage': error,
+        },
+        (uri) => {
+          'isError': false,
+          'uri': uri.toString(),
+        },
+      );
+
+      return resutl['uri'];
+    } on Exception catch (_) {
+      buildToast(message: 'Lỗi khi thả Like', status: TypeToast.toastDefault);
+      return null;
+    }
+  }
+}
+
+DiscordClient withBotToken(final String token) {
+  return BotDiscordClient(
+    token: token,
+    httpClient: http.Client(),
+  );
+}

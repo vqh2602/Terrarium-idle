@@ -159,4 +159,26 @@ Map<String, String> en = {
       "Stone pots were used for nobles in ancient times. ",
   "Vân đá, Lá thu rơi": "Stone patterns, Falling autumn leaves",
   "Sự kiện đã kết thúc": "Event ended yet",
+  "Lan trái tim": "Spread the heart",
+  "Họ nhà lan, có hình dáng đẹp, màu sắc tinh tế, thích hợp trang trí":
+      "The orchid family has beautiful shapes, delicate colors, and is suitable for decoration",
+  "Bụi cỏ rủ": "Weeping grass",
+  "Loài cây dại, sức sống tốt, có hiệu quả lọc không khí":
+      "Wild plants have good vitality and effectively filter the air",
+  "Rêu sứa": "Moss jellyfish",
+  "Loài rêu cứng, sinh sống trên các mỏm đá, hoa học thành chùm và dài như sứa vậy":
+      "A hard moss that lives on rocky outcrops, flowers in clusters and are as long as jellyfish",
+  "Cỏ đinh ba": "Trident grass",
+  "Loài cỏ lá kim, khi trưởng thành có những chùm tua xuống như cây đinh ba của một vị thần":
+      "The coniferous grass, when mature, has tendrils that descend like a god's trident",
+  "Chậu sứ Msuit": "Msuit ceramic basin",
+  "Chậu sứ trắng, trọng lượng nhẹ dễ dàng treo lên cao":
+      "White ceramic pot, light weight and easy to hang up high",
+  "Chậu sứ mạ vàng": "Gold-plated ceramic pot",
+  "Chậu sứ mạ lớp vàng, sang trọng lung linh trước ánh nắng ban mai":
+      "The luxurious, gold-plated porcelain pot shimmers in the morning sunlight",
+  "Hãy chọn đúng thuộc tính cây và chậu":
+      "Please choose the correct tree and pot attributes",
+  "Đánh giá ứng dụng": "App review",
+  "Lá rơi mùa thu": "Falling leaves in autumn"
 };

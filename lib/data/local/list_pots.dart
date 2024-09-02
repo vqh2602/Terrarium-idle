@@ -134,7 +134,7 @@ List<ItemData> listPotsData = [
     effect: 'N.A',
     levelUnlock: 20,
   ),
-   ItemData(
+  ItemData(
     id: 'pot12',
     name: 'Chậu đất nung'.tr,
     description: 'Chậu khá nặng, dễ vỡ'.tr,
@@ -146,7 +146,7 @@ List<ItemData> listPotsData = [
     effect: 'N.A',
     levelUnlock: 22,
   ),
-   ItemData(
+  ItemData(
     id: 'pot13',
     name: 'Chậu đất nung chấm bi'.tr,
     description: 'Chậu khá nặng, khá xinh xắn'.tr,
@@ -158,10 +158,12 @@ List<ItemData> listPotsData = [
     effect: 'N.A',
     levelUnlock: 25,
   ),
-   ItemData(
+  ItemData(
     id: 'pot14',
     name: 'Chậu đá cẩm thạch'.tr,
-    description: 'Chậu đá dùng cho quý tộc thời xưa. Vân đá có thể thay đổi theo thời gian'.tr,
+    description:
+        'Chậu đá dùng cho quý tộc thời xưa. Vân đá có thể thay đổi theo thời gian'
+            .tr,
     image: 'https://i.imgur.com/Sy6QT19.png',
     priceStore: 10000,
     priceOxygen: 10000,
@@ -169,5 +171,32 @@ List<ItemData> listPotsData = [
     type: 'pot',
     effect: '${'Vân đá, Lá thu rơi'.tr} - overlay2',
     levelUnlock: 30,
+  ),
+  ItemData(
+    id: 'pot15',
+    name: 'Chậu sứ Msuit'.tr,
+    description: 'Chậu sứ trắng, trọng lượng nhẹ dễ dàng treo lên cao'.tr,
+    image: 'https://i.imgur.com/ZeHN04F.png',
+    priceStore: 199,
+    priceOxygen: 5000,
+    currencyUnit: 'gemstone',
+    type: 'pot',
+    effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.hanging,
+    levelUnlock: 17,
+  ),
+  ItemData(
+    id: 'pot16',
+    name: 'Chậu sứ mạ vàng'.tr,
+    description:
+        'Chậu sứ mạ lớp vàng, sang trọng lung linh trước ánh nắng ban mai'.tr,
+    image: 'https://i.imgur.com/G2Lt76e.png',
+    priceStore: 7850,
+    priceOxygen: 9000,
+    currencyUnit: 'oxygen',
+    type: 'pot',
+    effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.hanging,
+    levelUnlock: 17,
   ),
 ];

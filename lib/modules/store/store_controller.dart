@@ -42,11 +42,12 @@ class StoreController extends GetxController
             !(userController.user?.cart?.cartPlants?.contains(plant.id) ??
                 false))
         .toList();
-
+    listStorePlants.sort((a, b) => a.levelUnlock!.compareTo(b.levelUnlock!));
     listStorePots = listPotsData
         .where((pot) =>
             !(userController.user?.cart?.cartPots?.contains(pot.id) ?? false))
         .toList();
+    listStorePots.sort((a, b) => a.levelUnlock!.compareTo(b.levelUnlock!));
     listStoreItems = listItemsData;
     update();
   }

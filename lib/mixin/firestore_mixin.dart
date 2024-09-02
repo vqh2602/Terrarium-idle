@@ -36,8 +36,8 @@ mixin FireStoreMixin {
             userLevel: 1,
             userLevelEXP: 0),
         cart: Cart(cartPlants: [], cartPots: []),
-        item: Item(fertilizer: 20, shovel: 5),
-        money: Money(oxygen: 5000, gemstone: 0, ticket: 0),
+        item: Item(fertilizer: 40, shovel: 5),
+        money: Money(oxygen: 10000, gemstone: 0, ticket: 0),
         plants: [],
       );
       // Add a new document with a generated ID

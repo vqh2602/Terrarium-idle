@@ -156,6 +156,12 @@ class $AssetsRivePlantsGen {
   /// File path: assets/rive/plants/plant11.riv
   String get plant11 => 'assets/rive/plants/plant11.riv';
 
+  /// File path: assets/rive/plants/plant12.riv
+  String get plant12 => 'assets/rive/plants/plant12.riv';
+
+  /// File path: assets/rive/plants/plant13.riv
+  String get plant13 => 'assets/rive/plants/plant13.riv';
+
   /// File path: assets/rive/plants/plant2.riv
   String get plant2 => 'assets/rive/plants/plant2.riv';
 
@@ -180,11 +186,16 @@ class $AssetsRivePlantsGen {
   /// File path: assets/rive/plants/plant9.riv
   String get plant9 => 'assets/rive/plants/plant9.riv';
 
+  /// File path: assets/rive/plants/pot15.riv
+  String get pot15 => 'assets/rive/plants/pot15.riv';
+
   /// List of all assets
   List<String> get values => [
         plant1,
         plant10,
         plant11,
+        plant12,
+        plant13,
         plant2,
         plant3,
         plant4,
@@ -192,7 +203,8 @@ class $AssetsRivePlantsGen {
         plant6,
         plant7,
         plant8,
-        plant9
+        plant9,
+        pot15
       ];
 }
 
@@ -216,6 +228,12 @@ class $AssetsRivePotsGen {
 
   /// File path: assets/rive/pots/pot14.riv
   String get pot14 => 'assets/rive/pots/pot14.riv';
+
+  /// File path: assets/rive/pots/pot15.riv
+  String get pot15 => 'assets/rive/pots/pot15.riv';
+
+  /// File path: assets/rive/pots/pot16.riv
+  String get pot16 => 'assets/rive/pots/pot16.riv';
 
   /// File path: assets/rive/pots/pot2.riv
   String get pot2 => 'assets/rive/pots/pot2.riv';
@@ -249,6 +267,8 @@ class $AssetsRivePotsGen {
         pot12,
         pot13,
         pot14,
+        pot15,
+        pot16,
         pot2,
         pot3,
         pot4,

@@ -111,7 +111,7 @@ class _GardenScreenState extends State<GardenScreen>
                     });
                     UserData? userData = userController.user;
                     // mỗi lần trời mưa có 10% nhận 5 oxygen và 50exp người dùng
-                    if (ShareFuntion.gacha(winRate: 10)) {
+                    if (ShareFuntion.gacha(winRate: 50)) {
                       userData = userData?.copyWith(
                         money: userData.money?.copyWith(
                           oxygen: (userData.money?.oxygen ?? 0) + 5,
@@ -234,7 +234,7 @@ class _GardenScreenState extends State<GardenScreen>
               padding: EdgeInsets.zero,
               child: RiveAnimation.asset(
                 !gardenController.isRain
-                    ? DateTime.now().hour >= 18
+                    ? DateTime.now().hour >= 18 || DateTime.now().hour <= 6
                         ? Assets.backgrounds.skyMoonNight
                         : Assets.backgrounds.skySunDay
                     : Assets.backgrounds.skyRain,
@@ -259,7 +259,7 @@ class _GardenScreenState extends State<GardenScreen>
                     update: (UserData userData) {
                       userController.user = userData;
                       gardenController.userData = userData;
-                      userController.updateUser(userData: userController.user);
+                      userController.updateUser(userData: userData);
 
                       gardenController.initDataEffect();
                       gardenController.initDataMusic();
@@ -276,7 +276,8 @@ class _GardenScreenState extends State<GardenScreen>
                 user: userController.user ?? UserData(),
               ),
             ),
-            if (gardenController.selectEffect != null)
+            if (gardenController.selectEffect != null &&
+                gardenController.selectEffect?.value != '')
               IgnorePointer(
                 ignoring: true,
                 child: Container(

@@ -219,7 +219,12 @@ showPickPotsAndPlants(
 
   if (idPlant != null && idPot != null && userData.money != null) {
     // Get.back();
-    if (userData.money!.oxygen! <
+
+    if (idPlant?.itemTypeAttribute != idPot?.itemTypeAttribute) {
+      buildToast(
+          message: 'Hãy chọn đúng thuộc tính cây và chậu'.tr,
+          status: TypeToast.toastDefault);
+    } else if (userData.money!.oxygen! <
         (idPlant!.priceOxygen! + idPot!.priceOxygen!)) {
       buildToast(message: 'Không đủ oxygen'.tr, status: TypeToast.toastDefault);
     } else {
@@ -297,8 +302,10 @@ _pickPots({Function? setIdPot, required List<ItemData> listPots}) {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            textBodyMedium(listPots[index].name!,
-                                color: Colors.black),
+                            textBodyMedium(
+                              '${listPots[index].name!} ${listPots[index].itemTypeAttribute == ItemTypeAttribute.hanging ? '(☁Treo)' : ''}',
+                              color: Colors.black,
+                            ),
                             textBodySmall(listPots[index].description!,
                                 color: Colors.black),
                             textBodySmall(
@@ -398,7 +405,8 @@ _pickPlants({Function? setIdPlant, required List<ItemData> listPlants}) {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            textBodyMedium(listPlants[index].name!,
+                            textBodyMedium(
+                                '${listPlants[index].name!} ${listPlants[index].itemTypeAttribute == ItemTypeAttribute.hanging ? '(☁Treo)' : ''}',
                                 color: Colors.black),
                             textBodySmall(listPlants[index].description!,
                                 color: Colors.black),

@@ -31,11 +31,14 @@ class Storages {
   /// lưu token api imgur
   static const String dataTokenImgur = 'data_token_imgur';
 
-    /// chứa thông tin đối tượng user data plant, pot... từ csdl
+  /// chứa thông tin đối tượng user data plant, pot... từ csdl
   static const String dataUserCloud = 'data_user_plant_pot';
 
-    /// chứa thời gian đồng bộ, 5 phút đồng bộ và thiết lập lại
+  /// chứa thời gian đồng bộ, 5 phút đồng bộ và thiết lập lại
   static const String dataUserCloudTimeOut = 'data_user_plant_pot_time_out';
+
+  /// Hiển thị bảng đánh giá
+  static const String dataRateing = 'data_rateing';
 }
 
 class Config {
