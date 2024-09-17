@@ -166,5 +166,13 @@ Map<String, String> ja = {
       "朝の陽光を受けて輝く、豪華な金メッキの磁器ポット",
   "Hãy chọn đúng thuộc tính cây và chậu": "正しい木とポットの属性を選択してください",
   "Đánh giá ứng dụng": "アプリレビュー",
-   "Lá rơi mùa thu": "秋の落ち葉"
+  "Lá rơi mùa thu": "秋の落ち葉",
+  "Bật đồ họa hiệu suất cao sẽ tăng bộ nhớ cần sử dụng và có thể gây giật lag trên máy cấu hình yếu, nhưng bạn sẽ có 1 khu vườn đẹp hơn":
+      "高性能グラフィックスをオンにすると、メモリ使用量が増加し、ローエンド デバイスでは遅延が発生する可能性がありますが、より美しい庭が得られます。",
+  "Chế độ hiệu suất cao": "ハイパフォーマンスモード",
+  "(Tắt)": "（消す）",
+  "(Bật)": "（の上）",
+  "Thiết lập": "確立する",
+  "Tăng 1 cấp": "レベルを1つ上げる",
+  "Tăng 1 cấp độ người dùng": "ユーザーレベルを1つ上げる"
 };

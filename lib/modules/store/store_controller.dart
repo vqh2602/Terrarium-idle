@@ -258,6 +258,7 @@ class StoreController extends GetxController
         case 'item':
           Item? itemNew = userController.user?.item;
           Money? moneyNew = userController.user?.money;
+          User? userNew = userController.user?.user;
           if (item.id == 'item1') {
             itemNew?.fertilizer = (itemNew.fertilizer ?? 0) + 10;
             buyItems(userController.user?.copyWith(
@@ -273,6 +274,11 @@ class StoreController extends GetxController
           if (item.id == 'item3') {
             moneyNew = moneyNew?.copyWith(oxygen: (moneyNew.oxygen ?? 0) + 175);
             buyItems(userController.user?.copyWith(money: moneyNew));
+          }
+          if (item.id == 'item4') {
+            userNew =
+                userNew?.copyWith(userLevel: (userNew.userLevel ?? 0) + 1);
+            buyItems(userController.user?.copyWith(user: userNew));
           }
           break;
         default:

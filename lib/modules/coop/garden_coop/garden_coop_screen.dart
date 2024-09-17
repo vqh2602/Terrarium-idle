@@ -221,6 +221,7 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
                       // gardenCoopController.initDataEffect();
                       gardenCoopController.update();
                     },
+                    isGraphicsHight: userController.isGraphicsHight,
                   ),
                 );
               },
@@ -264,7 +265,8 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
             //     user: userController.user ?? UserData(),
             //   ),
             // ),
-            if (gardenCoopController.selectEffect?.value != null)
+            if (gardenCoopController.selectEffect != null &&
+                gardenCoopController.selectEffect?.value != '')
               IgnorePointer(
                 ignoring: true,
                 child: Container(

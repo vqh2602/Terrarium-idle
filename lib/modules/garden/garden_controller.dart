@@ -10,6 +10,7 @@ import 'package:terrarium_idle/data/local/list_pots.dart';
 import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/select_option_item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
+import 'package:terrarium_idle/data/storage/storage.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/function/version_check.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
@@ -30,6 +31,7 @@ class GardenController extends GetxController
   List<SelectOptionItem> listSelectOptionMusic = [];
   SelectOptionItem? selectEffect;
   SelectOptionItem? selectMusic;
+  bool isGraphicsHight = false;
 
   bool isWater = false;
   bool isLike = false;
@@ -40,6 +42,7 @@ class GardenController extends GetxController
     super.onInit();
     isRain = ShareFuntion.gacha(winRate: 10);
     userData = await userController.getUserData();
+    isGraphicsHight = box.read(Storages.graphicsOption) ?? false;
     initDataEffect();
     initDataMusic();
     initAudio(asset: selectMusic?.value ?? Assets.audios.peacefulgarden);

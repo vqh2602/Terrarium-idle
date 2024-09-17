@@ -13,6 +13,7 @@ import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/select_option_item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/repositories/image_repo.dart';
+import 'package:terrarium_idle/data/storage/storage.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
@@ -35,12 +36,14 @@ class GardenCoopController extends GetxController
   RepoImage repoImage = RepoImage();
   bool isWater = false;
   bool isLike = false;
+  bool isGraphicsHight = false;
 
   @override
   Future<void> onInit() async {
     super.onInit();
     isRain = ShareFuntion.gacha(winRate: 10);
     myUser = await userController.getUserData();
+    isGraphicsHight = box.read(Storages.graphicsOption) ?? false;
     initDataEffect();
     initDataMusic();
     initAudio(asset: selectMusic?.value ?? Assets.audios.peacefulgarden);
@@ -86,6 +89,9 @@ class GardenCoopController extends GetxController
             Random().nextInt(listSelectOptionEffect.length)];
       }
     }
+    // thêm trạng thái là trống
+    listSelectOptionEffect.insert(
+        0, SelectOptionItem(key: 'Mặc định'.tr, value: '', data: {}));
     update();
   }
 

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:terrarium_idle/data/local/list_bag.dart';
@@ -8,9 +9,11 @@ import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/repositories/image_repo.dart';
 import 'package:terrarium_idle/data/storage/storage.dart';
+import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/mixin/user_mixin.dart';
 import 'package:terrarium_idle/modules/login/login_screen.dart';
+import 'package:terrarium_idle/widgets/build_toast.dart';
 // import 'package:terrarium_idle/widgets/build_toast.dart';
 
 class UserController extends GetxController
@@ -19,16 +22,18 @@ class UserController extends GetxController
   RepoImage repoImage = RepoImage();
   UserData? user;
   List<ItemData> listMyBags = [];
+  bool isGraphicsHight = true;
   @override
   Future<void> onInit() async {
     super.onInit();
     await getUserData();
     getDataUserRealtime(
         firebaseAuth.currentUser?.uid ?? '', (p0) => {user = p0, update()});
+    isGraphicsHight = box.read(Storages.graphicsOption) ?? false;
     changeUI();
   }
 
-   Future<UserData?> getUserData() async {
+  Future<UserData?> getUserData() async {
     user = await getDataUser(
       firebaseAuth.currentUser?.uid ?? '',
     );
@@ -80,6 +85,30 @@ class UserController extends GetxController
     //   // }
     // }
     // changeUI();
+  }
+
+  changeGraphics(BuildContext? context) async {
+    await ShareFuntion.onPopDialog(
+        context: context ?? Get.context!,
+        title:
+            'Bật đồ họa hiệu suất cao sẽ tăng bộ nhớ cần sử dụng và có thể gây giật lag trên máy cấu hình yếu, nhưng bạn sẽ có 1 khu vườn đẹp hơn'
+                .tr,
+        titleCancel: '(Tắt)'.tr,
+        titleSubmit: '(Bật)'.tr,
+        onCancel: () async {
+          Get.back();
+          isGraphicsHight = false;
+          await box.write(Storages.graphicsOption, false);
+          buildToast(message: 'Hoàn tất'.tr, status: TypeToast.toastSuccess);
+          clearAndResetApp();
+        },
+        onSubmit: () async {
+          Get.back();
+          isGraphicsHight = true;
+          await box.write(Storages.graphicsOption, true);
+          buildToast(message: 'Hoàn tất'.tr, status: TypeToast.toastSuccess);
+          clearAndResetApp();
+        });
   }
 
   changeImage() async {

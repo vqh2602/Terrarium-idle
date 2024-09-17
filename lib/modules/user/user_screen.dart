@@ -231,7 +231,7 @@ class _UserScreenState extends State<UserScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      textTitleMedium('Dịch vụ'.tr, color: Colors.black),
+                      textTitleMedium('Thiết lập'.tr, color: Colors.black),
                       cHeight(16),
                       blockSetting(
                           title: 'Đồng bộ dữ liệu'.tr,
@@ -242,6 +242,28 @@ class _UserScreenState extends State<UserScreen> {
                                 status: TypeToast.toastSuccess);
                           }),
                       cHeight(8),
+                      blockSetting(
+                          title:
+                              '${'Chế độ hiệu suất cao'.tr} ${userController.isGraphicsHight ? '(Bật)'.tr : '(Tắt)'.tr}',
+                          onTap: () {
+                            userController.changeGraphics(context);
+                          }),
+                    ],
+                  ),
+                ),
+                cHeight(16),
+                Container(
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 12, bottom: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white54,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      textTitleMedium('Dịch vụ'.tr, color: Colors.black),
+                      cHeight(16),
                       blockSetting(
                           title: 'Đánh giá ứng dụng'.tr,
                           onTap: () {

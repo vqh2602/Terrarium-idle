@@ -39,6 +39,9 @@ class Storages {
 
   /// Hiển thị bảng đánh giá
   static const String dataRateing = 'data_rateing';
+
+  /// Bật chế độ hiển thị hiệu suất cao
+  static const String graphicsOption = 'graphics_option';
 }
 
 class Config {

@@ -159,5 +159,13 @@ Map<String, String> ko = {
       "奢华的镀金瓷锅在早晨的阳光下闪闪发光",
   "Hãy chọn đúng thuộc tính cây và chậu": "请选择正确的树木和盆栽属性",
   "Đánh giá ứng dụng": "단지아옹둥",
-    "Lá rơi mùa thu": "가을에 떨어지는 나뭇잎"
+  "Lá rơi mùa thu": "가을에 떨어지는 나뭇잎",
+  "Bật đồ họa hiệu suất cao sẽ tăng bộ nhớ cần sử dụng và có thể gây giật lag trên máy cấu hình yếu, nhưng bạn sẽ có 1 khu vườn đẹp hơn":
+      "고성능 그래픽을 켜면 메모리 사용량이 늘어나고, 저사양 기기에서는 렉이 발생할 수 있지만, 더욱 아름다운 정원을 가지실 수 있습니다.",
+  "Chế độ hiệu suất cao": "고성능 모드",
+  "(Tắt)": "(끄기)",
+  "(Bật)": "(에)",
+  "Thiết lập": "설립하다",
+  "Tăng 1 cấp": "1레벨 증가",
+  "Tăng 1 cấp độ người dùng": "사용자 레벨을 1 올리세요"
 };

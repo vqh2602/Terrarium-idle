@@ -177,5 +177,13 @@ Map<String, String> vi = {
   "Hãy chọn đúng thuộc tính cây và chậu":
       "Hãy chọn đúng thuộc tính cây và chậu",
   "Đánh giá ứng dụng": "Đánh giá ứng dụng",
-  "Lá rơi mùa thu":"Lá rơi mùa thu"
+  "Lá rơi mùa thu": "Lá rơi mùa thu",
+  "Bật đồ họa hiệu suất cao sẽ tăng bộ nhớ cần sử dụng và có thể gây giật lag trên máy cấu hình yếu, nhưng bạn sẽ có 1 khu vườn đẹp hơn":
+      "Bật đồ họa hiệu suất cao sẽ tăng bộ nhớ cần sử dụng và có thể gây giật lag trên máy cấu hình yếu, nhưng bạn sẽ có 1 khu vườn đẹp hơn",
+  "Chế độ hiệu suất cao": "Chế độ hiệu suất cao",
+  "(Tắt)": "(Tắt)",
+  "(Bật)": "(Bật)",
+  "Thiết lập": "Thiết lập",
+  "Tăng 1 cấp": "Tăng 1 cấp",
+  "Tăng 1 cấp độ người dùng": "Tăng 1 cấp độ người dùng",
 };

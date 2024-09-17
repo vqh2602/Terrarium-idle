@@ -1,3 +1,4 @@
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutx_ui/widgets/dotted_border/dotted_border.dart';
@@ -23,13 +24,15 @@ class Graden extends StatelessWidget {
   final UserData userData;
   final Function(UserData) update;
   final Function changeUI;
+  final bool isGraphicsHight;
   const Graden(
       {super.key,
       required this.isEdit,
       required this.userData,
       required this.update,
       required this.changeUI,
-      required this.isCoop});
+      required this.isCoop,
+      required this.isGraphicsHight});
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +47,14 @@ class Graden extends StatelessWidget {
             Expanded(
               child: Container(
                   alignment: Alignment.bottomCenter,
-                  child:
-                      //  hightOptionGraden(context)
-                      lowOptionGraden()),
+                  child: isGraphicsHight
+                      ? SingleChildScrollView(
+                          reverse: true,
+                          child: hightOptionGraden(context),
+                        )
+                      : lowOptionGraden()
+                  // lowOptionGraden()
+                  ),
             )
           ],
         ),
@@ -80,31 +88,39 @@ class Graden extends StatelessWidget {
   }
 
   hightOptionGraden(BuildContext context) {
-    return ListView(
-      // itemCount: (userData.user?.userFloor ?? 0) + 1,
+    return Padding(
       padding: EdgeInsets.only(
           bottom: kBottomNavigationBarHeight + Get.height * 0.05,
           top: kToolbarHeight + Get.height * 0.1),
-      reverse: true,
-      shrinkWrap: true,
-      children: [
-        for (int floor = 0;
-            floor < (userData.user?.userFloor ?? 0) + 1;
-            floor++)
-          _itemSuportGraden(context, floor)
-      ],
+      child: Column(
+        // itemCount: (userData.user?.userFloor ?? 0) + 1,
+        // padding: EdgeInsets.only(
+        //     bottom: kBottomNavigationBarHeight + Get.height * 0.05,
+        //     top: kToolbarHeight + Get.height * 0.1),
+        // reverse: true,
+        // shrinkWrap: true,
+        children: [
+          for (int floor = 0;
+              floor < ((userData.user?.userFloor ?? 0) + 1);
+              floor++)
+            _itemSuportGraden(context, floor,
+                isEdit: isEdit, isGraphicsHight: isGraphicsHight)
+        ].reversed.toList(),
+      ),
     );
   }
 
-  Widget _itemSuportGraden(context, floor) {
+  Widget _itemSuportGraden(context, floor,
+      {required bool isGraphicsHight, required bool isEdit}) {
     // hiển thị tầng nếu đủ level
     if (floor == (userData.user?.userFloor ?? 0)) {
       int oxygenUnlock = (2500 * (userData.user?.userFloor ?? 1) +
               ((userData.user?.userLevel ?? 1) / 100))
           .toInt();
-      return ((userData.user?.userLevel ?? 1) ~/ 5 >
+      return ((userData.user?.userLevel ?? 1) ~/ 3 >
                   (userData.user?.userFloor ?? 1) &&
-              !isCoop)
+              !isCoop &&
+              isEdit)
           ? Container(
               key: Key('$floor'),
               height: Get.height * 0.2,
@@ -170,7 +186,12 @@ class Graden extends StatelessWidget {
           Expanded(
               child: Stack(
             children: [
-              _lowOptions(floor: floor),
+              isGraphicsHight
+                  ? SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: _hightOptions(floor: floor, context: context))
+                  : _lowOptions(floor: floor),
+
               // _hightOptions(floor: floor, context: context),
               Align(
                   alignment: Alignment.topLeft,
@@ -201,10 +222,13 @@ class Graden extends StatelessWidget {
             top: kToolbarHeight + Get.height * 0.1),
         reverse: true,
         shrinkWrap: true,
-        itemBuilder: _itemSuportGraden);
+        itemBuilder: (context, index) {
+          return _itemSuportGraden(context, index,
+              isEdit: isEdit, isGraphicsHight: isGraphicsHight);
+        });
   }
 
-// xây dựng cây với giảm bộ nhớ (phân item)
+// xây dựng cây với hiệu suất cao (phân item)
   // ignore: unused_element
   _hightOptions({required int floor, required BuildContext context}) {
     item(
@@ -231,10 +255,13 @@ class Graden extends StatelessWidget {
                       ShareFuntion.tapPlayAudio();
                     },
                     onPressed: () {
-                      ShareFuntion.tapPlayAudio(isNewAudioPlay: true);
-                      if (ShareFuntion.gacha(winRate: 2) && !isCoop) {
-                        _clamOxygen(plant, floor: floor, position: position);
-                      }
+                      EasyDebounce.debounce('debounce_gacha_tap_plant',
+                          const Duration(milliseconds: 100), () {
+                        ShareFuntion.tapPlayAudio(isNewAudioPlay: true);
+                        if (ShareFuntion.gacha(winRate: 10) && !isCoop) {
+                          _clamOxygen(plant, floor: floor, position: position);
+                        }
+                      });
                     },
                     theme: const PieTheme(
                         overlayColor: Colors.black45,
@@ -268,10 +295,10 @@ class Graden extends StatelessWidget {
                                   30 &&
                               ShareFuntion.gacha(
                                   winRate: plant.plantLevel == 3
-                                      ? 95
+                                      ? 100
                                       : plant.plantLevel == 2
-                                          ? 70
-                                          : 60));
+                                          ? 100
+                                          : 100));
                           // changeUI.call();
                           return Stack(
                             key: Key(plant.position ?? ''),
@@ -353,12 +380,12 @@ class Graden extends StatelessWidget {
                   : const SizedBox());
     }
 
-    return ListView(
+    return Row(
       // itemCount: 3,
-      shrinkWrap: true,
-      primary: true,
-      padding: EdgeInsets.zero,
-      scrollDirection: Axis.horizontal,
+      // shrinkWrap: true,
+      // primary: true,
+      // padding: EdgeInsets.zero,
+      // scrollDirection: Axis.horizontal,
       children: [
         for (int position = 0; position < 3; position++) ...[
           item(floor: floor, position: position, context: context)

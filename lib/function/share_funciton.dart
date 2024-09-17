@@ -262,9 +262,10 @@ class ShareFuntion {
     if (isNewAudioPlay) {
       playerAudio = AudioPlayer();
     }
+    await playerAudio.setVolume(0.5);
 
     if (playerAudio.playing) {
-      playerAudio.pause();
+      await playerAudio.pause();
     } else {
       // Create a player
       switch (type) {

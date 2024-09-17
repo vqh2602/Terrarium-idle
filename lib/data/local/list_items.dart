@@ -26,7 +26,7 @@ List<ItemData> listItemsData = [
     effect: 'N.A',
     levelUnlock: 1,
   ),
-    ItemData(
+  ItemData(
     id: 'item3',
     name: 'Oxygen'.tr,
     description: 'chuyển 100 đá quý sang oxygen với tỷ lệ 1.75'.tr,
@@ -38,5 +38,16 @@ List<ItemData> listItemsData = [
     effect: 'N.A',
     levelUnlock: 1,
   ),
-  
+  ItemData(
+    id: 'item4',
+    name: 'Tăng 1 cấp'.tr,
+    description: 'Tăng 1 cấp độ người dùng'.tr,
+    image: 'https://i.imgur.com/VVj1k8I.png',
+    priceStore: 50,
+    priceOxygen: 50,
+    currencyUnit: 'gemstone',
+    type: 'item',
+    effect: 'N.A',
+    levelUnlock: 1,
+  ),
 ];

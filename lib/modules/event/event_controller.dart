@@ -157,6 +157,7 @@ class EventController extends GetxController
         callback: (args) async {
           // Xử lý thông điệp từ WebView
           if (args[0] != null) {
+            // print(args[0]);
             await userController.updateUser(
               userData: userController.user?.copyWith(
                   user: userController.user?.user?.copyWith(),

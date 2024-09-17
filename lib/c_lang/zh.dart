@@ -159,5 +159,13 @@ Map<String, String> zh = {
       "奢华的镀金瓷锅在早晨的阳光下闪闪发光",
   "Hãy chọn đúng thuộc tính cây và chậu": "请选择正确的树木和盆栽属性",
   "Đánh giá ứng dụng": "应用程序审查",
-   "Lá rơi mùa thu": "秋天的落叶"
+  "Lá rơi mùa thu": "秋天的落叶",
+  "Bật đồ họa hiệu suất cao sẽ tăng bộ nhớ cần sử dụng và có thể gây giật lag trên máy cấu hình yếu, nhưng bạn sẽ có 1 khu vườn đẹp hơn":
+      "打开高性能显卡会增加内存使用量，并且可能会导致低端设备上的延迟，但您将拥有一个更美丽的花园。",
+  "Chế độ hiệu suất cao": "高性能模式",
+  "(Tắt)": "（关）",
+  "(Bật)": "（在）",
+  "Thiết lập": "建立",
+  "Tăng 1 cấp": "增加1级",
+  "Tăng 1 cấp độ người dùng": "增加用户等级1"
 };

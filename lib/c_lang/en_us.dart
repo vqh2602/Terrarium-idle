@@ -180,5 +180,13 @@ Map<String, String> en = {
   "Hãy chọn đúng thuộc tính cây và chậu":
       "Please choose the correct tree and pot attributes",
   "Đánh giá ứng dụng": "App review",
-  "Lá rơi mùa thu": "Falling leaves in autumn"
+  "Lá rơi mùa thu": "Falling leaves in autumn",
+  "Bật đồ họa hiệu suất cao sẽ tăng bộ nhớ cần sử dụng và có thể gây giật lag trên máy cấu hình yếu, nhưng bạn sẽ có 1 khu vườn đẹp hơn":
+      "Turning on high-performance graphics will increase memory usage and may cause lag on low-end devices, but you will have a more beautiful garden.",
+  "Chế độ hiệu suất cao": "High performance mode",
+  "(Tắt)": "(Turn off)",
+  "(Bật)": "(On)",
+  "Thiết lập": "Establish",
+  "Tăng 1 cấp": "Increase 1 level",
+  "Tăng 1 cấp độ người dùng": "Increase user level by 1"
 };
