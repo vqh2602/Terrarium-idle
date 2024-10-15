@@ -167,5 +167,18 @@ Map<String, String> zh = {
   "(Bật)": "（在）",
   "Thiết lập": "建立",
   "Tăng 1 cấp": "增加1级",
-  "Tăng 1 cấp độ người dùng": "增加用户等级1"
+  "Tăng 1 cấp độ người dùng": "增加用户等级1",
+  "Kim tiền thân vàng": "金属是黄金的前身",
+  "Loài cây có những nhánh lá xếp với nhau, cây có sức sống tốt và là loài có độc":
+      "这棵树的枝叶排列在一起，生命力好，有毒",
+  "Khoai nước thân vàng": "黄身水薯",
+  "Loài khoai không có củ, lá to, cuống vàng rất đẹp": "该马铃薯品种没有块茎，叶子大，茎呈美丽的黄色",
+  "Cây nắp ấm đỏ": "红猪笼草",
+  "Loài cây leo, phần đầu cuốn nổi bật với tạo hình giống như cái bình nước hình trụ":
+      "一种攀缘植物，卷起的顶部因其形状像圆柱形水瓶而引人注目",
+  "Cây bẫy kẹp": "夹式陷阱",
+  "Cây bẫy kẹp là một loài thực vật ăn thịt, sống bản địa tại vùng đất ngập nước cận nhiệt đới":
+      "捕虫植物是一种原产于亚热带湿地的食肉植物",
+  "Chậu đất treo": "悬挂式陶罐",
+  "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo": "土盆排水良好，但悬挂起来有点重"
 };

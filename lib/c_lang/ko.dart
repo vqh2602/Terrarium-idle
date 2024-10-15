@@ -167,5 +167,20 @@ Map<String, String> ko = {
   "(Bật)": "(에)",
   "Thiết lập": "설립하다",
   "Tăng 1 cấp": "1레벨 증가",
-  "Tăng 1 cấp độ người dùng": "사용자 레벨을 1 올리세요"
+  "Tăng 1 cấp độ người dùng": "사용자 레벨을 1 올리세요",
+  "Kim tiền thân vàng": "금속은 금의 전조이다",
+  "Loài cây có những nhánh lá xếp với nhau, cây có sức sống tốt và là loài có độc":
+      "나무에는 가지와 잎이 함께 배열되어 있고 생명력이 좋으며 독이 있다.",
+  "Khoai nước thân vàng": "몸이 노란색인 물 감자",
+  "Loài khoai không có củ, lá to, cuống vàng rất đẹp":
+      "감자 종은 괴경이 없고 ​​잎이 크며 줄기가 노란색으로 아름답습니다.",
+  "Cây nắp ấm đỏ": "붉은 투수 식물",
+  "Loài cây leo, phần đầu cuốn nổi bật với tạo hình giống như cái bình nước hình trụ":
+      "덩굴식물로, 말아올린 윗부분이 원통형 물병 모양이 돋보입니다.",
+  "Cây bẫy kẹp": "클램프 트랩",
+  "Cây bẫy kẹp là một loài thực vật ăn thịt, sống bản địa tại vùng đất ngập nước cận nhiệt đới":
+      "스냅 트랩 식물은 아열대 습지에 자생하는 식충 식물입니다.",
+  "Chậu đất treo": "매달린 항아리",
+  "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo":
+      "흙 화분은 배수가 잘 되지만 걸기에는 약간 무거워요"
 };

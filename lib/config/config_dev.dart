@@ -11,5 +11,6 @@ class Environment extends ModuleConfig {
     idADSInterstitialAdIos = 'ca-app-pub-3940256099942544/4411468910';
     idRewardedAdAndroid = 'ca-app-pub-3940256099942544/5224354917';
     idRewardedAdIos = 'ca-app-pub-3940256099942544/1712485313';
+    
   }
 }

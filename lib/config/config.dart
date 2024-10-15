@@ -19,4 +19,8 @@ class ModuleConfig {
   String productId1000Gemstone = 'com.vqh2602.terrarium.1000gem';
   String productId500Gemstone = 'com.vqh2602.terrarium.500gem';
   String productId200Gemstone = 'com.vqh2602.terrarium.200gem';
+
+  String firebaseprojectId = 'terrarium-i';
+  String firebaseprojectNumber = '38854833849';
+  String dataServer = 'https://vqh2602.github.io/terrarium_data.github.io';
 }

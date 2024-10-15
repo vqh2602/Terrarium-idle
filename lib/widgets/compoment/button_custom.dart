@@ -8,7 +8,7 @@ Widget buttonCustom({
 }) {
   return Container(
     decoration: BoxDecoration(
-      color: Get.theme.colorScheme.background,
+      color: Get.theme.colorScheme.surface,
       borderRadius: BorderRadius.circular(40.0),
     ),
     padding: const EdgeInsets.only(top: 4 * 5, bottom: 4 * 5),

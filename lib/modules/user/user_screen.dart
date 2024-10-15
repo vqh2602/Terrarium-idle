@@ -282,7 +282,7 @@ class _UserScreenState extends State<UserScreen> {
                           title: 'Liên hệ hỗ trợ'.tr,
                           onTap: () {
                             ShareFuntion.showWebInApp(
-                              'https://www.facebook.com/vqhapps',
+                              'https://www.vqhapp.name.vn/p/instagram.html',
                             );
                           }),
                       cHeight(8),
@@ -336,7 +336,7 @@ class _UserScreenState extends State<UserScreen> {
                     IconButton(
                       onPressed: () {
                         ShareFuntion.showWebInApp(
-                          'https://www.facebook.com/vqhapps',
+                          'https://www.vqhapp.name.vn/p/facebook.html',
                         );
                       },
                       icon: const Icon(FontAwesomeIcons.squareFacebook),
@@ -345,7 +345,7 @@ class _UserScreenState extends State<UserScreen> {
                     IconButton(
                       onPressed: () {
                         ShareFuntion.showWebInApp(
-                          'https://www.instagram.com/vqh_26',
+                          'https://www.vqhapp.name.vn/p/instagram.html',
                         );
                       },
                       icon: const Icon(FontAwesomeIcons.instagram),

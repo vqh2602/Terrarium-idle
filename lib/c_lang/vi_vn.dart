@@ -186,4 +186,19 @@ Map<String, String> vi = {
   "Thiết lập": "Thiết lập",
   "Tăng 1 cấp": "Tăng 1 cấp",
   "Tăng 1 cấp độ người dùng": "Tăng 1 cấp độ người dùng",
+  "Kim tiền thân vàng": "Kim tiền thân vàng",
+  "Loài cây có những nhánh lá xếp với nhau, cây có sức sống tốt và là loài có độc":
+      "Loài cây có những nhánh lá xếp với nhau, cây có sức sống tốt và là loài có độc",
+  "Khoai nước thân vàng": "Khoai nước thân vàng",
+  "Loài khoai không có củ, lá to, cuống vàng rất đẹp":
+      "Loài khoai không có củ, lá to, cuống vàng rất đẹp",
+  "Cây nắp ấm đỏ": "Cây nắp ấm đỏ",
+  "Loài cây leo, phần đầu cuốn nổi bật với tạo hình giống như cái bình nước hình trụ":
+      "Loài cây leo, phần đầu cuốn nổi bật với tạo hình giống như cái bình nước hình trụ",
+  "Cây bẫy kẹp": "Cây bẫy kẹp",
+  "Cây bẫy kẹp là một loài thực vật ăn thịt, sống bản địa tại vùng đất ngập nước cận nhiệt đới":
+      "Cây bẫy kẹp là một loài thực vật ăn thịt, sống bản địa tại vùng đất ngập nước cận nhiệt đới",
+      "Chậu đất treo":"Chậu đất treo",
+      "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo":"Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo"
+
 };

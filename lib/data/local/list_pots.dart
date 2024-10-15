@@ -12,6 +12,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'oxygen',
     type: 'pot',
     effect: 'Đá lấp lánh'.tr,
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 1,
   ),
   ItemData(
@@ -24,6 +25,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'oxygen',
     type: 'pot',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 1,
   ),
   ItemData(
@@ -36,6 +38,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'oxygen',
     type: 'pot',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 2,
   ),
   ItemData(
@@ -48,6 +51,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'gemstone',
     type: 'pot',
     effect: 'Trái tim nhịp đập'.tr,
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 3,
   ),
   ItemData(
@@ -60,6 +64,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'oxygen',
     type: 'pot',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 4,
   ),
   ItemData(
@@ -71,6 +76,7 @@ List<ItemData> listPotsData = [
     priceOxygen: 5500,
     currencyUnit: 'gemstone',
     type: 'pot',
+    itemTypeAttribute: ItemTypeAttribute.none,
     effect: 'Tam thạch anh hồng'.tr,
     levelUnlock: 5,
   ),
@@ -84,6 +90,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'oxygen',
     type: 'pot',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 6,
   ),
   ItemData(
@@ -96,6 +103,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'ticket',
     type: 'pot',
     effect: 'Lá rơi - overlay1',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 9,
   ),
   ItemData(
@@ -108,6 +116,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'oxygen',
     type: 'pot',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 12,
   ),
   ItemData(
@@ -120,6 +129,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'gemstone',
     type: 'pot',
     effect: 'Mong một ngày mưa'.tr + ' - m3'.tr,
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 15,
   ),
   ItemData(
@@ -132,6 +142,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'oxygen',
     type: 'pot',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 20,
   ),
   ItemData(
@@ -144,6 +155,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'oxygen',
     type: 'pot',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 22,
   ),
   ItemData(
@@ -156,6 +168,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'oxygen',
     type: 'pot',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 25,
   ),
   ItemData(
@@ -170,6 +183,7 @@ List<ItemData> listPotsData = [
     currencyUnit: 'ticket',
     type: 'pot',
     effect: '${'Vân đá, Lá thu rơi'.tr} - overlay2',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 30,
   ),
   ItemData(
@@ -198,5 +212,19 @@ List<ItemData> listPotsData = [
     effect: 'N.A',
     itemTypeAttribute: ItemTypeAttribute.hanging,
     levelUnlock: 17,
+  ),
+  ItemData(
+    id: 'pot17',
+    name: 'Chậu đất treo'.tr,
+    description:
+        'Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo'.tr,
+    image: 'https://i.imgur.com/4ae4vlO.png',
+    priceStore: 12850,
+    priceOxygen: 10000,
+    currencyUnit: 'oxygen',
+    type: 'pot',
+    effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.hanging,
+    levelUnlock: 20,
   ),
 ];

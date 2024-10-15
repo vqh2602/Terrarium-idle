@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:terrarium_idle/data/local/list_bag.dart';
+import 'package:terrarium_idle/data/local/list_plants.dart';
 import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/repositories/image_repo.dart';
@@ -29,8 +30,31 @@ class UserController extends GetxController
     await getUserData();
     getDataUserRealtime(
         firebaseAuth.currentUser?.uid ?? '', (p0) => {user = p0, update()});
-    isGraphicsHight = box.read(Storages.graphicsOption) ?? false;
+    isGraphicsHight = box.read(Storages.graphicsOption) ?? true;
+    updateColumData();
     changeUI();
+  }
+
+  // cập nhật giá trị cho người dùng // bản mới thêm trường isHanging
+  updateColumData() {
+    if (user?.plants?.firstOrNull != null) {
+      if (user?.plants?.firstOrNull?.isHanging == null) {
+        List<Plants>? listDataPlants = user?.plants;
+        for (int i = 0; i < listDataPlants!.length; i++) {
+          if (listDataPlants[i].isHanging == null) {
+            listDataPlants[i].isHanging = (listPlantsData
+                        .where((element) =>
+                            element.id == listDataPlants[i].idPlant)
+                        .firstOrNull
+                        ?.itemTypeAttribute ??
+                    ItemTypeAttribute.none) ==
+                ItemTypeAttribute.hanging;
+          }
+        }
+        user?.plants = listDataPlants;
+        updateUser(userData: user);
+      }
+    }
   }
 
   Future<UserData?> getUserData() async {

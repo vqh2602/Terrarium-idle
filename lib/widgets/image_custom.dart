@@ -95,10 +95,10 @@ class ViewImageWithZoom extends StatelessWidget {
                 spacing: 8,
                 children: [
                   IconButton(
-                    color: Get.theme.colorScheme.onBackground.withOpacity(0.3),
+                    color: Get.theme.colorScheme.onSurface.withOpacity(0.3),
                     icon: Icon(
                       LucideIcons.x,
-                      color: Get.theme.colorScheme.background,
+                      color: Get.theme.colorScheme.onSurface,
                     ),
                     onPressed: () {
                       Get.back();
@@ -107,10 +107,10 @@ class ViewImageWithZoom extends StatelessWidget {
                   if (downFile != null)
                     IconButton(
                       color:
-                          Get.theme.colorScheme.onBackground.withOpacity(0.3),
+                          Get.theme.colorScheme.onSurface.withOpacity(0.3),
                       icon: Icon(
                         LucideIcons.cloudDownload,
-                        color: Get.theme.colorScheme.background,
+                        color: Get.theme.colorScheme.surface,
                       ),
                       onPressed: () {
                         downFile != null ? downFile!() : null;

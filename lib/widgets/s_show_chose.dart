@@ -23,7 +23,7 @@ Widget showBottomListChose(
             width: Get.width,
             padding: const EdgeInsets.only(top: 8, left: 12, right: 12),
             decoration: BoxDecoration(
-              color: Get.theme.colorScheme.background,
+              color: Get.theme.colorScheme.surface,
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(12), topRight: Radius.circular(12)),
             ),
@@ -34,8 +34,7 @@ Widget showBottomListChose(
                   alignment: Alignment.topCenter,
                   child: Container(
                     decoration: BoxDecoration(
-                        color:
-                            Get.theme.colorScheme.onBackground.withOpacity(0.5),
+                        color: Get.theme.colorScheme.onSurface.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(12)),
                     width: Get.width * 0.1,
                     height: 3,
@@ -109,8 +108,8 @@ Widget showBottomListChose(
                               color: value == options![index]
                                   ? Get.theme.primaryColor
                                   : (index % 2 == 0
-                                      ? Get.theme.colorScheme.background
-                                      : Get.theme.colorScheme.onBackground
+                                      ? Get.theme.colorScheme.surface
+                                      : Get.theme.colorScheme.onSurface
                                           .withOpacity(0.05)),
                               borderRadius: BorderRadius.circular(12)),
                           child: Padding(
@@ -140,7 +139,7 @@ Widget showBottomTextInput(TextEditingController? controller,
   return Container(
     padding: const EdgeInsets.only(top: 8, left: 12, right: 12),
     decoration: BoxDecoration(
-      color: Get.theme.colorScheme.background,
+      color: Get.theme.colorScheme.surface,
       borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(12), topRight: Radius.circular(12)),
     ),
@@ -214,7 +213,7 @@ Widget showBottomListMutilChose(
             width: Get.width,
             padding: const EdgeInsets.only(top: 8, left: 12, right: 12),
             decoration: BoxDecoration(
-              color: Get.theme.colorScheme.background,
+              color: Get.theme.colorScheme.surface,
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(12), topRight: Radius.circular(12)),
             ),
@@ -225,8 +224,7 @@ Widget showBottomListMutilChose(
                   alignment: Alignment.topCenter,
                   child: Container(
                     decoration: BoxDecoration(
-                        color:
-                            Get.theme.colorScheme.onBackground.withOpacity(0.5),
+                        color: Get.theme.colorScheme.onSurface.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(12)),
                     width: Get.width * 0.1,
                     height: 3,
@@ -300,8 +298,8 @@ Widget showBottomListMutilChose(
                               color: value?.contains(options![index]) ?? false
                                   ? Get.theme.primaryColor
                                   : (index % 2 == 0
-                                      ? Get.theme.colorScheme.background
-                                      : Get.theme.colorScheme.onBackground
+                                      ? Get.theme.colorScheme.surface
+                                      : Get.theme.colorScheme.onSurface
                                           .withOpacity(0.05)),
                               borderRadius: BorderRadius.circular(12)),
                           child: Padding(

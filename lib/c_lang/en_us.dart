@@ -188,5 +188,20 @@ Map<String, String> en = {
   "(Bật)": "(On)",
   "Thiết lập": "Establish",
   "Tăng 1 cấp": "Increase 1 level",
-  "Tăng 1 cấp độ người dùng": "Increase user level by 1"
+  "Tăng 1 cấp độ người dùng": "Increase user level by 1",
+  "Kim tiền thân vàng": "Metal is a precursor to gold",
+  "Loài cây có những nhánh lá xếp với nhau, cây có sức sống tốt và là loài có độc":
+      "The tree has branches and leaves arranged together, the tree has good vitality and is poisonous",
+  "Khoai nước thân vàng": "Water potato with yellow body",
+  "Loài khoai không có củ, lá to, cuống vàng rất đẹp":
+      "The potato species has no tubers, large leaves, and beautiful yellow stems",
+  "Cây nắp ấm đỏ": "Red pitcher plant",
+  "Loài cây leo, phần đầu cuốn nổi bật với tạo hình giống như cái bình nước hình trụ":
+      "A climbing plant, the rolled top stands out with its shape like a cylindrical water bottle",
+  "Cây bẫy kẹp": "Clamp trap",
+  "Cây bẫy kẹp là một loài thực vật ăn thịt, sống bản địa tại vùng đất ngập nước cận nhiệt đới":
+      "The snap trap plant is a carnivorous plant native to subtropical wetlands",
+  "Chậu đất treo": "Hanging clay pots",
+  "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo":
+      "Soil pots drain well, but are a bit heavy to hang",
 };

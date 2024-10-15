@@ -33,7 +33,7 @@ class ShareFuntion {
       CupertinoDatePickerMode mode =
           CupertinoDatePickerMode.dateAndTime}) async {
     await Get.bottomSheet(
-        backgroundColor: Get.theme.colorScheme.background,
+        backgroundColor: Get.theme.colorScheme.surface,
         Container(
           height: 250,
           padding: EdgeInsets.zero,

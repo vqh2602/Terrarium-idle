@@ -17,6 +17,7 @@ import 'package:terrarium_idle/data/storage/storage.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
+import 'package:terrarium_idle/service/firebase_push.dart';
 // import 'package:terrarium_idle/data/storage/storage.dart';
 // import 'package:terrarium_idle/modules/auth/login/login_screen.dart';
 // import 'package:dart_appwrite/dart_appwrite.dart' as server_appwrite;
@@ -182,6 +183,11 @@ class GardenCoopController extends GetxController
     await file.writeAsString(content);
 
     repoImage.uploadFileDiscord(file, 'like', content);
+
+    String? token = await FirebaseCouldMessage().getAccessToken();
+    FirebaseCouldMessage().sendNotificationWithAccessToken(
+        'fuXCeeuYRruj7d9TKbV3xB:APA91bHQclJuoMARgJkVpsxdB8Rbm0T46lr0wPuZXyy9siO50iHRJpaC5F-zOOTE3k54vvUZNWQCxfHmctdaZPmpvA6ghutAfrB5jzX7NoyrzKS_3_J1KfrT7W4GT167KzrLOeH8T6WD',
+        token ?? '');
   }
 
   changeUI() {

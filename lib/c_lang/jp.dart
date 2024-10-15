@@ -174,5 +174,20 @@ Map<String, String> ja = {
   "(Bật)": "（の上）",
   "Thiết lập": "確立する",
   "Tăng 1 cấp": "レベルを1つ上げる",
-  "Tăng 1 cấp độ người dùng": "ユーザーレベルを1つ上げる"
+  "Tăng 1 cấp độ người dùng": "ユーザーレベルを1つ上げる",
+  "Kim tiền thân vàng": "金属は金の前駆体です",
+  "Loài cây có những nhánh lá xếp với nhau, cây có sức sống tốt và là loài có độc":
+      "木は枝と葉が一緒に配置されており、生命力があり、有毒です",
+  "Khoai nước thân vàng": "体が黄色い水芋",
+  "Loài khoai không có củ, lá to, cuống vàng rất đẹp":
+      "ジャガイモの種には塊茎がなく、葉が大きく、茎が美しい黄色です。",
+  "Cây nắp ấm đỏ": "赤いピッチャー植物",
+  "Loài cây leo, phần đầu cuốn nổi bật với tạo hình giống như cái bình nước hình trụ":
+      "つる性の植物で、筒状の水筒のような形で上部が巻かれているのが目立ちます。",
+  "Cây bẫy kẹp": "クランプトラップ",
+  "Cây bẫy kẹp là một loài thực vật ăn thịt, sống bản địa tại vùng đất ngập nước cận nhiệt đới":
+      "スナップトラッププラントは亜熱帯の湿地に自生する食虫植物です。",
+  "Chậu đất treo": "吊り下げ土鍋",
+  "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo":
+      "土ポットは水はけが良いですが、吊るすのは少し重いです",
 };

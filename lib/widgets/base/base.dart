@@ -24,7 +24,8 @@ Widget buildBody(
           floatingActionButton: createFloatingActionButton,
           floatingActionButtonLocation: floatingActionButtonLocation,
           body: body),
-      onPopInvoked: (val) async => onWillPop(context, isCheckBeforePop));
+      onPopInvokedWithResult: (val, result) async =>
+          onWillPop(context, isCheckBeforePop));
 }
 
 Future<bool> onWillPop(BuildContext context, bool isCheckBeforePop) async {
@@ -104,7 +105,7 @@ AppBar buildDefaultAppBar(
             icon: Icon(
               LucideIcons.chevronLeft,
               size: 26,
-              color: Get.theme.colorScheme.onBackground,
+              color: Get.theme.colorScheme.onSurface,
             ))
         : null,
   );

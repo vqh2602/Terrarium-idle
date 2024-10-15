@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 
 class UserData {
   bool? isBan;
@@ -498,6 +499,7 @@ class Plants {
   DateTime? harvestTime;
   int? platLevelExp;
   int? plantLevel;
+  bool? isHanging;
   Plants({
     this.idPlant,
     this.idPot,
@@ -505,6 +507,7 @@ class Plants {
     this.harvestTime,
     this.platLevelExp,
     this.plantLevel,
+    this.isHanging,
   });
 
   Plants copyWith({
@@ -514,6 +517,7 @@ class Plants {
     DateTime? harvestTime,
     int? platLevelExp,
     int? plantLevel,
+    bool? isHanging,
   }) {
     return Plants(
       idPlant: idPlant ?? this.idPlant,
@@ -522,54 +526,57 @@ class Plants {
       harvestTime: harvestTime ?? this.harvestTime,
       platLevelExp: platLevelExp ?? this.platLevelExp,
       plantLevel: plantLevel ?? this.plantLevel,
+      isHanging: isHanging ?? this.isHanging,
     );
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'idPlant': idPlant,
       'idPot': idPot,
       'position': position,
       'harvestTime': harvestTime?.millisecondsSinceEpoch,
       'platLevelExp': platLevelExp,
       'plantLevel': plantLevel,
+      'isHanging': isHanging,
     };
   }
 
   factory Plants.fromMap(Map<String, dynamic> map) {
     return Plants(
-      idPlant: map['idPlant'] != null ? map['idPlant'] as String : null,
-      idPot: map['idPot'] != null ? map['idPot'] as String : null,
-      position: map['position'] != null ? map['position'] as String : null,
+      idPlant: map['idPlant'],
+      idPot: map['idPot'],
+      position: map['position'],
       harvestTime: map['harvestTime'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['harvestTime'] as int)
+          ? DateTime.fromMillisecondsSinceEpoch(map['harvestTime'])
           : null,
-      platLevelExp:
-          map['platLevelExp'] != null ? map['platLevelExp'] as int : null,
-      plantLevel: map['plantLevel'] != null ? map['plantLevel'] as int : null,
+      platLevelExp: map['platLevelExp']?.toInt(),
+      plantLevel: map['plantLevel']?.toInt(),
+      isHanging: map['isHanging'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Plants.fromJson(String source) =>
-      Plants.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Plants.fromJson(String source) => Plants.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Plants(idPlant: $idPlant, idPot: $idPot, position: $position, harvestTime: $harvestTime, platLevelExp: $platLevelExp, plantLevel: $plantLevel)';
+    return 'Plants(idPlant: $idPlant, idPot: $idPot, position: $position, harvestTime: $harvestTime, platLevelExp: $platLevelExp, plantLevel: $plantLevel, isHanging: $isHanging)';
   }
 
   @override
-  bool operator ==(covariant Plants other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other.idPlant == idPlant &&
+    return other is Plants &&
+        other.idPlant == idPlant &&
         other.idPot == idPot &&
         other.position == position &&
         other.harvestTime == harvestTime &&
         other.platLevelExp == platLevelExp &&
-        other.plantLevel == plantLevel;
+        other.plantLevel == plantLevel &&
+        other.isHanging == isHanging;
   }
 
   @override
@@ -579,6 +586,7 @@ class Plants {
         position.hashCode ^
         harvestTime.hashCode ^
         platLevelExp.hashCode ^
-        plantLevel.hashCode;
+        plantLevel.hashCode ^
+        isHanging.hashCode;
   }
 }

@@ -7,8 +7,6 @@ import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:pie_menu/pie_menu.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
-import 'package:terrarium_idle/data/local/list_plants.dart';
-import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/widgets/blur_box.dart';
@@ -237,11 +235,12 @@ class Graden extends StatelessWidget {
         required BuildContext context}) {
       Plants? plant = userData.plants?.firstWhereOrNull((element) =>
           element.position?.contains('${floor + 1},${position + 1}') ?? false);
-      bool isHanging = listPlantsData
-          .where((element) =>
-              element.id == plant?.idPlant &&
-              element.itemTypeAttribute == ItemTypeAttribute.hanging)
-          .isNotEmpty;
+      bool isHanging = plant?.isHanging ?? false;
+      // bool isHanging = listPlantsData
+      //     .where((element) =>
+      //         element.id == plant?.idPlant &&
+      //         element.itemTypeAttribute == ItemTypeAttribute.hanging)
+      //     .isNotEmpty;
       return (userData.plants!
               .where((element) =>
                   element.position!.contains('${floor + 1},${position + 1}'))
@@ -407,11 +406,12 @@ class Graden extends StatelessWidget {
         itemBuilder: (context, position) {
           Plants? plant = userData.plants?.firstWhereOrNull((element) =>
               element.position == ('${floor + 1},${position + 1}'));
-          bool isHanging = listPlantsData
-              .where((element) =>
-                  element.id == plant?.idPlant &&
-                  element.itemTypeAttribute == ItemTypeAttribute.hanging)
-              .isNotEmpty;
+          bool isHanging = plant?.isHanging ?? false;
+          // bool isHanging = listPlantsData
+          //     .where((element) =>
+          //         element.id == plant?.idPlant &&
+          //         element.itemTypeAttribute == ItemTypeAttribute.hanging)
+          //     .isNotEmpty;
 
           return (userData.plants!
                   .where((element) =>

@@ -234,6 +234,7 @@ showPickPotsAndPlants(
           idPlant: idPlant?.id,
           idPot: idPot?.id,
           harvestTime: DateTime.now(),
+          isHanging: idPlant?.itemTypeAttribute == ItemTypeAttribute.hanging,
           platLevelExp: 0,
           plantLevel: 1));
       // setState(() {

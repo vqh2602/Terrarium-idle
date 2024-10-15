@@ -1,7 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:rive/rive.dart';
+import 'package:terrarium_idle/config/config.dart';
 import 'package:terrarium_idle/widgets/widgets.dart';
+
+
+
+
+
+
+
+
+
 
 class RiveAnimationItem extends StatefulWidget {
   final BoxConstraints constraints;
@@ -27,40 +37,60 @@ class _RiveAnimationItemState extends State<RiveAnimationItem> {
   dynamic state;
   Artboard? artboard;
 
+  bool isLoadingPlant = true;
+  bool isLoadingPot = true;
+
   @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
-      child: Column(
+      child: Stack(
         children: [
-          cHeight(widget.constraints.maxHeight * 0.03),
-          SizedBox(
-            width: widget.constraints.maxWidth,
-            height: widget.constraints.maxHeight * 0.7,
-            child: RiveAnimation.asset(
-              'assets/rive/plants/${widget.plantId}.riv',
-              key: Key('${widget.plantId} ${widget.level}'),
-              onInit: (artboardRive) {
-                artboard = artboardRive;
-                // print('/n animation plant: $plantId $level');
-                state = StateMachineController.fromArtboard(artboard!, 'plant');
-                input = state!.findInput<double>('level') as SMINumber;
-                input!.change(widget.level.toDouble());
-                // print(_input!.value);
-                artboard!.addController(state);
-                setState(() {
-                  widget.changeUI.call();
-                });
-              },
-              fit: BoxFit.fill,
-            ),
+          Column(
+            children: [
+              cHeight(widget.constraints.maxHeight * 0.03),
+              SizedBox(
+                width: widget.constraints.maxWidth,
+                height: widget.constraints.maxHeight * 0.7,
+                child: RiveAnimation.network(
+                  '${Env.config.dataServer}/rive/plants/${widget.plantId}.riv',
+                  key: Key('${widget.plantId} ${widget.level}'),
+                  onInit: (artboardRive) {
+                    artboard = artboardRive;
+                    // print('/n animation plant: $plantId $level');
+                    state =
+                        StateMachineController.fromArtboard(artboard!, 'plant');
+                    input = state!.findInput<double>('level') as SMINumber;
+                    input!.change(widget.level.toDouble());
+                    // print(_input!.value);
+                    artboard!.addController(state);
+                    setState(() {
+                      widget.changeUI.call();
+                      isLoadingPlant = false;
+                    });
+                  },
+                  fit: BoxFit.fill,
+                ),
+              ),
+              SizedBox(
+                width: widget.constraints.maxWidth,
+                height: widget.constraints.maxHeight * 0.27,
+                child: RiveAnimation.network(
+                  '${Env.config.dataServer}/rive/pots/${widget.potId}.riv',
+                  onInit: (artboardRive) {
+                    setState(() {
+                      isLoadingPot = false;
+                    });
+                  },
+                ),
+              ),
+            ],
           ),
-          SizedBox(
-            width: widget.constraints.maxWidth,
-            height: widget.constraints.maxHeight * 0.27,
-            child: RiveAnimation.asset(
-              'assets/rive/pots/${widget.potId}.riv',
+          if (isLoadingPot || isLoadingPlant)
+            Align(
+              alignment: Alignment.center,
+              child: CupertinoActivityIndicator(
+                  radius: 20.0, color: Get.theme.primaryColor),
             ),
-          ),
         ],
       ),
     );
@@ -93,6 +123,9 @@ class _RiveAnimationItemHangingState extends State<RiveAnimationItemHanging> {
   dynamic state;
   Artboard? artboard;
 
+  bool isLoadingPlant = true;
+  bool isLoadingPot = true;
+
   @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
@@ -103,17 +136,22 @@ class _RiveAnimationItemHangingState extends State<RiveAnimationItemHanging> {
             child: SizedBox(
               width: widget.constraints.maxWidth * 0.75,
               height: widget.constraints.maxHeight * 0.65,
-              child: RiveAnimation.asset(
-                'assets/rive/pots/${widget.potId}.riv',
+              child: RiveAnimation.network(
+                '${Env.config.dataServer}/rive/pots/${widget.potId}.riv',
                 fit: BoxFit.fill,
+                onInit: (artboardRive) {
+                  setState(() {
+                    isLoadingPot = false;
+                  });
+                },
               ),
             ),
           ),
           SizedBox(
             width: widget.constraints.maxWidth,
             height: widget.constraints.maxHeight * 0.91,
-            child: RiveAnimation.asset(
-              'assets/rive/plants/${widget.plantId}.riv',
+            child: RiveAnimation.network(
+              '${Env.config.dataServer}/rive/plants/${widget.plantId}.riv',
               key: Key('${widget.plantId} ${widget.level}'),
               onInit: (artboardRive) {
                 artboard = artboardRive;
@@ -125,11 +163,18 @@ class _RiveAnimationItemHangingState extends State<RiveAnimationItemHanging> {
                 artboard!.addController(state);
                 setState(() {
                   widget.changeUI.call();
+                  isLoadingPlant = false;
                 });
               },
               fit: BoxFit.fill,
             ),
           ),
+          if (isLoadingPot || isLoadingPlant)
+            Align(
+              alignment: Alignment.center,
+              child: CupertinoActivityIndicator(
+                  radius: 20.0, color: Get.theme.primaryColor),
+            ),
         ],
       ),
     );
@@ -183,3 +228,4 @@ class _RiveAnimationItemHangingState extends State<RiveAnimationItemHanging> {
 //     );
 //   });
 // }
+

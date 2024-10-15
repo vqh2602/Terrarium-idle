@@ -12,6 +12,7 @@ List<ItemData> listPlantsData = [
     currencyUnit: 'oxygen',
     type: 'plant',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 1,
   ),
   ItemData(
@@ -24,6 +25,7 @@ List<ItemData> listPlantsData = [
     currencyUnit: 'oxygen',
     type: 'plant',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 1,
   ),
   ItemData(
@@ -36,6 +38,7 @@ List<ItemData> listPlantsData = [
     currencyUnit: 'oxygen',
     type: 'plant',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 2,
   ),
   ItemData(
@@ -47,6 +50,7 @@ List<ItemData> listPlantsData = [
     priceOxygen: 500,
     currencyUnit: 'oxygen',
     type: 'plant',
+    itemTypeAttribute: ItemTypeAttribute.none,
     effect: 'N.A',
     levelUnlock: 3,
   ),
@@ -61,6 +65,7 @@ List<ItemData> listPlantsData = [
     type: 'plant',
     effect: 'N.A',
     levelUnlock: 4,
+    itemTypeAttribute: ItemTypeAttribute.none,
   ),
   ItemData(
     id: 'plant6',
@@ -72,6 +77,7 @@ List<ItemData> listPlantsData = [
     currencyUnit: 'oxygen',
     type: 'plant',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 5,
   ),
   ItemData(
@@ -85,6 +91,7 @@ List<ItemData> listPlantsData = [
     currencyUnit: 'gemstone',
     type: 'plant',
     effect: 'N.A',
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 5,
   ),
   ItemData(
@@ -97,6 +104,7 @@ List<ItemData> listPlantsData = [
     currencyUnit: 'ticket',
     type: 'plant',
     effect: 'Nhạc thư thái - m1'.tr,
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 10,
   ),
   ItemData(
@@ -109,6 +117,7 @@ List<ItemData> listPlantsData = [
     currencyUnit: 'oxygen',
     type: 'plant',
     effect: 'N.A'.tr,
+    itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 13,
   ),
   ItemData(
@@ -122,6 +131,7 @@ List<ItemData> listPlantsData = [
     priceOxygen: 20000,
     currencyUnit: 'oxygen',
     type: 'plant',
+    itemTypeAttribute: ItemTypeAttribute.none,
     effect: 'Kết thúc mùa xuân'.tr + ' - m2'.tr,
     levelUnlock: 15,
   ),
@@ -136,6 +146,7 @@ List<ItemData> listPlantsData = [
     priceOxygen: 20000,
     currencyUnit: 'ticket',
     type: 'plant',
+    itemTypeAttribute: ItemTypeAttribute.none,
     effect: 'Cánh hoa oải hương'.tr + ' - overlay3'.tr,
     levelUnlock: 15,
   ),
@@ -195,5 +206,63 @@ List<ItemData> listPlantsData = [
     effect: 'N.A'.tr,
     itemTypeAttribute: ItemTypeAttribute.hanging,
     levelUnlock: 20,
+  ),
+  ItemData(
+    id: 'plant16',
+    name: 'Kim tiền thân vàng'.tr,
+    description:
+        'Loài cây có những nhánh lá xếp với nhau, cây có sức sống tốt và là loài có độc'
+            .tr,
+    image: 'https://i.imgur.com/CatpGwB.png',
+    priceStore: 7500,
+    priceOxygen: 12500,
+    currencyUnit: 'oxygen',
+    type: 'plant',
+    effect: 'N.A'.tr,
+    itemTypeAttribute: ItemTypeAttribute.none,
+    levelUnlock: 22,
+  ),
+  ItemData(
+    id: 'plant17',
+    name: 'Khoai nước thân vàng'.tr,
+    description: 'Loài khoai không có củ, lá to, cuống vàng rất đẹp'.tr,
+    image: 'https://i.imgur.com/9yrWN6W.png',
+    priceStore: 15500,
+    priceOxygen: 20500,
+    currencyUnit: 'oxygen',
+    type: 'plant',
+    effect: 'N.A'.tr,
+    itemTypeAttribute: ItemTypeAttribute.none,
+    levelUnlock: 25,
+  ),
+  ItemData(
+    id: 'plant18',
+    name: 'Cây nắp ấm đỏ'.tr,
+    description:
+        'Loài cây leo, phần đầu cuốn nổi bật với tạo hình giống như cái bình nước hình trụ'
+            .tr,
+    image: 'https://i.imgur.com/vv7DukW.png',
+    priceStore: 20500,
+    priceOxygen: 30000,
+    currencyUnit: 'oxygen',
+    type: 'plant',
+    effect: 'N.A'.tr,
+    itemTypeAttribute: ItemTypeAttribute.hanging,
+    levelUnlock: 27,
+  ),
+   ItemData(
+    id: 'plant19',
+    name: 'Cây bẫy kẹp'.tr,
+    description:
+        'Cây bẫy kẹp là một loài thực vật ăn thịt, sống bản địa tại vùng đất ngập nước cận nhiệt đới'
+            .tr,
+    image: 'https://i.imgur.com/PBDcLNF.png',
+    priceStore: 25500,
+    priceOxygen: 35000,
+    currencyUnit: 'oxygen',
+    type: 'plant',
+    effect: 'N.A'.tr,
+    itemTypeAttribute: ItemTypeAttribute.hanging,
+    levelUnlock: 30,
   ),
 ];

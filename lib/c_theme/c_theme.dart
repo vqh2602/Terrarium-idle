@@ -94,35 +94,35 @@ class SThemeTask {
 
     /// CheckBox theme
     checkboxTheme: CheckboxThemeData(
-      checkColor: MaterialStateProperty.all(const Color(0xffeeeeee)),
-      fillColor: MaterialStateProperty.all(const Color(0xff70AF68)),
+      checkColor: WidgetStateProperty.all(const Color(0xffeeeeee)),
+      fillColor: WidgetStateProperty.all(const Color(0xff70AF68)),
     ),
 
     /// Radio theme
     radioTheme: RadioThemeData(
-      fillColor: MaterialStateProperty.all(const Color(0xff70AF68)),
+      fillColor: WidgetStateProperty.all(const Color(0xff70AF68)),
     ),
 
     ///Switch Theme
     switchTheme: SwitchThemeData(
-      trackColor: MaterialStateProperty.resolveWith((state) {
-        const Set<MaterialState> interactiveStates = <MaterialState>{
-          MaterialState.pressed,
-          MaterialState.hovered,
-          MaterialState.focused,
-          MaterialState.selected,
+      trackColor: WidgetStateProperty.resolveWith((state) {
+        const Set<WidgetState> interactiveStates = <WidgetState>{
+          WidgetState.pressed,
+          WidgetState.hovered,
+          WidgetState.focused,
+          WidgetState.selected,
         };
         if (state.any(interactiveStates.contains)) {
           return const Color(0xffabb3ea);
         }
         return null;
       }),
-      thumbColor: MaterialStateProperty.resolveWith((state) {
-        const Set<MaterialState> interactiveStates = <MaterialState>{
-          MaterialState.pressed,
-          MaterialState.hovered,
-          MaterialState.focused,
-          MaterialState.selected,
+      thumbColor: WidgetStateProperty.resolveWith((state) {
+        const Set<WidgetState> interactiveStates = <WidgetState>{
+          WidgetState.pressed,
+          WidgetState.hovered,
+          WidgetState.focused,
+          WidgetState.selected,
         };
         if (state.any(interactiveStates.contains)) {
           return const Color(0xff70AF68);
@@ -155,10 +155,10 @@ class SThemeTask {
     colorScheme: ColorScheme.fromSeed(
             seedColor: const Color(0xff70AF68),
             primary: const Color(0xff70AF68),
-            onBackground: const Color(0xff000000),
-            background: const Color(0xffffffff),
+            onSurface: const Color(0xff000000),
+            surface: const Color(0xffffffff),
             brightness: Brightness.light)
-        .copyWith(background: const Color(0xffffffff))
+        .copyWith(surface: const Color(0xffffffff))
         .copyWith(error: const Color(0xfff0323c)),
   );
 
@@ -175,7 +175,7 @@ class SThemeTask {
     canvasColor: Colors.transparent,
 
     /// AppBar Theme
-    // appBarTheme: const AppBarTheme(backgroundColor: Color(0xff161616)),
+    // appBarTheme: const AppBarTheme(surfaceColor: Color(0xff161616)),
     /// AppBar Theme
     appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xffffffff),
@@ -234,24 +234,24 @@ class SThemeTask {
 
     ///Switch Theme
     switchTheme: SwitchThemeData(
-      trackColor: MaterialStateProperty.resolveWith((state) {
-        const Set<MaterialState> interactiveStates = <MaterialState>{
-          MaterialState.pressed,
-          MaterialState.hovered,
-          MaterialState.focused,
-          MaterialState.selected,
+      trackColor: WidgetStateProperty.resolveWith((state) {
+        const Set<WidgetState> interactiveStates = <WidgetState>{
+          WidgetState.pressed,
+          WidgetState.hovered,
+          WidgetState.focused,
+          WidgetState.selected,
         };
         if (state.any(interactiveStates.contains)) {
           return const Color(0xffffffff);
         }
         return null;
       }),
-      thumbColor: MaterialStateProperty.resolveWith((state) {
-        const Set<MaterialState> interactiveStates = <MaterialState>{
-          MaterialState.pressed,
-          MaterialState.hovered,
-          MaterialState.focused,
-          MaterialState.selected,
+      thumbColor: WidgetStateProperty.resolveWith((state) {
+        const Set<WidgetState> interactiveStates = <WidgetState>{
+          WidgetState.pressed,
+          WidgetState.hovered,
+          WidgetState.focused,
+          WidgetState.selected,
         };
         if (state.any(interactiveStates.contains)) {
           return const Color(0xff70AF68);
@@ -287,11 +287,11 @@ class SThemeTask {
     colorScheme: ColorScheme.fromSeed(
       seedColor: const Color(0xff70AF68),
       brightness: Brightness.dark,
-      onBackground: const Color(0xffffffff),
-      background: const Color.fromARGB(255, 30, 29, 29),
+      onSurface: const Color(0xffffffff),
+      surface: const Color.fromARGB(255, 30, 29, 29),
     )
         .copyWith(
-          background: const Color.fromARGB(255, 30, 29, 29),
+          surface: const Color.fromARGB(255, 30, 29, 29),
         )
         .copyWith(error: const Color(0xfff0323c)),
   );
