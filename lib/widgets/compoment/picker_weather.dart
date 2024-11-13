@@ -9,44 +9,39 @@ import 'package:terrarium_idle/widgets/base/text/text.dart';
 
 import 'package:terrarium_idle/widgets/widgets.dart';
 
-showPickEffects({
-  required List<SelectOptionItem> listEffect,
-  required List<SelectOptionItem> listMusic,
-  SelectOptionItem? selectEffect,
-  SelectOptionItem? selectMusic,
-  Function(SelectOptionItem?)? onChangedEffect,
-  Function(SelectOptionItem?)? onChangedMusic,
+// hiển thị thời tiết
+showPickWeather({
+  required List<SelectOptionItem> listWeather,
+  SelectOptionItem? selectWeather,
+  Function(SelectOptionItem?)? onChangedWeather,
   bool isCoop = false,
 }) async {
   await Get.bottomSheet(
-      !isCoop
+      isCoop
           ? GetBuilder(
-              init: GardenController(),
-              builder: (controller) {
-                return _bottomsheetEffects(
-                    controller: controller,
-                    listEffect: listEffect,
-                    listMusic: listMusic,
-                    onChangedEffect: onChangedEffect,
-                    onChangedMusic: onChangedMusic);
-              })
-          : GetBuilder(
               init: GardenCoopController(),
               builder: (controller) {
                 return _bottomsheetEffects(
-                    controller: controller,
-                    listEffect: listEffect,
-                    listMusic: listMusic,
-                    onChangedEffect: onChangedEffect,
-                    onChangedMusic: onChangedMusic);
+                    listWeather: listWeather,
+                    selectWeather: controller.selectWeatherLandscape,
+                    onChangedWeather: onChangedWeather);
+              })
+          : GetBuilder(
+              init: GardenController(),
+              builder: (controller) {
+                return _bottomsheetEffects(
+                    listWeather: listWeather,
+                    selectWeather: controller.selectWeatherLandscape,
+                    onChangedWeather: onChangedWeather);
               }),
       isScrollControlled: true);
 }
 
-_pickEffect(
-    {Function(SelectOptionItem?)? onChanged,
-    required List<SelectOptionItem> listEffect,
-    SelectOptionItem? selectEffect}) {
+_pickEffect({
+  required List<SelectOptionItem> listWeather,
+  SelectOptionItem? selectWeather,
+  Function(SelectOptionItem?)? onChangedWeather,
+}) {
   return Column(
     children: [
       // if (idPot != '')
@@ -58,43 +53,13 @@ _pickEffect(
       Expanded(
         child: ListView.builder(
           shrinkWrap: true,
-          itemCount: listEffect.length,
+          itemCount: listWeather.length,
           itemBuilder: (BuildContext ctx, index) {
             return Material(
               child: _buttonPicker(
-                  value: listEffect[index],
-                  onChanged: onChanged,
-                  selectEffect: selectEffect),
-            );
-          },
-        ),
-      )
-    ],
-  );
-}
-
-_pickMusic(
-    {Function(SelectOptionItem?)? onChanged,
-    required List<SelectOptionItem> listMusic,
-    SelectOptionItem? selectMusic}) {
-  return Column(
-    children: [
-      // if (idPot != '')
-      //   Padding(
-      //     padding: const EdgeInsets.all(8.0),
-      //     child:
-      //         SText.titleLarge('Chậu đang chọn', fontWeight: FontWeight.w700),
-      //   ),
-      Expanded(
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: listMusic.length,
-          itemBuilder: (BuildContext ctx, index) {
-            return Material(
-              child: _buttonPicker(
-                  value: listMusic[index],
-                  onChanged: onChanged,
-                  selectEffect: selectMusic),
+                  value: listWeather[index],
+                  selectEffect: selectWeather,
+                  onChanged: onChangedWeather),
             );
           },
         ),
@@ -128,12 +93,11 @@ _showEmpty() {
   );
 }
 
-_bottomsheetEffects(
-    {dynamic controller,
-    listEffect,
-    listMusic,
-    onChangedEffect,
-    onChangedMusic}) {
+_bottomsheetEffects({
+  required List<SelectOptionItem> listWeather,
+  SelectOptionItem? selectWeather,
+  Function(SelectOptionItem?)? onChangedWeather,
+}) {
   PageController pageController = PageController();
 
   bool isEffect = true;
@@ -166,28 +130,10 @@ _bottomsheetEffects(
                               duration: const Duration(milliseconds: 500),
                               curve: Curves.easeInOut);
                         },
-                        child: SText.titleMedium('Hiệu ứng'.tr,
+                        child: SText.titleMedium('Thời tiết'.tr,
                             fontWeight: FontWeight.w700, color: Colors.white),
                       ),
                     ),
-                    cWidth(8),
-                    Expanded(
-                      child: FxButton.medium(
-                        backgroundColor:
-                            !isEffect ? Get.theme.primaryColor : Colors.grey,
-                        onPressed: () {
-                          setState(() {
-                            isEffect = false;
-                          });
-                          ShareFuntion.tapPlayAudio();
-                          pageController.animateToPage(1,
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
-                        },
-                        child: SText.titleMedium('Âm nhạc'.tr,
-                            fontWeight: FontWeight.w700, color: Colors.white),
-                      ),
-                    )
                   ]),
             ),
             Expanded(
@@ -199,19 +145,11 @@ _bottomsheetEffects(
                   });
                 },
                 children: [
-                  listEffect.isNotEmpty
+                  listWeather.isNotEmpty
                       ? _pickEffect(
-                          listEffect: listEffect,
-                          selectEffect: controller.selectEffect,
-                          onChanged: onChangedEffect,
-                        )
-                      : _showEmpty(),
-                  listMusic.isNotEmpty
-                      ? _pickMusic(
-                          listMusic: listMusic,
-                          selectMusic: controller.selectMusic,
-                          onChanged: onChangedMusic,
-                        )
+                          listWeather: listWeather,
+                          selectWeather: selectWeather,
+                          onChangedWeather: onChangedWeather)
                       : _showEmpty(),
                 ],
               ),

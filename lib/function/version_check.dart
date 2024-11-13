@@ -1,4 +1,4 @@
-library version_check;
+library;
 
 import 'dart:convert';
 import 'dart:io';

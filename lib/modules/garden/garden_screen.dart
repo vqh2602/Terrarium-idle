@@ -13,11 +13,13 @@ import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/coop/coop_screen.dart';
 import 'package:terrarium_idle/modules/event/event_screen.dart';
 import 'package:terrarium_idle/modules/garden/garden_controller.dart';
+import 'package:terrarium_idle/modules/gift/gift_screen.dart';
 import 'package:terrarium_idle/modules/store/store_screen.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
 import 'package:terrarium_idle/widgets/compoment/graden_widget.dart';
 import 'package:terrarium_idle/widgets/compoment/picker_effects.dart';
+import 'package:terrarium_idle/widgets/compoment/picker_weather.dart';
 import 'package:terrarium_idle/widgets/compoment/tool_level.dart';
 import 'package:terrarium_idle/widgets/compoment/water_rain.dart';
 
@@ -172,8 +174,10 @@ class _GardenScreenState extends State<GardenScreen>
                   heroTag: null,
                   shape: const CircleBorder(),
                   backgroundColor: Colors.white,
-                  child: const Icon(
-                    LucideIcons.penLine,
+                  child: Icon(
+                    gardenController.isEdit
+                        ? LucideIcons.pencilOff
+                        : LucideIcons.penLine,
                     color: Colors.black,
                   ),
                   onPressed: () {
@@ -181,6 +185,30 @@ class _GardenScreenState extends State<GardenScreen>
                     // ShareFuntion.tapPlayAudio();
                     gardenController.isEdit = !gardenController.isEdit;
                     gardenController.update();
+                  },
+                ),
+                FloatingActionButton(
+                  heroTag: null,
+                  shape: const CircleBorder(),
+                  backgroundColor: Colors.white,
+                  child: const Icon(
+                    LucideIcons.tentTree,
+                    color: Colors.lime,
+                  ),
+                  onPressed: () {
+                    _key.currentState?.toggle();
+                    // ShareFuntion.tapPlayAudio();
+                    showPickWeather(
+                      listWeather:
+                          gardenController.listSelectOptionWeatherLandscape,
+                      selectWeather: gardenController.selectWeatherLandscape,
+                      onChangedWeather: (p0) => {
+                        gardenController.selectWeatherLandscape = p0,
+                        gardenController.update(),
+                      },
+                      // isCoop: false,
+                    );
+                    // gardenController.update();
                   },
                 ),
                 FloatingActionButton(
@@ -233,11 +261,17 @@ class _GardenScreenState extends State<GardenScreen>
               height: Get.height,
               padding: EdgeInsets.zero,
               child: RiveAnimation.asset(
-                !gardenController.isRain
-                    ? DateTime.now().hour >= 18 || DateTime.now().hour <= 6
-                        ? Assets.backgrounds.skyMoonNight
-                        : Assets.backgrounds.skySunDay
-                    : Assets.backgrounds.skyRain,
+                gardenController.selectWeatherLandscape != null &&
+                        gardenController.selectWeatherLandscape?.value != ''
+                    ? gardenController.selectWeatherLandscape!.value!
+                    : !gardenController.isRain
+                        ? (DateTime.now().hour >= 6 && DateTime.now().hour < 15)
+                            ? Assets.backgrounds.skySunDay
+                            : (DateTime.now().hour >= 15 &&
+                                    DateTime.now().hour < 19)
+                                ? Assets.backgrounds.skySunSet
+                                : Assets.backgrounds.skyMoonNight
+                        : Assets.backgrounds.skyRain,
                 fit: BoxFit.cover,
               ),
             ),
@@ -296,6 +330,10 @@ class _GardenScreenState extends State<GardenScreen>
                 ),
               ),
             if (gardenController.isWater) waterRain(gardenController.isWater),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: GiftScreen(),
+            )
           ],
         ));
   }

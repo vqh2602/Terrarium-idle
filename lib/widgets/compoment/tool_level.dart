@@ -4,7 +4,8 @@ import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/user/user_screen.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
+
 import 'package:terrarium_idle/widgets/widgets.dart';
 
 class ToolLevel extends StatefulWidget {
@@ -45,7 +46,7 @@ class _ToolLevelState extends State<ToolLevel> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            textBodyMedium(
+                            SText.bodyMedium(
                                 'Level: ${widget.user.user?.userLevel ?? 1}',
                                 fontWeight: FontWeight.w700,
                                 color: Colors.black),
@@ -129,7 +130,7 @@ _itemTool(
               ? constraints.maxWidth * 0.03
               : constraints.maxWidth * 0.10,
         ),
-        textBodySmall(ShareFuntion.shortenNumber(data),
+        SText.bodySmall(ShareFuntion.shortenNumber(data),
             fontWeight: FontWeight.w700, color: Colors.black)
       ],
     ),

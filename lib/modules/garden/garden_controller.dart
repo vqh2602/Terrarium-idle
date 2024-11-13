@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/local/list_effect.dart';
 import 'package:terrarium_idle/data/local/list_plants.dart';
 import 'package:terrarium_idle/data/local/list_pots.dart';
+import 'package:terrarium_idle/data/local/list_weather.dart';
 import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/select_option_item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
@@ -15,6 +17,8 @@ import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/function/version_check.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
+import 'package:terrarium_idle/widgets/base/text/text_style.dart';
+import 'package:terrarium_idle/widgets/image_custom.dart';
 
 // import 'package:terrarium_idle/data/storage/storage.dart';
 // import 'package:terrarium_idle/modules/auth/login/login_screen.dart';
@@ -29,8 +33,10 @@ class GardenController extends GetxController
   bool isRain = false;
   List<SelectOptionItem> listSelectOptionEffect = [];
   List<SelectOptionItem> listSelectOptionMusic = [];
+  List<SelectOptionItem> listSelectOptionWeatherLandscape = [];
   SelectOptionItem? selectEffect;
   SelectOptionItem? selectMusic;
+  SelectOptionItem? selectWeatherLandscape;
   bool isGraphicsHight = false;
 
   bool isWater = false;
@@ -45,8 +51,10 @@ class GardenController extends GetxController
     isGraphicsHight = box.read(Storages.graphicsOption) ?? false;
     initDataEffect();
     initDataMusic();
+    initDataWeatherLandscape();
     initAudio(asset: selectMusic?.value ?? Assets.audios.peacefulgarden);
     versionCheck.checkVersion(Get.context!);
+    showTutorial();
     changeUI();
   }
 
@@ -55,7 +63,7 @@ class GardenController extends GetxController
     // List<ItemData> listPlant = [];
     listSelectOptionEffect.clear();
     listSelectOptionEffect.addAll(listPlantsData
-        .where((element1) => userData!.plants!
+        .where((element1) => (userData?.plants ?? [])
             .where((element2) => element2.idPlant == element1.id)
             .isNotEmpty)
         .map((e) {
@@ -141,6 +149,51 @@ class GardenController extends GetxController
     update();
   }
 
+  initDataWeatherLandscape() {
+    // List<ItemData> listPlant = [];
+    listSelectOptionWeatherLandscape.clear();
+    listSelectOptionWeatherLandscape
+        .add(SelectOptionItem(key: 'Mặc định'.tr, value: '', data: {}));
+    listSelectOptionWeatherLandscape.addAll(listPlantsData
+        .where((element1) => userData!.plants!
+            .where((element2) => element2.idPlant == element1.id)
+            .isNotEmpty)
+        .map((e) {
+      ItemData? itemData = listWeatherLandscapeData
+          .where((element) =>
+              e.effect!.contains(element.id!) && element.type == 'landscape')
+          .firstOrNull;
+
+      return SelectOptionItem(
+          key: itemData?.name, value: itemData?.image, data: itemData);
+    }).toList());
+    listSelectOptionWeatherLandscape.addAll(listPotsData
+        .where((element1) => userData!.plants!
+            .where((element2) => element2.idPot == element1.id)
+            .isNotEmpty)
+        .map((e) {
+      ItemData? itemData = listWeatherLandscapeData
+          .where((element) =>
+              e.effect!.contains(element.id!) && element.type == 'landscape')
+          .firstOrNull;
+
+      return SelectOptionItem(
+          key: itemData?.name, value: itemData?.image, data: itemData);
+    }).toList());
+
+    listSelectOptionWeatherLandscape
+        .removeWhere((element) => element.value == null);
+    if (selectWeatherLandscape == null) {
+      try {
+        selectWeatherLandscape = listSelectOptionWeatherLandscape[
+            Random().nextInt(listSelectOptionWeatherLandscape.length)];
+      } on Exception catch (_) {
+        selectWeatherLandscape = listSelectOptionWeatherLandscape.firstOrNull;
+      }
+    }
+    update();
+  }
+
   @override
   Future<void> onClose() async {
     super.onClose();
@@ -174,7 +227,34 @@ class GardenController extends GetxController
     //   });
     // }
   }
-  void showTutorial() {}
+  Future<void> showTutorial() async {
+    DateTime isShow =
+        DateTime.tryParse(box.read(Storages.tourialGuide).toString()) ??
+            DateTime(1999);
+    if (DateTime.now().difference(isShow).inDays > 7) {
+      await box.write(Storages.tourialGuide, DateTime.now().toString());
+      Get.defaultDialog(
+        title: 'Hướng dẫn sử dụng'.tr,
+        titleStyle: STextTheme.bodyMedium
+            .value(Get.context!)
+            ?.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+        content: Container(
+          child: imageNetwork(url: 'https://i.imgur.com/xN65shU.png'),
+        ),
+        backgroundColor: Colors.white,
+        onConfirm: () {
+          ShareFuntion.showWebInApp(
+              'https://vqhapps.gitbook.io/terrarium-idle/huong-dan/function');
+        },
+        onCancel: () {
+          Get.back();
+        },
+        barrierDismissible: false,
+        textConfirm: 'Xem chi tiết'.tr,
+        textCancel: 'Không hiển thị lại'.tr,
+      );
+    }
+  }
 
   changeUI() {
     change(null, status: RxStatus.success());

@@ -9,12 +9,12 @@ import 'package:pie_menu/pie_menu.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
 import 'package:terrarium_idle/widgets/blur_box.dart';
 import 'package:terrarium_idle/widgets/build_toast.dart';
 import 'package:terrarium_idle/widgets/compoment/action_menu.dart';
 import 'package:terrarium_idle/widgets/compoment/picker_plants_pots.dart';
 import 'package:terrarium_idle/widgets/compoment/rive_animation_item.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
 
 class Graden extends StatelessWidget {
   final bool isEdit;
@@ -159,7 +159,7 @@ class Graden extends StatelessWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     blurSigma: 3,
                     child: Center(
-                      child: textBodyMedium(
+                      child: SText.bodyMedium(
                           '${'Mở khóa với'.tr} $oxygenUnlock oxygen',
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
@@ -178,7 +178,7 @@ class Graden extends StatelessWidget {
         children: [
           // Align(
           //     alignment: Alignment.topLeft,
-          //     child: textBodySmall(
+          //     child: SText.bodySmall(
           //         '${'Tầng'.tr} ${floor + 1}',
           //         color: Colors.white24)),
           Expanded(
@@ -193,7 +193,7 @@ class Graden extends StatelessWidget {
               // _hightOptions(floor: floor, context: context),
               Align(
                   alignment: Alignment.topLeft,
-                  child: textBodySmall('${'Tầng'.tr} ${floor + 1}',
+                  child: SText.bodySmall('${'Tầng'.tr} ${floor + 1}',
                       color: Colors.white24)),
             ],
           )),

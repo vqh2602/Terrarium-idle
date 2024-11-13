@@ -1,6 +1,6 @@
-import 'package:terrarium_idle/widgets/text_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
 
 Widget buttonCustom({
   Function? onTap,
@@ -24,7 +24,7 @@ Widget buttonCustom({
             crossAxisAlignment: WrapCrossAlignment.center,
             spacing: 4 * 5,
             children: [
-              textBodyMedium(
+              SText.bodyMedium(
                 title,
                 fontWeight: FontWeight.w700,
               ),

@@ -10,9 +10,10 @@ import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/store/store_controller.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
 import 'package:terrarium_idle/widgets/compoment/tool_level.dart';
 import 'package:terrarium_idle/widgets/image_custom.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+
 import 'package:terrarium_idle/widgets/widgets.dart';
 
 class StoreScreen extends StatefulWidget {
@@ -70,19 +71,19 @@ class _StoreScreenState extends State<StoreScreen> {
                       indicatorSize: TabBarIndicatorSize.tab,
                       tabs: <Widget>[
                         Tab(
-                          child: textTitleMedium('Chậu',
+                          child: SText.bodyMedium('Chậu',
                               textAlign: TextAlign.center),
                         ),
                         Tab(
-                          child: textTitleMedium('Cây',
+                          child: SText.bodyMedium('Cây',
                               textAlign: TextAlign.center),
                         ),
                         Tab(
-                          child: textTitleMedium('Đá quý',
+                          child: SText.bodyMedium('Đá quý',
                               textAlign: TextAlign.center),
                         ),
                         Tab(
-                          child: textTitleMedium('Dụng cụ',
+                          child: SText.bodyMedium('Dụng cụ',
                               textAlign: TextAlign.center),
                         ),
                       ],
@@ -156,18 +157,18 @@ class _StoreScreenState extends State<StoreScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              textBodyMedium(
-                                  '${storeController.listStorePots[index].name} ${isHanging ? '(☁Treo)' : ''}',
+                              SText.bodyMedium(
+                                  '${storeController.listStorePots[index].name} ${isHanging ? '(☁${'Treo'.tr})' : ''}',
                                   color: Colors.black),
-                              textBodySmall(
+                              SText.bodySmall(
                                   storeController
                                           .listStorePots[index].description ??
                                       '',
                                   color: Colors.black),
-                              textBodySmall(
+                              SText.bodySmall(
                                   '${'Hiệu ứng'.tr}: ${storeController.listStorePots[index].effect ?? 'N.A'}',
                                   color: Colors.black),
-                              textBodySmall(
+                              SText.bodySmall(
                                   '${'Cấp độ mở khóa'.tr}: ${storeController.listStorePots[index].levelUnlock ?? 'N.A'}',
                                   color: Colors.black)
                             ],
@@ -220,7 +221,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              textTitleMedium(
+                              SText.bodyMedium(
                                   storeController.getStringLockLevel(
                                           storeController.listStorePots[index]
                                                   .levelUnlock ??
@@ -278,18 +279,18 @@ class _StoreScreenState extends State<StoreScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            textBodyMedium(
+                            SText.bodyMedium(
                                 '${storeController.listStorePlants[index].name} ${(isHanging ? '(☁Treo)' : '')}',
                                 color: Colors.black),
-                            textBodySmall(
+                            SText.bodySmall(
                                 storeController
                                         .listStorePlants[index].description ??
                                     '',
                                 color: Colors.black),
-                            textBodySmall(
+                            SText.bodySmall(
                                 '${'Hiệu ứng'.tr}: ${storeController.listStorePlants[index].effect ?? 'N.A'}',
                                 color: Colors.black),
-                            textBodySmall(
+                            SText.bodySmall(
                                 '${'Cấp độ mở khóa'.tr}: ${storeController.listStorePlants[index].levelUnlock ?? 'N.A'}',
                                 color: Colors.black)
                           ],
@@ -341,7 +342,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                            textTitleMedium(
+                            SText.bodyMedium(
                                 storeController.getStringLockLevel(
                                         storeController.listStorePlants[index]
                                                 .levelUnlock ??
@@ -397,16 +398,16 @@ class _StoreScreenState extends State<StoreScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            textBodyMedium(
+                            SText.bodyMedium(
                                 storeController.listStoreItems[index].name ??
                                     '',
                                 color: Colors.black),
-                            textBodySmall(
+                            SText.bodySmall(
                                 storeController
                                         .listStoreItems[index].description ??
                                     '',
                                 color: Colors.black),
-                            // textBodySmall(
+                            // SText.bodySmall(
                             //     'Hiệu ứng: ${storeController.listStoreItems[index].effect ?? 'N.A'}',
                             //     color: Colors.black)
                           ],
@@ -449,7 +450,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            textTitleMedium(
+                            SText.bodyMedium(
                                 storeController.listStoreItems[index].priceStore
                                         ?.toString() ??
                                     '',
@@ -498,12 +499,12 @@ class _StoreScreenState extends State<StoreScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              textBodyMedium(
+                              SText.bodyMedium(
                                   storeController.products[index].title,
                                   color: Colors.black),
-                              textBodySmall('Loại đá màu xanh tự bầu trời'.tr,
+                              SText.bodySmall('Loại đá màu xanh tự bầu trời'.tr,
                                   color: Colors.black),
-                              textBodySmall(
+                              SText.bodySmall(
                                   '${'Tiết kiệm'.tr}: ${storeController.products[index].description}',
                                   color: Colors.black)
                             ],
@@ -529,7 +530,7 @@ class _StoreScreenState extends State<StoreScreen> {
                               //     fit: BoxFit.cover,
                               //   ),
                               // ),
-                              textTitleMedium(
+                              SText.bodyMedium(
                                   storeController.products[index].price,
                                   color: Colors.black)
                             ],
@@ -547,7 +548,7 @@ class _StoreScreenState extends State<StoreScreen> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
-        child: textBodyMedium(
+        child: SText.bodyMedium(
             'Đã sở hữu hết sản phẩm, sản phẩm mới sẽ sớm được bày bán'.tr,
             textAlign: TextAlign.center),
       ),

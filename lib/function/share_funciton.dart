@@ -13,8 +13,8 @@ import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/storage/storage.dart';
 import 'package:terrarium_idle/function/rating_app.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
 
-import 'package:terrarium_idle/widgets/text_custom.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // ignore: constant_identifier_names
@@ -135,16 +135,16 @@ class ShareFuntion {
     await showDialog(
       context: context,
       builder: (context) => CupertinoAlertDialog(
-        title: textBodyMedium('Thông báo'.tr, fontWeight: FontWeight.bold),
+        title: SText.bodyMedium('Thông báo'.tr, fontWeight: FontWeight.bold),
         content: Container(
           margin: const EdgeInsets.only(top: 12),
-          child: textBodySmall(
+          child: SText.bodySmall(
             title,
           ),
         ),
         actions: <Widget>[
           CupertinoDialogAction(
-            child: textBodySmall(titleCancel ?? "Hủy".tr,
+            child: SText.bodySmall(titleCancel ?? "Hủy".tr,
                 color: Get.theme.colorScheme.error,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0.3),
@@ -154,7 +154,7 @@ class ShareFuntion {
             },
           ),
           CupertinoDialogAction(
-            child: textBodySmall(titleSubmit ?? 'Xác nhận'.tr,
+            child: SText.bodySmall(titleSubmit ?? 'Xác nhận'.tr,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0.3),

@@ -42,6 +42,9 @@ class Storages {
 
   /// Bật chế độ hiển thị hiệu suất cao
   static const String graphicsOption = 'graphics_option';
+
+    /// Bật chế độ hiển thị bảng hướng dẫn
+  static const String tourialGuide = 'tourial_guide';
 }
 
 class Config {

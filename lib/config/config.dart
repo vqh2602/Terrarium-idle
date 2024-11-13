@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:terrarium_idle/c_theme/c_theme.dart';
+
 class Env {
   static late ModuleConfig config;
 }
@@ -23,4 +26,7 @@ class ModuleConfig {
   String firebaseprojectId = 'terrarium-i';
   String firebaseprojectNumber = '38854833849';
   String dataServer = 'https://vqh2602.github.io/terrarium_data.github.io';
+
+  ThemeData lightTheme = SThemeTask.lightTheme;
+  ThemeData darkTheme = SThemeTask.darkTheme;
 }

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:terrarium_idle/data/models/item.dart';
-
+// level unlock: với item sẽ là số lượng đuọc cộng vào database
 List<ItemData> listItemsData = [
   ItemData(
     id: 'item1',
@@ -12,7 +12,19 @@ List<ItemData> listItemsData = [
     currencyUnit: 'gemstone',
     type: 'item',
     effect: '',
-    levelUnlock: 1,
+    levelUnlock: 10,
+  ),
+  ItemData(
+    id: 'item1',
+    name: 'Phân bón x100'.tr,
+    description: 'Kích thích tăng trưởng cho cây'.tr,
+    image: 'https://i.imgur.com/dXKrKlk.png',
+    priceStore: 1900,
+    priceOxygen: 1900,
+    currencyUnit: 'gemstone',
+    type: 'item',
+    effect: '',
+    levelUnlock: 100,
   ),
   ItemData(
     id: 'item2',
@@ -27,6 +39,18 @@ List<ItemData> listItemsData = [
     levelUnlock: 1,
   ),
   ItemData(
+    id: 'item2',
+    name: 'Xẻng x50'.tr,
+    description: 'Di dời cây và chậu đến vị trí mới'.tr,
+    image: 'https://i.imgur.com/nJt20X8.png',
+    priceStore: 490,
+    priceOxygen: 490,
+    currencyUnit: 'gemstone',
+    type: 'item',
+    effect: 'N.A',
+    levelUnlock: 50,
+  ),
+  ItemData(
     id: 'item3',
     name: 'Oxygen'.tr,
     description: 'chuyển 100 đá quý sang oxygen với tỷ lệ 1.75'.tr,
@@ -36,7 +60,31 @@ List<ItemData> listItemsData = [
     currencyUnit: 'gemstone',
     type: 'item',
     effect: 'N.A',
-    levelUnlock: 1,
+    levelUnlock: 100,
+  ),
+  ItemData(
+    id: 'item3',
+    name: 'Oxygen'.tr,
+    description: 'chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75'.tr,
+    image: 'https://i.imgur.com/6n7hREG.png',
+    priceStore: 1000,
+    priceOxygen: 1000,
+    currencyUnit: 'gemstone',
+    type: 'item',
+    effect: 'N.A',
+    levelUnlock: 1000,
+  ),
+  ItemData(
+    id: 'item3',
+    name: 'Oxygen'.tr,
+    description: 'chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75'.tr,
+    image: 'https://i.imgur.com/6n7hREG.png',
+    priceStore: 10000,
+    priceOxygen: 10000,
+    currencyUnit: 'gemstone',
+    type: 'item',
+    effect: 'N.A',
+    levelUnlock: 10000,
   ),
   ItemData(
     id: 'item4',

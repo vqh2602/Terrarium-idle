@@ -4,9 +4,9 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:terrarium_idle/data/models/event.dart';
 import 'package:terrarium_idle/modules/event/event_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
 import 'package:terrarium_idle/widgets/build_toast.dart';
 import 'package:terrarium_idle/widgets/image_custom.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
 
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
@@ -36,7 +36,7 @@ class _EventScreenState extends State<EventScreen> {
         context: context,
         body: _buildBody(),
         appBar: AppBar(
-          title: textTitleLarge('Sự kiện'.tr),
+          title: SText.titleLarge('Sự kiện'.tr),
           elevation: 0,
           leading: IconButton(
             icon: const Icon(LucideIcons.chevronLeft),
@@ -55,7 +55,7 @@ class _EventScreenState extends State<EventScreen> {
         ? Padding(
             padding: const EdgeInsets.all(20.0),
             child: Center(
-              child: textBodyMedium('Chưa có sự kiện mới'.tr),
+              child: SText.bodyMedium('Chưa có sự kiện mới'.tr),
             ),
           )
         : Container(
@@ -106,11 +106,12 @@ class _EventScreenState extends State<EventScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    textTitleMedium(
+                                    SText.bodyMedium(
                                       eventdata?.title ?? '',
                                     ),
-                                    textBodySmall(eventdata?.description ?? ''),
-                                    textBodySmall(
+                                    SText.bodySmall(
+                                        eventdata?.description ?? ''),
+                                    SText.bodySmall(
                                         '${'Hạn sự kiện'.tr}: ${eventController.listEvent[index].start} - ${eventController.listEvent[index].end}'),
                                   ],
                                 ),

@@ -4,7 +4,8 @@ import 'package:terrarium_idle/c_theme/colors.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/modules/login/login_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
+
 import 'package:terrarium_idle/widgets/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      textHeadlineLarge('Terrarium idle'.toUpperCase(),
+                      SText.headlineLarge('Terrarium idle'.toUpperCase(),
                           color: Colors.black, fontWeight: FontWeight.w900),
                     ],
                   ),
@@ -67,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     //  verticalDirection: VerticalDirection.up,
                     children: [
-                      textBodyMedium(
+                      SText.bodyMedium(
                         'Đăng nhập để tiếp tục\n sử dụng ứng dụng'.tr,
                         textAlign: TextAlign.center,
                       ),
@@ -76,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           loginController.login();
                         },
-                        label: textBodyMedium("Tiếp tục với Google".tr),
+                        label: SText.bodyMedium("Tiếp tục với Google".tr),
                         // backgroundColor: Colors.white,
 
                         // shape: CircleBorder(),
@@ -93,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             loginController.loginApple();
                           },
                           // color: Colors.white,
-                          label: textBodyMedium("Tiếp tục với Apple".tr),
+                          label: SText.bodyMedium("Tiếp tục với Apple".tr),
                           // textStyle: textStyleCustom(
                           //     fontSize: 16,
                           //     fontWeight: FontWeight.bold,
@@ -113,8 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           loginController.loginAnonymous();
                         },
-                        label:
-                            textBodyMedium("Tiếp tục với người dùng khách".tr),
+                        label: SText.bodyMedium(
+                            "Tiếp tục với người dùng khách".tr),
                         // backgroundColor: Colors.white,
 
                         // shape: CircleBorder(),
@@ -161,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 20),
-                  child: textBodySmall(
+                  child: SText.bodySmall(
                     'Khi bạn đăng nhập ứng dụng cũng có nghĩa sẽ đồng ý với các điều khoản của chúng tôi.'
                         .tr,
                     textAlign: TextAlign.center,

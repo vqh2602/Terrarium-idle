@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
 
 class CustomError extends StatelessWidget {
   final FlutterErrorDetails errorDetails;
@@ -25,7 +25,7 @@ class CustomError extends StatelessWidget {
               height: double.infinity * 0.5,
               fit: BoxFit.cover,
             ),
-            textHeadlineMedium(
+            SText.headlineMedium(
                 kDebugMode
                     ? errorDetails.summary.toString()
                     : 'Oups! Hình như đã có lỗi xảy ra!',

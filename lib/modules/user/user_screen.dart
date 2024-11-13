@@ -10,10 +10,11 @@ import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/user/delete_acc.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
 import 'package:terrarium_idle/widgets/build_toast.dart';
 import 'package:terrarium_idle/widgets/compoment/bloc_seting.dart';
 import 'package:terrarium_idle/widgets/compoment/icon_title.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+
 import 'package:terrarium_idle/widgets/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -45,7 +46,7 @@ class _UserScreenState extends State<UserScreen> {
         context: context,
         body: _buildBody(),
         appBar: AppBar(
-          title: textTitleLarge('Tài khoản'.tr),
+          title: SText.titleLarge('Tài khoản'.tr),
           elevation: 0,
           leading: IconButton(
             icon: const Icon(LucideIcons.chevronLeft),
@@ -78,7 +79,7 @@ class _UserScreenState extends State<UserScreen> {
                           ? Padding(
                               padding: const EdgeInsets.all(12),
                               child: Center(
-                                child: textBodyMedium(
+                                child: SText.bodyMedium(
                                     'Chưa có thẻ nào, hãy tham gia sự kiện để nhận thẻ'
                                         .tr,
                                     textAlign: TextAlign.center),
@@ -161,7 +162,7 @@ class _UserScreenState extends State<UserScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  textTitleLarge(
+                                  SText.titleLarge(
                                       userController.user?.user?.userName ??
                                           'N.A'),
                                   iconTitle(
@@ -231,7 +232,7 @@ class _UserScreenState extends State<UserScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      textTitleMedium('Thiết lập'.tr, color: Colors.black),
+                      SText.bodyMedium('Thiết lập'.tr, color: Colors.black),
                       cHeight(16),
                       blockSetting(
                           title: 'Đồng bộ dữ liệu'.tr,
@@ -262,7 +263,7 @@ class _UserScreenState extends State<UserScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      textTitleMedium('Dịch vụ'.tr, color: Colors.black),
+                      SText.bodyMedium('Dịch vụ'.tr, color: Colors.black),
                       cHeight(16),
                       blockSetting(
                           title: 'Đánh giá ứng dụng'.tr,

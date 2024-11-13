@@ -190,4 +190,43 @@ Map<String, String> ja = {
   "Chậu đất treo": "吊り下げ土鍋",
   "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo":
       "土ポットは水はけが良いですが、吊るすのは少し重いです",
+  "Phân bón x100": "肥料×100",
+  "Xẻng x50": "シャベル×50",
+  "chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75": "1000 ジェムを 1.75 の割合で酸素に変換する",
+  "chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75":
+      "10000 ジェムを 1.75 の割合で酸素に変換します",
+  "Loài xương rồng kích thước nhỏ, có nhiều gai": "サボテンは小さいのでトゲが多い",
+  "Xương rồng nhím": "ハリネズミサボテン",
+  "Sen bạch liên": "白蓮",
+  "Loài sen có hoa màu trắng ánh kim, sống bán địa tại vùng đất ngập nước cận nhiệt đới":
+      "ハスの種はメタリックな白い花を持ち、亜熱帯の湿地に半乾燥地帯に生息しています。",
+  "Chậu đất kiềng": "あぶみの土鍋",
+  "Chậu chậu đất thoát nước tốt, kê trên bệ bằng sắt":
+      "水はけの良い土を入れた鉢を鉄製の台座に置きます",
+  "Chậu lam ngọc tròn": "丸い翡翠のポット",
+  "Chậu chậu rất thích hợp cho việc trồng các cây sống dưới nước":
+      "鉢は水草の育成にとても適しています",
+  "Đom đóm": "ホタル",
+  "Đêm dài": "長い夜",
+  "Hướng dẫn sử dụng": "使用説明書",
+  "Xem chi tiết": "詳細を見る",
+  "Không hiển thị lại": "二度と表示しないでください",
+  "Dùng khuyến mãi": "プロモーションを利用する",
+  "Treo": "下がる",
+  "Thất mạt hương": "失われたお香",
+  "Mỗi cành có 7 lá, toả mùi hương nhe nhẹ": "各枝には7枚の葉があり、軽い香りを放ちます。",
+  "Sen đá đinh": "ネイルストーンロータス",
+  "Loài sen đá có các lá thon dài, màu xanh đậm": "多肉植物は細長い濃い緑色の葉を持っています",
+  "Chậu gỗ xoan": "楕円形の木鉢",
+  "Chậu gỗ xoan, họa tiết dọc màu nâu bền mà lại đẹp":
+      "楕円形の木製ポット、茶色の縦模様、耐久性がありながら美しい",
+  "Chậu đá có những họa tiết chấm nâu": "石鍋には茶色の点模様が入っています",
+  "Chậu đá safe": "安全な石造りの洗面器",
+  "Tìm kiếm": "検索",
+  "Chọn phân loại": "カテゴリを選択してください",
+  "Thời tiết": "天気",
+  "Ban công quang đãng": "クリアなバルコニー",
+  "Ban công chiều tà": "夕暮れのバルコニー",
+  "Ban công mưa bão": "嵐のバルコニー",
+  "Ban công trời sao": "星空のバルコニー",
 };

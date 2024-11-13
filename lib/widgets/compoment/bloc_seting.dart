@@ -1,5 +1,6 @@
 import 'package:terrarium_idle/c_theme/colors.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
+
 import 'package:terrarium_idle/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +44,7 @@ Widget blockSetting(
                     cWidth(8),
                   ],
                   Expanded(
-                    child: textLableMedium(title,
+                    child: SText.labelMedium(title,
                         color: Get.isDarkMode ? null : text500),
                   ),
                 ],

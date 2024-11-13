@@ -1,39 +1,29 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 
-class SelectOptionItem {
+class SelectOptionItem<T> {
   String? key;
   String? value;
-  dynamic data;
-
+  T? data;
+  bool? status = false;
   SelectOptionItem({
     required this.key,
-    required this.value,
-    required this.data,
+    this.value,
+    this.data,
+    this.status,
   });
 
-  SelectOptionItem copyWith({
-    String? key,
-    String? value,
-    dynamic data,
-  }) {
-    return SelectOptionItem(
-      key: key ?? this.key,
-      value: value ?? this.value,
-      data: data ?? this.data,
-    );
-  }
-
   @override
-  bool operator ==(covariant SelectOptionItem other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other.key == key && other.value == value && other.data == data;
+    return other is SelectOptionItem<T> &&
+        other.key == key &&
+        other.value == value &&
+        other.data == data &&
+        other.status == status;
   }
 
   @override
-  int get hashCode => key.hashCode ^ value.hashCode ^ data.hashCode;
-
-  @override
-  String toString() =>
-      'SelectOptionItem(key: $key, value: $value, data: $data)';
+  int get hashCode {
+    return key.hashCode ^ value.hashCode ^ data.hashCode ^ status.hashCode;
+  }
 }

@@ -9,6 +9,7 @@ import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/local/list_effect.dart';
 import 'package:terrarium_idle/data/local/list_plants.dart';
 import 'package:terrarium_idle/data/local/list_pots.dart';
+import 'package:terrarium_idle/data/local/list_weather.dart';
 import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/select_option_item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
@@ -32,8 +33,10 @@ class GardenCoopController extends GetxController
   bool isRain = false;
   List<SelectOptionItem> listSelectOptionEffect = [];
   List<SelectOptionItem> listSelectOptionMusic = [];
+  List<SelectOptionItem> listSelectOptionWeatherLandscape = [];
   SelectOptionItem? selectEffect;
   SelectOptionItem? selectMusic;
+  SelectOptionItem? selectWeatherLandscape;
   RepoImage repoImage = RepoImage();
   bool isWater = false;
   bool isLike = false;
@@ -47,6 +50,7 @@ class GardenCoopController extends GetxController
     isGraphicsHight = box.read(Storages.graphicsOption) ?? false;
     initDataEffect();
     initDataMusic();
+
     initAudio(asset: selectMusic?.value ?? Assets.audios.peacefulgarden);
     changeUI();
   }
@@ -56,7 +60,7 @@ class GardenCoopController extends GetxController
     // List<ItemData> listPlant = [];
     listSelectOptionEffect.clear();
     listSelectOptionEffect.addAll(listPlantsData
-        .where((element1) => userData!.plants!
+        .where((element1) => (userData?.plants ?? [])
             .where((element2) => element2.idPlant == element1.id)
             .isNotEmpty)
         .map((e) {
@@ -69,7 +73,7 @@ class GardenCoopController extends GetxController
           key: itemData?.name, value: itemData?.image, data: itemData);
     }).toList());
     listSelectOptionEffect.addAll(listPotsData
-        .where((element1) => userData!.plants!
+        .where((element1) => (userData?.plants ?? [])
             .where((element2) => element2.idPot == element1.id)
             .isNotEmpty)
         .map((e) {
@@ -103,7 +107,7 @@ class GardenCoopController extends GetxController
     listSelectOptionMusic.add(SelectOptionItem(
         key: 'Mặc định'.tr, value: Assets.audios.peacefulgarden, data: {}));
     listSelectOptionMusic.addAll(listPlantsData
-        .where((element1) => userData!.plants!
+        .where((element1) => (userData?.plants ?? [])
             .where((element2) => element2.idPlant == element1.id)
             .isNotEmpty)
         .map((e) {
@@ -116,7 +120,7 @@ class GardenCoopController extends GetxController
           key: itemData?.name, value: itemData?.image, data: itemData);
     }).toList());
     listSelectOptionMusic.addAll(listPotsData
-        .where((element1) => userData!.plants!
+        .where((element1) => (userData?.plants ?? [])
             .where((element2) => element2.idPot == element1.id)
             .isNotEmpty)
         .map((e) {
@@ -136,6 +140,51 @@ class GardenCoopController extends GetxController
             Random().nextInt(listSelectOptionMusic.length)];
       } on Exception catch (_) {
         selectMusic = listSelectOptionMusic.firstOrNull;
+      }
+    }
+    update();
+  }
+
+  initDataWeatherLandscape() {
+    // List<ItemData> listPlant = [];
+    listSelectOptionWeatherLandscape.clear();
+    listSelectOptionWeatherLandscape
+        .add(SelectOptionItem(key: 'Mặc định'.tr, value: '', data: {}));
+    listSelectOptionWeatherLandscape.addAll(listPlantsData
+        .where((element1) => userData!.plants!
+            .where((element2) => element2.idPlant == element1.id)
+            .isNotEmpty)
+        .map((e) {
+      ItemData? itemData = listWeatherLandscapeData
+          .where((element) =>
+              e.effect!.contains(element.id!) && element.type == 'landscape')
+          .firstOrNull;
+
+      return SelectOptionItem(
+          key: itemData?.name, value: itemData?.image, data: itemData);
+    }).toList());
+    listSelectOptionWeatherLandscape.addAll(listPotsData
+        .where((element1) => userData!.plants!
+            .where((element2) => element2.idPot == element1.id)
+            .isNotEmpty)
+        .map((e) {
+      ItemData? itemData = listWeatherLandscapeData
+          .where((element) =>
+              e.effect!.contains(element.id!) && element.type == 'landscape')
+          .firstOrNull;
+
+      return SelectOptionItem(
+          key: itemData?.name, value: itemData?.image, data: itemData);
+    }).toList());
+
+    listSelectOptionWeatherLandscape
+        .removeWhere((element) => element.value == null);
+    if (selectWeatherLandscape == null) {
+      try {
+        selectWeatherLandscape = listSelectOptionWeatherLandscape[
+            Random().nextInt(listSelectOptionWeatherLandscape.length)];
+      } on Exception catch (_) {
+        selectWeatherLandscape = listSelectOptionWeatherLandscape.firstOrNull;
       }
     }
     update();

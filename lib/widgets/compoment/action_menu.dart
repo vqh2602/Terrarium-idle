@@ -4,9 +4,10 @@ import 'package:pie_menu/pie_menu.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
 import 'package:terrarium_idle/widgets/build_toast.dart';
 import 'package:terrarium_idle/widgets/compoment/picket_move.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 List<PieAction> listActionsMenu(BuildContext context,
@@ -104,6 +105,7 @@ List<PieAction> listActionsMenu(BuildContext context,
             floor: floor,
             position: position,
             userData: userData,
+            context: context,
             update: update);
       },
       buttonTheme: const PieButtonTheme(
@@ -142,6 +144,6 @@ _itemMenuPlant(String title) {
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
-      child: textBodySmall(title,
+      child: SText.bodySmall(title,
           color: Get.theme.primaryColor, fontWeight: FontWeight.w700));
 }

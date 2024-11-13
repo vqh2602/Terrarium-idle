@@ -2,7 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terrarium_idle/data/models/user.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
+
 import 'package:terrarium_idle/widgets/widgets.dart';
 
 Widget coopWidget({required UserData? userData, Function()? onTap}) {
@@ -35,17 +36,17 @@ Widget coopWidget({required UserData? userData, Function()? onTap}) {
                 width: Get.width * .6,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: textTitleMedium(
+                  child: SText.bodyMedium(
                     '${userData?.user?.userName} - Level ${userData?.user?.userLevel ?? 1}',
                   ),
                 ),
               ),
-              textBodySmall('Like: ${userData?.user?.userTotalLike ?? 0}'),
+              SText.bodySmall('Like: ${userData?.user?.userTotalLike ?? 0}'),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  textBodySmall('${'Huy hiệu'.tr}: '),
+                  SText.bodySmall('${'Huy hiệu'.tr}: '),
                   Container(
                     color: Colors.transparent,
                     width: Get.width * 0.45,
@@ -55,7 +56,7 @@ Widget coopWidget({required UserData? userData, Function()? onTap}) {
                         for (Bag item in userData?.user?.bag ?? [])
                           Padding(
                             padding: const EdgeInsets.only(right: 8),
-                            child: textBodySmall(item.nameBag ?? 'N.A',
+                            child: SText.bodySmall(item.nameBag ?? 'N.A',
                                 color: item.colorBag),
                           ),
                       ]),

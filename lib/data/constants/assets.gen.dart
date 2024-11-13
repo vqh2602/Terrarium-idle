@@ -27,6 +27,9 @@ class $AssetsAudiosGen {
   /// File path: assets/audios/m3.mp3
   String get m3 => 'assets/audios/m3.mp3';
 
+  /// File path: assets/audios/m4.mp3
+  String get m4 => 'assets/audios/m4.mp3';
+
   /// File path: assets/audios/peacefulgarden.mp3
   String get peacefulgarden => 'assets/audios/peacefulgarden.mp3';
 
@@ -38,7 +41,7 @@ class $AssetsAudiosGen {
 
   /// List of all assets
   List<String> get values =>
-      [levelUp, like, m1, m2, m3, peacefulgarden, rain, tap];
+      [levelUp, like, m1, m2, m3, m4, peacefulgarden, rain, tap];
 }
 
 class $AssetsBackgroundsGen {
@@ -53,8 +56,11 @@ class $AssetsBackgroundsGen {
   /// File path: assets/backgrounds/sky_sun_day.riv
   String get skySunDay => 'assets/backgrounds/sky_sun_day.riv';
 
+  /// File path: assets/backgrounds/sky_sun_set.riv
+  String get skySunSet => 'assets/backgrounds/sky_sun_set.riv';
+
   /// List of all assets
-  List<String> get values => [skyMoonNight, skyRain, skySunDay];
+  List<String> get values => [skyMoonNight, skyRain, skySunDay, skySunSet];
 }
 
 class $AssetsImagesGen {
@@ -67,6 +73,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/gemstone.png
   AssetGenImage get gemstone =>
       const AssetGenImage('assets/images/gemstone.png');
+
+  /// File path: assets/images/gift.gif
+  AssetGenImage get gift => const AssetGenImage('assets/images/gift.gif');
 
   /// File path: assets/images/info_plant.png
   AssetGenImage get infoPlant =>
@@ -91,8 +100,18 @@ class $AssetsImagesGen {
   AssetGenImage get ticket => const AssetGenImage('assets/images/ticket.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [fertilizer, gemstone, infoPlant, oxygen, r1, r2, sell, shovel, ticket];
+  List<AssetGenImage> get values => [
+        fertilizer,
+        gemstone,
+        gift,
+        infoPlant,
+        oxygen,
+        r1,
+        r2,
+        sell,
+        shovel,
+        ticket
+      ];
 }
 
 class $AssetsLogoGen {
@@ -113,12 +132,6 @@ class $AssetsRiveGen {
 
   /// Directory path: assets/rive/overlay
   $AssetsRiveOverlayGen get overlay => const $AssetsRiveOverlayGen();
-
-  /// Directory path: assets/rive/plants
-  $AssetsRivePlantsGen get plants => const $AssetsRivePlantsGen();
-
-  /// Directory path: assets/rive/pots
-  $AssetsRivePotsGen get pots => const $AssetsRivePotsGen();
 }
 
 class $AssetsRiveOverlayGen {
@@ -139,145 +152,12 @@ class $AssetsRiveOverlayGen {
   /// File path: assets/rive/overlay/overlay3.riv
   String get overlay3 => 'assets/rive/overlay/overlay3.riv';
 
+  /// File path: assets/rive/overlay/overlay4.riv
+  String get overlay4 => 'assets/rive/overlay/overlay4.riv';
+
   /// List of all assets
   List<String> get values =>
-      [cloudIcon, lightLike, overlay1, overlay2, overlay3];
-}
-
-class $AssetsRivePlantsGen {
-  const $AssetsRivePlantsGen();
-
-  /// File path: assets/rive/plants/plant1.riv
-  String get plant1 => 'assets/rive/plants/plant1.riv';
-
-  /// File path: assets/rive/plants/plant10.riv
-  String get plant10 => 'assets/rive/plants/plant10.riv';
-
-  /// File path: assets/rive/plants/plant11.riv
-  String get plant11 => 'assets/rive/plants/plant11.riv';
-
-  /// File path: assets/rive/plants/plant12.riv
-  String get plant12 => 'assets/rive/plants/plant12.riv';
-
-  /// File path: assets/rive/plants/plant13.riv
-  String get plant13 => 'assets/rive/plants/plant13.riv';
-
-  /// File path: assets/rive/plants/plant2.riv
-  String get plant2 => 'assets/rive/plants/plant2.riv';
-
-  /// File path: assets/rive/plants/plant3.riv
-  String get plant3 => 'assets/rive/plants/plant3.riv';
-
-  /// File path: assets/rive/plants/plant4.riv
-  String get plant4 => 'assets/rive/plants/plant4.riv';
-
-  /// File path: assets/rive/plants/plant5.riv
-  String get plant5 => 'assets/rive/plants/plant5.riv';
-
-  /// File path: assets/rive/plants/plant6.riv
-  String get plant6 => 'assets/rive/plants/plant6.riv';
-
-  /// File path: assets/rive/plants/plant7.riv
-  String get plant7 => 'assets/rive/plants/plant7.riv';
-
-  /// File path: assets/rive/plants/plant8.riv
-  String get plant8 => 'assets/rive/plants/plant8.riv';
-
-  /// File path: assets/rive/plants/plant9.riv
-  String get plant9 => 'assets/rive/plants/plant9.riv';
-
-  /// File path: assets/rive/plants/pot15.riv
-  String get pot15 => 'assets/rive/plants/pot15.riv';
-
-  /// List of all assets
-  List<String> get values => [
-        plant1,
-        plant10,
-        plant11,
-        plant12,
-        plant13,
-        plant2,
-        plant3,
-        plant4,
-        plant5,
-        plant6,
-        plant7,
-        plant8,
-        plant9,
-        pot15
-      ];
-}
-
-class $AssetsRivePotsGen {
-  const $AssetsRivePotsGen();
-
-  /// File path: assets/rive/pots/pot1.riv
-  String get pot1 => 'assets/rive/pots/pot1.riv';
-
-  /// File path: assets/rive/pots/pot10.riv
-  String get pot10 => 'assets/rive/pots/pot10.riv';
-
-  /// File path: assets/rive/pots/pot11.riv
-  String get pot11 => 'assets/rive/pots/pot11.riv';
-
-  /// File path: assets/rive/pots/pot12.riv
-  String get pot12 => 'assets/rive/pots/pot12.riv';
-
-  /// File path: assets/rive/pots/pot13.riv
-  String get pot13 => 'assets/rive/pots/pot13.riv';
-
-  /// File path: assets/rive/pots/pot14.riv
-  String get pot14 => 'assets/rive/pots/pot14.riv';
-
-  /// File path: assets/rive/pots/pot15.riv
-  String get pot15 => 'assets/rive/pots/pot15.riv';
-
-  /// File path: assets/rive/pots/pot16.riv
-  String get pot16 => 'assets/rive/pots/pot16.riv';
-
-  /// File path: assets/rive/pots/pot2.riv
-  String get pot2 => 'assets/rive/pots/pot2.riv';
-
-  /// File path: assets/rive/pots/pot3.riv
-  String get pot3 => 'assets/rive/pots/pot3.riv';
-
-  /// File path: assets/rive/pots/pot4.riv
-  String get pot4 => 'assets/rive/pots/pot4.riv';
-
-  /// File path: assets/rive/pots/pot5.riv
-  String get pot5 => 'assets/rive/pots/pot5.riv';
-
-  /// File path: assets/rive/pots/pot6.riv
-  String get pot6 => 'assets/rive/pots/pot6.riv';
-
-  /// File path: assets/rive/pots/pot7.riv
-  String get pot7 => 'assets/rive/pots/pot7.riv';
-
-  /// File path: assets/rive/pots/pot8.riv
-  String get pot8 => 'assets/rive/pots/pot8.riv';
-
-  /// File path: assets/rive/pots/pot9.riv
-  String get pot9 => 'assets/rive/pots/pot9.riv';
-
-  /// List of all assets
-  List<String> get values => [
-        pot1,
-        pot10,
-        pot11,
-        pot12,
-        pot13,
-        pot14,
-        pot15,
-        pot16,
-        pot2,
-        pot3,
-        pot4,
-        pot5,
-        pot6,
-        pot7,
-        pot8,
-        pot9
-      ];
+      [cloudIcon, lightLike, overlay1, overlay2, overlay3, overlay4];
 }
 
 class Assets {
@@ -320,7 +200,7 @@ class AssetGenImage {
     ImageRepeat repeat = ImageRepeat.noRepeat,
     Rect? centerSlice,
     bool matchTextDirection = false,
-    bool gaplessPlayback = false,
+    bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
     FilterQuality filterQuality = FilterQuality.low,

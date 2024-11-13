@@ -182,5 +182,45 @@ Map<String, String> ko = {
       "스냅 트랩 식물은 아열대 습지에 자생하는 식충 식물입니다.",
   "Chậu đất treo": "매달린 항아리",
   "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo":
-      "흙 화분은 배수가 잘 되지만 걸기에는 약간 무거워요"
+      "흙 화분은 배수가 잘 되지만 걸기에는 약간 무거워요",
+  "Phân bón x100": "비료 x100",
+  "Xẻng x50": "삽 x50",
+  "chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75": "보석 1000개를 1.75의 비율로 산소로 변환",
+  "chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75":
+      "보석 10000개를 1.75의 비율로 산소로 변환",
+  "Loài xương rồng kích thước nhỏ, có nhiều gai": "선인장은 크기가 작고 가시가 많다.",
+  "Xương rồng nhím": "고슴도치 선인장",
+  "Sen bạch liên": "백련",
+  "Loài sen có hoa màu trắng ánh kim, sống bán địa tại vùng đất ngập nước cận nhiệt đới":
+      "연꽃은 금속성 흰색 꽃을 피우며 아열대 습지에서 반건조 생활을 합니다.",
+  "Chậu đất kiềng": "등자 위의 토기 냄비",
+  "Chậu chậu đất thoát nước tốt, kê trên bệ bằng sắt":
+      "배수가 잘 되는 흙이 담긴 화분을 철제 받침대 위에 올려 놓는다.",
+  "Chậu lam ngọc tròn": "둥근 옥 항아리",
+  "Chậu chậu rất thích hợp cho việc trồng các cây sống dưới nước":
+      "화분은 수생 식물 재배에 매우 적합합니다.",
+  "Đom đóm": "반딧불이",
+  "Đêm dài": "긴 밤",
+  "Hướng dẫn sử dụng": "사용 지침",
+  "Xem chi tiết": "세부정보 보기",
+  "Không hiển thị lại": "다시 표시하지 않음",
+  "Dùng khuyến mãi": "프로모션 이용",
+  "Treo": "걸다",
+  "Thất mạt hương": "잃어버린 향",
+  "Mỗi cành có 7 lá, toả mùi hương nhe nhẹ": "각 가지에는 7개의 잎이 있어 은은한 향기가 난다.",
+  "Sen đá đinh": "네일스톤 연꽃",
+  "Loài sen đá có các lá thon dài, màu xanh đậm":
+      "다육 식물은 길쭉한 짙은 녹색 잎을 가지고 있습니다.",
+  "Chậu gỗ xoan": "타원형 나무 냄비",
+  "Chậu gỗ xoan, họa tiết dọc màu nâu bền mà lại đẹp":
+      "타원형 나무 냄비, 갈색 수직 패턴, 내구성이 있지만 아름답습니다.",
+  "Chậu đá có những họa tiết chấm nâu": "돌솥에는 갈색 도트 무늬가 있습니다",
+  "Chậu đá safe": "안전한 돌 세면대",
+  "Tìm kiếm": "찾다",
+  "Chọn phân loại": "카테고리 선택",
+  "Thời tiết": "날씨",
+  "Ban công quang đãng": "깨끗한 발코니",
+  "Ban công chiều tà": "황혼의 발코니",
+  "Ban công mưa bão": "폭풍우 치는 발코니",
+  "Ban công trời sao": "별이 빛나는 발코니"
 };

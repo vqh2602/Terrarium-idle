@@ -5,11 +5,14 @@ import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/local/list_plants.dart';
 import 'package:terrarium_idle/data/local/list_pots.dart';
 import 'package:terrarium_idle/data/models/item.dart';
+import 'package:terrarium_idle/data/models/select_option_item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
 import 'package:terrarium_idle/widgets/build_toast.dart';
+import 'package:terrarium_idle/widgets/compoment/search_item.dart';
 import 'package:terrarium_idle/widgets/image_custom.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+
 import 'package:terrarium_idle/widgets/widgets.dart';
 
 showPickPotsAndPlants(
@@ -34,7 +37,7 @@ showPickPotsAndPlants(
               color: Colors.white,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-          height: Get.height * 0.8,
+          height: Get.height * 0.85,
           width: Get.width,
           child: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
@@ -59,7 +62,7 @@ showPickPotsAndPlants(
                                   duration: const Duration(milliseconds: 500),
                                   curve: Curves.easeInOut);
                             },
-                            child: textTitleLarge('Chọn chậu'.tr,
+                            child: SText.titleMedium('Chọn chậu'.tr,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),
                           ),
@@ -78,7 +81,7 @@ showPickPotsAndPlants(
                                   duration: const Duration(milliseconds: 500),
                                   curve: Curves.easeInOut);
                             },
-                            child: textTitleLarge('Chọn cây'.tr,
+                            child: SText.titleMedium('Chọn cây'.tr,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),
                           ),
@@ -105,8 +108,12 @@ showPickPotsAndPlants(
                                           });
                                         },
                                         icon: const Icon(Icons.close)),
-                                    textBodySmall('Chậu đang chọn'.tr,
-                                        color: Colors.black),
+                                    cWidth(4),
+                                    Expanded(
+                                      child: SText.bodySmall(
+                                          'Chậu đang chọn'.tr,
+                                          color: Colors.black),
+                                    ),
                                   ],
                                 ),
                                 Container(
@@ -149,8 +156,11 @@ showPickPotsAndPlants(
                                           });
                                         },
                                         icon: const Icon(Icons.close)),
-                                    textBodySmall('Cây đang chọn'.tr,
-                                        color: Colors.black),
+                                    cWidth(4),
+                                    Expanded(
+                                      child: SText.bodySmall('Cây đang chọn'.tr,
+                                          color: Colors.black),
+                                    ),
                                   ],
                                 ),
                                 Container(
@@ -257,8 +267,22 @@ _pickPots({Function? setIdPot, required List<ItemData> listPots}) {
       //   Padding(
       //     padding: const EdgeInsets.all(8.0),
       //     child:
-      //         textTitleLarge('Chậu đang chọn', fontWeight: FontWeight.w700),
+      //         SText.titleLarge('Chậu đang chọn', fontWeight: FontWeight.w700),
       //   ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: searchItem<ItemData>(
+            isImage: true,
+            onSelected: (SelectOptionItem<ItemData>? value) async {
+              ShareFuntion.tapPlayAudio();
+              setIdPot!(value?.data!);
+            },
+            options: listPots
+                .map((e) => SelectOptionItem<ItemData>(
+                    key: '${e.name}', data: e, value: e.image))
+                .toList()),
+      ),
+
       Expanded(
         child: ListView.builder(
           shrinkWrap: true,
@@ -303,13 +327,13 @@ _pickPots({Function? setIdPot, required List<ItemData> listPots}) {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            textBodyMedium(
+                            SText.bodyMedium(
                               '${listPots[index].name!} ${listPots[index].itemTypeAttribute == ItemTypeAttribute.hanging ? '(☁Treo)' : ''}',
                               color: Colors.black,
                             ),
-                            textBodySmall(listPots[index].description!,
+                            SText.bodySmall(listPots[index].description!,
                                 color: Colors.black),
-                            textBodySmall(
+                            SText.bodySmall(
                                 '${'Hiệu ứng'.tr}: ${listPots[index].effect}',
                                 color: Colors.black)
                           ],
@@ -333,7 +357,7 @@ _pickPots({Function? setIdPot, required List<ItemData> listPots}) {
                                 //         : 'assets/images/gemstone.png',
                               ),
                             ),
-                            textBodySmall(
+                            SText.bodySmall(
                               listPots[index].priceOxygen!.toString(),
                             )
                           ],
@@ -357,8 +381,23 @@ _pickPlants({Function? setIdPlant, required List<ItemData> listPlants}) {
       // if (idPlant != '')
       //   Padding(
       //     padding: const EdgeInsets.all(8.0),
-      //     child: textTitleLarge('Cáy đang chọn', fontWeight: FontWeight.w700),
+      //     child: SText.titleLarge('Cáy đang chọn', fontWeight: FontWeight.w700),
       //   ),
+
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: searchItem<ItemData>(
+            isImage: true,
+            onSelected: (SelectOptionItem<ItemData>? value) async {
+              ShareFuntion.tapPlayAudio();
+              setIdPlant!(value?.data!);
+            },
+            options: listPlants
+                .map((e) => SelectOptionItem<ItemData>(
+                    key: '${e.name}', data: e, value: e.image))
+                .toList()),
+      ),
+
       Expanded(
         child: ListView.builder(
           shrinkWrap: true,
@@ -406,12 +445,12 @@ _pickPlants({Function? setIdPlant, required List<ItemData> listPlants}) {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            textBodyMedium(
+                            SText.bodyMedium(
                                 '${listPlants[index].name!} ${listPlants[index].itemTypeAttribute == ItemTypeAttribute.hanging ? '(☁Treo)' : ''}',
                                 color: Colors.black),
-                            textBodySmall(listPlants[index].description!,
+                            SText.bodySmall(listPlants[index].description!,
                                 color: Colors.black),
-                            textBodySmall(
+                            SText.bodySmall(
                                 'Hiệu ứng: ${listPlants[index].effect}',
                                 color: Colors.black)
                           ],
@@ -429,7 +468,7 @@ _pickPlants({Function? setIdPlant, required List<ItemData> listPlants}) {
                                 Assets.images.oxygen.path,
                               ),
                             ),
-                            textBodySmall(
+                            SText.bodySmall(
                               listPlants[index].priceOxygen!.toString(),
                             )
                           ],
@@ -449,6 +488,6 @@ _pickPlants({Function? setIdPlant, required List<ItemData> listPlants}) {
 
 _showEmpty() {
   return Center(
-    child: textBodyMedium('Vào cửa hàng để mở khóa'.tr, color: Colors.black),
+    child: SText.bodyMedium('Vào cửa hàng để mở khóa'.tr, color: Colors.black),
   );
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:terrarium_idle/c_theme/colors.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
 
 Widget buildBody(
     {required BuildContext context,
@@ -36,14 +36,14 @@ Future<bool> onWillPop(BuildContext context, bool isCheckBeforePop) async {
   bool exitResult = await showDialog(
     context: context,
     builder: (context) => CupertinoAlertDialog(
-      title: textBodyLarge("Thông báo", fontWeight: FontWeight.w700),
+      title: SText.bodyLarge("Thông báo", fontWeight: FontWeight.w700),
       content: Container(
         margin: const EdgeInsets.only(top: 16),
-        child: textBodyMedium("Bạn có chắc chắn muốn thoát khỏi ứng dụng?"),
+        child: SText.bodyMedium("Bạn có chắc chắn muốn thoát khỏi ứng dụng?"),
       ),
       actions: <Widget>[
         CupertinoDialogAction(
-          child: textBodyMedium(
+          child: SText.bodyMedium(
             "Hủy",
             color: Get.theme.colorScheme.error,
           ),
@@ -52,7 +52,7 @@ Future<bool> onWillPop(BuildContext context, bool isCheckBeforePop) async {
           },
         ),
         CupertinoDialogAction(
-          child: textBodyMedium(
+          child: SText.bodyMedium(
             'Xác nhận',
           ),
           onPressed: () {

@@ -198,7 +198,50 @@ Map<String, String> vi = {
   "Cây bẫy kẹp": "Cây bẫy kẹp",
   "Cây bẫy kẹp là một loài thực vật ăn thịt, sống bản địa tại vùng đất ngập nước cận nhiệt đới":
       "Cây bẫy kẹp là một loài thực vật ăn thịt, sống bản địa tại vùng đất ngập nước cận nhiệt đới",
-      "Chậu đất treo":"Chậu đất treo",
-      "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo":"Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo"
-
+  "Chậu đất treo": "Chậu đất treo",
+  "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo":
+      "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo",
+  "Phân bón x100": "Phân bón x100",
+  "Xẻng x50": "Xẻng x50",
+  "chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75":
+      "chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75",
+  "chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75":
+      "chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75",
+  "Loài xương rồng kích thước nhỏ, có nhiều gai":
+      "Loài xương rồng kích thước nhỏ, có nhiều gai",
+  "Xương rồng nhím": "Xương rồng nhím",
+  "Sen bạch liên": "Sen bạch liên",
+  "Loài sen có hoa màu trắng ánh kim, sống bán địa tại vùng đất ngập nước cận nhiệt đới":
+      "Loài sen có hoa màu trắng ánh kim, sống bán địa tại vùng đất ngập nước cận nhiệt đới",
+  "Chậu đất kiềng": "Chậu đất kiềng",
+  "Chậu chậu đất thoát nước tốt, kê trên bệ bằng sắt":
+      "Chậu chậu đất thoát nước tốt, kê trên bệ bằng sắt",
+  "Chậu lam ngọc tròn": "Chậu lam ngọc tròn",
+  "Chậu chậu rất thích hợp cho việc trồng các cây sống dưới nước":
+      "Chậu chậu rất thích hợp cho việc trồng các cây sống dưới nước",
+  "Đom đóm": "Đom đóm",
+  "Đêm dài": "Đêm dài",
+  "Hướng dẫn sử dụng": "Hướng dẫn sử dụng",
+  "Xem chi tiết": "Xem chi tiết",
+  "Không hiển thị lại": "Không hiển thị lại",
+  "Dùng khuyến mãi": "Dùng khuyến mãi",
+  "Treo": "Treo",
+  "Thất mạt hương": "Thất mạt hương",
+  "Mỗi cành có 7 lá, toả mùi hương nhe nhẹ":
+      "Mỗi cành có 7 lá, toả mùi hương nhe nhẹ",
+  "Sen đá đinh": "Sen đá đinh",
+  "Loài sen đá có các lá thon dài, màu xanh đậm":
+      "Loài sen đá có các lá thon dài, màu xanh đậm",
+  "Chậu gỗ xoan": "Chậu gỗ xoan",
+  "Chậu gỗ xoan, họa tiết dọc màu nâu bền mà lại đẹp":
+      "Chậu gỗ xoan, họa tiết dọc màu nâu bền mà lại đẹp",
+  "Chậu đá có những họa tiết chấm nâu": "Chậu đá có những họa tiết chấm nâu",
+  "Chậu đá safe": "Chậu đá safe",
+  "Tìm kiếm": "Tìm kiếm",
+  "Chọn phân loại": "Chọn phân loại",
+  "Thời tiết": "Thời tiết",
+  "Ban công quang đãng": "Ban công quang đãng",
+  "Ban công chiều tà": "Ban công chiều tà",
+  "Ban công mưa bão": "Ban công mưa bão",
+  "Ban công trời sao": "Ban công trời sao",
 };

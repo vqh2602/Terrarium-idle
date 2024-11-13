@@ -204,4 +204,47 @@ Map<String, String> en = {
   "Chậu đất treo": "Hanging clay pots",
   "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo":
       "Soil pots drain well, but are a bit heavy to hang",
+  "Phân bón x100": "Fertilizer x100",
+  "Xẻng x50": "Shovel x50",
+  "chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75":
+      "convert 1000 gems to oxygen at a rate of 1.75",
+  "chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75":
+      "convert 10000 gems to oxygen at a rate of 1.75",
+  "Loài xương rồng kích thước nhỏ, có nhiều gai":
+      "The cactus is small in size and has many thorns",
+  "Xương rồng nhím": "Hedgehog cactus",
+  "Sen bạch liên": "White lotus",
+  "Loài sen có hoa màu trắng ánh kim, sống bán địa tại vùng đất ngập nước cận nhiệt đới":
+      "The lotus species has metallic white flowers and lives semi-aridally in subtropical wetlands",
+  "Chậu đất kiềng": "Earthen pots on stirrups",
+  "Chậu chậu đất thoát nước tốt, kê trên bệ bằng sắt":
+      "Pots with well-drained soil, placed on iron pedestals",
+  "Chậu lam ngọc tròn": "Round jade pot",
+  "Chậu chậu rất thích hợp cho việc trồng các cây sống dưới nước":
+      "Pots are very suitable for growing aquatic plants",
+  "Đom đóm": "Firefly",
+  "Đêm dài": "Long night",
+  "Hướng dẫn sử dụng": "Instructions for use",
+  "Xem chi tiết": "See details",
+  "Không hiển thị lại": "Do not show again",
+  "Dùng khuyến mãi": "Use promotions",
+  "Treo": "Hang",
+  "Thất mạt hương": "Lost incense",
+  "Mỗi cành có 7 lá, toả mùi hương nhe nhẹ":
+      "Each branch has 7 leaves, giving off a light scent",
+  "Sen đá đinh": "Nail stone lotus",
+  "Loài sen đá có các lá thon dài, màu xanh đậm":
+      "Succulents have elongated, dark green leaves",
+  "Chậu gỗ xoan": "Oval wooden pot",
+  "Chậu gỗ xoan, họa tiết dọc màu nâu bền mà lại đẹp":
+      "Oval wooden pot, brown vertical pattern, durable but beautiful",
+  "Chậu đá có những họa tiết chấm nâu": "The stone pot has brown dot patterns",
+  "Chậu đá safe": "Safe stone basin",
+  "Tìm kiếm": "Search",
+  "Chọn phân loại": "Select category",
+  "Thời tiết": "Weather",
+  "Ban công quang đãng": "Clear balcony",
+  "Ban công chiều tà": "Balcony at dusk",
+  "Ban công mưa bão": "Stormy balcony",
+  "Ban công trời sao": "Starry balcony"
 };

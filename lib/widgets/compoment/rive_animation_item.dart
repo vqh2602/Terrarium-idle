@@ -4,15 +4,6 @@ import 'package:rive/rive.dart';
 import 'package:terrarium_idle/config/config.dart';
 import 'package:terrarium_idle/widgets/widgets.dart';
 
-
-
-
-
-
-
-
-
-
 class RiveAnimationItem extends StatefulWidget {
   final BoxConstraints constraints;
   final String plantId;

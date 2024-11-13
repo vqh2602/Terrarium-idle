@@ -5,8 +5,9 @@ import 'package:terrarium_idle/modules/coop/coop_controller.dart';
 import 'package:terrarium_idle/modules/coop/garden_coop/garden_coop_screen.dart';
 import 'package:terrarium_idle/modules/garden/garden_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
+import 'package:terrarium_idle/widgets/base/text/text_style.dart';
 import 'package:terrarium_idle/widgets/compoment/coop_widget.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
 
 class CoopScreen extends StatefulWidget {
   const CoopScreen({super.key});
@@ -37,7 +38,7 @@ class _CoopScreenState extends State<CoopScreen> {
         context: context,
         body: _buildBody(),
         appBar: AppBar(
-          title: textTitleLarge('Thế giới'.tr),
+          title: SText.titleLarge('Thế giới'.tr),
           elevation: 0,
           leading: IconButton(
             icon: const Icon(LucideIcons.chevronLeft),
@@ -82,7 +83,9 @@ class _CoopScreenState extends State<CoopScreen> {
                           borderRadius: BorderRadius.circular(100)),
                       // labelText: 'Nhập id',
                       hintText: 'Nhập id'.tr,
-                      hintStyle: textStyleCustom(fontSize: 14)),
+                      hintStyle: STextTheme.bodyMedium
+                          .value(context)
+                          ?.copyWith(fontSize: 14)),
                 ),
               ),
               Expanded(

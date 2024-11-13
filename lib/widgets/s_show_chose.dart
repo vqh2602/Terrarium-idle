@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:terrarium_idle/data/models/select_option_item.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
+
 import 'package:terrarium_idle/widgets/widgets.dart';
 
 /// chọn 1 phần tử trong danh sách
@@ -49,11 +50,11 @@ Widget showBottomListChose(
                           Get.back();
                           if (onCancel != null) onCancel();
                         },
-                        icon: textBodyMedium(
+                        icon: SText.bodyMedium(
                           'Huỷ',
                           // color: Get.theme.primaryColor,
                         )),
-                    textTitleMedium(
+                    SText.bodyMedium(
                       title ?? "Danh sách",
                       // fontWeight: 800,
                       fontSize: 18,
@@ -63,7 +64,7 @@ Widget showBottomListChose(
                           Get.back();
                           if (onSubmitted != null) onSubmitted();
                         },
-                        icon: textBodyMedium(
+                        icon: SText.bodyMedium(
                           'Thêm',
                           color: Get.theme.primaryColor,
                         ))
@@ -153,11 +154,11 @@ Widget showBottomTextInput(TextEditingController? controller,
                   Get.back();
                   if (onCancel != null) onCancel();
                 },
-                icon: textBodyMedium(
+                icon: SText.bodyMedium(
                   'Đóng',
                   // color: Get.theme.primaryColor,
                 )),
-            textTitleMedium(
+            SText.bodyMedium(
               title ?? "Nhập thông tin",
               // fontWeight: 800,
               fontSize: 18,
@@ -167,7 +168,7 @@ Widget showBottomTextInput(TextEditingController? controller,
                   Get.back();
                   if (onSubmitted != null) onSubmitted();
                 },
-                icon: textBodyMedium(
+                icon: SText.bodyMedium(
                   'Thêm',
                   color: Get.theme.primaryColor,
                 ))
@@ -239,11 +240,11 @@ Widget showBottomListMutilChose(
                           Get.back();
                           if (onCancel != null) onCancel();
                         },
-                        icon: textBodyMedium(
+                        icon: SText.bodyMedium(
                           'Huỷ',
                           // color: Get.theme.primaryColor,
                         )),
-                    textTitleMedium(
+                    SText.bodyMedium(
                       title ?? "Danh sách",
                       // fontWeight: 800,
                       fontSize: 18,
@@ -253,7 +254,7 @@ Widget showBottomListMutilChose(
                           Get.back();
                           if (onSubmitted != null) onSubmitted();
                         },
-                        icon: textBodyMedium(
+                        icon: SText.bodyMedium(
                           'Thêm',
                           color: Get.theme.primaryColor,
                         ))

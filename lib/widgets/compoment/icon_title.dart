@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:terrarium_idle/widgets/text_custom.dart';
+import 'package:terrarium_idle/widgets/base/text/text.dart';
 
 Widget iconTitle({
   String? title,
@@ -20,7 +20,7 @@ Widget iconTitle({
         ),
         const SizedBox(width: 8),
         Expanded(
-          child: title != null ? textBodyMedium(title, maxLines: 1) : wTitle!,
+          child: title != null ? SText.bodyMedium(title, maxLines: 1) : wTitle!,
         )
       ],
     ),

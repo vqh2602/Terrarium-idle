@@ -260,19 +260,22 @@ class StoreController extends GetxController
           Money? moneyNew = userController.user?.money;
           User? userNew = userController.user?.user;
           if (item.id == 'item1') {
-            itemNew?.fertilizer = (itemNew.fertilizer ?? 0) + 10;
+            itemNew?.fertilizer =
+                (itemNew.fertilizer ?? 0) + item.levelUnlock!.toInt();
             buyItems(userController.user?.copyWith(
                 item: userController.user?.item!
                     .copyWith(fertilizer: itemNew?.fertilizer)));
           }
           if (item.id == 'item2') {
-            itemNew?.shovel = (itemNew.shovel ?? 0) + 1;
+            itemNew?.shovel = (itemNew.shovel ?? 0) + item.levelUnlock!.toInt();
             buyItems(userController.user?.copyWith(
                 item: userController.user?.item!
                     .copyWith(shovel: itemNew?.shovel)));
           }
           if (item.id == 'item3') {
-            moneyNew = moneyNew?.copyWith(oxygen: (moneyNew.oxygen ?? 0) + 175);
+            moneyNew = moneyNew?.copyWith(
+                oxygen: (moneyNew.oxygen ?? 0) +
+                    (item.levelUnlock!.toInt() * 1.75).toInt());
             buyItems(userController.user?.copyWith(money: moneyNew));
           }
           if (item.id == 'item4') {
