@@ -23,6 +23,7 @@ class Graden extends StatelessWidget {
   final Function(UserData) update;
   final Function changeUI;
   final bool isGraphicsHight;
+  final bool isCache;
   const Graden(
       {super.key,
       required this.isEdit,
@@ -30,7 +31,7 @@ class Graden extends StatelessWidget {
       required this.update,
       required this.changeUI,
       required this.isCoop,
-      required this.isGraphicsHight});
+      required this.isGraphicsHight, required this.isCache});
 
   @override
   Widget build(BuildContext context) {

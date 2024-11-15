@@ -244,4 +244,10 @@ Map<String, String> vi = {
   "Ban công chiều tà": "Ban công chiều tà",
   "Ban công mưa bão": "Ban công mưa bão",
   "Ban công trời sao": "Ban công trời sao",
+  
+  "Đá quý": "Đá quý",
+  "Dụng cụ": "Dụng cụ",
+  "Kinh nghiệm nhà vườn": "Kinh nghiệm nhà vườn",
+  "Triệu phú tích trữ": "Triệu phú tích trữ",
+  "Triệu phú giàu sang": "Triệu phú giàu sang"
 };

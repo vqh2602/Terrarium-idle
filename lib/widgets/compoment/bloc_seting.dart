@@ -44,7 +44,7 @@ Widget blockSetting(
                     cWidth(8),
                   ],
                   Expanded(
-                    child: SText.labelMedium(title,
+                    child: SText.bodySmall(title,
                         color: Get.isDarkMode ? null : text500),
                   ),
                 ],

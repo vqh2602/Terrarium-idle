@@ -236,4 +236,22 @@ mixin FireStoreMixin {
     userCustom?.removeWhere((element) => element.plants?.isEmpty ?? true);
     return userCustom;
   }
+
+  Future<List<UserData>?> getTop10UsersWithMost(String orderby) async {
+    final docRef = await db
+        .collection("users")
+        .orderBy(orderby,
+            // "user.userTotalLike",
+            descending: true) // Sắp xếp theo lượt like giảm dần
+        .limit(10) // Lấy 10 user có lượt like cao nhất
+        .get();
+
+    if (docRef.docs.isNotEmpty) {
+      return List<UserData>.from(
+        docRef.docs.map((e) => UserData.fromMap(e.data())),
+      );
+    } else {
+      return null; // Trả về null nếu không có user nào
+    }
+  }
 }

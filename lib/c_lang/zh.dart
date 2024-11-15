@@ -216,5 +216,10 @@ Map<String, String> zh = {
   "Ban công quang đãng": "通透的阳台",
   "Ban công chiều tà": "黄昏的阳台",
   "Ban công mưa bão": "风雨如磐的阳台",
-  "Ban công trời sao": "星空阳台"
+  "Ban công trời sao": "星空阳台",
+  "Đá quý": "宝石",
+  "Dụng cụ": "工具",
+  "Kinh nghiệm nhà vườn": "园林体验",
+  "Triệu phú tích trữ": "百万富翁囤积",
+  "Triệu phú giàu sang": "富有的百万富翁"
 };

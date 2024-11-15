@@ -222,5 +222,10 @@ Map<String, String> ko = {
   "Ban công quang đãng": "깨끗한 발코니",
   "Ban công chiều tà": "황혼의 발코니",
   "Ban công mưa bão": "폭풍우 치는 발코니",
-  "Ban công trời sao": "별이 빛나는 발코니"
+  "Ban công trời sao": "별이 빛나는 발코니",
+  "Đá quý": "보석",
+  "Dụng cụ": "도구",
+  "Kinh nghiệm nhà vườn": "정원 체험",
+  "Triệu phú tích trữ": "백만장자들의 보물",
+  "Triệu phú giàu sang": "부유한 백만장자"
 };

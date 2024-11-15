@@ -11,6 +11,8 @@ class CoopController extends GetxController
   List<UserData>? userdatas = [];
   TextEditingController textSearchTE = TextEditingController();
   List<UserData>? userdataFilter = [];
+  List<UserData>? userdataFilterLike = [];
+  List<UserData>? userdataFilterLevel = [];
   final Throttle throttle = Throttle(const Duration(milliseconds: 1000));
   @override
   Future<void> onInit() async {
@@ -18,6 +20,10 @@ class CoopController extends GetxController
     userdatas = await getListDataUser();
     getDataUserAdmin(null);
     userdataFilter?.addAll(userdatas ?? []);
+    var listLike = await getTop10UsersWithMost('user.userTotalLike');
+    var listLevel = await getTop10UsersWithMost('user.userLevel');
+    userdataFilterLike?.addAll(listLike ?? []);
+    userdataFilterLevel?.addAll(listLevel ?? []);
     changeUI();
   }
 

@@ -37,8 +37,8 @@ Widget coopWidget({required UserData? userData, Function()? onTap}) {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: SText.bodyMedium(
-                    '${userData?.user?.userName} - Level ${userData?.user?.userLevel ?? 1}',
-                  ),
+                      '${userData?.user?.userName} - Level ${userData?.user?.userLevel ?? 1}',
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               SText.bodySmall('Like: ${userData?.user?.userTotalLike ?? 0}'),
@@ -56,7 +56,7 @@ Widget coopWidget({required UserData? userData, Function()? onTap}) {
                         for (Bag item in userData?.user?.bag ?? [])
                           Padding(
                             padding: const EdgeInsets.only(right: 8),
-                            child: SText.bodySmall(item.nameBag ?? 'N.A',
+                            child: SText.bodySmall(item.nameBag?.tr ?? 'N.A',
                                 color: item.colorBag),
                           ),
                       ]),

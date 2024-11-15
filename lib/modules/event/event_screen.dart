@@ -36,7 +36,7 @@ class _EventScreenState extends State<EventScreen> {
         context: context,
         body: _buildBody(),
         appBar: AppBar(
-          title: SText.titleLarge('Sự kiện'.tr),
+          title: SText.titleLarge('Sự kiện'.tr,fontWeight: FontWeight.bold),
           elevation: 0,
           leading: IconButton(
             icon: const Icon(LucideIcons.chevronLeft),

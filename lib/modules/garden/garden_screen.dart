@@ -301,6 +301,7 @@ class _GardenScreenState extends State<GardenScreen>
                       gardenController.update();
                     },
                     isGraphicsHight: userController.isGraphicsHight,
+                    isCache: userController.isCache,
                   ),
                 );
               },

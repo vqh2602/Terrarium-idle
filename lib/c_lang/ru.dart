@@ -247,5 +247,10 @@ Map<String, String> ru = {
   "Ban công quang đãng": "Чистый балкон",
   "Ban công chiều tà": "Балкон в сумерках",
   "Ban công mưa bão": "Штормовой балкон",
-  "Ban công trời sao": "Звездный балкон"
+  "Ban công trời sao": "Звездный балкон",
+  "Đá quý": "драгоценный камень",
+  "Dụng cụ": "Инструмент",
+  "Kinh nghiệm nhà vườn": "Опыт сада",
+  "Triệu phú tích trữ": "Клад миллионеров",
+  "Triệu phú giàu sang": "Богатый миллионер"
 };

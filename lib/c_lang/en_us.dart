@@ -246,5 +246,10 @@ Map<String, String> en = {
   "Ban công quang đãng": "Clear balcony",
   "Ban công chiều tà": "Balcony at dusk",
   "Ban công mưa bão": "Stormy balcony",
-  "Ban công trời sao": "Starry balcony"
+  "Ban công trời sao": "Starry balcony",
+  "Đá quý": "Gemstone",
+  "Dụng cụ": "Tool",
+  "Kinh nghiệm nhà vườn": "Garden experience",
+  "Triệu phú tích trữ": "Millionaires hoard",
+  "Triệu phú giàu sang": "Rich millionaire"
 };

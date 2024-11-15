@@ -24,6 +24,7 @@ class UserController extends GetxController
   UserData? user;
   List<ItemData> listMyBags = [];
   bool isGraphicsHight = true;
+  bool isCache = false;
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -31,6 +32,7 @@ class UserController extends GetxController
     getDataUserRealtime(
         firebaseAuth.currentUser?.uid ?? '', (p0) => {user = p0, update()});
     isGraphicsHight = box.read(Storages.graphicsOption) ?? true;
+    isCache = box.read(Storages.isCache) ?? false;
     updateColumData();
     changeUI();
   }
@@ -130,6 +132,30 @@ class UserController extends GetxController
           Get.back();
           isGraphicsHight = true;
           await box.write(Storages.graphicsOption, true);
+          buildToast(message: 'Hoàn tất'.tr, status: TypeToast.toastSuccess);
+          clearAndResetApp();
+        });
+  }
+
+  changeCache(BuildContext? context) async {
+    await ShareFuntion.onPopDialog(
+        context: context ?? Get.context!,
+        title:
+            'Bật chế độ bộ nhớ sẽ có thể khiến thiết bị xử lý nhiều hơn, nhưng sẽ giảm tải dung lượng mạng của bạn'
+                .tr,
+        titleCancel: '(Tắt)'.tr,
+        titleSubmit: '(Bật)'.tr,
+        onCancel: () async {
+          Get.back();
+          isCache = false;
+          await box.write(Storages.isCache, false);
+          buildToast(message: 'Hoàn tất'.tr, status: TypeToast.toastSuccess);
+          clearAndResetApp();
+        },
+        onSubmit: () async {
+          Get.back();
+          isCache = true;
+          await box.write(Storages.isCache, true);
           buildToast(message: 'Hoàn tất'.tr, status: TypeToast.toastSuccess);
           clearAndResetApp();
         });

@@ -251,6 +251,7 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
                       gardenCoopController.update();
                     },
                     isGraphicsHight: userController.isGraphicsHight,
+                    isCache: userController.isCache,
                   ),
                 );
               },

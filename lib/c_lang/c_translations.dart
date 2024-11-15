@@ -1,7 +1,9 @@
 import 'package:terrarium_idle/c_lang/en_us.dart';
+import 'package:terrarium_idle/c_lang/hi.dart';
 import 'package:terrarium_idle/c_lang/jp.dart';
 import 'package:terrarium_idle/c_lang/ko.dart';
 import 'package:terrarium_idle/c_lang/ru.dart';
+import 'package:terrarium_idle/c_lang/th.dart';
 
 import 'package:terrarium_idle/c_lang/vi_vn.dart';
 import 'package:get/get.dart';
@@ -17,5 +19,7 @@ class Messages extends Translations {
         'ja': ja,
         'ko': ko,
         'ru': ru,
+        'hi': hi,
+        'th': th,
       };
 }

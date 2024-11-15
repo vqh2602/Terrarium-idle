@@ -229,4 +229,9 @@ Map<String, String> ja = {
   "Ban công chiều tà": "夕暮れのバルコニー",
   "Ban công mưa bão": "嵐のバルコニー",
   "Ban công trời sao": "星空のバルコニー",
+    "Đá quý": "宝石",
+  "Dụng cụ": "道具",
+  "Kinh nghiệm nhà vườn": "庭園体験",
+  "Triệu phú tích trữ": "大富豪の蓄え",
+  "Triệu phú giàu sang": "金持ちの大富豪"
 };

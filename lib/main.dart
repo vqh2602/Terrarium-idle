@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,6 +26,11 @@ import 'package:terrarium_idle/service/local_notification.dart';
 Future<void> main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
+  // Khóa hướng màn hình dọc
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   HttpOverrides.global = MyHttpOverrides();
   Env.config = getConfig();
   MobileAds.instance.initialize();
@@ -52,6 +58,7 @@ Future<void> main() async {
   );
 
   await initialize();
+
   LocalNotification().initLocalNotification();
   AppLinksService().initDeepLinks();
   FirebaseCouldMessage.init();
@@ -108,6 +115,8 @@ class MyApp extends StatelessWidget {
         Locale('ko'),
         Locale('ja'),
         Locale('ru'),
+        Locale('hi'),
+        Locale('th'),
       ],
       transitionDuration: const Duration(milliseconds: 300),
       defaultTransition: Transition.fadeIn,

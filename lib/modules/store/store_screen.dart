@@ -11,6 +11,7 @@ import 'package:terrarium_idle/modules/store/store_controller.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
 import 'package:terrarium_idle/widgets/base/base.dart';
 import 'package:terrarium_idle/widgets/base/text/text.dart';
+import 'package:terrarium_idle/widgets/base/text/text_style.dart';
 import 'package:terrarium_idle/widgets/compoment/tool_level.dart';
 import 'package:terrarium_idle/widgets/image_custom.dart';
 
@@ -69,23 +70,15 @@ class _StoreScreenState extends State<StoreScreen> {
                     leading: const SizedBox(),
                     bottom: TabBar(
                       indicatorSize: TabBarIndicatorSize.tab,
+                      labelStyle: STextTheme.bodyMedium
+                          .value(context)
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                      labelColor: Get.theme.primaryColor,
                       tabs: <Widget>[
-                        Tab(
-                          child: SText.bodyMedium('Chậu',
-                              textAlign: TextAlign.center),
-                        ),
-                        Tab(
-                          child: SText.bodyMedium('Cây',
-                              textAlign: TextAlign.center),
-                        ),
-                        Tab(
-                          child: SText.bodyMedium('Đá quý',
-                              textAlign: TextAlign.center),
-                        ),
-                        Tab(
-                          child: SText.bodyMedium('Dụng cụ',
-                              textAlign: TextAlign.center),
-                        ),
+                        Tab(text: 'Chậu'.tr),
+                        Tab(text: 'Cây'.tr),
+                        Tab(text: 'Đá quý'.tr),
+                        Tab(text: 'Dụng cụ'.tr),
                       ],
                     ),
                   ),
@@ -159,7 +152,8 @@ class _StoreScreenState extends State<StoreScreen> {
                             children: [
                               SText.bodyMedium(
                                   '${storeController.listStorePots[index].name} ${isHanging ? '(☁${'Treo'.tr})' : ''}',
-                                  color: Colors.black),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                               SText.bodySmall(
                                   storeController
                                           .listStorePots[index].description ??
@@ -281,7 +275,8 @@ class _StoreScreenState extends State<StoreScreen> {
                           children: [
                             SText.bodyMedium(
                                 '${storeController.listStorePlants[index].name} ${(isHanging ? '(☁Treo)' : '')}',
-                                color: Colors.black),
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
                             SText.bodySmall(
                                 storeController
                                         .listStorePlants[index].description ??
@@ -401,12 +396,14 @@ class _StoreScreenState extends State<StoreScreen> {
                             SText.bodyMedium(
                                 storeController.listStoreItems[index].name ??
                                     '',
+                                fontWeight: FontWeight.bold,
                                 color: Colors.black),
                             SText.bodySmall(
-                                storeController
-                                        .listStoreItems[index].description ??
-                                    '',
-                                color: Colors.black),
+                              storeController
+                                      .listStoreItems[index].description ??
+                                  '',
+                              color: Colors.black,
+                            ),
                             // SText.bodySmall(
                             //     'Hiệu ứng: ${storeController.listStoreItems[index].effect ?? 'N.A'}',
                             //     color: Colors.black)
@@ -501,7 +498,8 @@ class _StoreScreenState extends State<StoreScreen> {
                             children: [
                               SText.bodyMedium(
                                   storeController.products[index].title,
-                                  color: Colors.black),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                               SText.bodySmall('Loại đá màu xanh tự bầu trời'.tr,
                                   color: Colors.black),
                               SText.bodySmall(

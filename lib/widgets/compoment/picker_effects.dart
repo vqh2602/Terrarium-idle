@@ -53,7 +53,7 @@ _pickEffect(
       //   Padding(
       //     padding: const EdgeInsets.all(8.0),
       //     child:
-      //         SText.titleLarge('Chậu đang chọn', fontWeight: FontWeight.w700),
+      //         Large('Chậu đang chọn', fontWeight: FontWeight.w700),
       //   ),
       Expanded(
         child: ListView.builder(

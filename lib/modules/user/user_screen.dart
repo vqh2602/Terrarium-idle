@@ -46,7 +46,7 @@ class _UserScreenState extends State<UserScreen> {
         context: context,
         body: _buildBody(),
         appBar: AppBar(
-          title: SText.titleLarge('Tài khoản'.tr),
+          title: SText.titleLarge('Tài khoản'.tr, fontWeight: FontWeight.bold),
           elevation: 0,
           leading: IconButton(
             icon: const Icon(LucideIcons.chevronLeft),
@@ -162,9 +162,10 @@ class _UserScreenState extends State<UserScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SText.titleLarge(
+                                  SText.titleMedium(
                                       userController.user?.user?.userName ??
-                                          'N.A'),
+                                          'N.A',
+                                      fontWeight: FontWeight.bold),
                                   iconTitle(
                                     icon: LucideIcons.mail,
                                     size: 16,
@@ -232,7 +233,11 @@ class _UserScreenState extends State<UserScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SText.bodyMedium('Thiết lập'.tr, color: Colors.black),
+                      SText.bodyMedium(
+                        'Thiết lập'.tr,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                       cHeight(16),
                       blockSetting(
                           title: 'Đồng bộ dữ liệu'.tr,
@@ -249,6 +254,12 @@ class _UserScreenState extends State<UserScreen> {
                           onTap: () {
                             userController.changeGraphics(context);
                           }),
+                      // blockSetting(
+                      //     title:
+                      //         '${'Chế độ dử dụng bộ nhớ cahe'.tr} (BETA) ${userController.isCache ? '(Bật)'.tr : '(Tắt)'.tr}',
+                      //     onTap: () {
+                      //       userController.changeCache(context);
+                      //     }),
                     ],
                   ),
                 ),
@@ -263,7 +274,11 @@ class _UserScreenState extends State<UserScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SText.bodyMedium('Dịch vụ'.tr, color: Colors.black),
+                      SText.bodyMedium(
+                        'Dịch vụ'.tr,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                       cHeight(16),
                       blockSetting(
                           title: 'Đánh giá ứng dụng'.tr,

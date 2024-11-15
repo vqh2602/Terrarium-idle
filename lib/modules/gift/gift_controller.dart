@@ -47,7 +47,9 @@ class GiftController extends GetxController
                 .value(Get.context!)
                 ?.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
             content: Container(
-              child: imageNetwork(url: 'https://iili.io/2TmwITJ.md.png'),
+              child: imageNetwork(
+                  url: 'https://iili.io/2TmwITJ.md.png',
+                  height: Get.height * 0.7),
             ),
             backgroundColor: Colors.white,
             onConfirm: () async {
@@ -56,10 +58,13 @@ class GiftController extends GetxController
                       element.id == 'com.vqh2602.terrarium.1000gem.promotion')
                   .first);
               await box.write('diamond_promotion', DateTime.now().toString());
+              result = false;
+              update();
               Get.back();
             },
             onCancel: () async {
               await box.write('diamond_promotion', DateTime.now().toString());
+              result = false;
               Get.back();
               update();
             },

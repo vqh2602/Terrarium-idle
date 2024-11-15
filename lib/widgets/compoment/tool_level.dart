@@ -48,7 +48,7 @@ class _ToolLevelState extends State<ToolLevel> {
                           children: [
                             SText.bodyMedium(
                                 'Level: ${widget.user.user?.userLevel ?? 1}',
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.black),
                             LinearProgressIndicator(
                               value: (widget.user.user?.userLevelEXP ?? 0) /
@@ -131,7 +131,7 @@ _itemTool(
               : constraints.maxWidth * 0.10,
         ),
         SText.bodySmall(ShareFuntion.shortenNumber(data),
-            fontWeight: FontWeight.w700, color: Colors.black)
+            fontWeight: FontWeight.bold, color: Colors.black)
       ],
     ),
   );

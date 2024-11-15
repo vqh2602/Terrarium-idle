@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/local/list_effect.dart';
 import 'package:terrarium_idle/data/local/list_plants.dart';
@@ -14,7 +15,6 @@ import 'package:terrarium_idle/data/models/select_option_item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/storage/storage.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
-import 'package:terrarium_idle/function/version_check.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
 import 'package:terrarium_idle/widgets/base/text/text_style.dart';
@@ -30,6 +30,7 @@ class GardenController extends GetxController
   UserController userController = Get.find();
   bool isEdit = false;
   UserData? userData = UserData();
+  final newVersionPlus = NewVersionPlus();
   bool isRain = false;
   List<SelectOptionItem> listSelectOptionEffect = [];
   List<SelectOptionItem> listSelectOptionMusic = [];
@@ -41,7 +42,6 @@ class GardenController extends GetxController
 
   bool isWater = false;
   bool isLike = false;
-  final versionCheck = VersionCheck();
 
   @override
   Future<void> onInit() async {
@@ -53,7 +53,8 @@ class GardenController extends GetxController
     initDataMusic();
     initDataWeatherLandscape();
     initAudio(asset: selectMusic?.value ?? Assets.audios.peacefulgarden);
-    versionCheck.checkVersion(Get.context!);
+    // versionCheck.checkVersion(Get.context!);
+    newVersionPlus.showAlertIfNecessary(context: Get.context!);
     showTutorial();
     changeUI();
   }
@@ -183,14 +184,7 @@ class GardenController extends GetxController
 
     listSelectOptionWeatherLandscape
         .removeWhere((element) => element.value == null);
-    if (selectWeatherLandscape == null) {
-      try {
-        selectWeatherLandscape = listSelectOptionWeatherLandscape[
-            Random().nextInt(listSelectOptionWeatherLandscape.length)];
-      } on Exception catch (_) {
-        selectWeatherLandscape = listSelectOptionWeatherLandscape.firstOrNull;
-      }
-    }
+    selectWeatherLandscape ??= listSelectOptionWeatherLandscape.firstOrNull;
     update();
   }
 
@@ -239,7 +233,8 @@ class GardenController extends GetxController
             .value(Get.context!)
             ?.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
         content: Container(
-          child: imageNetwork(url: 'https://i.imgur.com/xN65shU.png'),
+          child: imageNetwork(
+              url: 'https://i.imgur.com/xN65shU.png', height: Get.height * 0.7),
         ),
         backgroundColor: Colors.white,
         onConfirm: () {
