@@ -132,8 +132,7 @@ Map<String, String> ja = {
       "木製ポットですが丈夫で美しいピンク色に塗装されています",
   "Chưa có thẻ nào, hãy tham gia sự kiện để nhận thẻ":
       "まだカードを持っていません。イベントに参加してカードを受け取ってください。",
-  "chuyển 100 đá quý sang oxygen với tỷ lệ 1.75":
-      "100 個のジェムを 1.75 の割合で酸素に変換します",
+  "chuyển 100 đá quý sang oxygen với tỷ lệ 5.5": "100 個のジェムを 5.5 の割合で酸素に変換します",
   "Chi Oải hương": "ラベンダー属",
   "Loại cây bụi thường niên có mùi thơm nồng, xuất xứ từ vùng Địa Trung Hải":
       "地中海地方原産の強い香りを持つ一年草です。",
@@ -192,9 +191,9 @@ Map<String, String> ja = {
       "土ポットは水はけが良いですが、吊るすのは少し重いです",
   "Phân bón x100": "肥料×100",
   "Xẻng x50": "シャベル×50",
-  "chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75": "1000 ジェムを 1.75 の割合で酸素に変換する",
-  "chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75":
-      "10000 ジェムを 1.75 の割合で酸素に変換します",
+  "chuyển 1000 đá quý sang oxygen với tỷ lệ 5.5": "1000 ジェムを 5.5 の割合で酸素に変換する",
+  "chuyển 10000 đá quý sang oxygen với tỷ lệ 5.5":
+      "10000 ジェムを 5.5 の割合で酸素に変換します",
   "Loài xương rồng kích thước nhỏ, có nhiều gai": "サボテンは小さいのでトゲが多い",
   "Xương rồng nhím": "ハリネズミサボテン",
   "Sen bạch liên": "白蓮",
@@ -229,9 +228,14 @@ Map<String, String> ja = {
   "Ban công chiều tà": "夕暮れのバルコニー",
   "Ban công mưa bão": "嵐のバルコニー",
   "Ban công trời sao": "星空のバルコニー",
-    "Đá quý": "宝石",
+  "Đá quý": "宝石",
   "Dụng cụ": "道具",
   "Kinh nghiệm nhà vườn": "庭園体験",
   "Triệu phú tích trữ": "大富豪の蓄え",
-  "Triệu phú giàu sang": "金持ちの大富豪"
+  "Triệu phú giàu sang": "金持ちの大富豪",
+  "Cây": "木",
+  "Chậu": "ポット",
+  "Top yêu thích": "お気に入りのトップス",
+  "Top cấp độ": "トップレベル",
+  "Top thu thập": "トップコレクション",
 };

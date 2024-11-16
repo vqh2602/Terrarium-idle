@@ -1,20 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terrarium_idle/data/models/ranking.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/widgets/base/text/text.dart';
 
 import 'package:terrarium_idle/widgets/widgets.dart';
 
-Widget coopWidget({required UserData? userData, Function()? onTap}) {
+Widget coopWidget({required User? user, Function()? onTap, Ranking? ranking}) {
   return GestureDetector(
     onTap: onTap,
     child: Container(
       decoration: BoxDecoration(
-        image: userData?.user?.userImageBackground != null
+        image: user?.userImageBackground != null
             ? DecorationImage(
-                image: CachedNetworkImageProvider(
-                    userData?.user?.userImageBackground ?? ''),
+                image:
+                    CachedNetworkImageProvider(user?.userImageBackground ?? ''),
                 fit: BoxFit.cover)
             : null,
       ),
@@ -24,8 +25,7 @@ Widget coopWidget({required UserData? userData, Function()? onTap}) {
         children: [
           CircleAvatar(
             radius: 4 * 9,
-            backgroundImage:
-                CachedNetworkImageProvider(userData?.user?.userAvatar ?? ''),
+            backgroundImage: CachedNetworkImageProvider(user?.userAvatar ?? ''),
           ),
           cWidth(8),
           Column(
@@ -37,11 +37,13 @@ Widget coopWidget({required UserData? userData, Function()? onTap}) {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: SText.bodyMedium(
-                      '${userData?.user?.userName} - Level ${userData?.user?.userLevel ?? 1}',
+                      '${user?.userName} - Level ${user?.userLevel ?? 1}',
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              SText.bodySmall('Like: ${userData?.user?.userTotalLike ?? 0}'),
+              (ranking != null)
+                  ? SText.bodySmall('Oxygen: ${ranking.oxygenCollect}')
+                  : SText.bodySmall('Like: ${user?.userTotalLike ?? 0}'),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +55,7 @@ Widget coopWidget({required UserData? userData, Function()? onTap}) {
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(children: [
-                        for (Bag item in userData?.user?.bag ?? [])
+                        for (Bag item in user?.bag ?? [])
                           Padding(
                             padding: const EdgeInsets.only(right: 8),
                             child: SText.bodySmall(item.nameBag?.tr ?? 'N.A',

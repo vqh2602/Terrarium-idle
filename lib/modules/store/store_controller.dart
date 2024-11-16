@@ -275,7 +275,7 @@ class StoreController extends GetxController
           if (item.id == 'item3') {
             moneyNew = moneyNew?.copyWith(
                 oxygen: (moneyNew.oxygen ?? 0) +
-                    (item.levelUnlock!.toInt() * 1.75).toInt());
+                    (item.levelUnlock!.toInt() * 5.5).toInt());
             buyItems(userController.user?.copyWith(money: moneyNew));
           }
           if (item.id == 'item4') {

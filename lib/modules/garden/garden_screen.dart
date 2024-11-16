@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:rive/rive.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
+import 'package:terrarium_idle/data/models/ranking.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/coop/coop_screen.dart';
@@ -287,6 +288,12 @@ class _GardenScreenState extends State<GardenScreen>
                     isEdit: gardenController.isEdit,
                     isCoop: false,
                     userData: userController.user ?? UserData(),
+                    rank: userController.rank,
+                    updateRank: (Ranking ranking) {
+                      userController.rank = ranking;
+                      userController.updateDataRank(rank: ranking);
+                      userController.update();
+                    },
                     changeUI: () {
                       gardenController.changeUI();
                     },

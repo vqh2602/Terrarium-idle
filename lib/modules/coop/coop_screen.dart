@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:terrarium_idle/data/models/ranking.dart';
 import 'package:terrarium_idle/data/models/user.dart';
+import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/coop/coop_controller.dart';
 import 'package:terrarium_idle/modules/coop/garden_coop/garden_coop_screen.dart';
 import 'package:terrarium_idle/modules/garden/garden_controller.dart';
@@ -50,6 +52,15 @@ class _CoopScreenState extends State<CoopScreen> {
               Get.back();
             },
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(LucideIcons.info),
+              onPressed: () {
+                ShareFuntion.showWebInApp(
+                    'https://www.vqhapp.name.vn/p/event-top-oxygen.html');
+              },
+            )
+          ],
           backgroundColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
           centerTitle: true,
@@ -60,29 +71,38 @@ class _CoopScreenState extends State<CoopScreen> {
     return coopController.obx((state) => SafeArea(
           child: DefaultTabController(
             initialIndex: 0,
-            length: 3,
+            length: 4,
             child: Column(
               children: [
                 TabBar(
                   labelColor: Get.theme.primaryColor,
                   indicatorColor: Get.theme.primaryColor,
-                  labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+                  labelStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                   tabs: [
                     Tab(
                       child: Text(
                         'Thế giới'.tr,
+                        textAlign: TextAlign.center,
                         // style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
                     Tab(
                       child: Text(
-                        'Top yêu thích'.tr,
+                        'Top yêu thích'.tr, textAlign: TextAlign.center,
                         // style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
                     Tab(
                       child: Text(
-                        'Top cấp độ'.tr,
+                        'Top cấp độ'.tr, textAlign: TextAlign.center,
+                        // style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Tab(
+                      child: Text(
+                        'Top thu thập'.tr, textAlign: TextAlign.center,
                         // style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -94,6 +114,7 @@ class _CoopScreenState extends State<CoopScreen> {
                       _buildListDefautl(),
                       _buildList(coopController.userdataFilterLike),
                       _buildList(coopController.userdataFilterLevel),
+                      _buildListRank(coopController.listRankOxygen),
                     ],
                   ),
                 ),
@@ -155,7 +176,7 @@ class _CoopScreenState extends State<CoopScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       coopWidget(
-                          userData: coopController.userdataFilter?[index]),
+                          user: coopController.userdataFilter?[index].user),
                       const Divider(
                         thickness: 2,
                         height: 4,
@@ -189,7 +210,42 @@ class _CoopScreenState extends State<CoopScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      coopWidget(userData: list?[index]),
+                      coopWidget(user: list?[index].user),
+                      const Divider(
+                        thickness: 2,
+                        height: 4,
+                        color: Colors.black12,
+                      )
+                    ],
+                  ),
+                );
+              }),
+        )
+      ],
+    );
+  }
+
+  _buildListRank(List<Ranking>? list) {
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: ListView.builder(
+              shrinkWrap: true,
+              padding: EdgeInsets.zero,
+              itemCount: list?.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () async {
+                    await gardenController.audioPlayerBackground.pause();
+                    await Get.toNamed(GardenCoopScreen.routeName,
+                        arguments: list?[index]);
+                    await gardenController.audioPlayerBackground.play();
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      coopWidget(
+                          user: list?[index].user, ranking: list?[index]),
                       const Divider(
                         thickness: 2,
                         height: 4,

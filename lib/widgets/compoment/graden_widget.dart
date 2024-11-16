@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:pie_menu/pie_menu.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
+import 'package:terrarium_idle/data/models/ranking.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/widgets/base/text/text.dart';
@@ -20,6 +21,8 @@ class Graden extends StatelessWidget {
   final bool isEdit;
   final bool isCoop;
   final UserData userData;
+  final Ranking? rank;
+  final Function(Ranking) updateRank;
   final Function(UserData) update;
   final Function changeUI;
   final bool isGraphicsHight;
@@ -31,7 +34,10 @@ class Graden extends StatelessWidget {
       required this.update,
       required this.changeUI,
       required this.isCoop,
-      required this.isGraphicsHight, required this.isCache});
+      required this.isGraphicsHight,
+      required this.isCache,
+      this.rank,
+      required this.updateRank});
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +75,10 @@ class Graden extends StatelessWidget {
     Money? money = userData.money?.copyWith(
         oxygen: (userData.money?.oxygen ?? 0) +
             (plant.plantLevel == 3
-                ? 20
+                ? 30
                 : plant.plantLevel == 2
-                    ? 10
-                    : 5));
+                    ? 20
+                    : 10));
     List<Plants> plants = userData.plants!;
     plants.removeWhere((element) =>
         element.position!.contains('${floor + 1},${position + 1}'));
@@ -84,6 +90,18 @@ class Graden extends StatelessWidget {
             .copyWith(userLevelEXP: userData.user!.userLevelEXP! + 100),
         plants: plants);
     update(userDataCustom);
+
+    // rank
+    if (rank != null) {
+      Ranking rankCustom = rank!.copyWith(
+          oxygenCollect: (rank?.oxygenCollect ?? 0) +
+              (plant.plantLevel == 3
+                  ? 30
+                  : plant.plantLevel == 2
+                      ? 20
+                      : 10));
+      updateRank(rankCustom);
+    }
   }
 
   hightOptionGraden(BuildContext context) {

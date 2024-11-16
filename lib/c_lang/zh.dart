@@ -221,5 +221,10 @@ Map<String, String> zh = {
   "Dụng cụ": "工具",
   "Kinh nghiệm nhà vườn": "园林体验",
   "Triệu phú tích trữ": "百万富翁囤积",
-  "Triệu phú giàu sang": "富有的百万富翁"
+  "Triệu phú giàu sang": "富有的百万富翁",
+  "Cây": "树",
+  "Chậu": "锅",
+  "Top yêu thích": "最喜欢的上衣",
+  "Top cấp độ": "顶级",
+  "Top thu thập": "热门收藏"
 };

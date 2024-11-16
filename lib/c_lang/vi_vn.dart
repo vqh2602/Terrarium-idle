@@ -142,8 +142,8 @@ Map<String, String> vi = {
       "Chậu gỗ, nhưng được sơn lớp màu hồng bền mà lại đẹp",
   "Chưa có thẻ nào, hãy tham gia sự kiện để nhận thẻ":
       "Chưa có thẻ nào, hãy tham gia sự kiện để nhận thẻ",
-  "chuyển 100 đá quý sang oxygen với tỷ lệ 1.75":
-      "chuyển 100 đá quý sang oxygen với tỷ lệ 1.75",
+  "chuyển 100 đá quý sang oxygen với tỷ lệ 5.5":
+      "chuyển 100 đá quý sang oxygen với tỷ lệ 5.5",
   "Chi Oải hương": "Chi Oải hương",
   "Loại cây bụi thường niên có mùi thơm nồng, xuất xứ từ vùng Địa Trung Hải":
       "Loại cây bụi thường niên có mùi thơm nồng, xuất xứ từ vùng Địa Trung Hải",
@@ -203,10 +203,10 @@ Map<String, String> vi = {
       "Chậu chậu đất thoát nước tốt, nhưng hơi nặng khi treo",
   "Phân bón x100": "Phân bón x100",
   "Xẻng x50": "Xẻng x50",
-  "chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75":
-      "chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75",
-  "chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75":
-      "chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75",
+  "chuyển 1000 đá quý sang oxygen với tỷ lệ 5.5":
+      "chuyển 1000 đá quý sang oxygen với tỷ lệ 5.5",
+  "chuyển 10000 đá quý sang oxygen với tỷ lệ 5.5":
+      "chuyển 10000 đá quý sang oxygen với tỷ lệ 5.5",
   "Loài xương rồng kích thước nhỏ, có nhiều gai":
       "Loài xương rồng kích thước nhỏ, có nhiều gai",
   "Xương rồng nhím": "Xương rồng nhím",
@@ -244,10 +244,14 @@ Map<String, String> vi = {
   "Ban công chiều tà": "Ban công chiều tà",
   "Ban công mưa bão": "Ban công mưa bão",
   "Ban công trời sao": "Ban công trời sao",
-  
   "Đá quý": "Đá quý",
   "Dụng cụ": "Dụng cụ",
   "Kinh nghiệm nhà vườn": "Kinh nghiệm nhà vườn",
   "Triệu phú tích trữ": "Triệu phú tích trữ",
-  "Triệu phú giàu sang": "Triệu phú giàu sang"
+  "Triệu phú giàu sang": "Triệu phú giàu sang",
+  "Cây": "Cây",
+  "Chậu": "Chậu",
+  "Top yêu thích": "Top yêu thích",
+  "Top cấp độ": "Top cấp độ",
+  "Top thu thập": "Top thu thập",
 };

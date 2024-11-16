@@ -50,7 +50,7 @@ class GardenCoopController extends GetxController
     isGraphicsHight = box.read(Storages.graphicsOption) ?? false;
     initDataEffect();
     initDataMusic();
-
+    initDataWeatherLandscape();
     initAudio(asset: selectMusic?.value ?? Assets.audios.peacefulgarden);
     changeUI();
   }

@@ -53,7 +53,7 @@ List<ItemData> listItemsData = [
   ItemData(
     id: 'item3',
     name: 'Oxygen'.tr,
-    description: 'chuyển 100 đá quý sang oxygen với tỷ lệ 1.75'.tr,
+    description: 'chuyển 100 đá quý sang oxygen với tỷ lệ 5.5'.tr,
     image: 'https://i.imgur.com/6n7hREG.png',
     priceStore: 100,
     priceOxygen: 100,
@@ -65,7 +65,7 @@ List<ItemData> listItemsData = [
   ItemData(
     id: 'item3',
     name: 'Oxygen'.tr,
-    description: 'chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75'.tr,
+    description: 'chuyển 1000 đá quý sang oxygen với tỷ lệ 5.5'.tr,
     image: 'https://i.imgur.com/6n7hREG.png',
     priceStore: 1000,
     priceOxygen: 1000,
@@ -77,7 +77,7 @@ List<ItemData> listItemsData = [
   ItemData(
     id: 'item3',
     name: 'Oxygen'.tr,
-    description: 'chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75'.tr,
+    description: 'chuyển 10000 đá quý sang oxygen với tỷ lệ 5.5'.tr,
     image: 'https://i.imgur.com/6n7hREG.png',
     priceStore: 10000,
     priceOxygen: 10000,

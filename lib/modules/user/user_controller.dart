@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:terrarium_idle/data/local/list_bag.dart';
 import 'package:terrarium_idle/data/local/list_plants.dart';
 import 'package:terrarium_idle/data/models/item.dart';
+import 'package:terrarium_idle/data/models/ranking.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/repositories/image_repo.dart';
 import 'package:terrarium_idle/data/storage/storage.dart';
@@ -25,6 +26,7 @@ class UserController extends GetxController
   List<ItemData> listMyBags = [];
   bool isGraphicsHight = true;
   bool isCache = false;
+  Ranking? rank;
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -34,7 +36,20 @@ class UserController extends GetxController
     isGraphicsHight = box.read(Storages.graphicsOption) ?? true;
     isCache = box.read(Storages.isCache) ?? false;
     updateColumData();
+
+    // hàm xử lý sự kiện thu thập
+    checkCreateNewRank();
     changeUI();
+  }
+
+  // kiểm tra rank của bản thân đã tồn tại hay chưa, nếu chưa thì tạo mới
+  checkCreateNewRank() async {
+    rank = await getDataRank(user?.user?.userID ?? '');
+    if (rank == null && user != null) {
+      await createDataRank(user: user!.user!);
+    }
+    getDataRankRealtime(
+        firebaseAuth.currentUser?.uid ?? '', (p0) => {rank = p0, update()});
   }
 
   // cập nhật giá trị cho người dùng // bản mới thêm trường isHanging

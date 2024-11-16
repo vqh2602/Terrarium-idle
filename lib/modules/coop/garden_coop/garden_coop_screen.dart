@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:rive/rive.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
+import 'package:terrarium_idle/data/models/ranking.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/repositories/image_repo.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
@@ -161,9 +162,9 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
                         gardenCoopController.selectWeatherLandscape = p0,
                         gardenCoopController.update(),
                       },
-                      // isCoop: false,
+                      isCoop: true,
                     );
-                    // gardenController.update();
+                    // gardenCoopController.update();
                   },
                 ),
                 FloatingActionButton(
@@ -217,14 +218,17 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
               height: Get.height,
               padding: EdgeInsets.zero,
               child: RiveAnimation.asset(
-                !gardenCoopController.isRain
-                    ? (DateTime.now().hour >= 6 && DateTime.now().hour < 15)
-                        ? Assets.backgrounds.skySunDay
-                        : (DateTime.now().hour >= 15 &&
-                                DateTime.now().hour < 19)
-                            ? Assets.backgrounds.skySunSet
-                            : Assets.backgrounds.skyMoonNight
-                    : Assets.backgrounds.skyRain,
+                gardenCoopController.selectWeatherLandscape != null &&
+                        gardenCoopController.selectWeatherLandscape?.value != ''
+                    ? gardenCoopController.selectWeatherLandscape!.value!
+                    : !gardenCoopController.isRain
+                        ? (DateTime.now().hour >= 6 && DateTime.now().hour < 15)
+                            ? Assets.backgrounds.skySunDay
+                            : (DateTime.now().hour >= 15 &&
+                                    DateTime.now().hour < 19)
+                                ? Assets.backgrounds.skySunSet
+                                : Assets.backgrounds.skyMoonNight
+                        : Assets.backgrounds.skyRain,
                 fit: BoxFit.cover,
               ),
             ),
@@ -240,6 +244,8 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
                     isEdit: gardenCoopController.isEdit,
                     isCoop: true,
                     userData: gardenCoopController.userData ?? UserData(),
+                    rank: null,
+                    updateRank: (Ranking rank) {},
                     changeUI: () {
                       gardenCoopController.changeUI();
                     },
@@ -267,7 +273,7 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
                 child: Stack(
                   children: [
                     coopWidget(
-                        userData: gardenCoopController.userData!,
+                        user: gardenCoopController.userData?.user,
                         onTap: () {
                           Clipboard.setData(ClipboardData(
                                   text: gardenCoopController

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:terrarium_idle/data/models/ranking.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/login/login_screen.dart';
@@ -253,5 +254,146 @@ mixin FireStoreMixin {
     } else {
       return null; // Trả về null nếu không có user nào
     }
+  }
+
+//=== thành tích ===//
+
+  Future<void> createDataRank({required User user}) async {
+    try {
+      //FirebaseFirestore db = FirebaseFirestore.instance;
+      final rank = Ranking(
+        isBan: false,
+        user: user,
+        oxygenCollect: 0,
+        dateUpdate: DateTime.now(),
+      );
+      // Add a new document with a generated ID
+      // db.collection("users").add(user).then((DocumentReference doc) =>
+      //     print('DocumentSnapshot added with ID: ${doc.id}'));
+      await db
+          .collection("rankings")
+          .doc(user.userID)
+          .set(rank.toMap())
+          .onError((e, _) => buildToast(
+              message: 'Lỗi tạo bảng xếp hạng'.tr,
+              status: TypeToast.toastError));
+    } catch (_) {
+      firebaseAuth.signOut();
+    }
+  }
+
+  Future<List<Ranking>> getRanking({String? orderby}) async {
+    final docRef = await db
+        .collection("rankings")
+        .orderBy(orderby ?? 'oxygenCollect',
+            // "user.userTotalLike",
+            descending: true) // Sắp xếp theo lượt giảm dần
+        .limit(10)
+        .get();
+
+    if (docRef.docs.isNotEmpty) {
+      return List<Ranking>.from(
+        docRef.docs.map((e) => Ranking.fromMap(e.data())),
+      );
+    } else {
+      return [];
+    }
+  }
+
+  //update data user
+  Future<Ranking?> updateDataRank({
+    required Ranking? rank,
+  }) async {
+    if (rank == null) {
+      buildToast(
+          message: 'Lỗi không tìm thấy thông tin tà khoản'.tr,
+          status: TypeToast.toastError);
+      return null;
+    } else {
+      rank = rank.copyWith(dateUpdate: DateTime.now());
+    }
+
+    DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+        await db.collection("rankings").doc(rank.user.userID).get();
+
+    try {
+      if (querySnapshot.data() != null) {
+        final washingtonRef = db.collection("rankings").doc(rank.user.userID);
+        await washingtonRef.update(rank.toMap());
+        // buildToast(message: 'Hoàn tất'.tr, status: TypeToast.toastSuccess);
+        return rank;
+      }
+    } on Exception catch (e) {
+      buildToast(
+          message: 'Lỗi khi cập nhật xếp hạng $e'.tr,
+          status: TypeToast.toastError);
+    }
+    return null;
+    // }
+  }
+
+  Future<void> getDataRankRealtime(
+      String id, Function(Ranking) updateRankData) async {
+    try {
+      final docRef = db.collection("rankings").doc(id);
+      docRef.snapshots().listen((event) {
+        // DocumentSnapshot doc = await docRef.get();
+        DocumentSnapshot doc = event;
+
+        final data = doc.data() as Map<String, dynamic>?;
+        var userCustom = data != null
+            ? Ranking.fromMap(data)
+            // UserCustom(
+            //     id: data["id"],
+            //     email: data["email"],
+            //     coins: data["coins"],
+            //     themes: List<String>.from(data["themes"]))
+            : null;
+        // print('data: ${data.toString()}');
+        if (userCustom != null) {
+          updateRankData(userCustom);
+        }
+      });
+    } on Exception catch (e) {
+      buildToast(
+          message:
+              '${'Kiểm tra lại tài khoản & mật khẩu'.tr} \n code: ${e.toString()}',
+          status: TypeToast.getError,
+          title: 'Lỗi đăng nhập'.tr);
+      await firebaseAuth.signOut();
+      Get.offAndToNamed(LoginScreen.routeName);
+    }
+    //update();
+  }
+
+  // lấy dũ liệu rank
+  Future<Ranking?> getDataRank(String id, {bool isCloud = false}) async {
+    try {
+      // await db.collection("users").where("id", isEqualTo: id).get();
+      final docRef = db.collection("rankings").doc(id);
+      DocumentSnapshot doc = await docRef.get();
+
+      final data = doc.data() as Map<String, dynamic>?;
+      var userCustom = data != null
+          ? Ranking.fromMap(data)
+          // UserCustom(
+          //     id: data["id"],
+          //     email: data["email"],
+          //     coins: data["coins"],
+          //     themes: List<String>.from(data["themes"]))
+          : null;
+
+      return userCustom;
+    } on Exception catch (e) {
+      buildToast(
+          message:
+              '${'Kiểm tra lại tài khoản & mật khẩu'.tr} \n code: ${e.toString()}',
+          status: TypeToast.getError,
+          title: 'Lỗi đăng nhập'.tr);
+      await firebaseAuth.signOut();
+      Get.offAndToNamed(LoginScreen.routeName);
+      return null;
+    }
+    //update();
   }
 }

@@ -144,8 +144,8 @@ Map<String, String> en = {
       "Wooden pot, but painted in a durable yet beautiful pink color",
   "Chưa có thẻ nào, hãy tham gia sự kiện để nhận thẻ":
       "Don't have any cards yet, please join the event to receive cards",
-  "chuyển 100 đá quý sang oxygen với tỷ lệ 1.75":
-      "convert 100 gems to oxygen at a rate of 1.75",
+  "chuyển 100 đá quý sang oxygen với tỷ lệ 5.5":
+      "convert 100 gems to oxygen at a rate of 5.5",
   "Chi Oải hương": "Genus Lavender",
   "Loại cây bụi thường niên có mùi thơm nồng, xuất xứ từ vùng Địa Trung Hải":
       "This annual shrub has a strong scent, originating from the Mediterranean region",
@@ -206,10 +206,10 @@ Map<String, String> en = {
       "Soil pots drain well, but are a bit heavy to hang",
   "Phân bón x100": "Fertilizer x100",
   "Xẻng x50": "Shovel x50",
-  "chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75":
-      "convert 1000 gems to oxygen at a rate of 1.75",
-  "chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75":
-      "convert 10000 gems to oxygen at a rate of 1.75",
+  "chuyển 1000 đá quý sang oxygen với tỷ lệ 5.5":
+      "convert 1000 gems to oxygen at a rate of 5.5",
+  "chuyển 10000 đá quý sang oxygen với tỷ lệ 5.5":
+      "convert 10000 gems to oxygen at a rate of 5.5",
   "Loài xương rồng kích thước nhỏ, có nhiều gai":
       "The cactus is small in size and has many thorns",
   "Xương rồng nhím": "Hedgehog cactus",
@@ -251,5 +251,10 @@ Map<String, String> en = {
   "Dụng cụ": "Tool",
   "Kinh nghiệm nhà vườn": "Garden experience",
   "Triệu phú tích trữ": "Millionaires hoard",
-  "Triệu phú giàu sang": "Rich millionaire"
+  "Triệu phú giàu sang": "Rich millionaire",
+  "Cây": "Tree",
+  "Chậu": "Pot",
+  "Top yêu thích": "Favorite top",
+  "Top cấp độ": "Top level",
+  "Top thu thập": "Top collected",
 };

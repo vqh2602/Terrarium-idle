@@ -127,7 +127,7 @@ Map<String, String> ko = {
   "Chậu gỗ sơn hồng": "粉色彩绘木盆",
   "Chậu gỗ, nhưng được sơn lớp màu hồng bền mà lại đẹp": "木锅，但涂成耐用而美丽的粉红色",
   "Chưa có thẻ nào, hãy tham gia sự kiện để nhận thẻ": "还没有卡，请参加活动领取卡",
-  "chuyển 100 đá quý sang oxygen với tỷ lệ 1.75": "将 100 个氧气转换为 1.75 代氧气",
+  "chuyển 100 đá quý sang oxygen với tỷ lệ 5.5": "将 100 个氧气转换为 5.5 代氧气",
   "Chi Oải hương": "薰衣草属",
   "Loại cây bụi thường niên có mùi thơm nồng, xuất xứ từ vùng Địa Trung Hải":
       "这种一年生灌木具有强烈的气味，源自地中海地区",
@@ -185,9 +185,8 @@ Map<String, String> ko = {
       "흙 화분은 배수가 잘 되지만 걸기에는 약간 무거워요",
   "Phân bón x100": "비료 x100",
   "Xẻng x50": "삽 x50",
-  "chuyển 1000 đá quý sang oxygen với tỷ lệ 1.75": "보석 1000개를 1.75의 비율로 산소로 변환",
-  "chuyển 10000 đá quý sang oxygen với tỷ lệ 1.75":
-      "보석 10000개를 1.75의 비율로 산소로 변환",
+  "chuyển 1000 đá quý sang oxygen với tỷ lệ 5.5": "보석 1000개를 5.5의 비율로 산소로 변환",
+  "chuyển 10000 đá quý sang oxygen với tỷ lệ 5.5": "보석 10000개를 5.5의 비율로 산소로 변환",
   "Loài xương rồng kích thước nhỏ, có nhiều gai": "선인장은 크기가 작고 가시가 많다.",
   "Xương rồng nhím": "고슴도치 선인장",
   "Sen bạch liên": "백련",
@@ -227,5 +226,10 @@ Map<String, String> ko = {
   "Dụng cụ": "도구",
   "Kinh nghiệm nhà vườn": "정원 체험",
   "Triệu phú tích trữ": "백만장자들의 보물",
-  "Triệu phú giàu sang": "부유한 백만장자"
+  "Triệu phú giàu sang": "부유한 백만장자",
+  "Cây": "나무",
+  "Chậu": "냄비",
+  "Top yêu thích": "좋아하는 탑",
+  "Top cấp độ": "최상위 수준",
+  "Top thu thập": "최고 수집"
 };

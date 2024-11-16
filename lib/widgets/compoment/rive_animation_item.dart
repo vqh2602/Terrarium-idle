@@ -68,6 +68,9 @@ class _RiveAnimationItemState extends State<RiveAnimationItem> {
                 child: RiveAnimation.network(
                   '${Env.config.dataServer}/rive/pots/${widget.potId}.riv',
                   onInit: (artboardRive) {
+                    state = StateMachineController.fromArtboard(
+                        artboardRive, 'State Machine 1');
+                    artboardRive.addController(state);
                     setState(() {
                       isLoadingPot = false;
                     });
@@ -131,6 +134,11 @@ class _RiveAnimationItemHangingState extends State<RiveAnimationItemHanging> {
                 '${Env.config.dataServer}/rive/pots/${widget.potId}.riv',
                 fit: BoxFit.fill,
                 onInit: (artboardRive) {
+                 
+                  // print('/n animation plant: $plantId $level');
+                  state = StateMachineController.fromArtboard(
+                      artboardRive, 'State Machine 1');
+                  artboardRive.addController(state);
                   setState(() {
                     isLoadingPot = false;
                   });

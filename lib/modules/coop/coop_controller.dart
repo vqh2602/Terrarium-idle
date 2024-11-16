@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terrarium_idle/data/models/ranking.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/service/throttle.dart';
@@ -13,6 +14,7 @@ class CoopController extends GetxController
   List<UserData>? userdataFilter = [];
   List<UserData>? userdataFilterLike = [];
   List<UserData>? userdataFilterLevel = [];
+  List<Ranking>? listRankOxygen = [];
   final Throttle throttle = Throttle(const Duration(milliseconds: 1000));
   @override
   Future<void> onInit() async {
@@ -22,8 +24,10 @@ class CoopController extends GetxController
     userdataFilter?.addAll(userdatas ?? []);
     var listLike = await getTop10UsersWithMost('user.userTotalLike');
     var listLevel = await getTop10UsersWithMost('user.userLevel');
+    var listOxygen = await getRanking();
     userdataFilterLike?.addAll(listLike ?? []);
     userdataFilterLevel?.addAll(listLevel ?? []);
+    listRankOxygen?.addAll(listOxygen);
     changeUI();
   }
 
