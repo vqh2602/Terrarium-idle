@@ -51,8 +51,6 @@ extension STextThemeExtension on STextTheme {
         return Theme.of(context).textTheme.labelMedium;
       case STextTheme.labelSmall:
         return Theme.of(context).textTheme.labelSmall;
-      default:
-        return null;
-    }
+      }
   }
 }

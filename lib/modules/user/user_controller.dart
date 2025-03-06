@@ -26,15 +26,17 @@ class UserController extends GetxController
   List<ItemData> listMyBags = [];
   bool isGraphicsHight = true;
   bool isCache = false;
+  bool isLandscapeFade = false; // mờ phong cảnh
   Ranking? rank;
   @override
   Future<void> onInit() async {
     super.onInit();
     await getUserData();
-    getDataUserRealtime(
-        firebaseAuth.currentUser?.uid ?? '', (p0) => {user = p0, update()});
+    getDataUserRealtime(firebaseAuth.currentUser?.uid ?? '',
+        (p0) => {user = p0, getUserData(), update()});
     isGraphicsHight = box.read(Storages.graphicsOption) ?? true;
     isCache = box.read(Storages.isCache) ?? false;
+    isLandscapeFade = box.read(Storages.isLandscapeFade) ?? false;
     updateColumData();
 
     // hàm xử lý sự kiện thu thập
@@ -171,6 +173,30 @@ class UserController extends GetxController
           Get.back();
           isCache = true;
           await box.write(Storages.isCache, true);
+          buildToast(message: 'Hoàn tất'.tr, status: TypeToast.toastSuccess);
+          clearAndResetApp();
+        });
+  }
+
+  changeLandscapeFade(BuildContext? context) async {
+    await ShareFuntion.onPopDialog(
+        context: context ?? Get.context!,
+        title:
+            'Bật chế độ mờ phong cảnh sẽ làm cho khu vườn của bạn trở nên rõ nét hơn'
+                .tr,
+        titleCancel: '(Tắt)'.tr,
+        titleSubmit: '(Bật)'.tr,
+        onCancel: () async {
+          Get.back();
+          isLandscapeFade = false;
+          await box.write(Storages.isLandscapeFade, false);
+          buildToast(message: 'Hoàn tất'.tr, status: TypeToast.toastSuccess);
+          clearAndResetApp();
+        },
+        onSubmit: () async {
+          Get.back();
+          isLandscapeFade = true;
+          await box.write(Storages.isLandscapeFade, true);
           buildToast(message: 'Hoàn tất'.tr, status: TypeToast.toastSuccess);
           clearAndResetApp();
         });

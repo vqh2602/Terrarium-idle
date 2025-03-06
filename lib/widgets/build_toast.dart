@@ -76,10 +76,5 @@ void buildToast(
             gravity: ToastGravity.BOTTOM);
         break;
       }
-    default:
-      {
-        Get.snackbar('Thông báo'.tr, message,
-            duration: const Duration(seconds: 1));
-      }
-  }
+    }
 }

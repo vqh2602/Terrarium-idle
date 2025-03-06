@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
+import 'package:glass_kit/glass_kit.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:rive/rive.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
@@ -114,7 +115,8 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
                       gardenCoopController.isLike = false;
                       gardenCoopController.update();
                     });
-                    gardenCoopController.sendLike();
+                    gardenCoopController
+                        .sendLike(gardenCoopController.userData);
                     // });
                     // Get.back();
                   },
@@ -232,6 +234,9 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
                 fit: BoxFit.cover,
               ),
             ),
+
+            _blurBackground(),
+
             userController.obx(
               (state) {
                 if (userController.user?.user == null ||
@@ -319,6 +324,7 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
                   // Căn container để nó phủ lên toàn bộ màn hình
                 ),
               ),
+
             if (gardenCoopController.isWater)
               waterRain(gardenCoopController.isWater),
             if (gardenCoopController.isLike)
@@ -326,4 +332,24 @@ class _GardenCoopScreenState extends State<GardenCoopScreen>
           ],
         ));
   }
+
+  _blurBackground() => Positioned.fill(
+        child: IgnorePointer(
+          ignoring: true,
+          child: userController.obx((state) => userController.isLandscapeFade
+              ? GlassContainer.frostedGlass(
+                  blur: 2,
+                  borderColor: Colors.transparent,
+                  frostedOpacity: 0.05,
+                  color: Colors.transparent,
+                  // width: context.width,
+                  child: SizedBox(
+                      // color:
+                      //     Colors.black.withOpacity(0.5), // Màu nền đen với độ mờ 50%
+
+                      ),
+                )
+              : SizedBox()),
+        ),
+      );
 }

@@ -30,6 +30,10 @@ class _RiveAnimationItemState extends State<RiveAnimationItem> {
 
   bool isLoadingPlant = true;
   bool isLoadingPot = true;
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,8 @@ class _RiveAnimationItemState extends State<RiveAnimationItem> {
               SizedBox(
                 width: widget.constraints.maxWidth,
                 height: widget.constraints.maxHeight * 0.7,
-                child: RiveAnimation.network(
+                child:
+                 RiveAnimation.network(
                   '${Env.config.dataServer}/rive/plants/${widget.plantId}.riv',
                   key: Key('${widget.plantId} ${widget.level}'),
                   onInit: (artboardRive) {
@@ -134,7 +139,6 @@ class _RiveAnimationItemHangingState extends State<RiveAnimationItemHanging> {
                 '${Env.config.dataServer}/rive/pots/${widget.potId}.riv',
                 fit: BoxFit.fill,
                 onInit: (artboardRive) {
-                 
                   // print('/n animation plant: $plantId $level');
                   state = StateMachineController.fromArtboard(
                       artboardRive, 'State Machine 1');
@@ -227,4 +231,3 @@ class _RiveAnimationItemHangingState extends State<RiveAnimationItemHanging> {
 //     );
 //   });
 // }
-

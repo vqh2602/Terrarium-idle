@@ -254,4 +254,45 @@ Map<String, String> vi = {
   "Top yêu thích": "Top yêu thích",
   "Top cấp độ": "Top cấp độ",
   "Top thu thập": "Top thu thập",
+  "Ngày dông bão": "Ngày dông bão",
+  "Loài hoa đào màu hồng, nở vào mùa xuân, tượng trưng cho sức sống":
+      "Loài hoa đào màu hồng, nở vào mùa xuân, tượng trưng cho sức sống",
+  "Hoa đào": "Hoa đào",
+  "Hoa đào mùa xuân": "Hoa đào mùa xuân",
+  "Vân đá, Ngày dông bão": "Vân đá, Ngày dông bão",
+  "Chậu đá có những họa tiết chấm kem, nền đá tím":
+      "Chậu đá có những họa tiết chấm kem, nền đá tím",
+  "Chậu đá Sapphire Tím": "Chậu đá Sapphire Tím",
+  "Chậu đá Sapphire Hồng": "Chậu đá Sapphire Hồng",
+  "Chậu đá có những họa tiết chấm kem, nền đá hồng":
+      "Chậu đá có những họa tiết chấm kem, nền đá hồng",
+  "Vân đá, Đêm muộn trời sao": "Vân đá, Đêm muộn trời sao",
+  "Đêm muộn trời sao": "Đêm muộn trời sao",
+  //
+  "Xương rồng thùng hồng": "Xương rồng thùng hồng",
+  "Thuộc Echinocactus grusonii, có hoa màu hồng nhạt":
+      "Thuộc Echinocactus grusonii, có hoa màu hồng nhạt",
+  "Trúc tiểu cảnh": "Trúc tiểu cảnh",
+  "Minamoto no Yuuhi": "Minamoto no Yuuhi",
+  "Xương rồng cột Andes": "Xương rồng cột Andes",
+  "Loài xương rồng cao, mọc thành bụi lớn":
+      "Loài xương rồng cao, mọc thành bụi lớn",
+  "Xương rồng myrtle xanh": "Xương rồng myrtle xanh",
+  "Là một loài xương rồng trong chi Myrtillocactus , có nguồn gốc từ miền trung và miền bắc Mexico":
+      "Là một loài xương rồng trong chi Myrtillocactus , có nguồn gốc từ miền trung và miền bắc Mexico",
+  "Xương rồng trụ xoắn": "Xương rồng trụ xoắn",
+  "Thân cây mọc xoắn ốc một cách tự nhiên, tạo nên một hình dáng vô cùng ấn tượng và thu hút.":
+      "Thân cây mọc xoắn ốc một cách tự nhiên, tạo nên một hình dáng vô cùng ấn tượng và thu hút.",
+  "Thần Sơn Huyễn Cảnh": "Thần Sơn Huyễn Cảnh",
+  "Chậu thủy tinh salix đỏ": "Chậu thủy tinh salix đỏ",
+  "Chậu thủy tinh trong suốt với hiệu ứng 3D đẹp mắt":
+      "Chậu thủy tinh trong suốt với hiệu ứng 3D đẹp mắt",
+  "Chậu vẽ tay họa tiết vàng": "Chậu vẽ tay họa tiết vàng",
+  "Chậu vẽ tay thủ công, có đế gỗ, màu sắc độc đáo":
+      "Chậu vẽ tay thủ công, có đế gỗ, màu sắc độc đáo",
+  "Chậu đá đa giác lam": "Chậu đá có những vết cắt đa giác, tinh tế, hiện đại",
+  "Lá xanh trắng bay": "Lá xanh trắng bay",
+  "Chế độ kính mờ phong cảnh": "Chế độ kính mờ phong cảnh",
+  "Bật chế độ mờ phong cảnh sẽ làm cho khu vườn của bạn trở nên rõ nét hơn":
+      "Bật chế độ mờ phong cảnh sẽ làm cho khu vườn của bạn trở nên rõ nét hơn"
 };

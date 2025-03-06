@@ -248,5 +248,45 @@ Map<String, String> th = {
   "Chậu": "หม้อ",
   "Top yêu thích": "ท็อปสุดโปรด",
   "Top cấp độ": "ระดับบนสุด",
-  "Top thu thập": "รวบรวมยอด"
+  "Top thu thập": "รวบรวมยอด",
+  "Ngày dông bão": "วันที่มีพายุ",
+  "Loài hoa đào màu hồng, nở vào mùa xuân, tượng trưng cho sức sống":
+      "ดอกพีชสีชมพูบานในฤดูใบไม้ผลิเป็นสัญลักษณ์ของพลัง",
+  "Hoa đào": "ดอกพีช",
+  "Hoa đào mùa xuân": "ดอกพีชฤดูใบไม้ผลิ",
+  "Vân đá, Ngày dông bão": "รูปแบบหินวันที่มีพายุ",
+  "Chậu đá có những họa tiết chấm kem, nền đá tím":
+      "กระถางหินที่มีลวดลายครีมพื้นหลังหินสีม่วง",
+  "Chậu đá Sapphire Tím": "กระถางหินแซฟไฟร์สีม่วง",
+  "Chậu đá Sapphire Hồng": "กระถางหินไพลินสีชมพู",
+  "Chậu đá có những họa tiết chấm kem, nền đá hồng":
+      "กระถางหินที่มีลวดลายครีมพื้นหลังหินสีชมพู",
+  "Vân đá, Đêm muộn trời sao": "ลวดลายหินตอนดึก",
+  "Đêm muộn trời sao": "มันดึกดื่น",
+  "Xương rồng thùng hồng": "กระบองเพชรสีชมพู",
+  "Thuộc Echinocactus grusonii, có hoa màu hồng nhạt":
+      "เป็นของ echinocactus grusonii ด้วยดอกไม้สีชมพูอ่อน",
+  "Trúc tiểu cảnh": "โครงสร้างขนาดเล็ก",
+  "Minamoto no Yuuhi": "Minamoto no yuuhi",
+  "Xương rồng cột Andes": "CACTUS คอลัมน์ Andes",
+  "Loài xương rồng cao, mọc thành bụi lớn":
+      "กระบองเพชรสูงเติบโตเป็นพุ่มไม้ขนาดใหญ่",
+  "Xương rồng myrtle xanh": "Blue Myrtle Cactus",
+  "Là một loài xương rồng trong chi Myrtillocactus , có nguồn gốc từ miền trung và miền bắc Mexico":
+      "เป็นต้นกระบองเพชรใน Chirtillocactus ที่มีต้นกำเนิดมาจากกลางและภาคเหนือของเม็กซิโก",
+  "Xương rồng trụ xoắn": "cactus บิด",
+  "Thân cây mọc xoắn ốc một cách tự nhiên, tạo nên một hình dáng vô cùng ấn tượng và thu hút.":
+      "ลำตัวของต้นไม้เติบโตตามธรรมชาติสร้างรูปร่างที่น่าประทับใจและน่าดึงดูดใจอย่างยิ่ง",
+  "Thần Sơn Huyễn Cảnh": "มากกว่าลูกชายของ Huyen",
+  "Chậu thủy tinh salix đỏ": "หม้อแก้วสีแดง Salix",
+  "Chậu thủy tinh trong suốt với hiệu ứng 3D đẹp mắt":
+      "กระถางแก้วโปร่งใสพร้อมเอฟเฟกต์ 3 มิติที่สวยงาม",
+  "Chậu vẽ tay họa tiết vàng": "มือทอง -มือวาด -หม้อ",
+  "Chậu vẽ tay thủ công, có đế gỗ, màu sắc độc đáo":
+      "กระถางมือที่ทำด้วยมือ, ฐานไม้, สีที่ไม่ซ้ำกัน",
+  "Chậu đá đa giác lam": "หม้อหินมีการตัดหลายเหลี่ยมละเอียดอ่อนทันสมัย",
+  "Lá xanh trắng bay": "ใบสีเขียวสีเขียวบิน",
+  "Chế độ kính mờ phong cảnh": "โหมดกระจกภูมิทัศน์",
+  "Bật chế độ mờ phong cảnh sẽ làm cho khu vườn của bạn trở nên rõ nét hơn":
+      "การเปิดโหมดภูมิทัศน์จะทำให้สวนของคุณชัดเจนยิ่งขึ้น"
 };

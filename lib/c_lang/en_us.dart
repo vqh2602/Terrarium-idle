@@ -257,4 +257,44 @@ Map<String, String> en = {
   "Top yêu thích": "Favorite top",
   "Top cấp độ": "Top level",
   "Top thu thập": "Top collected",
+  "Ngày dông bão": "Stormy day",
+  "Loài hoa đào màu hồng, nở vào mùa xuân, tượng trưng cho sức sống":
+      "Pink peach blossoms, bloom in the spring, symbolizing vitality",
+  "Hoa đào": "Peach blossom",
+  "Hoa đào mùa xuân": "Spring peach blossom",
+  "Vân đá, Ngày dông bão": "Stone pattern, stormy day",
+  "Chậu đá có những họa tiết chấm kem, nền đá tím":
+      "Stone pots with creamy patterns, purple stone background",
+  "Chậu đá Sapphire Tím": "Purple sapphire stone pot",
+  "Chậu đá Sapphire Hồng": "Pink sapphire stone pots",
+  "Chậu đá có những họa tiết chấm kem, nền đá hồng":
+      "Stone pots with creamy patterns, pink stone background",
+  "Vân đá, Đêm muộn trời sao": "Stone pattern, late night",
+  "Đêm muộn trời sao": "It's late night",
+  "Xương rồng thùng hồng": "Pink cactus",
+  "Thuộc Echinocactus grusonii, có hoa màu hồng nhạt":
+      "Belongs to Echinocactus Grusonii, with light pink flowers",
+  "Trúc tiểu cảnh": "Small structure",
+  "Minamoto no Yuuhi": "Minamoto no Yuuhi",
+  "Xương rồng cột Andes": "Andes column cactus",
+  "Loài xương rồng cao, mọc thành bụi lớn":
+      "Cactus is tall, grows into large bushes",
+  "Xương rồng myrtle xanh": "Blue Myrtle cactus",
+  "Là một loài xương rồng trong chi Myrtillocactus , có nguồn gốc từ miền trung và miền bắc Mexico":
+      "As a cactus in Chirtillocactus, originating from Central and Northern Mexico",
+  "Xương rồng trụ xoắn": "Twisted cactus",
+  "Thân cây mọc xoắn ốc một cách tự nhiên, tạo nên một hình dáng vô cùng ấn tượng và thu hút.":
+      "The trunk of the tree grows naturally, creating an extremely impressive and attractive shape.",
+  "Thần Sơn Huyễn Cảnh": "Than Son Huyen scene",
+  "Chậu thủy tinh salix đỏ": "Red Salix glass pot",
+  "Chậu thủy tinh trong suốt với hiệu ứng 3D đẹp mắt":
+      "Transparent glass pots with beautiful 3D effects",
+  "Chậu vẽ tay họa tiết vàng": "Gold hand -painted hand -drawn pot",
+  "Chậu vẽ tay thủ công, có đế gỗ, màu sắc độc đáo":
+      "Hand -drawn pots, wooden base, unique color",
+  "Chậu đá đa giác lam": "Stone pots have polygonal cuts, delicate, modern",
+  "Lá xanh trắng bay": "Green white leaves fly",
+  "Chế độ kính mờ phong cảnh": "Landscape glass mode",
+  "Bật chế độ mờ phong cảnh sẽ làm cho khu vườn của bạn trở nên rõ nét hơn":
+      "Turning on the landscape mode will make your garden more clear"
 };

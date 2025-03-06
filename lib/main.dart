@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter/material.dart';
@@ -27,17 +28,24 @@ Future<void> main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   // Khóa hướng màn hình dọc
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  if (!kIsWeb) {
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+  }
   HttpOverrides.global = MyHttpOverrides();
   Env.config = getConfig();
-  MobileAds.instance.initialize();
+  if (!kIsWeb) {
+    MobileAds.instance.initialize();
+  }
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  // FirebaseFirestore.instance.settings = Settings(
+  //     persistenceEnabled: false, cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED);
+  // FirebaseFirestore.instance.enableNetwork();
   // await JustAudioBackground.init(
   //   androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
   //   androidNotificationChannelName: 'Audio playback',
@@ -45,17 +53,19 @@ Future<void> main() async {
   // );
 
 // theme:
-  Env.config.lightTheme = SThemeTask.lightTheme.copyWith(
-    textTheme: Platform.isMacOS || Platform.isWindows
-        ? SThemeTask.lightTheme.textTheme
-        : GoogleFonts.maliTextTheme(Env.config.lightTheme.textTheme),
-  );
+  if (!kIsWeb) {
+    Env.config.lightTheme = SThemeTask.lightTheme.copyWith(
+      textTheme: Platform.isMacOS || Platform.isWindows
+          ? SThemeTask.lightTheme.textTheme
+          : GoogleFonts.maliTextTheme(Env.config.lightTheme.textTheme),
+    );
 
-  Env.config.darkTheme = SThemeTask.darkTheme.copyWith(
-    textTheme: Platform.isMacOS || Platform.isWindows
-        ? SThemeTask.darkTheme.textTheme
-        : GoogleFonts.maliTextTheme(Env.config.darkTheme.textTheme),
-  );
+    Env.config.darkTheme = SThemeTask.darkTheme.copyWith(
+      textTheme: Platform.isMacOS || Platform.isWindows
+          ? SThemeTask.darkTheme.textTheme
+          : GoogleFonts.maliTextTheme(Env.config.darkTheme.textTheme),
+    );
+  }
 
   await initialize();
 
@@ -88,6 +98,17 @@ class MyApp extends StatelessWidget {
       ],
       fallbackLocale: const Locale('vi', 'VN'),
       theme: Env.config.lightTheme,
+      builder: (context, child) {
+        return LayoutBuilder(builder: (context, constraints) {
+          return OrientationBuilder(builder: (context, orientation) {
+            return MediaQuery(
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: TextScaler.linear(1.0)),
+              child: child ?? SizedBox(),
+            );
+          });
+        });
+      },
       // darkTheme: SThemeTask.darkTheme,
       // themeMode: ThemeService().theme,
       // themeMode:  ThemeMode.dark ,

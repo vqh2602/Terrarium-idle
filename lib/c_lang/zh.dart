@@ -226,5 +226,40 @@ Map<String, String> zh = {
   "Chậu": "锅",
   "Top yêu thích": "最喜欢的上衣",
   "Top cấp độ": "顶级",
-  "Top thu thập": "热门收藏"
+  "Top thu thập": "热门收藏",
+  "Ngày dông bão": "暴风雨的一天",
+  "Loài hoa đào màu hồng, nở vào mùa xuân, tượng trưng cho sức sống":
+      "粉红色的桃花花朵，春天开花，象征着活力",
+  "Hoa đào": "桃花",
+  "Hoa đào mùa xuân": "春季桃花花",
+  "Vân đá, Ngày dông bão": "石头图案，暴风雨",
+  "Chậu đá có những họa tiết chấm kem, nền đá tím": "带有奶油图案的石锅，紫色的石头背景",
+  "Chậu đá Sapphire Tím": "紫色蓝宝石石锅",
+  "Chậu đá Sapphire Hồng": "粉红色的蓝宝石石锅",
+  "Chậu đá có những họa tiết chấm kem, nền đá hồng": "带有奶油图案的石锅，粉红色的石头背景",
+  "Vân đá, Đêm muộn trời sao": "石头图案，深夜",
+  "Đêm muộn trời sao": "这是深夜",
+  "Xương rồng thùng hồng": "粉红色的仙人掌",
+  "Thuộc Echinocactus grusonii, có hoa màu hồng nhạt":
+      "属于echinocactus grusonii，带有浅粉红色的花朵",
+  "Trúc tiểu cảnh": "小结构",
+  "Minamoto no Yuuhi": "Minamoto no Yuuhi",
+  "Xương rồng cột Andes": "安第斯山棒仙人掌",
+  "Loài xương rồng cao, mọc thành bụi lớn": "仙人掌高，长成大灌木丛",
+  "Xương rồng myrtle xanh": "蓝色默特仙人掌",
+  "Là một loài xương rồng trong chi Myrtillocactus , có nguồn gốc từ miền trung và miền bắc Mexico":
+      "作为Chirtillocactus的仙人掌，起源于墨西哥中部和北部",
+  "Xương rồng trụ xoắn": "扭曲的仙人掌",
+  "Thân cây mọc xoắn ốc một cách tự nhiên, tạo nên một hình dáng vô cùng ấn tượng và thu hút.":
+      "树的树干自然生长，形成了极其令人印象深刻和吸引人的形状。",
+  "Thần Sơn Huyễn Cảnh": "比儿子休恩场景",
+  "Chậu thủy tinh salix đỏ": "红色salix玻璃瓶",
+  "Chậu thủy tinh trong suốt với hiệu ứng 3D đẹp mắt": "具有美丽3D效果的透明玻璃瓶",
+  "Chậu vẽ tay họa tiết vàng": "金手 - 绘制手绘锅",
+  "Chậu vẽ tay thủ công, có đế gỗ, màu sắc độc đáo": "手绘锅，木制基础，独特的颜色",
+  "Chậu đá đa giác lam": "石锅有多边形切割，精致，现代",
+  "Lá xanh trắng bay": "绿白叶飞",
+  "Chế độ kính mờ phong cảnh": "景观玻璃模式",
+  "Bật chế độ mờ phong cảnh sẽ làm cho khu vườn của bạn trở nên rõ nét hơn":
+      "打开景观模式将使您的花园更加清晰"
 };

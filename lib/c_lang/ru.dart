@@ -257,5 +257,46 @@ Map<String, String> ru = {
   "Chậu": "Горшок",
   "Top yêu thích": "Любимый топ",
   "Top cấp độ": "Верхний уровень",
-  "Top thu thập": "Топ собрано"
+  "Top thu thập": "Топ собрано",
+  "Ngày dông bão": "Бурный день",
+  "Loài hoa đào màu hồng, nở vào mùa xuân, tượng trưng cho sức sống":
+      "Розовые персиковые цветы, цветение весной, символизируя жизнеспособность",
+  "Hoa đào": "Peach Blossom",
+  "Hoa đào mùa xuân": "Весенний персик цветение",
+  "Vân đá, Ngày dông bão": "Каменный рисунок, бурный день",
+  "Chậu đá có những họa tiết chấm kem, nền đá tím":
+      "Каменные горшки со сливочными узорами, фиолетовый фон каменного фона",
+  "Chậu đá Sapphire Tím": "Purple Sapphire Stone Pot",
+  "Chậu đá Sapphire Hồng": "Розовые каменные горшки",
+  "Chậu đá có những họa tiết chấm kem, nền đá hồng":
+      "Каменные горшки со сливочными узорами, розовый каменный фон",
+  "Vân đá, Đêm muộn trời sao": "Каменный рисунок, поздняя ночь",
+  "Đêm muộn trời sao": "Уже поздно ночью",
+  "Xương rồng thùng hồng": "Розовый кактус",
+  "Thuộc Echinocactus grusonii, có hoa màu hồng nhạt":
+      "Принадлежит Echinocactus grusonii, со светло -розовыми цветами",
+  "Trúc tiểu cảnh": "Небольшая структура",
+  "Minamoto no Yuuhi": "Минамото но Юухи",
+  "Xương rồng cột Andes": "Анды Колоночный Кактус",
+  "Loài xương rồng cao, mọc thành bụi lớn":
+      "Кактус высокий, растет в большие кусты",
+  "Xương rồng myrtle xanh": "Синий Мирт Кактус",
+  "Là một loài xương rồng trong chi Myrtillocactus , có nguồn gốc từ miền trung và miền bắc Mexico":
+      "Как кактус в Chirtillocactus, происходящий из центральной и северной Мексики",
+  "Xương rồng trụ xoắn": "Извращенный кактус",
+  "Thân cây mọc xoắn ốc một cách tự nhiên, tạo nên một hình dáng vô cùng ấn tượng và thu hút.":
+      "Ствол дерева растет естественным образом, создавая чрезвычайно впечатляющую и привлекательную форму.",
+  "Thần Sơn Huyễn Cảnh": "Чем сцена сына Хуйена",
+  "Chậu thủy tinh salix đỏ": "Красный Сликс Стеклянный горшок",
+  "Chậu thủy tinh trong suốt với hiệu ứng 3D đẹp mắt":
+      "Прозрачные стеклянные горшки с красивыми 3D -эффектами",
+  "Chậu vẽ tay họa tiết vàng": "Золотая рука с ручной рукой",
+  "Chậu vẽ tay thủ công, có đế gỗ, màu sắc độc đáo":
+      "Ручные кастрюли, деревянная основа, уникальный цвет",
+  "Chậu đá đa giác lam":
+      "Каменные горшки имеют полигональные порезы, нежные, современные",
+  "Lá xanh trắng bay": "Зеленые белые листья летают",
+  "Chế độ kính mờ phong cảnh": "Ландшафтный стеклянный режим",
+  "Bật chế độ mờ phong cảnh sẽ làm cho khu vườn của bạn trở nên rõ nét hơn":
+      "Включение режима ландшафта прояснит ваш сад"
 };

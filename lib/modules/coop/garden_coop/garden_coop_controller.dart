@@ -18,7 +18,6 @@ import 'package:terrarium_idle/data/storage/storage.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
-import 'package:terrarium_idle/service/firebase_push.dart';
 // import 'package:terrarium_idle/data/storage/storage.dart';
 // import 'package:terrarium_idle/modules/auth/login/login_screen.dart';
 // import 'package:dart_appwrite/dart_appwrite.dart' as server_appwrite;
@@ -30,6 +29,7 @@ class GardenCoopController extends GetxController
   bool isEdit = false;
   UserData? userData = Get.arguments;
   UserData? myUser;
+  String? userLikeId; // dùng để kiểm tra và tránh trường hợp spam like
   bool isRain = false;
   List<SelectOptionItem> listSelectOptionEffect = [];
   List<SelectOptionItem> listSelectOptionMusic = [];
@@ -47,6 +47,9 @@ class GardenCoopController extends GetxController
     super.onInit();
     isRain = ShareFuntion.gacha(winRate: 10);
     myUser = await userController.getUserData();
+    if (userData?.plants?.isEmpty ?? true) {
+      userData = await userController.getDataUser(userData?.user?.userID ?? '');
+    }
     isGraphicsHight = box.read(Storages.graphicsOption) ?? false;
     initDataEffect();
     initDataMusic();
@@ -223,8 +226,22 @@ class GardenCoopController extends GetxController
     //   });
     // }
   }
-  sendLike() async {
+  sendLike(UserData? userData) async {
     final directory = await getApplicationDocumentsDirectory();
+    if (userData?.user?.userID == myUser?.user?.userID
+        // ||
+        //     userData?.user?.userID == userLikeId
+        ) {
+      return;
+    }
+    await updateDataUser(
+        userData: userData?.copyWith(
+            user: userData.user?.copyWith(
+                userTotalLike: (int.tryParse(
+                            userData.user?.userTotalLike.toString() ?? '') ??
+                        0) +
+                    1)));
+    userLikeId = userData?.user?.userID;
 //creates text_file in the provided path.
     File file = File('${directory.path}/text_file_${myUser?.user?.userID}.txt');
     String content =
@@ -233,10 +250,10 @@ class GardenCoopController extends GetxController
 
     repoImage.uploadFileDiscord(file, 'like', content);
 
-    String? token = await FirebaseCouldMessage().getAccessToken();
-    FirebaseCouldMessage().sendNotificationWithAccessToken(
-        'fuXCeeuYRruj7d9TKbV3xB:APA91bHQclJuoMARgJkVpsxdB8Rbm0T46lr0wPuZXyy9siO50iHRJpaC5F-zOOTE3k54vvUZNWQCxfHmctdaZPmpvA6ghutAfrB5jzX7NoyrzKS_3_J1KfrT7W4GT167KzrLOeH8T6WD',
-        token ?? '');
+    // String? token = await FirebaseCouldMessage().getAccessToken();
+    // FirebaseCouldMessage().sendNotificationWithAccessToken(
+    //     'fuXCeeuYRruj7d9TKbV3xB:APA91bHQclJuoMARgJkVpsxdB8Rbm0T46lr0wPuZXyy9siO50iHRJpaC5F-zOOTE3k54vvUZNWQCxfHmctdaZPmpvA6ghutAfrB5jzX7NoyrzKS_3_J1KfrT7W4GT167KzrLOeH8T6WD',
+    //     token ?? '');
   }
 
   changeUI() {

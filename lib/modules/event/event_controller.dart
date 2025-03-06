@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:terrarium_idle/data/local/list_bag.dart';
 import 'package:terrarium_idle/data/models/event.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/repositories/event_repo.dart';
+import 'package:terrarium_idle/function/color_helper.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
 import 'package:terrarium_idle/modules/event/webview_process.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
@@ -94,7 +96,7 @@ class EventController extends GetxController
     if (link == 'clam-lavender-plant') {
       Get.to(WebViewProcess(
           html:
-              'https://vqh2602.github.io/dailycoccoli_data.github.io/event/lucky-wheel/index.html?oxygen=${userData?.money?.oxygen}&plants=$plantsId&pots=$potId&userLevel=$userLevel&userId=$userID'));
+              'https://vqh2602.github.io/dailycoccoli_data.github.io/event/lucky-wheel/index.html?oxygen=${userData?.money?.oxygen}&plants=$plantsId&pots=$potId&userLevel=$userLevel&userId=$userID&bagId=$bagId'));
     } else {
       ShareFuntion.showWebInApp(link);
     }
@@ -115,7 +117,7 @@ class EventController extends GetxController
                     idBag: listBagsData[0].id,
                     nameBag: listBagsData[0].name,
                     colorBag: Color(int.parse(listBagsData[0].effect ??
-                        Colors.black.value.toString())),
+                        Colors.black.toInt32.toString())),
                   ),
                 ]),
               ),
@@ -140,7 +142,7 @@ class EventController extends GetxController
                     idBag: listBagsData[2].id,
                     nameBag: listBagsData[2].name,
                     colorBag: Color(int.parse(listBagsData[2].effect ??
-                        Colors.black.value.toString())),
+                        Colors.black.toInt32.toString())),
                   ),
                 ]),
               ),
@@ -160,21 +162,45 @@ class EventController extends GetxController
             // print(args[0]);
             await userController.updateUser(
               userData: userController.user?.copyWith(
-                  user: userController.user?.user?.copyWith(),
+                  user: userController.user?.user?.copyWith(
+                    // thêm bag
+                    bag: (userController.user?.user?.bag ?? []) +
+                        [
+                          if (args[0]['code']?.toString().contains('bag') ??
+                              false)
+                            Bag(
+                              idBag: listBagsData
+                                  .where((element) =>
+                                      element.id == args[0]['code'])
+                                  .first
+                                  .id,
+                              nameBag: listBagsData
+                                  .where((element) =>
+                                      element.id == args[0]['code'])
+                                  .first
+                                  .name,
+                              colorBag: Color(int.parse(listBagsData
+                                      .where((element) =>
+                                          element.id == args[0]['code'])
+                                      .first
+                                      .effect ??
+                                  Colors.black.toInt32.toString())),
+                            )
+                        ],
+                  ),
                   cart: userController.user?.cart?.copyWith(
                     cartPlants: (userController.user?.cart?.cartPlants ?? []) +
                         [
-                          (args[0]['code']?.toString().contains('plant') ??
-                                  false)
-                              ? args[0]['code']
-                              : ''
+                          if (args[0]['code']?.toString().contains('plant') ??
+                              false)
+                            args[0]['code']
                         ]
                       ..removeWhere((element) => element == ''),
                     cartPots: (userController.user?.cart?.cartPots ?? []) +
                         [
-                          (args[0]['code']?.toString().contains('pot') ?? false)
-                              ? args[0]['code']
-                              : ''
+                          if (args[0]['code']?.toString().contains('pot') ??
+                              false)
+                            args[0]['code']
                         ]
                       ..removeWhere((element) => element == ''),
                   ),
@@ -225,6 +251,13 @@ class EventController extends GetxController
               Future.delayed(const Duration(seconds: 1), () {
                 Get.back();
               });
+            } else {
+              buildToast(
+                  message: 'Received ${args[0]['code']}',
+                  status: TypeToast.toastSuccess);
+              Future.delayed(const Duration(seconds: 1), () {
+                Get.back();
+              });
             }
           }
           return null;
@@ -244,6 +277,7 @@ class EventController extends GetxController
     final DateTime now = DateTime.now();
 
     // So sánh ngày hiện tại với ngày kết thúc
+    if (kDebugMode) return true;
     return now.isBefore(end) || now.isAtSameMomentAs(end);
   }
 

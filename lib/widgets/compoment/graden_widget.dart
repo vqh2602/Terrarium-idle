@@ -55,6 +55,7 @@ class Graden extends StatelessWidget {
                   child: isGraphicsHight
                       ? SingleChildScrollView(
                           reverse: true,
+                          physics: BouncingScrollPhysics(),
                           child: hightOptionGraden(context),
                         )
                       : lowOptionGraden()
@@ -74,11 +75,11 @@ class Graden extends StatelessWidget {
     UserData userDataCustom = userData;
     Money? money = userData.money?.copyWith(
         oxygen: (userData.money?.oxygen ?? 0) +
-            (plant.plantLevel == 3
-                ? 30
+            (plant.plantLevel == 1
+                ? 10
                 : plant.plantLevel == 2
                     ? 20
-                    : 10));
+                    : (plant.plantLevel ?? 3) * 10));
     List<Plants> plants = userData.plants!;
     plants.removeWhere((element) =>
         element.position!.contains('${floor + 1},${position + 1}'));
@@ -95,11 +96,11 @@ class Graden extends StatelessWidget {
     if (rank != null) {
       Ranking rankCustom = rank!.copyWith(
           oxygenCollect: (rank?.oxygenCollect ?? 0) +
-              (plant.plantLevel == 3
-                  ? 30
+              (plant.plantLevel == 1
+                  ? 10
                   : plant.plantLevel == 2
                       ? 20
-                      : 10));
+                      : 30));
       updateRank(rankCustom);
     }
   }
@@ -204,9 +205,11 @@ class Graden extends StatelessWidget {
               child: Stack(
             children: [
               isGraphicsHight
-                  ? SingleChildScrollView(
+                  ? ListView(
+                      padding: EdgeInsets.zero,
                       scrollDirection: Axis.horizontal,
-                      child: _hightOptions(floor: floor, context: context))
+                      physics: BouncingScrollPhysics(),
+                      children: _hightOptions(floor: floor, context: context))
                   : _lowOptions(floor: floor),
 
               // _hightOptions(floor: floor, context: context),
@@ -247,7 +250,9 @@ class Graden extends StatelessWidget {
 
 // xây dựng cây với hiệu suất cao (phân item)
   // ignore: unused_element
-  _hightOptions({required int floor, required BuildContext context}) {
+
+  List<Widget> _hightOptions(
+      {required int floor, required BuildContext context}) {
     item(
         {required int floor,
         required int position,
@@ -334,7 +339,7 @@ class Graden extends StatelessWidget {
                                       potId: plant.idPot!,
                                       changeUI: changeUI,
                                       level: plant.plantLevel ?? 1),
-                              if (showClamOxygen && !isCoop)
+                              if (showClamOxygen && !isCoop) ...[
                                 IconButton(
                                   focusColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
@@ -351,11 +356,21 @@ class Graden extends StatelessWidget {
                                     alignment: Alignment.bottomRight,
                                     child: Image.asset(
                                       Assets.images.oxygen.path,
-                                      width: 30,
-                                      height: 30,
+                                      width: constraints.maxWidth * 0.25,
+                                      height: constraints.maxWidth * 0.25,
                                     ),
                                   ),
-                                )
+                                ),
+                                Opacity(
+                                  opacity: 0.5,
+                                  child: IgnorePointer(
+                                    ignoring: true,
+                                    child: Image.asset(Assets.images.blink.path,
+                                        width: constraints.maxWidth,
+                                        height: constraints.maxHeight),
+                                  ),
+                                ),
+                              ]
                             ],
                           );
                         },
@@ -398,18 +413,22 @@ class Graden extends StatelessWidget {
                   : const SizedBox());
     }
 
-    return Row(
-      // itemCount: 3,
-      // shrinkWrap: true,
-      // primary: true,
-      // padding: EdgeInsets.zero,
-      // scrollDirection: Axis.horizontal,
-      children: [
-        for (int position = 0; position < 3; position++) ...[
-          item(floor: floor, position: position, context: context)
-        ]
-      ],
-    );
+    return
+        // Row(
+        // itemCount: 3,
+        // shrinkWrap: true,
+        // primary: true,
+        // padding: EdgeInsets.zero,
+        // scrollDirection: Axis.horizontal,
+        // children: [
+        [
+      for (int position = 0; position < 3; position++)
+        item(floor: floor, position: position, context: context)
+    ];
+    //   item(floor: floor, position: position, context: context)
+    // ];
+    // ],
+    // );
   }
 
   // ignore: unused_element
@@ -504,7 +523,7 @@ class Graden extends StatelessWidget {
                                           potId: plant.idPot!,
                                           changeUI: changeUI,
                                           level: plant.plantLevel ?? 1),
-                                  if (showClamOxygen && !isCoop)
+                                  if (showClamOxygen && !isCoop) ...[
                                     IconButton(
                                       focusColor: Colors.transparent,
                                       hoverColor: Colors.transparent,
@@ -525,7 +544,20 @@ class Graden extends StatelessWidget {
                                           height: constraints.maxWidth * 0.25,
                                         ),
                                       ),
-                                    )
+                                    ),
+                                    Container(
+                                      color: Colors.red,
+                                      width: 100,
+                                      height: 100,
+                                      child: IgnorePointer(
+                                        ignoring: true,
+                                        child: Image.asset(
+                                            Assets.images.blink.path,
+                                            width: constraints.maxWidth,
+                                            height: constraints.maxHeight),
+                                      ),
+                                    ),
+                                  ]
                                 ],
                               );
                             },

@@ -238,14 +238,37 @@ class _CoopScreenState extends State<CoopScreen> {
                   onTap: () async {
                     await gardenController.audioPlayerBackground.pause();
                     await Get.toNamed(GardenCoopScreen.routeName,
-                        arguments: list?[index]);
+                        arguments: UserData(
+                          user: list?[index].user,
+                        ));
+
                     await gardenController.audioPlayerBackground.play();
                   },
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      coopWidget(
-                          user: list?[index].user, ranking: list?[index]),
+                      Stack(
+                        children: [
+                          coopWidget(
+                              user: list?[index].user, ranking: list?[index]),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 4, horizontal: 8),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(100)),
+                              child: SText.bodyMedium(
+                                'Top${index + 1}',
+                                color: Get.theme.primaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                       const Divider(
                         thickness: 2,
                         height: 4,

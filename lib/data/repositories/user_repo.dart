@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:terrarium_idle/data/repositories/repo.dart';
 import 'package:terrarium_idle/data/storage/storage.dart';
 import 'package:terrarium_idle/widgets/build_toast.dart';
@@ -20,7 +21,11 @@ class UserRepo extends Repo {
   Future<UserCredential?> loginWithGoogle() async {
     String error = '';
     try {
-      await _googleSignIn.signIn();
+      if (kIsWeb) {
+        await _googleSignIn.signInSilently();
+      } else {
+        await _googleSignIn.signIn();
+      }
     } catch (e) {
       //print(error);
       error = e.toString();

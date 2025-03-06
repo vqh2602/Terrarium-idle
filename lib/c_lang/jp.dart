@@ -238,4 +238,41 @@ Map<String, String> ja = {
   "Top yêu thích": "お気に入りのトップス",
   "Top cấp độ": "トップレベル",
   "Top thu thập": "トップコレクション",
+  "Ngày dông bão": "嵐の日",
+  "Loài hoa đào màu hồng, nở vào mùa xuân, tượng trưng cho sức sống":
+      "ピンクの桃の花、春に咲き、活力を象徴しています",
+  "Hoa đào": "桃の花",
+  "Hoa đào mùa xuân": "春の桃の花",
+  "Vân đá, Ngày dông bão": "石のパターン、嵐の日",
+  "Chậu đá có những họa tiết chấm kem, nền đá tím": "クリーミーなパターンの石ポット、紫色の石の背景",
+  "Chậu đá Sapphire Tím": "紫のサファイアストーンポット",
+  "Chậu đá Sapphire Hồng": "ピンクのサファイアストーンポット",
+  "Chậu đá có những họa tiết chấm kem, nền đá hồng":
+      "クリーミーなパターン、ピンクの石の背景を持つ石ポット",
+  "Vân đá, Đêm muộn trời sao": "石のパターン、深夜",
+  "Đêm muộn trời sao": "深夜です",
+  "Xương rồng thùng hồng": "ピンクのサボテン",
+  "Thuộc Echinocactus grusonii, có hoa màu hồng nhạt":
+      "明るいピンクの花が付いたEchinocactus grusoniiに属します",
+  "Trúc tiểu cảnh": "小さな構造",
+  "Minamoto no Yuuhi": "ミナモトノーヒ",
+  "Xương rồng cột Andes": "アンデスカラムサボテン",
+  "Loài xương rồng cao, mọc thành bụi lớn": "サボテンは背が高く、大きな茂みに成長します",
+  "Xương rồng myrtle xanh": "ブルーマートルサボテン",
+  "Là một loài xương rồng trong chi Myrtillocactus , có nguồn gốc từ miền trung và miền bắc Mexico":
+      "メキシコ中部および北部からのChirtillocactusのサボテンとして",
+  "Xương rồng trụ xoắn": "ねじれたサボテン",
+  "Thân cây mọc xoắn ốc một cách tự nhiên, tạo nên một hình dáng vô cùng ấn tượng và thu hút.":
+      "木の幹は自然に成長し、非常に印象的で魅力的な形を作ります。",
+  "Thần Sơn Huyễn Cảnh": "息子のフイエンのシーンより",
+  "Chậu thủy tinh salix đỏ": "レッドサリックスガラスポット",
+  "Chậu thủy tinh trong suốt với hiệu ứng 3D đẹp mắt": "美しい3D効果を備えた透明なガラスポット",
+  "Chậu vẽ tay họa tiết vàng": "ゴールドハンド - 塗装された手 - ドラウンドポット",
+  "Chậu vẽ tay thủ công, có đế gỗ, màu sắc độc đáo":
+      "ハンド - ドラウンドポット、木製のベース、ユニークな色",
+  "Chậu đá đa giác lam": "石の鍋には、繊細でモダンなポリゴンカットがあります",
+  "Lá xanh trắng bay": "緑の白の葉が飛ぶ",
+  "Chế độ kính mờ phong cảnh": "ランドスケープガラスモード",
+  "Bật chế độ mờ phong cảnh sẽ làm cho khu vườn của bạn trở nên rõ nét hơn":
+      "ランドスケープモードをオンにすると、庭がより明確になります"
 };

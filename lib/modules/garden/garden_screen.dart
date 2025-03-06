@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
+import 'package:glass_kit/glass_kit.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:rive/rive.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
@@ -276,6 +277,7 @@ class _GardenScreenState extends State<GardenScreen>
                 fit: BoxFit.cover,
               ),
             ),
+            _blurBackground(),
             userController.obx(
               (state) {
                 if (userController.user?.user == null ||
@@ -345,4 +347,24 @@ class _GardenScreenState extends State<GardenScreen>
           ],
         ));
   }
+
+  _blurBackground() => Positioned.fill(
+        child: IgnorePointer(
+          ignoring: true,
+          child: userController.obx((state) => userController.isLandscapeFade
+              ? GlassContainer.frostedGlass(
+                  blur: 2,
+                  borderColor: Colors.transparent,
+                   color: Colors.transparent,
+                  frostedOpacity: 0.05,
+                  // width: context.width,
+                  child: SizedBox(
+                      // color:
+                      //     Colors.black.withOpacity(0.5), // Màu nền đen với độ mờ 50%
+
+                      ),
+                )
+              : SizedBox()),
+        ),
+      );
 }

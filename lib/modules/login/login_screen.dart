@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:rive/rive.dart' as rive;
 import 'package:terrarium_idle/c_theme/colors.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
@@ -88,28 +89,29 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: text500,
                         ),
                       ),
-                      if (Platform.isIOS)
-                        TextButton.icon(
-                          onPressed: () {
-                            loginController.loginApple();
-                          },
-                          // color: Colors.white,
-                          label: SText.bodyMedium("Tiếp tục với Apple".tr),
-                          // textStyle: textStyleCustom(
-                          //     fontSize: 16,
-                          //     fontWeight: FontWeight.bold,
-                          //     color: text500),
-                          // textColor: Colors.black,
-                          // shape: GFButtonShape.pills,
-                          // blockButton: true,
-                          // size: GFSize.LARGE,
-                          // padding: EdgeInsets.zero,
-                          icon: Icon(
-                            FontAwesomeIcons.apple,
-                            color: text500,
-                            size: 30,
+                      if (!kIsWeb)
+                        if (Platform.isIOS)
+                          TextButton.icon(
+                            onPressed: () {
+                              loginController.loginApple();
+                            },
+                            // color: Colors.white,
+                            label: SText.bodyMedium("Tiếp tục với Apple".tr),
+                            // textStyle: textStyleCustom(
+                            //     fontSize: 16,
+                            //     fontWeight: FontWeight.bold,
+                            //     color: text500),
+                            // textColor: Colors.black,
+                            // shape: GFButtonShape.pills,
+                            // blockButton: true,
+                            // size: GFSize.LARGE,
+                            // padding: EdgeInsets.zero,
+                            icon: Icon(
+                              FontAwesomeIcons.apple,
+                              color: text500,
+                              size: 30,
+                            ),
                           ),
-                        ),
                       TextButton.icon(
                         onPressed: () {
                           loginController.loginAnonymous();

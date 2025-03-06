@@ -254,6 +254,13 @@ class _UserScreenState extends State<UserScreen> {
                           onTap: () {
                             userController.changeGraphics(context);
                           }),
+
+                      blockSetting(
+                          title:
+                              '${'Chế độ kính mờ phong cảnh'.tr} ${userController.isLandscapeFade ? '(Bật)'.tr : '(Tắt)'.tr}',
+                          onTap: () {
+                            userController.changeLandscapeFade(context);
+                          }),
                       // blockSetting(
                       //     title:
                       //         '${'Chế độ dử dụng bộ nhớ cahe'.tr} (BETA) ${userController.isCache ? '(Bật)'.tr : '(Tắt)'.tr}',

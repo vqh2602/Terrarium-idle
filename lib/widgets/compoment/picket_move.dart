@@ -16,7 +16,7 @@ showMovePickShovel(
   List<SelectOptionItem> options = [];
 
   /// 1 tầng có 3 vị trí => nhân 3
-  for (int index = 0; index <= userData.user!.userFloor! * 3; index++) {
+  for (int index = 0; index < userData.user!.userFloor! * 3; index++) {
     // Tính vị trí của tầng và vị trí trong tầng
     int floor1 = index ~/ 3 + 1;
     int position1 = index % 3 + 1;

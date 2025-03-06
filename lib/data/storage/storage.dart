@@ -48,6 +48,9 @@ class Storages {
 
   /// Bật chế độ hiển thị bảng hướng dẫn
   static const String isCache = 'có dử dụng cache';
+
+  /// Bật chế độ làm mờ phong cảnh hay k
+  static const String isLandscapeFade = 'is_landscape_fade';
 }
 
 class Config {

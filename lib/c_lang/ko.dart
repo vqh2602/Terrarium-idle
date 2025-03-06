@@ -231,5 +231,41 @@ Map<String, String> ko = {
   "Chậu": "냄비",
   "Top yêu thích": "좋아하는 탑",
   "Top cấp độ": "최상위 수준",
-  "Top thu thập": "최고 수집"
+  "Top thu thập": "최고 수집",
+  "Ngày dông bão": "폭풍이 치는 날",
+  "Loài hoa đào màu hồng, nở vào mùa xuân, tượng trưng cho sức sống":
+      "분홍색 복숭아 꽃, 봄에 피고 활력을 상징합니다",
+  "Hoa đào": "복숭아 꽃",
+  "Hoa đào mùa xuân": "봄 복숭아 꽃",
+  "Vân đá, Ngày dông bão": "석재 패턴, 폭풍이 치는 날",
+  "Chậu đá có những họa tiết chấm kem, nền đá tím": "크림 패턴, 보라색 돌 배경이있는 석재 냄비",
+  "Chậu đá Sapphire Tím": "자주색 사파이어 석조",
+  "Chậu đá Sapphire Hồng": "핑크 사파이어 스톤 냄비",
+  "Chậu đá có những họa tiết chấm kem, nền đá hồng": "크림 패턴, 핑크 스톤 배경이있는 석재 냄비",
+  "Vân đá, Đêm muộn trời sao": "석재 패턴, 늦은 밤",
+  "Đêm muộn trời sao": "늦은 밤입니다",
+  "Xương rồng thùng hồng": "핑크 선인장",
+  "Thuộc Echinocactus grusonii, có hoa màu hồng nhạt":
+      "연한 분홍색 꽃과 함께 Echinocactus grusonii에 속합니다",
+  "Trúc tiểu cảnh": "작은 구조",
+  "Minamoto no Yuuhi": "미나모토 없음 유하",
+  "Xương rồng cột Andes": "안데스 칼럼 선인장",
+  "Loài xương rồng cao, mọc thành bụi lớn": "선인장은 키가 크고 큰 덤불로 자랍니다",
+  "Xương rồng myrtle xanh": "블루 머틀 선장",
+  "Là một loài xương rồng trong chi Myrtillocactus , có nguồn gốc từ miền trung và miền bắc Mexico":
+      "Chirtillocactus의 선인장으로, 멕시코 중부와 북부에서 유래했습니다.",
+  "Xương rồng trụ xoắn": "뒤틀린 선인장",
+  "Thân cây mọc xoắn ốc một cách tự nhiên, tạo nên một hình dáng vô cùng ấn tượng và thu hút.":
+      "나무의 트렁크는 자연스럽게 자라서 매우 인상적이고 매력적인 모양을 만듭니다.",
+  "Thần Sơn Huyễn Cảnh": "아들 Huyen 장면보다",
+  "Chậu thủy tinh salix đỏ": "레드 살릭 유리 냄비",
+  "Chậu thủy tinh trong suốt với hiệu ứng 3D đẹp mắt":
+      "아름다운 3D 효과를 가진 투명한 유리 냄비",
+  "Chậu vẽ tay họa tiết vàng": "골드 핸드 -페인트 핸드 드로네트 냄비",
+  "Chậu vẽ tay thủ công, có đế gỗ, màu sắc độc đáo": "손으로 뽑아 냄비, 나무베이스, 독특한 색상",
+  "Chậu đá đa giác lam": "석재 냄비에는 다각형 컷, 섬세하며 현대적입니다",
+  "Lá xanh trắng bay": "녹색 하얀 잎이 날아갑니다",
+  "Chế độ kính mờ phong cảnh": "조경 유리 모드",
+  "Bật chế độ mờ phong cảnh sẽ làm cho khu vườn của bạn trở nên rõ nét hơn":
+      "조경 모드를 켜면 정원이 더 명확하게됩니다."
 };

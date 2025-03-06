@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -26,29 +27,34 @@
   <meta name="apple-mobile-web-app-title" content="terrarium_idle">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
+  <meta name="google-signin-client_id"
+    content="38854833849-99eg41939rq4f3bu23tgreg0ls29kcsf.apps.googleusercontent.com" />
+  <meta name="fedcm-opt-in" content="true">
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>terrarium_idle</title>
   <link rel="manifest" href="manifest.json">
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = null;
+    var serviceWorkerVersion = "{{flutter_service_worker_version}}";
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
+
 <body>
+  <script src="flutter_bootstrap.js" async></script>
   <script>
-    window.addEventListener('load', function(ev) {
+    window.addEventListener('load', function (ev) {
       // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
+      _flutter.loader.load({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine().then(function (appRunner) {
             appRunner.runApp();
           });
         }
@@ -56,4 +62,5 @@
     });
   </script>
 </body>
+
 </html>

@@ -255,4 +255,44 @@ Map<String, String> hi = {
   "Top yêu thích": "पसंदीदा शीर्ष",
   "Top cấp độ": "शीर्ष स्तर",
   "Top thu thập": "शीर्ष एकत्र किया गया",
+  "Ngày dông bão": "तूफानी दिन",
+  "Loài hoa đào màu hồng, nở vào mùa xuân, tượng trưng cho sức sống":
+      "गुलाबी आड़ू खिलता है, वसंत में खिलता है, जीवन शक्ति का प्रतीक है",
+  "Hoa đào": "आडू खिलना",
+  "Hoa đào mùa xuân": "स्प्रिंग पीच ब्लॉसम",
+  "Vân đá, Ngày dông bão": "पत्थर का पैटर्न, तूफानी दिन",
+  "Chậu đá có những họa tiết chấm kem, nền đá tím":
+      "मलाईदार पैटर्न के साथ पत्थर के बर्तन, बैंगनी पत्थर की पृष्ठभूमि",
+  "Chậu đá Sapphire Tím": "बैंगनी नीलम पत्थर के बर्तन",
+  "Chậu đá Sapphire Hồng": "गुलाबी नीलम पत्थर के बर्तन",
+  "Chậu đá có những họa tiết chấm kem, nền đá hồng":
+      "मलाईदार पैटर्न के साथ पत्थर के बर्तन, गुलाबी पत्थर की पृष्ठभूमि",
+  "Vân đá, Đêm muộn trời sao": "पत्थर का पैटर्न, देर रात",
+  "Đêm muộn trời sao": "देर रात है",
+  "Xương rồng thùng hồng": "गुलाबी कैक्टस",
+  "Thuộc Echinocactus grusonii, có hoa màu hồng nhạt":
+      "हल्के गुलाबी फूलों के साथ इचिनोकैक्टस ग्रुसोनी से संबंधित है",
+  "Trúc tiểu cảnh": "छोटी संरचना",
+  "Minamoto no Yuuhi": "Minamoto No Yuuhi",
+  "Xương rồng cột Andes": "स्तंभ -स्तंभ कैक्टस",
+  "Loài xương rồng cao, mọc thành bụi lớn":
+      "कैक्टस लंबा है, बड़ी झाड़ियों में बढ़ता है",
+  "Xương rồng myrtle xanh": "नीली मर्टल कैक्टस",
+  "Là một loài xương rồng trong chi Myrtillocactus , có nguồn gốc từ miền trung và miền bắc Mexico":
+      "Chirtillocactus में एक कैक्टस के रूप में, मध्य और उत्तरी मेक्सिको से उत्पन्न होता है",
+  "Xương rồng trụ xoắn": "ट्विस्टेड कैक्टस",
+  "Thân cây mọc xoắn ốc một cách tự nhiên, tạo nên một hình dáng vô cùng ấn tượng và thu hút.":
+      "पेड़ का ट्रंक स्वाभाविक रूप से बढ़ता है, एक अत्यंत प्रभावशाली और आकर्षक आकार बनाता है।",
+  "Thần Sơn Huyễn Cảnh": "बेटा हुआन सीन की तुलना में",
+  "Chậu thủy tinh salix đỏ": "लाल सैलिक्स ग्लास पॉट",
+  "Chậu thủy tinh trong suốt với hiệu ứng 3D đẹp mắt":
+      "सुंदर 3 डी प्रभाव के साथ पारदर्शी ग्लास बर्तन",
+  "Chậu vẽ tay họa tiết vàng": "सोने के हाथ से हाथ से हाथ",
+  "Chậu vẽ tay thủ công, có đế gỗ, màu sắc độc đáo":
+      "हाथ से बर्तन, लकड़ी का आधार, अद्वितीय रंग",
+  "Chậu đá đa giác lam": "पत्थर के बर्तन में बहुभुज कटौती, नाजुक, आधुनिक है",
+  "Lá xanh trắng bay": "हरी सफेद पत्ते उड़ते हैं",
+  "Chế độ kính mờ phong cảnh": "लैंडस्केप ग्लास मोड",
+  "Bật chế độ mờ phong cảnh sẽ làm cho khu vườn của bạn trở nên rõ nét hơn":
+      "लैंडस्केप मोड को चालू करने से आपके बगीचे को और अधिक स्पष्ट हो जाएगा"
 };

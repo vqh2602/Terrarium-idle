@@ -175,7 +175,9 @@ class _StoreScreenState extends State<StoreScreen> {
                                     storeController
                                             .listStorePots[index].levelUnlock ??
                                         1) !=
-                                null) return;
+                                null) {
+                              return;
+                            }
                             ShareFuntion.onPopDialog(
                                 context: context,
                                 title: 'Xác nhận mua'.tr,

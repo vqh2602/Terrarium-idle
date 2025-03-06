@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:terrarium_idle/function/color_helper.dart';
 
 class UserData {
   bool? isBan;
@@ -291,7 +292,7 @@ class Bag {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'idBag': idBag,
-      'colorBag': colorBag?.value,
+      'colorBag': colorBag?.toInt32,
       'nameBag': nameBag,
     };
   }

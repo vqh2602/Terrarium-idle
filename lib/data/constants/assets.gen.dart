@@ -30,6 +30,9 @@ class $AssetsAudiosGen {
   /// File path: assets/audios/m4.mp3
   String get m4 => 'assets/audios/m4.mp3';
 
+  /// File path: assets/audios/m5.MP3
+  String get m5 => 'assets/audios/m5.MP3';
+
   /// File path: assets/audios/peacefulgarden.mp3
   String get peacefulgarden => 'assets/audios/peacefulgarden.mp3';
 
@@ -41,14 +44,23 @@ class $AssetsAudiosGen {
 
   /// List of all assets
   List<String> get values =>
-      [levelUp, like, m1, m2, m3, m4, peacefulgarden, rain, tap];
+      [levelUp, like, m1, m2, m3, m4, m5, peacefulgarden, rain, tap];
 }
 
 class $AssetsBackgroundsGen {
   const $AssetsBackgroundsGen();
 
+  /// File path: assets/backgrounds/landscape6.riv
+  String get landscape6 => 'assets/backgrounds/landscape6.riv';
+
+  /// File path: assets/backgrounds/landscape7.riv
+  String get landscape7 => 'assets/backgrounds/landscape7.riv';
+
   /// File path: assets/backgrounds/sky_moon_night.riv
   String get skyMoonNight => 'assets/backgrounds/sky_moon_night.riv';
+
+  /// File path: assets/backgrounds/sky_moon_star.riv
+  String get skyMoonStar => 'assets/backgrounds/sky_moon_star.riv';
 
   /// File path: assets/backgrounds/sky_rain.riv
   String get skyRain => 'assets/backgrounds/sky_rain.riv';
@@ -60,11 +72,22 @@ class $AssetsBackgroundsGen {
   String get skySunSet => 'assets/backgrounds/sky_sun_set.riv';
 
   /// List of all assets
-  List<String> get values => [skyMoonNight, skyRain, skySunDay, skySunSet];
+  List<String> get values => [
+        landscape6,
+        landscape7,
+        skyMoonNight,
+        skyMoonStar,
+        skyRain,
+        skySunDay,
+        skySunSet
+      ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/blink.gif
+  AssetGenImage get blink => const AssetGenImage('assets/images/blink.gif');
 
   /// File path: assets/images/fertilizer.png
   AssetGenImage get fertilizer =>
@@ -101,6 +124,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        blink,
         fertilizer,
         gemstone,
         gift,
@@ -155,9 +179,12 @@ class $AssetsRiveOverlayGen {
   /// File path: assets/rive/overlay/overlay4.riv
   String get overlay4 => 'assets/rive/overlay/overlay4.riv';
 
+  /// File path: assets/rive/overlay/overlay5.riv
+  String get overlay5 => 'assets/rive/overlay/overlay5.riv';
+
   /// List of all assets
   List<String> get values =>
-      [cloudIcon, lightLike, overlay1, overlay2, overlay3, overlay4];
+      [cloudIcon, lightLike, overlay1, overlay2, overlay3, overlay4, overlay5];
 }
 
 class Assets {
