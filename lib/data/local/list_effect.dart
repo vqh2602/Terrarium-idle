@@ -123,4 +123,16 @@ List<ItemData> listEffectData = [
     effect: 'Ngày dông bão'.tr,
     levelUnlock: 0,
   ),
+   ItemData(
+    id: 'm6',
+    name: 'Lạc lõng khoảng trời'.tr,
+    description: '',
+    image: Assets.audios.m6,
+    priceStore: 0,
+    priceOxygen: 0,
+    currencyUnit: '',
+    type: 'music',
+    effect: ''.tr,
+    levelUnlock: 0,
+  ),
 ];

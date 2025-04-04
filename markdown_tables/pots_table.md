@@ -23,7 +23,7 @@
 | pot19 | Chậu lam ngọc tròn | ![Chậu lam ngọc tròn](https://i.imgur.com/cBMqpAy.png) | 30000 | gemstone | 25 | none | Đêm dài |
 | pot20 | Chậu gỗ xoan | ![Chậu gỗ xoan](https://i.imgur.com/JY22US7.png) | 10000 | oxygen | 25 | none | N.A |
 | pot21 | Chậu đá safe | ![Chậu đá safe](https://i.imgur.com/7aIKUJy.png) | 15000 | oxygen | 30 | none | N.A |
-| pot22 | Chậu đá Sapphire Tím | ![Chậu đá Sapphire Tím](https://i.imgur.com/Q57Rqo7.png) | 25000 | oxygen | 33 | none | ${ |
+| pot22 | Chậu đá Sapphire Tím | ![Chậu đá Sapphire Tím](https://i.imgur.com/Q57Rqo7.png) | 75000 | oxygen | 33 | none | ${ |
 | pot23 | Chậu đá Sapphire Hồng | ![Chậu đá Sapphire Hồng](https://i.imgur.com/GmG19nq.png) | 10000 | gemstone | 33 | none | ${ |
 | pot24 | Chậu thủy tinh salix đỏ | ![Chậu thủy tinh salix đỏ](https://i.imgur.com/6HIoc9B.png) | 18000 | oxygen | 33 | none | N.A |
 | pot25 | Chậu vẽ tay họa tiết vàng | ![Chậu vẽ tay họa tiết vàng](https://i.imgur.com/PcVfV1J.png) | 45000 | oxygen | 35 | none | N.A |

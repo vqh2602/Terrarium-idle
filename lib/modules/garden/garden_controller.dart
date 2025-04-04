@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
@@ -15,6 +16,7 @@ import 'package:terrarium_idle/data/models/select_option_item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/data/storage/storage.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
+import 'package:terrarium_idle/main.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
 import 'package:terrarium_idle/modules/user/user_controller.dart';
 import 'package:terrarium_idle/widgets/base/text/text_style.dart';
@@ -196,13 +198,40 @@ class GardenController extends GetxController
   }
 
   initAudio({required String asset}) async {
+    // if (audioHandler.isBlank ?? false) {
+    //   await audioHandler.pause();
+    // }
+
+    var item = MediaItem(
+      id: asset,
+      album: '_',
+      title: 'Terrarium IDLE',
+      artist: 'Terrarium IDLE',
+      // duration: const Duration(: 123456),
+      artUri: Uri.parse(
+          'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgOHMIh6A8gwwymHW6eICoheIZF19lfZdqwUaOy1pmtS2hzkcvHAjd_J9Vj4igJihZ2gaKSLj_aMdb21qUJ2_n_gFyXMJL93siDW7GFt2vnOB85SSNWarWvmAdpF4kBYBdFqqqZAU_7JUTjEpDnQtDtUIjb8c2NZnqJHOoDvDNertTozaQqX1o4f3RL4ySV/w600-h337-p-k-no-nu-rw-e90/logo.jpg'),
+    );
+
+    audioHandler.playMediaItem(item);
+
+    // audioHandler.play();
+
     // Create a player
-    await audioPlayerBackground.pause();
-    await audioPlayerBackground
-        .setAsset(asset); // Schemes: (https: | file: | asset: )
-    await audioPlayerBackground.setLoopMode(LoopMode.all);
-    await audioPlayerBackground.setVolume(0.3);
-    await audioPlayerBackground.play(); // Play while waiting for completion
+    // await audioPlayerBackground.pause();
+    // await audioPlayerBackground.setAsset(
+    //   asset,
+    //   tag: MediaItem(
+    //       // Specify a unique ID for each media item:
+    //       id: '1',
+    //       // Metadata to display in the notification:
+    //       album: "Terrarium IDLE",
+    //       title: "Terrarium IDLE",
+    //       artUri: Uri.parse(
+    //           'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgOHMIh6A8gwwymHW6eICoheIZF19lfZdqwUaOy1pmtS2hzkcvHAjd_J9Vj4igJihZ2gaKSLj_aMdb21qUJ2_n_gFyXMJL93siDW7GFt2vnOB85SSNWarWvmAdpF4kBYBdFqqqZAU_7JUTjEpDnQtDtUIjb8c2NZnqJHOoDvDNertTozaQqX1o4f3RL4ySV/w600-h337-p-k-no-nu-rw-e90/logo.jpg')),
+    // ); // Schemes: (https: | file: | asset: )
+    // await audioPlayerBackground.setLoopMode(LoopMode.all);
+    // await audioPlayerBackground.setVolume(0.3);
+    // await audioPlayerBackground.play(); // Play while waiting for completion
     // await player.pause(); // Pause but remain ready to play
     // await  audioPlayerBackground.stop();
   }

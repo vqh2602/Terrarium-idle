@@ -189,21 +189,23 @@ class EventController extends GetxController
                         ],
                   ),
                   cart: userController.user?.cart?.copyWith(
-                    cartPlants: (userController.user?.cart?.cartPlants ?? []) +
-                        [
-                          if (args[0]['code']?.toString().contains('plant') ??
-                              false)
-                            args[0]['code']
-                        ]
-                      ..removeWhere((element) => element == ''),
-                    cartPots: (userController.user?.cart?.cartPots ?? []) +
-                        [
-                          if (args[0]['code']?.toString().contains('pot') ??
-                              false)
-                            args[0]['code']
-                        ]
-                      ..removeWhere((element) => element == ''),
-                  ),
+                      cartPlants: (userController.user?.cart?.cartPlants ??
+                              []) +
+                          [
+                            if (args[0]['code']?.toString().contains('plant') ??
+                                false)
+                              args[0]['code']
+                          ]
+                        ..removeWhere((element) => element == ''),
+                      cartPots: (userController.user?.cart?.cartPots ?? []) +
+                          [
+                            if (args[0]['code']?.toString().contains('pot') ??
+                                false)
+                              args[0]['code']
+                          ]
+                        ..removeWhere((element) => element == ''),
+                      cartStickers:
+                          userController.user?.cart?.cartStickers ?? []),
                   item: userController.user?.item?.copyWith(
                     fertilizer: (userController.user?.item?.fertilizer ?? 0) +
                         ((args[0]?['code'] == 'fertilizer') ? 1 : 0),

@@ -57,7 +57,7 @@ class _StoreScreenState extends State<StoreScreen> {
               height: Get.height,
               child: DefaultTabController(
                 initialIndex: 0,
-                length: 4,
+                length: 5,
                 child: Scaffold(
                   backgroundColor: bg500,
                   appBar: AppBar(
@@ -69,6 +69,11 @@ class _StoreScreenState extends State<StoreScreen> {
                     // title: const Text('TabBar Sample'),
                     leading: const SizedBox(),
                     bottom: TabBar(
+                      isScrollable: true,
+                      padding: EdgeInsets.zero,
+                      // labelPadding: EdgeInsets.zero,
+                      indicatorPadding: EdgeInsets.zero,
+                      tabAlignment: TabAlignment.start,
                       indicatorSize: TabBarIndicatorSize.tab,
                       labelStyle: STextTheme.bodyMedium
                           .value(context)
@@ -77,6 +82,7 @@ class _StoreScreenState extends State<StoreScreen> {
                       tabs: <Widget>[
                         Tab(text: 'Chậu'.tr),
                         Tab(text: 'Cây'.tr),
+                        Tab(text: 'Trang trí'.tr),
                         Tab(text: 'Đá quý'.tr),
                         Tab(text: 'Dụng cụ'.tr),
                       ],
@@ -86,6 +92,7 @@ class _StoreScreenState extends State<StoreScreen> {
                     children: <Widget>[
                       _listStorePots(),
                       _listStorePlants(),
+                      _listStoreStickers(),
                       _listStoreGems(),
                       _listStoreTools(),
                     ],
@@ -359,6 +366,134 @@ class _StoreScreenState extends State<StoreScreen> {
             )
           : _buildEmpty(),
     );
+  }
+
+  Widget _listStoreStickers() {
+    return SizedBox(
+        height: Get.height,
+        width: Get.width,
+        child: storeController.listStoreStickers.isNotEmpty
+            ? ListView.builder(
+                shrinkWrap: true,
+                itemCount: storeController.listStoreStickers.length,
+                itemBuilder: (BuildContext ctx, index) {
+                  bool isHanging = storeController
+                          .listStoreStickers[index].itemTypeAttribute ==
+                      ItemTypeAttribute.hanging;
+                  return Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                        color: index % 2 == 0
+                            ? Colors.white.withOpacity(0.2)
+                            : Get.theme.primaryColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: ShareFuntion.isIpad()
+                              ? Get.width * 0.1
+                              : Get.width * 0.2,
+                          padding: const EdgeInsets.all(8.0),
+                          child: imageNetwork(
+                            url: storeController
+                                    .listStoreStickers[index].image ??
+                                '',
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 6,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SText.bodyMedium(
+                                  '${storeController.listStoreStickers[index].name} ${isHanging ? '(☁${'Treo'.tr})' : ''}',
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                              SText.bodySmall(
+                                  storeController.listStoreStickers[index]
+                                          .description ??
+                                      '',
+                                  color: Colors.black),
+                              SText.bodySmall(
+                                  '${'Hiệu ứng'.tr}: ${storeController.listStoreStickers[index].effect ?? 'N.A'}',
+                                  color: Colors.black),
+                              SText.bodySmall(
+                                  '${'Cấp độ mở khóa'.tr}: ${storeController.listStoreStickers[index].levelUnlock ?? 'N.A'}',
+                                  color: Colors.black)
+                            ],
+                          ),
+                        ),
+                        cWidth(4),
+                        FxButton.outlined(
+                          onPressed: () async {
+                            if (storeController.getStringLockLevel(
+                                    storeController.listStoreStickers[index]
+                                            .levelUnlock ??
+                                        1) !=
+                                null) {
+                              return;
+                            }
+                            ShareFuntion.onPopDialog(
+                                context: context,
+                                title: 'Xác nhận mua'.tr,
+                                onCancel: () => Get.back(),
+                                onSubmit: () async {
+                                  Get.back();
+                                  storeController.buyItemStore(
+                                      storeController.listStoreStickers[index]);
+                                });
+                          },
+                          side: BorderSide(color: Get.theme.primaryColor),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              if (storeController.getStringLockLevel(
+                                      storeController.listStoreStickers[index]
+                                              .levelUnlock ??
+                                          1) ==
+                                  null)
+                                Container(
+                                  width: ShareFuntion.isIpad()
+                                      ? Get.width * 0.05
+                                      : Get.width * 0.1,
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  child: Image.asset(
+                                    storeController.listStoreStickers[index]
+                                                .currencyUnit ==
+                                            'oxygen'
+                                        ? Assets.images.oxygen.path
+                                        : storeController
+                                                    .listStoreStickers[index]
+                                                    .currencyUnit ==
+                                                'ticket'
+                                            ? Assets.images.ticket.path
+                                            : Assets.images.gemstone.path,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              SText.bodyMedium(
+                                  storeController.getStringLockLevel(
+                                          storeController
+                                                  .listStoreStickers[index]
+                                                  .levelUnlock ??
+                                              1) ??
+                                      storeController
+                                          .listStoreStickers[index].priceStore
+                                          ?.toString() ??
+                                      '',
+                                  color: Colors.black)
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              )
+            : _buildEmpty());
   }
 
   Widget _listStoreTools() {

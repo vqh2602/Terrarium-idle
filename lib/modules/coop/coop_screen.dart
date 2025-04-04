@@ -4,6 +4,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:terrarium_idle/data/models/ranking.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/function/share_funciton.dart';
+import 'package:terrarium_idle/main.dart';
 import 'package:terrarium_idle/modules/coop/coop_controller.dart';
 import 'package:terrarium_idle/modules/coop/garden_coop/garden_coop_screen.dart';
 import 'package:terrarium_idle/modules/garden/garden_controller.dart';
@@ -236,12 +237,14 @@ class _CoopScreenState extends State<CoopScreen> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () async {
+                    audioHandler.pause();
                     await gardenController.audioPlayerBackground.pause();
+
                     await Get.toNamed(GardenCoopScreen.routeName,
                         arguments: UserData(
                           user: list?[index].user,
                         ));
-
+                    audioHandler.play();
                     await gardenController.audioPlayerBackground.play();
                   },
                   child: Column(

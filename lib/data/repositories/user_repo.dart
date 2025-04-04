@@ -22,7 +22,7 @@ class UserRepo extends Repo {
     String error = '';
     try {
       if (kIsWeb) {
-        await _googleSignIn.signInSilently();
+        await _googleSignIn.signIn();
       } else {
         await _googleSignIn.signIn();
       }
@@ -110,7 +110,7 @@ class UserRepo extends Repo {
     // // if (kIsWeb) {
     // //   await FirebaseAuth.instance.signInWithPopup(appleProvider);
     // // } else {
-    final appleProvider = AppleAuthProvider()
+    final appleProvider = AppleAuthProvider() 
       ..addScope('email')
       ..addScope('fullName');
 

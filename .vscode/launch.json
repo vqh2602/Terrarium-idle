@@ -6,7 +6,10 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "debug",
-      "args": ["--flavor", "dev"],
+      "args": [
+        "--flavor",
+        "dev"
+      ],
       "program": "lib/main_dev.dart"
     },
     {
@@ -14,7 +17,10 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile",
-      "args": ["--flavor", "dev"],
+      "args": [
+        "--flavor",
+        "dev"
+      ],
       "program": "lib/main_dev.dart"
     },
     {
@@ -22,7 +28,10 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",
-      "args": ["--flavor", "dev"],
+      "args": [
+        "--flavor",
+        "dev"
+      ],
       "program": "lib/main_dev.dart"
     },
     {
@@ -30,7 +39,10 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "debug",
-      "args": ["--flavor", "uat"],
+      "args": [
+        "--flavor",
+        "uat"
+      ],
       "program": "lib/main_uat.dart"
     },
     {
@@ -38,7 +50,10 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile",
-      "args": ["--flavor", "uat"],
+      "args": [
+        "--flavor",
+        "uat"
+      ],
       "program": "lib/main_uat.dart"
     },
     {
@@ -46,7 +61,10 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",
-      "args": ["--flavor", "uat"],
+      "args": [
+        "--flavor",
+        "uat"
+      ],
       "program": "lib/main_uat.dart"
     },
     {
@@ -54,7 +72,10 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "debug",
-      "args": ["--flavor", "prod"],
+      "args": [
+        "--flavor",
+        "prod"
+      ],
       "program": "lib/main_prod.dart"
     },
     {
@@ -62,7 +83,10 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile",
-      "args": ["--flavor", "prod"],
+      "args": [
+        "--flavor",
+        "prod"
+      ],
       "program": "lib/main_prod.dart"
     },
     {
@@ -70,8 +94,22 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",
-      "args": ["--flavor", "prod"],
+      "args": [
+        "--flavor",
+        "prod"
+      ],
       "program": "lib/main_prod.dart"
+    },
+    {
+      "name": "dev debug rive",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug",
+      // "args": [
+      //   "--flavor",
+      //   "prod"
+      // ],
+      "program": "lib/main_dev.dart"
     }
   ]
 }

@@ -15,7 +15,8 @@ import 'package:terrarium_idle/widgets/blur_box.dart';
 import 'package:terrarium_idle/widgets/build_toast.dart';
 import 'package:terrarium_idle/widgets/compoment/action_menu.dart';
 import 'package:terrarium_idle/widgets/compoment/picker_plants_pots.dart';
-import 'package:terrarium_idle/widgets/compoment/rive_animation_item.dart';
+import 'package:terrarium_idle/widgets/compoment/rive_animation_item_rive_native.dart';
+// import 'package:terrarium_idle/widgets/compoment/rive_animation_item.dart';
 
 class Graden extends StatelessWidget {
   final bool isEdit;
@@ -52,13 +53,15 @@ class Graden extends StatelessWidget {
             Expanded(
               child: Container(
                   alignment: Alignment.bottomCenter,
-                  child: isGraphicsHight
-                      ? SingleChildScrollView(
-                          reverse: true,
-                          physics: BouncingScrollPhysics(),
-                          child: hightOptionGraden(context),
-                        )
-                      : lowOptionGraden()
+                  child:
+                      // isGraphicsHight
+                      //     ?
+                      SingleChildScrollView(
+                    reverse: true,
+                    physics: BouncingScrollPhysics(),
+                    child: hightOptionGraden(context),
+                  )
+                  // : lowOptionGraden()
                   // lowOptionGraden()
                   ),
             )
@@ -74,12 +77,7 @@ class Graden extends StatelessWidget {
     }
     UserData userDataCustom = userData;
     Money? money = userData.money?.copyWith(
-        oxygen: (userData.money?.oxygen ?? 0) +
-            (plant.plantLevel == 1
-                ? 10
-                : plant.plantLevel == 2
-                    ? 20
-                    : (plant.plantLevel ?? 3) * 10));
+        oxygen: (userData.money?.oxygen ?? 0) + ((plant.plantLevel ?? 1) * 25));
     List<Plants> plants = userData.plants!;
     plants.removeWhere((element) =>
         element.position!.contains('${floor + 1},${position + 1}'));
@@ -95,12 +93,8 @@ class Graden extends StatelessWidget {
     // rank
     if (rank != null) {
       Ranking rankCustom = rank!.copyWith(
-          oxygenCollect: (rank?.oxygenCollect ?? 0) +
-              (plant.plantLevel == 1
-                  ? 10
-                  : plant.plantLevel == 2
-                      ? 20
-                      : 30));
+          oxygenCollect:
+              (rank?.oxygenCollect ?? 0) + ((plant.plantLevel ?? 1) * 25));
       updateRank(rankCustom);
     }
   }
@@ -204,13 +198,14 @@ class Graden extends StatelessWidget {
           Expanded(
               child: Stack(
             children: [
-              isGraphicsHight
-                  ? ListView(
-                      padding: EdgeInsets.zero,
-                      scrollDirection: Axis.horizontal,
-                      physics: BouncingScrollPhysics(),
-                      children: _hightOptions(floor: floor, context: context))
-                  : _lowOptions(floor: floor),
+              // isGraphicsHight
+              //     ?
+              ListView(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.horizontal,
+                  physics: BouncingScrollPhysics(),
+                  children: _hightOptions(floor: floor, context: context)),
+              // : _lowOptions(floor: floor),
 
               // _hightOptions(floor: floor, context: context),
               Align(
@@ -233,20 +228,20 @@ class Graden extends StatelessWidget {
     );
   }
 
-// xây dựng cây với giảm bộ nhớ
-  lowOptionGraden() {
-    return ListView.builder(
-        itemCount: (userData.user?.userFloor ?? 0) + 1,
-        padding: EdgeInsets.only(
-            bottom: kBottomNavigationBarHeight + Get.height * 0.05,
-            top: kToolbarHeight + Get.height * 0.1),
-        reverse: true,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return _itemSuportGraden(context, index,
-              isEdit: isEdit, isGraphicsHight: isGraphicsHight);
-        });
-  }
+// // xây dựng cây với giảm bộ nhớ
+//   lowOptionGraden() {
+//     return ListView.builder(
+//         itemCount: (userData.user?.userFloor ?? 0) + 1,
+//         padding: EdgeInsets.only(
+//             bottom: kBottomNavigationBarHeight + Get.height * 0.05,
+//             top: kToolbarHeight + Get.height * 0.1),
+//         reverse: true,
+//         shrinkWrap: true,
+//         itemBuilder: (context, index) {
+//           return _itemSuportGraden(context, index,
+//               isEdit: isEdit, isGraphicsHight: isGraphicsHight);
+//         });
+//   }
 
 // xây dựng cây với hiệu suất cao (phân item)
   // ignore: unused_element
@@ -316,12 +311,7 @@ class Graden extends StatelessWidget {
                                           plant.harvestTime ?? DateTime.now())
                                       .inMinutes >=
                                   30 &&
-                              ShareFuntion.gacha(
-                                  winRate: plant.plantLevel == 3
-                                      ? 100
-                                      : plant.plantLevel == 2
-                                          ? 100
-                                          : 100));
+                              !(plant.idPlant?.contains('sticker') ?? true));
                           // changeUI.call();
                           return Stack(
                             key: Key(plant.position ?? ''),
@@ -431,173 +421,173 @@ class Graden extends StatelessWidget {
     // );
   }
 
-  // ignore: unused_element
-  _lowOptions({
-    required int floor,
-  }) {
-    return ListView.builder(
-        itemCount: 3,
-        shrinkWrap: true,
-        primary: true,
-        padding: EdgeInsets.zero,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, position) {
-          Plants? plant = userData.plants?.firstWhereOrNull((element) =>
-              element.position == ('${floor + 1},${position + 1}'));
-          bool isHanging = plant?.isHanging ?? false;
-          // bool isHanging = listPlantsData
-          //     .where((element) =>
-          //         element.id == plant?.idPlant &&
-          //         element.itemTypeAttribute == ItemTypeAttribute.hanging)
-          //     .isNotEmpty;
+  // // ignore: unused_element
+  // _lowOptions({
+  //   required int floor,
+  // }) {
+  //   return ListView.builder(
+  //       itemCount: 3,
+  //       shrinkWrap: true,
+  //       primary: true,
+  //       padding: EdgeInsets.zero,
+  //       scrollDirection: Axis.horizontal,
+  //       itemBuilder: (context, position) {
+  //         Plants? plant = userData.plants?.firstWhereOrNull((element) =>
+  //             element.position == ('${floor + 1},${position + 1}'));
+  //         bool isHanging = plant?.isHanging ?? false;
+  //         // bool isHanging = listPlantsData
+  //         //     .where((element) =>
+  //         //         element.id == plant?.idPlant &&
+  //         //         element.itemTypeAttribute == ItemTypeAttribute.hanging)
+  //         //     .isNotEmpty;
 
-          return (userData.plants!
-                  .where((element) =>
-                      element.position == ('${floor + 1},${position + 1}'))
-                  .isNotEmpty)
-              ? (plant != null)
-                  ? Container(
-                      width: Get.width * 0.32,
-                      padding: EdgeInsets.zero,
-                      child: PieMenu(
-                        onToggle: (val) {
-                          ShareFuntion.tapPlayAudio();
-                        },
-                        onPressed: () {
-                          ShareFuntion.tapPlayAudio(isNewAudioPlay: true);
-                          if (ShareFuntion.gacha(winRate: 2) && !isCoop) {
-                            _clamOxygen(plant,
-                                floor: floor, position: position);
-                          }
-                        },
-                        theme: const PieTheme(
-                            overlayColor: Colors.black45,
-                            rightClickShowsMenu: true,
-                            customAngleAnchor: PieAnchor.center),
-                        actions: [
-                          if (!isCoop)
-                            ...listActionsMenu(context,
-                                floor: floor + 1,
-                                position: position + 1,
-                                userData: userData,
-                                update: update)
-                        ],
-                        child: Container(
-                          padding: EdgeInsets.zero,
-                          // color: Colors.red,
-                          child: LayoutBuilder(
-                            builder: (context, constraints) {
-                              // Plants plant = userData
-                              //     .plants!
-                              //     .firstWhere((element) =>
-                              //         element.position!
-                              //             .contains(
-                              //                 '${floor + 1},${position + 1}'));
-                              // print(
-                              //     '/n plant: ${plant.idPlant} ${'${floor + 1},$position'} : level: ${plant.plantLevel}');
-                              bool showClamOxygen = (DateTime.now()
-                                          .difference(plant.harvestTime ??
-                                              DateTime.now())
-                                          .inMinutes >=
-                                      30 &&
-                                  ShareFuntion.gacha(
-                                      winRate: plant.plantLevel == 3
-                                          ? 99
-                                          : plant.plantLevel == 2
-                                              ? 80
-                                              : 70));
-                              // changeUI.call();
-                              return Stack(
-                                key: Key(plant.position ?? ''),
-                                children: [
-                                  (isHanging)
-                                      ? RiveAnimationItemHanging(
-                                          constraints: constraints,
-                                          plantId: plant.idPlant!,
-                                          potId: plant.idPot!,
-                                          changeUI: changeUI,
-                                          level: plant.plantLevel ?? 1)
-                                      : RiveAnimationItem(
-                                          constraints: constraints,
-                                          plantId: plant.idPlant!,
-                                          potId: plant.idPot!,
-                                          changeUI: changeUI,
-                                          level: plant.plantLevel ?? 1),
-                                  if (showClamOxygen && !isCoop) ...[
-                                    IconButton(
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      onPressed: () async {
-                                        // ShareFuntion
-                                        //     .tapPlayAudio(
-                                        //         isNewAudioPlay:
-                                        //             false);
-                                        /// lấy oxy gen và tăng cấp cây khi hiện oxygen
-                                        _clamOxygen(plant,
-                                            floor: floor, position: position);
-                                      },
-                                      icon: Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: Image.asset(
-                                          Assets.images.oxygen.path,
-                                          width: constraints.maxWidth * 0.25,
-                                          height: constraints.maxWidth * 0.25,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      color: Colors.red,
-                                      width: 100,
-                                      height: 100,
-                                      child: IgnorePointer(
-                                        ignoring: true,
-                                        child: Image.asset(
-                                            Assets.images.blink.path,
-                                            width: constraints.maxWidth,
-                                            height: constraints.maxHeight),
-                                      ),
-                                    ),
-                                  ]
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                      ))
-                  : const SizedBox()
-              : Container(
-                  width: Get.width * 0.33,
-                  padding: EdgeInsets.zero,
-                  child: isEdit
-                      ? GestureDetector(
-                          onTap: () {
-                            ShareFuntion.tapPlayAudio();
-                            showPickPotsAndPlants(
-                                floor: floor + 1,
-                                position: position + 1,
-                                userData: userData,
-                                update: update);
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(8),
-                            width: double.infinity,
-                            height: double.infinity,
-                            child: DottedBorder(
-                              color: Get.theme.primaryColor,
-                              strokeWidth: 2,
-                              borderType: BorderType.RRect,
-                              radius: const Radius.circular(12),
-                              dashPattern: const [6, 3, 2, 3],
-                              child: Center(
-                                  child: Icon(
-                                LucideIcons.sprout,
-                                size: 50,
-                                color: Get.theme.primaryColor,
-                              )),
-                            ),
-                          ),
-                        )
-                      : const SizedBox());
-        });
-  }
+  //         return (userData.plants!
+  //                 .where((element) =>
+  //                     element.position == ('${floor + 1},${position + 1}'))
+  //                 .isNotEmpty)
+  //             ? (plant != null)
+  //                 ? Container(
+  //                     width: Get.width * 0.32,
+  //                     padding: EdgeInsets.zero,
+  //                     child: PieMenu(
+  //                       onToggle: (val) {
+  //                         ShareFuntion.tapPlayAudio();
+  //                       },
+  //                       onPressed: () {
+  //                         ShareFuntion.tapPlayAudio(isNewAudioPlay: true);
+  //                         if (ShareFuntion.gacha(winRate: 2) && !isCoop) {
+  //                           _clamOxygen(plant,
+  //                               floor: floor, position: position);
+  //                         }
+  //                       },
+  //                       theme: const PieTheme(
+  //                           overlayColor: Colors.black45,
+  //                           rightClickShowsMenu: true,
+  //                           customAngleAnchor: PieAnchor.center),
+  //                       actions: [
+  //                         if (!isCoop)
+  //                           ...listActionsMenu(context,
+  //                               floor: floor + 1,
+  //                               position: position + 1,
+  //                               userData: userData,
+  //                               update: update)
+  //                       ],
+  //                       child: Container(
+  //                         padding: EdgeInsets.zero,
+  //                         // color: Colors.red,
+  //                         child: LayoutBuilder(
+  //                           builder: (context, constraints) {
+  //                             // Plants plant = userData
+  //                             //     .plants!
+  //                             //     .firstWhere((element) =>
+  //                             //         element.position!
+  //                             //             .contains(
+  //                             //                 '${floor + 1},${position + 1}'));
+  //                             // print(
+  //                             //     '/n plant: ${plant.idPlant} ${'${floor + 1},$position'} : level: ${plant.plantLevel}');
+  //                             bool showClamOxygen = (DateTime.now()
+  //                                         .difference(plant.harvestTime ??
+  //                                             DateTime.now())
+  //                                         .inMinutes >=
+  //                                     30 &&
+  //                                 ShareFuntion.gacha(
+  //                                     winRate: plant.plantLevel == 3
+  //                                         ? 99
+  //                                         : plant.plantLevel == 2
+  //                                             ? 80
+  //                                             : 70));
+  //                             // changeUI.call();
+  //                             return Stack(
+  //                               key: Key(plant.position ?? ''),
+  //                               children: [
+  //                                 (isHanging)
+  //                                     ? RiveAnimationItemHanging(
+  //                                         constraints: constraints,
+  //                                         plantId: plant.idPlant!,
+  //                                         potId: plant.idPot!,
+  //                                         changeUI: changeUI,
+  //                                         level: plant.plantLevel ?? 1)
+  //                                     : RiveAnimationItem(
+  //                                         constraints: constraints,
+  //                                         plantId: plant.idPlant!,
+  //                                         potId: plant.idPot!,
+  //                                         changeUI: changeUI,
+  //                                         level: plant.plantLevel ?? 1),
+  //                                 if (showClamOxygen && !isCoop) ...[
+  //                                   IconButton(
+  //                                     focusColor: Colors.transparent,
+  //                                     hoverColor: Colors.transparent,
+  //                                     onPressed: () async {
+  //                                       // ShareFuntion
+  //                                       //     .tapPlayAudio(
+  //                                       //         isNewAudioPlay:
+  //                                       //             false);
+  //                                       /// lấy oxy gen và tăng cấp cây khi hiện oxygen
+  //                                       _clamOxygen(plant,
+  //                                           floor: floor, position: position);
+  //                                     },
+  //                                     icon: Align(
+  //                                       alignment: Alignment.bottomRight,
+  //                                       child: Image.asset(
+  //                                         Assets.images.oxygen.path,
+  //                                         width: constraints.maxWidth * 0.25,
+  //                                         height: constraints.maxWidth * 0.25,
+  //                                       ),
+  //                                     ),
+  //                                   ),
+  //                                   Container(
+  //                                     color: Colors.red,
+  //                                     width: 100,
+  //                                     height: 100,
+  //                                     child: IgnorePointer(
+  //                                       ignoring: true,
+  //                                       child: Image.asset(
+  //                                           Assets.images.blink.path,
+  //                                           width: constraints.maxWidth,
+  //                                           height: constraints.maxHeight),
+  //                                     ),
+  //                                   ),
+  //                                 ]
+  //                               ],
+  //                             );
+  //                           },
+  //                         ),
+  //                       ),
+  //                     ))
+  //                 : const SizedBox()
+  //             : Container(
+  //                 width: Get.width * 0.33,
+  //                 padding: EdgeInsets.zero,
+  //                 child: isEdit
+  //                     ? GestureDetector(
+  //                         onTap: () {
+  //                           ShareFuntion.tapPlayAudio();
+  //                           showPickPotsAndPlants(
+  //                               floor: floor + 1,
+  //                               position: position + 1,
+  //                               userData: userData,
+  //                               update: update);
+  //                         },
+  //                         child: Container(
+  //                           padding: const EdgeInsets.all(8),
+  //                           width: double.infinity,
+  //                           height: double.infinity,
+  //                           child: DottedBorder(
+  //                             color: Get.theme.primaryColor,
+  //                             strokeWidth: 2,
+  //                             borderType: BorderType.RRect,
+  //                             radius: const Radius.circular(12),
+  //                             dashPattern: const [6, 3, 2, 3],
+  //                             child: Center(
+  //                                 child: Icon(
+  //                               LucideIcons.sprout,
+  //                               size: 50,
+  //                               color: Get.theme.primaryColor,
+  //                             )),
+  //                           ),
+  //                         ),
+  //                       )
+  //                     : const SizedBox());
+  //       });
+  // }
 }

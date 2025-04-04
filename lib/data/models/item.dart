@@ -1,8 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
-import 'package:flutter/widgets.dart';
-
 // thuộc tính đặc biệt
 enum ItemTypeAttribute {
   /// treo, áp dụng cho cây và chậu có phải dạng treo lên hay k
@@ -35,36 +32,6 @@ class ItemData {
     this.levelUnlock,
     this.itemTypeAttribute,
   });
-
-  ItemData copyWith({
-    ValueGetter<String?>? id,
-    ValueGetter<String?>? name,
-    ValueGetter<String?>? description,
-    ValueGetter<String?>? image,
-    ValueGetter<int?>? priceStore,
-    ValueGetter<int?>? priceOxygen,
-    ValueGetter<String?>? currencyUnit,
-    ValueGetter<String?>? type,
-    ValueGetter<String?>? effect,
-    ValueGetter<num?>? levelUnlock,
-    ValueGetter<ItemTypeAttribute?>? itemTypeAttribute,
-  }) {
-    return ItemData(
-      id: id != null ? id() : this.id,
-      name: name != null ? name() : this.name,
-      description: description != null ? description() : this.description,
-      image: image != null ? image() : this.image,
-      priceStore: priceStore != null ? priceStore() : this.priceStore,
-      priceOxygen: priceOxygen != null ? priceOxygen() : this.priceOxygen,
-      currencyUnit: currencyUnit != null ? currencyUnit() : this.currencyUnit,
-      type: type != null ? type() : this.type,
-      effect: effect != null ? effect() : this.effect,
-      levelUnlock: levelUnlock != null ? levelUnlock() : this.levelUnlock,
-      itemTypeAttribute: itemTypeAttribute != null
-          ? itemTypeAttribute()
-          : this.itemTypeAttribute,
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -141,5 +108,33 @@ class ItemData {
         effect.hashCode ^
         levelUnlock.hashCode ^
         itemTypeAttribute.hashCode;
+  }
+
+  ItemData copyWith({
+    String? id,
+    String? name,
+    String? description,
+    String? image,
+    int? priceStore,
+    int? priceOxygen,
+    String? currencyUnit,
+    String? type,
+    String? effect,
+    num? levelUnlock,
+    ItemTypeAttribute? itemTypeAttribute,
+  }) {
+    return ItemData(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      image: image ?? this.image,
+      priceStore: priceStore ?? this.priceStore,
+      priceOxygen: priceOxygen ?? this.priceOxygen,
+      currencyUnit: currencyUnit ?? this.currencyUnit,
+      type: type ?? this.type,
+      effect: effect ?? this.effect,
+      levelUnlock: levelUnlock ?? this.levelUnlock,
+      itemTypeAttribute: itemTypeAttribute ?? this.itemTypeAttribute,
+    );
   }
 }

@@ -390,6 +390,9 @@ class _UserScreenState extends State<UserScreen> {
                     ),
                   ],
                 ),
+                cHeight(16),
+                SText.bodySmall(
+                    'Version: ${userController.packageInfo?.version}')
                 // cHeight(kBottomNavigationBarHeight + 100)
               ],
             ),

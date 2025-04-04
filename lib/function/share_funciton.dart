@@ -270,7 +270,7 @@ class ShareFuntion {
       // Create a player
       switch (type) {
         case TypeSound.rain:
-          await playerAudio.setAsset(Assets.audios.rain);
+          await playerAudio.setAsset(Assets.audios.rain, );
         case TypeSound.tap:
           await playerAudio.setAsset(Assets.audios.tap);
         case TypeSound.like:

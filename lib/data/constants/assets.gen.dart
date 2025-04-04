@@ -33,6 +33,9 @@ class $AssetsAudiosGen {
   /// File path: assets/audios/m5.MP3
   String get m5 => 'assets/audios/m5.MP3';
 
+  /// File path: assets/audios/m6.mp3
+  String get m6 => 'assets/audios/m6.mp3';
+
   /// File path: assets/audios/peacefulgarden.mp3
   String get peacefulgarden => 'assets/audios/peacefulgarden.mp3';
 
@@ -44,7 +47,7 @@ class $AssetsAudiosGen {
 
   /// List of all assets
   List<String> get values =>
-      [levelUp, like, m1, m2, m3, m4, m5, peacefulgarden, rain, tap];
+      [levelUp, like, m1, m2, m3, m4, m5, m6, peacefulgarden, rain, tap];
 }
 
 class $AssetsBackgroundsGen {

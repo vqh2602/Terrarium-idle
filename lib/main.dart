@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:audio_service/audio_service.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -11,6 +12,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:terrarium_idle/c_lang/c_translations.dart';
 import 'package:terrarium_idle/c_theme/c_theme.dart';
 import 'package:terrarium_idle/config/config.dart';
@@ -23,10 +25,17 @@ import 'package:terrarium_idle/modules/splash/splash_screen.dart';
 import 'package:terrarium_idle/service/firebase_config.dart';
 import 'package:terrarium_idle/service/firebase_push.dart';
 import 'package:terrarium_idle/service/local_notification.dart';
+// ignore: library_prefixes
+import 'package:rive_native/rive_native.dart' as riveNative;
 
+// You might want to provide this using dependency injection rather than a
+// global variable.
+late AudioHandler audioHandler;
 Future<void> main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
+  await riveNative.RiveNative.init();
+
   // Khóa hướng màn hình dọc
   if (!kIsWeb) {
     await SystemChrome.setPreferredOrientations([
@@ -51,6 +60,15 @@ Future<void> main() async {
   //   androidNotificationChannelName: 'Audio playback',
   //   androidNotificationOngoing: true,
   // );
+  audioHandler = await AudioService.init(
+    builder: () => MyAudioHandler(),
+    config: AudioServiceConfig(
+      androidNotificationChannelId: 'com.mycompany.myapp.channel.audio',
+      androidNotificationChannelName: 'Music playback',
+      androidNotificationOngoing: true,
+      androidStopForegroundOnPause: true,
+    ),
+  );
 
 // theme:
   if (!kIsWeb) {
@@ -101,11 +119,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return LayoutBuilder(builder: (context, constraints) {
           return OrientationBuilder(builder: (context, orientation) {
-            return MediaQuery(
-              data: MediaQuery.of(context)
-                  .copyWith(textScaler: TextScaler.linear(1.0)),
-              child: child ?? SizedBox(),
-            );
+            return child ?? SizedBox();
           });
         });
       },
@@ -152,5 +166,126 @@ class MyHttpOverrides extends HttpOverrides {
     return super.createHttpClient(context)
       ..badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
+  }
+}
+
+class MyAudioHandler extends BaseAudioHandler
+    with
+        QueueHandler, // mix in default queue callback implementations
+        SeekHandler {
+  // mix in default seek callback implementations
+
+  AudioPlayer player = AudioPlayer();
+  MyAudioHandler() {
+    _notifyAudioHandlerAboutPlaybackEvents();
+    _listenForDurationChanges();
+    _listenForCurrentSongIndexChanges();
+    _listenForSequenceStateChanges();
+  }
+
+  void _listenForDurationChanges() {
+    player.durationStream.listen((duration) {
+      var index = player.currentIndex;
+      final newQueue = queue.value;
+      if (index == null || newQueue.isEmpty) return;
+      if (player.shuffleModeEnabled) {
+        index = player.shuffleIndices!.indexOf(index);
+      }
+      final oldMediaItem = newQueue[index];
+      final newMediaItem = oldMediaItem.copyWith(duration: duration);
+      newQueue[index] = newMediaItem;
+      queue.add(newQueue);
+      mediaItem.add(newMediaItem);
+    });
+  }
+
+  void _listenForCurrentSongIndexChanges() {
+    player.currentIndexStream.listen((index) {
+      final playlist = queue.value;
+      if (index == null || playlist.isEmpty) return;
+      if (player.shuffleModeEnabled) {
+        index = player.shuffleIndices!.indexOf(index);
+      }
+      mediaItem.add(playlist[index]);
+    });
+  }
+
+  void _listenForSequenceStateChanges() {
+    player.sequenceStateStream.listen((SequenceState? sequenceState) {
+      final sequence = sequenceState?.effectiveSequence;
+      if (sequence == null || sequence.isEmpty) return;
+      final items = sequence.map((source) => source.tag as MediaItem);
+      queue.add(items.toList());
+    });
+  }
+
+  @override
+  Future<void> playMediaItem(MediaItem mediaItem) async {
+    await player.pause();
+    await player.setAsset(
+      mediaItem.id,
+      tag: mediaItem,
+    ); // Schemes: (https: | file: | asset: )
+    await player.setLoopMode(LoopMode.all);
+    await player.setVolume(0.3);
+    await player.play(); // Play while waiting for completion
+    // await player.pause(); // Pause but remain ready to play
+    // await player.stop();
+
+    playbackState.add(playbackState.value.copyWith(playing: true, controls: [
+      MediaControl.pause,
+    ]));
+  }
+
+  @override
+  Future<void> play() {
+    playbackState.add(playbackState.value
+        .copyWith(playing: true, controls: [MediaControl.pause]));
+
+    return player.play();
+  }
+
+  @override
+  Future<void> pause() {
+    playbackState.add(playbackState.value
+        .copyWith(playing: false, controls: [MediaControl.play]));
+    return player.pause();
+  }
+
+  @override
+  Future<void> stop() => player.stop();
+  @override
+  Future<void> seek(Duration position) => player.seek(position);
+  @override
+  Future<void> skipToQueueItem(int i) => player.seek(Duration.zero, index: i);
+
+  void _notifyAudioHandlerAboutPlaybackEvents() {
+    player.playbackEventStream.listen((PlaybackEvent event) {
+      final playing = player.playing;
+      playbackState.add(playbackState.value.copyWith(
+        controls: [
+          MediaControl.skipToPrevious,
+          if (playing) MediaControl.pause else MediaControl.play,
+          MediaControl.stop,
+          MediaControl.skipToNext,
+        ],
+        systemActions: const {
+          MediaAction.seek,
+        },
+        androidCompactActionIndices: const [0, 1, 3],
+        processingState: const {
+          ProcessingState.idle: AudioProcessingState.idle,
+          ProcessingState.loading: AudioProcessingState.loading,
+          ProcessingState.buffering: AudioProcessingState.buffering,
+          ProcessingState.ready: AudioProcessingState.ready,
+          ProcessingState.completed: AudioProcessingState.completed,
+        }[player.processingState]!,
+        playing: playing,
+        updatePosition: player.position,
+        bufferedPosition: player.bufferedPosition,
+        speed: player.speed,
+        queueIndex: event.currentIndex,
+      ));
+    });
   }
 }

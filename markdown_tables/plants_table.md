@@ -31,3 +31,4 @@
 | plant27 | Xương rồng cột Andes | ![Xương rồng cột Andes](https://i.imgur.com/GWVg139.png) | 25900 | oxygen | 45 | none | N.A |
 | plant28 | Xương rồng myrtle xanh | ![Xương rồng myrtle xanh](https://i.imgur.com/m1PpUjS.png) | 35900 | oxygen | 46 | none | N.A |
 | plant29 | Xương rồng trụ xoắn | ![Xương rồng trụ xoắn](https://i.imgur.com/qBpFXex.png) | 100900 | oxygen | 48 | none | Thần Sơn Huyễn Cảnh |
+| plant30 | Hoa lan chuông trắng | ![Hoa lan chuông trắng](https://i.imgur.com/6u6Wfs7.png) | 1000 | gemstone | 50 | none | Lạc lõng khoảng trời |

@@ -372,7 +372,6 @@ List<ItemData> listPlantsData = [
     itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 46,
   ),
-
   ItemData(
     id: 'plant28',
     name: 'Xương rồng myrtle xanh'.tr,
@@ -400,6 +399,22 @@ List<ItemData> listPlantsData = [
     currencyUnit: 'oxygen',
     type: 'plant',
     effect: 'Thần Sơn Huyễn Cảnh'.tr + ' - landscape7'.tr,
+    itemTypeAttribute: ItemTypeAttribute.none,
+    levelUnlock: 50,
+  ),
+  // Todo
+  ItemData(
+    id: 'plant30',
+    name: 'Hoa lan chuông trắng'.tr,
+    description:
+        'Loài cây mỏng manh này có những bông hoa nhỏ hình chuông, có mùi thơm vô cùng ngọt ngào khiến nó trở thành một loại cây được yêu thích'
+            .tr,
+    image: 'https://i.imgur.com/6u6Wfs7.png',
+    priceStore: 1000,
+    priceOxygen: 35000,
+    currencyUnit: 'gemstone',
+    type: 'plant',
+    effect: 'Lạc lõng khoảng trời'.tr + ' - m6'.tr,
     itemTypeAttribute: ItemTypeAttribute.none,
     levelUnlock: 50,
   ),

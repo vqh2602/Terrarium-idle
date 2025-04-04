@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:terrarium_idle/data/local/list_bag.dart';
 import 'package:terrarium_idle/data/local/list_plants.dart';
 import 'package:terrarium_idle/data/models/item.dart';
@@ -28,6 +29,7 @@ class UserController extends GetxController
   bool isCache = false;
   bool isLandscapeFade = false; // mờ phong cảnh
   Ranking? rank;
+  PackageInfo? packageInfo;
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -41,17 +43,20 @@ class UserController extends GetxController
 
     // hàm xử lý sự kiện thu thập
     checkCreateNewRank();
+    packageInfo = await PackageInfo.fromPlatform();
     changeUI();
   }
 
   // kiểm tra rank của bản thân đã tồn tại hay chưa, nếu chưa thì tạo mới
-  checkCreateNewRank() async {
+  checkCreateNewRank({bool isRealtime = true}) async {
     rank = await getDataRank(user?.user?.userID ?? '');
     if (rank == null && user != null) {
       await createDataRank(user: user!.user!);
     }
-    getDataRankRealtime(
-        firebaseAuth.currentUser?.uid ?? '', (p0) => {rank = p0, update()});
+    if (isRealtime) {
+      getDataRankRealtime(
+          firebaseAuth.currentUser?.uid ?? '', (p0) => {rank = p0, update()});
+    }
   }
 
   // cập nhật giá trị cho người dùng // bản mới thêm trường isHanging

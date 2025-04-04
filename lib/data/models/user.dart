@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+
 import 'package:terrarium_idle/function/color_helper.dart';
 
 class UserData {
@@ -441,56 +442,64 @@ class Item {
 class Cart {
   List<String>? cartPlants;
   List<String>? cartPots;
+  List<String>? cartStickers;
   Cart({
     this.cartPlants,
     this.cartPots,
+    this.cartStickers,
   });
 
   Cart copyWith({
     List<String>? cartPlants,
     List<String>? cartPots,
+    List<String>? cartStickers,
   }) {
     return Cart(
       cartPlants: cartPlants ?? this.cartPlants,
       cartPots: cartPots ?? this.cartPots,
+      cartStickers: cartStickers ?? this.cartStickers,
     );
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'cartPlants': cartPlants,
       'cartPots': cartPots,
+      'cartStickers': cartStickers,
     };
   }
 
   factory Cart.fromMap(Map<String, dynamic> map) {
     return Cart(
-      cartPlants: map['cartPlants'] != null
-          ? List<String>.from((map['cartPlants']))
-          : null,
-      cartPots:
-          map['cartPots'] != null ? List<String>.from((map['cartPots'])) : null,
+      cartPlants: List<String>.from(map['cartPlants']),
+      cartPots: List<String>.from(map['cartPots']),
+      cartStickers: map['cartStickers'] != null
+          ? List<String>.from(map['cartStickers'])
+          : [],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Cart.fromJson(String source) =>
-      Cart.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Cart.fromJson(String source) => Cart.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Cart(cartPlants: $cartPlants, cartPots: $cartPots)';
+  String toString() =>
+      'Cart(cartPlants: $cartPlants, cartPots: $cartPots, cartStickers: $cartStickers)';
 
   @override
-  bool operator ==(covariant Cart other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return listEquals(other.cartPlants, cartPlants) &&
-        listEquals(other.cartPots, cartPots);
+    return other is Cart &&
+        listEquals(other.cartPlants, cartPlants) &&
+        listEquals(other.cartPots, cartPots) &&
+        listEquals(other.cartStickers, cartStickers);
   }
 
   @override
-  int get hashCode => cartPlants.hashCode ^ cartPots.hashCode;
+  int get hashCode =>
+      cartPlants.hashCode ^ cartPots.hashCode ^ cartStickers.hashCode;
 }
 
 class Plants {

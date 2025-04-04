@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:rive/rive.dart';
+import 'package:rive_native/rive_native.dart';
 import 'package:terrarium_idle/data/constants/assets.gen.dart';
 import 'package:terrarium_idle/data/models/ranking.dart';
 import 'package:terrarium_idle/data/models/user.dart';
@@ -24,6 +25,7 @@ import 'package:terrarium_idle/widgets/compoment/picker_effects.dart';
 import 'package:terrarium_idle/widgets/compoment/picker_weather.dart';
 import 'package:terrarium_idle/widgets/compoment/tool_level.dart';
 import 'package:terrarium_idle/widgets/compoment/water_rain.dart';
+import 'package:terrarium_idle/widgets/rive_native.dart';
 
 class GardenScreen extends StatefulWidget {
   const GardenScreen({super.key});
@@ -44,6 +46,7 @@ class _GardenScreenState extends State<GardenScreen>
   void initState() {
     super.initState();
     gardenController.checkLogin();
+    userController.checkCreateNewRank(isRealtime: false);
     _startTimer();
   }
 
@@ -262,8 +265,10 @@ class _GardenScreenState extends State<GardenScreen>
               width: Get.width,
               height: Get.height,
               padding: EdgeInsets.zero,
-              child: RiveAnimation.asset(
-                gardenController.selectWeatherLandscape != null &&
+              child: RivePlayer.assets(
+                key: Key(
+                    gardenController.selectWeatherLandscape?.value ?? 'key_0'),
+                asset: gardenController.selectWeatherLandscape != null &&
                         gardenController.selectWeatherLandscape?.value != ''
                     ? gardenController.selectWeatherLandscape!.value!
                     : !gardenController.isRain
@@ -274,8 +279,22 @@ class _GardenScreenState extends State<GardenScreen>
                                 ? Assets.backgrounds.skySunSet
                                 : Assets.backgrounds.skyMoonNight
                         : Assets.backgrounds.skyRain,
-                fit: BoxFit.cover,
+                fit: Fit.cover,
               ),
+              // child: RiveAnimation.asset(
+              //   gardenController.selectWeatherLandscape != null &&
+              //           gardenController.selectWeatherLandscape?.value != ''
+              //       ? gardenController.selectWeatherLandscape!.value!
+              //       : !gardenController.isRain
+              //           ? (DateTime.now().hour >= 6 && DateTime.now().hour < 15)
+              //               ? Assets.backgrounds.skySunDay
+              //               : (DateTime.now().hour >= 15 &&
+              //                       DateTime.now().hour < 19)
+              //                   ? Assets.backgrounds.skySunSet
+              //                   : Assets.backgrounds.skyMoonNight
+              //           : Assets.backgrounds.skyRain,
+              //   fit: BoxFit.cover,
+              // ),
             ),
             _blurBackground(),
             userController.obx(
@@ -331,6 +350,12 @@ class _GardenScreenState extends State<GardenScreen>
                   width: Get.width,
                   height: Get.height,
                   padding: EdgeInsets.zero,
+                  // child: RivePlayer.assets(
+                  //   key: Key(gardenController.selectEffect?.value ?? 'key_1'),
+                  //   asset: gardenController.selectEffect?.value ?? '',
+                  //   // 'assets/rive/overlay/overlay1.riv',
+                  //   fit: Fit.cover,
+                  // ),
                   child: RiveAnimation.asset(
                     gardenController.selectEffect?.value ?? '',
                     // 'assets/rive/overlay/overlay1.riv',
@@ -355,7 +380,7 @@ class _GardenScreenState extends State<GardenScreen>
               ? GlassContainer.frostedGlass(
                   blur: 2,
                   borderColor: Colors.transparent,
-                   color: Colors.transparent,
+                  color: Colors.transparent,
                   frostedOpacity: 0.05,
                   // width: context.width,
                   child: SizedBox(

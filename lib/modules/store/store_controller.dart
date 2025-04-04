@@ -7,6 +7,7 @@ import 'package:terrarium_idle/config/config.dart';
 import 'package:terrarium_idle/data/local/list_items.dart';
 import 'package:terrarium_idle/data/local/list_plants.dart';
 import 'package:terrarium_idle/data/local/list_pots.dart';
+import 'package:terrarium_idle/data/local/list_stickers.dart';
 import 'package:terrarium_idle/data/models/item.dart';
 import 'package:terrarium_idle/data/models/user.dart';
 import 'package:terrarium_idle/mixin/firestore_mixin.dart';
@@ -25,6 +26,7 @@ class StoreController extends GetxController
   List<ItemData> listStorePlants = [];
 
   List<ItemData> listStorePots = [];
+  List<ItemData> listStoreStickers = [];
 
   List<ItemData> listStoreItems = [];
 
@@ -46,6 +48,11 @@ class StoreController extends GetxController
     listStorePots = listPotsData
         .where((pot) =>
             !(userController.user?.cart?.cartPots?.contains(pot.id) ?? false))
+        .toList();
+    listStoreStickers = listStickersData
+        .where((pot) =>
+            !(userController.user?.cart?.cartStickers?.contains(pot.id) ??
+                false))
         .toList();
     listStorePots.sort((a, b) => a.levelUnlock!.compareTo(b.levelUnlock!));
     listStoreItems = listItemsData;
@@ -252,6 +259,15 @@ class StoreController extends GetxController
           buyItems(userController.user?.copyWith(
             cart: userController.user?.cart?.copyWith(
               cartPots: addNew,
+            ),
+          ));
+          break;
+        case 'sticker':
+          List<String> addNew = (userController.user?.cart?.cartStickers ?? []);
+          addNew.add(item.id ?? '');
+          buyItems(userController.user?.copyWith(
+            cart: userController.user?.cart?.copyWith(
+              cartStickers: addNew,
             ),
           ));
           break;

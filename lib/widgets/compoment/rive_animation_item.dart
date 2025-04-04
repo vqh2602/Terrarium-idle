@@ -37,51 +37,73 @@ class _RiveAnimationItemState extends State<RiveAnimationItem> {
 
   @override
   Widget build(BuildContext context) {
+    bool isSticker =
+        (widget.plantId.contains('sticker') && widget.plantId == widget.potId);
     return RepaintBoundary(
       child: Stack(
         children: [
           Column(
             children: [
-              cHeight(widget.constraints.maxHeight * 0.03),
-              SizedBox(
-                width: widget.constraints.maxWidth,
-                height: widget.constraints.maxHeight * 0.7,
-                child:
-                 RiveAnimation.network(
-                  '${Env.config.dataServer}/rive/plants/${widget.plantId}.riv',
-                  key: Key('${widget.plantId} ${widget.level}'),
-                  onInit: (artboardRive) {
-                    artboard = artboardRive;
-                    // print('/n animation plant: $plantId $level');
-                    state =
-                        StateMachineController.fromArtboard(artboard!, 'plant');
-                    input = state!.findInput<double>('level') as SMINumber;
-                    input!.change(widget.level.toDouble());
-                    // print(_input!.value);
-                    artboard!.addController(state);
-                    setState(() {
-                      widget.changeUI.call();
-                      isLoadingPlant = false;
-                    });
-                  },
-                  fit: BoxFit.fill,
+              if (isSticker)
+                SizedBox(
+                  width: widget.constraints.maxWidth,
+                  height: widget.constraints.maxHeight,
+                  child: RiveAnimation.network(
+                    '${Env.config.dataServer}/rive/sticker/${widget.potId}.riv',
+                    fit: BoxFit.cover,
+                    onInit: (artboardRive) {
+                      state = StateMachineController.fromArtboard(
+                          artboardRive, 'State Machine 1');
+                      artboardRive.addController(state);
+                      setState(() {
+                        isLoadingPot = false;
+                        isLoadingPlant = false;
+                      });
+                    },
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: widget.constraints.maxWidth,
-                height: widget.constraints.maxHeight * 0.27,
-                child: RiveAnimation.network(
-                  '${Env.config.dataServer}/rive/pots/${widget.potId}.riv',
-                  onInit: (artboardRive) {
-                    state = StateMachineController.fromArtboard(
-                        artboardRive, 'State Machine 1');
-                    artboardRive.addController(state);
-                    setState(() {
-                      isLoadingPot = false;
-                    });
-                  },
+              if (!isSticker) ...[
+                cHeight(widget.constraints.maxHeight * 0.03),
+                SizedBox(
+                  width: widget.constraints.maxWidth,
+                  height: widget.constraints.maxHeight * 0.7,
+                  child: RiveAnimation.network(
+                    '${Env.config.dataServer}/rive/plants/${widget.plantId}.riv',
+                    key: Key('${widget.plantId} ${widget.level}'),
+                    onInit: (artboardRive) {
+                      artboard = artboardRive;
+                      // print('/n animation plant: $plantId $level');
+                      state = StateMachineController.fromArtboard(
+                          artboard!, 'plant');
+                      input = state!.findInput<double>('level') as SMINumber;
+                      input!.change(widget.level.toDouble());
+                      // print(_input!.value);
+                      artboard!.addController(state);
+                      setState(() {
+                        widget.changeUI.call();
+                        isLoadingPlant = false;
+                      });
+                    },
+                    fit: BoxFit.fill,
+                  ),
                 ),
-              ),
+                SizedBox(
+                  width: widget.constraints.maxWidth,
+                  height: widget.constraints.maxHeight * 0.27,
+                  child: RiveAnimation.network(
+                    '${Env.config.dataServer}/rive/pots/${widget.potId}.riv',
+                    // fit: BoxFit.contain,
+                    onInit: (artboardRive) {
+                      state = StateMachineController.fromArtboard(
+                          artboardRive, 'State Machine 1');
+                      artboardRive.addController(state);
+                      setState(() {
+                        isLoadingPot = false;
+                      });
+                    },
+                  ),
+                ),
+              ],
             ],
           ),
           if (isLoadingPot || isLoadingPlant)
@@ -127,51 +149,78 @@ class _RiveAnimationItemHangingState extends State<RiveAnimationItemHanging> {
 
   @override
   Widget build(BuildContext context) {
+    bool isSticker =
+        (widget.plantId.contains('sticker') && widget.plantId == widget.potId);
     return RepaintBoundary(
       child: Stack(
         children: [
-          Align(
-            alignment: Alignment.topCenter,
-            child: SizedBox(
-              width: widget.constraints.maxWidth * 0.75,
-              height: widget.constraints.maxHeight * 0.65,
-              child: RiveAnimation.network(
-                '${Env.config.dataServer}/rive/pots/${widget.potId}.riv',
-                fit: BoxFit.fill,
-                onInit: (artboardRive) {
-                  // print('/n animation plant: $plantId $level');
-                  state = StateMachineController.fromArtboard(
-                      artboardRive, 'State Machine 1');
-                  artboardRive.addController(state);
-                  setState(() {
-                    isLoadingPot = false;
-                  });
-                },
+          if (isSticker)
+            Align(
+              alignment: Alignment.topCenter,
+              child: SizedBox(
+                width: widget.constraints.maxWidth * 0.75,
+                height: widget.constraints.maxHeight,
+                child: RiveAnimation.network(
+                  '${Env.config.dataServer}/rive/sticker/${widget.potId}.riv',
+                  fit: BoxFit.cover,
+                  onInit: (artboardRive) {
+                    // print('/n animation plant: $plantId $level');
+                    state = StateMachineController.fromArtboard(
+                        artboardRive, 'State Machine 1');
+                    artboardRive.addController(state);
+                    setState(() {
+                      isLoadingPot = false;
+                      isLoadingPlant = false;
+                    });
+                  },
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            width: widget.constraints.maxWidth,
-            height: widget.constraints.maxHeight * 0.91,
-            child: RiveAnimation.network(
-              '${Env.config.dataServer}/rive/plants/${widget.plantId}.riv',
-              key: Key('${widget.plantId} ${widget.level}'),
-              onInit: (artboardRive) {
-                artboard = artboardRive;
-                // print('/n animation plant: $plantId $level');
-                state = StateMachineController.fromArtboard(artboard!, 'plant');
-                input = state!.findInput<double>('level') as SMINumber;
-                input!.change(widget.level.toDouble());
-                // print(_input!.value);
-                artboard!.addController(state);
-                setState(() {
-                  widget.changeUI.call();
-                  isLoadingPlant = false;
-                });
-              },
-              fit: BoxFit.fill,
+          if (!isSticker) ...[
+            Align(
+              alignment: Alignment.topCenter,
+              child: SizedBox(
+                width: widget.constraints.maxWidth * 0.75,
+                height: widget.constraints.maxHeight * 0.65,
+                child: RiveAnimation.network(
+                  '${Env.config.dataServer}/rive/pots/${widget.potId}.riv',
+                  fit: BoxFit.fill,
+                  onInit: (artboardRive) {
+                    // print('/n animation plant: $plantId $level');
+                    state = StateMachineController.fromArtboard(
+                        artboardRive, 'State Machine 1');
+                    artboardRive.addController(state);
+                    setState(() {
+                      isLoadingPot = false;
+                    });
+                  },
+                ),
+              ),
             ),
-          ),
+            SizedBox(
+              width: widget.constraints.maxWidth,
+              height: widget.constraints.maxHeight * 0.91,
+              child: RiveAnimation.network(
+                '${Env.config.dataServer}/rive/plants/${widget.plantId}.riv',
+                key: Key('${widget.plantId} ${widget.level}'),
+                onInit: (artboardRive) {
+                  artboard = artboardRive;
+                  // print('/n animation plant: $plantId $level');
+                  state =
+                      StateMachineController.fromArtboard(artboard!, 'plant');
+                  input = state!.findInput<double>('level') as SMINumber;
+                  input!.change(widget.level.toDouble());
+                  // print(_input!.value);
+                  artboard!.addController(state);
+                  setState(() {
+                    widget.changeUI.call();
+                    isLoadingPlant = false;
+                  });
+                },
+                fit: BoxFit.fill,
+              ),
+            ),
+          ],
           if (isLoadingPot || isLoadingPlant)
             Align(
               alignment: Alignment.center,

@@ -12,3 +12,4 @@
 | m4 | Đêm dài | ![Đêm dài]([Asset Reference]) |  | music | Đêm dài |
 | overlay5 | Hoa đào rơi | ![Hoa đào rơi]([Asset Reference]) |  | overlay | Hoa đào rơi |
 | m5 | Ngày dông bão | ![Ngày dông bão]([Asset Reference]) |  | music | Ngày dông bão |
+| m6 | Lạc lõng khoảng trời | ![Lạc lõng khoảng trời]([Asset Reference]) |  | music |  |
